@@ -3,7 +3,7 @@ import "../globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
-import localFont from "@next/font/local";
+import localFont from "next/font/local";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -13,42 +13,42 @@ export const metadata: Metadata = {
 const modam = localFont({
   src: [
     {
-      path: "/fonts/ModamWeb-ExtraLight.woff2",
+      path: "../../public/fonts/ModamWeb-ExtraLight.woff2",
       weight: "200",
       style: "normal",
     },
     {
-      path: "/fonts/ModamWeb-Light.woff2",
+      path: "../../public/fonts/ModamWeb-Light.woff2",
       weight: "300",
       style: "normal",
     },
     {
-      path: "/fonts/ModamWeb-Regular.woff2",
+      path: "../../public/fonts/ModamWeb-Regular.woff2",
       weight: "400",
       style: "normal",
     },
     {
-      path: "/fonts/ModamWeb-Medium.woff2",
+      path: "../../public/fonts/ModamWeb-Medium.woff2",
       weight: "500",
       style: "normal",
     },
     {
-      path: "/fonts/ModamWeb-Semibold.woff2",
+      path: "../../public/fonts/ModamWeb-Semibold.woff2",
       weight: "600",
       style: "normal",
     },
     {
-      path: "/fonts/ModamWeb-Bold.woff2",
+      path: "../../public/fonts/ModamWeb-Bold.woff2",
       weight: "700",
       style: "normal",
     },
     {
-      path: "/fonts/ModamWeb-ExtraBold.woff2",
+      path: "../../public/fonts/ModamWeb-ExtraBold.woff2",
       weight: "800",
       style: "normal",
     },
     {
-      path: "/fonts/ModamWeb-Black.woff2",
+      path: "../../public/fonts/ModamWeb-Black.woff2",
       weight: "900",
       style: "normal",
     },
