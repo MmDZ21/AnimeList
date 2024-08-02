@@ -13,42 +13,42 @@ export const metadata: Metadata = {
 const modam = localFont({
   src: [
     {
-      path: "../fonts/ModamWeb-ExtraLight.woff2",
+      path: "../../public/fonts/modamWeb-extraLight.woff2",
       weight: "200",
       style: "normal",
     },
     {
-      path: "../fonts/ModamWeb-Light.woff2",
+      path: "../../public/fonts/modamWeb-light.woff2",
       weight: "300",
       style: "normal",
     },
     {
-      path: "../fonts/ModamWeb-Regular.woff2",
+      path: "../../public/fonts/modamWeb-regular.woff2",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../fonts/ModamWeb-Medium.woff2",
+      path: "../../public/fonts/modamWeb-medium.woff2",
       weight: "500",
       style: "normal",
     },
     {
-      path: "../fonts/ModamWeb-Semibold.woff2",
+      path: "../../public/fonts/modamWeb-semibold.woff2",
       weight: "600",
       style: "normal",
     },
     {
-      path: "../fonts/ModamWeb-Bold.woff2",
+      path: "../../public/fonts/modamWeb-bold.woff2",
       weight: "700",
       style: "normal",
     },
     {
-      path: "../fonts/ModamWeb-ExtraBold.woff2",
+      path: "../../public/fonts/modamWeb-extraBold.woff2",
       weight: "800",
       style: "normal",
     },
     {
-      path: "../fonts/ModamWeb-Black.woff2",
+      path: "../../public/fonts/modamWeb-black.woff2",
       weight: "900",
       style: "normal",
     },
