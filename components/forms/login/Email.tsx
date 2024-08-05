@@ -24,10 +24,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { signIn } from "@/auth";
+import { login } from "@/actions/login";
+import router from "next/router";
 
 const Email = () => {
   const [isPending, setIsPending] = useState(false);
-
+  const [error, setError] = useState<string | null>(null);
   const form = useForm<z.infer<typeof emailLoginSchema>>({
     resolver: zodResolver(emailLoginSchema),
     defaultValues: {
@@ -40,13 +43,28 @@ const Email = () => {
   async function onSubmit(values: z.infer<typeof emailLoginSchema>) {
     setIsPending(true);
     try {
-      console.log(values);
-      // Simulate an async operation
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      // Handle registration logic
+      const result = await login(values);
+      console.log(result);
+      if (result?.error) {
+        setError(result.error);
+      } else {
+        router.push("/");
+      }
+    } catch (error) {
+      setError(error);
     } finally {
       setIsPending(false);
     }
+    // setIsPending(true);
+    // try {
+    //   console.log(values);
+    //   // Simulate an async operation
+    //   await new Promise((resolve) => setTimeout(resolve, 2000));
+    //   // Handle registration logic
+    //   login(values);
+    // } finally {
+    //   setIsPending(false);
+    // }
   }
 
   return (
