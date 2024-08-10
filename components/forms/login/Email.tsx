@@ -24,7 +24,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { signIn } from "@/auth";
 import { login } from "@/actions/login";
 import router from "next/router";
 
@@ -50,7 +49,7 @@ const Email = () => {
       } else {
         router.push("/");
       }
-    } catch (error) {
+    } catch (error: any) {
       setError(error);
     } finally {
       setIsPending(false);

@@ -19,6 +19,16 @@ const config = {
       },
     },
     extend: {
+      screens: {
+        xs: "480px", // Extra small devices (mobile)
+        sm: "640px", // Small devices (mobile)
+        md: "768px", // Medium devices (tablets)
+        lg: "1024px", // Large devices (laptops)
+        xl: "1280px", // Extra large devices (desktops)
+        "2xl": "1440px", // Extra large devices (large desktops)
+        "3xl": "1600px", // Ultra-large devices (ultra-wide monitors)
+        "4xl": "1920px", // Ultra-large devices (large 1080p monitors)
+      },
       backgroundImage: {
         login: "url('/images/loginpic.webp')",
       },

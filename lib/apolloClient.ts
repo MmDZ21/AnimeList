@@ -1,37 +1,37 @@
-// const httpLink = createHttpLink({
-//   uri: "https://api.anilist.top/graphql",
-// });
+import { ApolloLink, HttpLink } from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
 
-// const authLink = setContext(async (_, { headers }) => {
-//   const session = await auth();
-//   const token = session?.user?.accessToken || "";
-
-//   return {
-//     headers: {
-//       ...headers,
-//       Authorization: token ? `Bearer ${token}` : "",
-//     },
-//   };
-// });
-
-// const client = new ApolloClient({
-//   link: authLink.concat(httpLink),
-//   cache: new InMemoryCache(),
-// });
-
-// export default client;
-import { HttpLink } from "@apollo/client";
 import {
-  registerApolloClient,
   ApolloClient,
   InMemoryCache,
+  registerApolloClient,
+  SSRMultipartLink,
 } from "@apollo/experimental-nextjs-app-support";
+import { getSession } from "./authUtils";
+
+const httpLink = new HttpLink({
+  uri: "https://api.anilist.top/graphql",
+});
+
+const authLink = setContext(async (_, { headers }) => {
+  const session = await getSession();
+
+  const token = session?.accessToken || "";
+  return {
+    headers: {
+      ...headers,
+      Authorization: token ? `Bearer ${token}` : "",
+    },
+  };
+});
 
 export const { getClient, query, PreloadQuery } = registerApolloClient(() => {
   return new ApolloClient({
     cache: new InMemoryCache(),
-    link: new HttpLink({
-      uri: "https://api.anilist.top/graphql",
-    }),
+    link: ApolloLink.from([
+      authLink,
+      new SSRMultipartLink({ stripDefer: true }),
+      httpLink,
+    ]),
   });
 });
