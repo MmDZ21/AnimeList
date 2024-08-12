@@ -1,8 +1,17 @@
 {
+  "home": "Home",
   "anime": "Anime",
   "movie": "Movie",
-  "drama": "Drama",
-  "best": "Best",
+  "series": "Series",
+  "top": "Top",
   "schedule": "schedule",
-  "blog": "Blog"
+  "blog": "Blog",
+  "softsub": "Soft Sub",
+  "animeMovie": "Anime Movie",
+  "completed": "Completed",
+  "genre": "Genre",
+  "year": "Year",
+  "ongoing": "Ongoing",
+  "subscription": "Subscription",
+  "login": "Login"
 }

@@ -6,6 +6,7 @@ import localFont from "next/font/local";
 import { ApolloClientProvider } from "@/components/ApolloWrapper";
 import { LocaleProvider } from "../hooks/locale-provider";
 import { Locales } from "@/i18n/settings";
+import DirProvider from "@/components/DirProvider";
 
 // Define the expected type for the parameters
 interface MetadataParams {
@@ -136,7 +137,7 @@ export default async function GlobalLayout({
       dir={locale === "fa" ? "rtl" : "ltr"}
       suppressHydrationWarning
     >
-      <body className={`dark:bg-background ${modam.className}`}>
+      <body className={`dark:bg-background ${modam.className} w-screen`}>
         <ApolloClientProvider>
           <LocaleProvider value={locale}>
             <ThemeProvider
@@ -145,7 +146,9 @@ export default async function GlobalLayout({
               enableSystem
               disableTransitionOnChange
             >
-              {children}
+              <DirProvider dir={locale === "fa" ? "rtl" : "ltr"}>
+                {children}
+              </DirProvider>
             </ThemeProvider>
           </LocaleProvider>
         </ApolloClientProvider>

@@ -32,7 +32,7 @@ declare module "next-auth/jwt" {
 
 export interface NavMenu {
   label: string;
-  href: string;
+  href?: string;
   subMenus?: {
     label: string;
     href: string;

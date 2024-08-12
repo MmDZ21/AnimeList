@@ -146,7 +146,7 @@ const Mobile = () => {
                     {isPending ? (
                       <>
                         <Image
-                          src="/images/spinner.svg"
+                          src="/svg/spinner.svg"
                           width={16}
                           height={16}
                           alt="spinner"
@@ -280,7 +280,7 @@ const Mobile = () => {
                   >
                     {isPending ? (
                       <Image
-                        src="/images/spinner.svg"
+                        src="/svg/spinner.svg"
                         width={16}
                         height={16}
                         alt="spinner"
@@ -300,7 +300,7 @@ const Mobile = () => {
                     {isPending ? (
                       <>
                         <Image
-                          src="/images/spinner.svg"
+                          src="/svg/spinner.svg"
                           width={16}
                           height={16}
                           alt="spinner"

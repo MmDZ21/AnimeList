@@ -29,7 +29,6 @@ import router from "next/router";
 
 const Email = () => {
   const [isPending, setIsPending] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const form = useForm<z.infer<typeof emailLoginSchema>>({
     resolver: zodResolver(emailLoginSchema),
     defaultValues: {
@@ -42,28 +41,53 @@ const Email = () => {
   async function onSubmit(values: z.infer<typeof emailLoginSchema>) {
     setIsPending(true);
     try {
-      const result = await login(values);
-      console.log(result);
-      if (result?.error) {
-        setError(result.error);
+      const response = await fetch(process.env.NEXT_PUBLIC_AUTH_URL as string, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userName: values.email,
+          password: values.password,
+          rememberMe: values.rememberMe,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json(); // Assuming the server returns JSON with error details
+
+        if (errorData.errors) {
+          // Loop over each error and set the corresponding form field error
+          errorData.errors.forEach(
+            (error: { field: string; message: string }) => {
+              form.setError(
+                error.field as keyof z.infer<typeof emailLoginSchema>,
+                {
+                  type: "server",
+                  message: error.message,
+                }
+              );
+            }
+          );
+        } else {
+          // Generic error handling if no specific field errors
+          form.setError("root", {
+            type: "server",
+            message: "An unexpected error occurred.",
+          });
+        }
       } else {
+        // If successful, redirect or handle success
         router.push("/");
       }
-    } catch (error: any) {
-      setError(error);
+    } catch (error) {
+      form.setError("root", {
+        type: "server",
+        message: "Network error. Please try again.",
+      });
     } finally {
       setIsPending(false);
     }
-    // setIsPending(true);
-    // try {
-    //   console.log(values);
-    //   // Simulate an async operation
-    //   await new Promise((resolve) => setTimeout(resolve, 2000));
-    //   // Handle registration logic
-    //   login(values);
-    // } finally {
-    //   setIsPending(false);
-    // }
   }
 
   return (
@@ -142,7 +166,7 @@ const Email = () => {
                 >
                   {isPending && (
                     <Image
-                      src="/images/spinner.svg"
+                      src="/svg/spinner.svg"
                       width={16}
                       height={16}
                       alt="spinner"
