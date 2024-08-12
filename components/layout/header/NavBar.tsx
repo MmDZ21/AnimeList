@@ -32,7 +32,7 @@ export default function NavBar() {
                     {menu.label}
                   </NavigationMenuTrigger>
                   <NavigationMenuContent className="dark:bg-[#17212B]">
-                    <ul className="flex flex-col p-2">
+                    <ul className="flex flex-col items-center p-2">
                       {menu.subMenus?.map((submenu) => (
                         <li key={submenu.label}>
                           <Link href={submenu.href} passHref className="w-full">
