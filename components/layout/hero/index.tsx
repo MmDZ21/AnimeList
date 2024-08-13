@@ -77,7 +77,7 @@ export default function Hero() {
                   <p className="hidden lg:flex text-base font-medium">
                     {hero.desc}
                   </p>
-                  <div className="flex gap-4">
+                  <div className="hidden lg:flex gap-4">
                     {hero.actions
                       ? hero.actions.map((action) => (
                           <Actions key={action.label} actions={action} />
