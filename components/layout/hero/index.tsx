@@ -60,7 +60,7 @@ export default function Hero() {
               <div
                 className={`${
                   hero.imgMobilePosition ? hero.imgMobilePosition : "bg-center"
-                } bg-cover lg:gap-8 lg:px-16 pb-4 lg:pb-0 flex flex-col justify-end lg:justify-center ${
+                } bg-cover lg:gap-32 lg:px-16 pb-4 lg:pb-0 flex flex-col justify-end lg:justify-center ${
                   hero.justifyEn
                 } ${
                   hero.justifyFa
@@ -77,9 +77,6 @@ export default function Hero() {
                   <p className="hidden lg:flex text-base font-medium">
                     {hero.desc}
                   </p>
-                </div>
-                {/* actions and indicator on lg Screens */}
-                <div className="w-full z-20 hidden lg:flex lg:flex-col gap-32">
                   <div className="flex gap-4">
                     {hero.actions
                       ? hero.actions.map((action) => (
@@ -87,6 +84,9 @@ export default function Hero() {
                         ))
                       : ""}
                   </div>
+                </div>
+                {/* actions and indicator on lg Screens */}
+                <div className="w-full z-20 hidden lg:flex lg:flex-col gap-32">
                   <div
                     className={`w-full flex z-20 gap-2 justify-between items-center`}
                   >
