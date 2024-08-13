@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import { JWT } from "next-auth/jwt";
+import { ImgHTMLAttributes } from "react";
 
 declare module "next-auth" {
   interface User {
@@ -38,3 +39,23 @@ export interface NavMenu {
     href: string;
   }[];
 }
+
+export interface HeroAction {
+  type: "button" | "link";
+  label: string;
+  variant?: "outline" | "default";
+  icon?: string;
+  mobileIconOnly?: boolean;
+  href?: string;
+  fn?: (...args: any[]) => any;
+}
+
+export type HeroSlide = {
+  title: string;
+  imageUrl: string;
+  desc: string;
+  actions?: HeroAction[];
+  justifyFa: "lg:rtl:items-start" | "lg:rtl:items-end" | "lg:rtl:items-center";
+  justifyEn: "lg:ltr:items-start" | "lg:ltr:items-end" | "lg:ltr:items-center";
+  imgMobilePosition?: "bg-right" | "bg-left" | "bg-center";
+};

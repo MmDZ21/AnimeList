@@ -25,7 +25,7 @@ export default function Header() {
           <Profile />
         </div>
       </div>
-      <div className="hidden lg:flex items-center gap-8">
+      <div className="hidden lg:flex items-center gap-8 lg:max-w-screen-4xl">
         <Logo className="text-white lg:text-primary-500" />
         <NavBar />
       </div>
