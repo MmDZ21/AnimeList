@@ -1,4 +1,4 @@
-import { HeroSlide } from "@/types/types";
+import { HeroSlide, MediaCard } from "@/types/types";
 
 export const heroSlides: HeroSlide[] = [
   {
@@ -75,5 +75,48 @@ export const heroSlides: HeroSlide[] = [
         mobileIconOnly: true,
       },
     ],
+  },
+];
+
+export const recommendations: MediaCard[] = [
+  {
+    imgUrl: "/images/onepiece.webp",
+    name: "One Piece",
+    desc: "زیرنویس چسبیده | پخش آنلاین",
+  },
+  {
+    imgUrl: "/images/onepiece.webp",
+    name: "One Piece",
+    desc: "زیرنویس چسبیده | پخش آنلاین",
+  },
+  {
+    imgUrl: "/images/onepiece.webp",
+    name: "One Piece",
+    desc: "زیرنویس چسبیده | پخش آنلاین",
+  },
+  {
+    imgUrl: "/images/onepiece.webp",
+    name: "One Piece",
+    desc: "زیرنویس چسبیده | پخش آنلاین",
+  },
+  {
+    imgUrl: "/images/onepiece.webp",
+    name: "One Piece",
+    desc: "زیرنویس چسبیده | پخش آنلاین",
+  },
+  {
+    imgUrl: "/images/onepiece.webp",
+    name: "One Piece",
+    desc: "زیرنویس چسبیده | پخش آنلاین",
+  },
+  {
+    imgUrl: "/images/onepiece.webp",
+    name: "One Piece",
+    desc: "زیرنویس چسبیده | پخش آنلاین",
+  },
+  {
+    imgUrl: "/images/onepiece.webp",
+    name: "One Piece",
+    desc: "زیرنویس چسبیده | پخش آنلاین",
   },
 ];

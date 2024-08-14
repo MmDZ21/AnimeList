@@ -59,3 +59,9 @@ export type HeroSlide = {
   justifyEn: "start" | "end" | "center";
   imgMobilePosition?: "right" | "left" | "center";
 };
+
+export type MediaCard = {
+  imgUrl: string;
+  name: string;
+  desc: string;
+};
