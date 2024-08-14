@@ -55,7 +55,7 @@ export type HeroSlide = {
   imageUrl: string;
   desc: string;
   actions?: HeroAction[];
-  justifyFa: "lg:rtl:items-start" | "lg:rtl:items-end" | "lg:rtl:items-center";
-  justifyEn: "lg:ltr:items-start" | "lg:ltr:items-end" | "lg:ltr:items-center";
-  imgMobilePosition?: "bg-right" | "bg-left" | "bg-center";
+  justifyFa: "start" | "end" | "center";
+  justifyEn: "start" | "end" | "center";
+  imgMobilePosition?: "right" | "left" | "center";
 };

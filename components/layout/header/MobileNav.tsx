@@ -2,6 +2,7 @@
 import {
   Sheet,
   SheetContent,
+  SheetTitle,
   SheetTrigger,
 } from "@/components/ui/mobile-menu-sheet";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -27,6 +28,7 @@ export default function MobileNav() {
         side="custom"
         className="flex flex-col gap-4 dark:bg-[#121212] h-3/4 lg:hidden"
       >
+        <SheetTitle className="hidden"></SheetTitle>
         <ScrollArea className="flex flex-col">
           <div className="flex flex-col gap-4">
             <div className="flex flex-col gap-4">

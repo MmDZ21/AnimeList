@@ -59,16 +59,27 @@ export default function Hero() {
             <CarouselItem key={hero.title}>
               <div
                 className={cn(
-                  "bg-cover lg:gap-32 lg:px-16 pb-4 lg:pb-0 flex flex-col justify-end lg:justify-center z-0 w-full h-[420px] lg:h-[900px]",
-                  hero.imgMobilePosition ? hero.imgMobilePosition : "bg-center", // Using cn for conditional class
-                  hero.justifyEn,
-                  hero.justifyFa,
-                  "lg:bg-center"
+                  "bg-cover lg:bg-center lg:gap-32 lg:px-16 pb-4 lg:pb-0 flex flex-col justify-end lg:justify-center z-0 w-full h-[420px] lg:h-[900px]",
+                  hero.imgMobilePosition === "right"
+                    ? "bg-right"
+                    : hero.imgMobilePosition === "left"
+                    ? "bg-left"
+                    : "bg-center",
+                  hero.justifyEn === "center"
+                    ? "lg:items-center"
+                    : hero.justifyEn === "end"
+                    ? "lg:items-end"
+                    : "lg:items-start",
+                  hero.justifyFa === "center"
+                    ? "lg:rtl:items-center"
+                    : hero.justifyFa === "end"
+                    ? "lg:rtl:items-end"
+                    : "lg:rtl:items-start"
                 )}
                 style={{ backgroundImage: `url(${hero.imageUrl})` }}
               >
                 <div className="flex flex-col z-20 w-full items-center lg:items-start lg:w-[536px] gap-1 lg:gap-8">
-                  <h2 className="text-2xl font-bold lg:text-[64px] lg:font-black">
+                  <h2 className="text-2xl font-bold lg:leading-none lg:text-[64px] lg:font-black">
                     {hero.title}
                   </h2>
                   <p className="lg:hidden text-sm text-[#979CA6] font-normal">
@@ -132,7 +143,6 @@ export default function Hero() {
                 </div>
               </div>
               <div className="absolute h-[420px] lg:h-full inset-0 z-10 dark:bg-gradient-to-t dark:from-background dark:to-background/0"></div>
-              {hero.title}
             </CarouselItem>
           ))}
         </CarouselContent>
