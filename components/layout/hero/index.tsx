@@ -9,19 +9,19 @@ import {
   CarouselPrevious,
 } from "@/components/ui/hero-carousel";
 import { heroSlides } from "@/constants";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import Actions from "./Actions";
 import { type CarouselApi } from "@/components/ui/hero-carousel";
 import Autoplay from "embla-carousel-autoplay";
 import Fade from "embla-carousel-fade";
 import { useDirection } from "@radix-ui/react-direction";
+import { cn } from "@/lib/utils"; // Import the cn function
 
 export default function Hero() {
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
   const [count, setCount] = React.useState(0);
   const dir = useDirection();
+
   React.useEffect(() => {
     if (!api) {
       return;
@@ -58,13 +58,13 @@ export default function Hero() {
           {heroSlides.map((hero) => (
             <CarouselItem key={hero.title}>
               <div
-                className={`${
-                  hero.imgMobilePosition ? hero.imgMobilePosition : "bg-center"
-                } bg-cover lg:gap-32 lg:px-16 pb-4 lg:pb-0 flex flex-col justify-end lg:justify-center ${
-                  hero.justifyEn
-                } ${
-                  hero.justifyFa
-                } z-0 lg:bg-center w-full h-[420px] lg:h-[900px]`}
+                className={cn(
+                  "bg-cover lg:gap-32 lg:px-16 pb-4 lg:pb-0 flex flex-col justify-end lg:justify-center z-0 w-full h-[420px] lg:h-[900px]",
+                  hero.imgMobilePosition ? hero.imgMobilePosition : "bg-center", // Using cn for conditional class
+                  hero.justifyEn,
+                  hero.justifyFa,
+                  "lg:bg-center"
+                )}
                 style={{ backgroundImage: `url(${hero.imageUrl})` }}
               >
                 <div className="flex flex-col z-20 w-full items-center lg:items-start lg:w-[536px] gap-1 lg:gap-8">
@@ -78,27 +78,25 @@ export default function Hero() {
                     {hero.desc}
                   </p>
                   <div className="hidden lg:flex gap-4">
-                    {hero.actions
-                      ? hero.actions.map((action) => (
-                          <Actions key={action.label} actions={action} />
-                        ))
-                      : ""}
+                    {hero.actions &&
+                      hero.actions.map((action) => (
+                        <Actions key={action.label} actions={action} />
+                      ))}
                   </div>
                 </div>
                 {/* actions and indicator on lg Screens */}
                 <div className="w-full z-20 hidden lg:flex lg:flex-col gap-32">
-                  <div
-                    className={`w-full flex z-20 gap-2 justify-between items-center`}
-                  >
+                  <div className="w-full flex z-20 gap-2 justify-between items-center">
                     <div className="flex gap-2">
                       {heroSlides.map((hero, i) => (
                         <div
                           key={i}
-                          className={`h-2 rounded-full ${
+                          className={cn(
+                            "h-2 rounded-full",
                             i === current
                               ? "w-12 bg-primary-500"
                               : "bg-[#979CA6] w-6"
-                          }`}
+                          )}
                         />
                       ))}
                     </div>
@@ -112,22 +110,22 @@ export default function Hero() {
               {/* actions and indicator on sm Screens */}
               <div className="w-full z-20 flex lg:hidden flex-col justify-center items-center">
                 <div className="flex w-full gap-3 px-4">
-                  {hero.actions
-                    ? hero.actions.map((action) => (
-                        <Actions key={action.label} actions={action} />
-                      ))
-                    : ""}
+                  {hero.actions &&
+                    hero.actions.map((action) => (
+                      <Actions key={action.label} actions={action} />
+                    ))}
                 </div>
-                <div className={`w-full flex z-20 justify-center items-center`}>
+                <div className="w-full flex z-20 justify-center items-center">
                   <div className="flex py-8 gap-2 ">
                     {heroSlides.map((hero, i) => (
                       <div
                         key={i}
-                        className={`h-2 rounded-full ${
+                        className={cn(
+                          "h-2 rounded-full",
                           i === current
                             ? "w-12 bg-primary-500"
                             : "bg-[#979CA6] w-6"
-                        }`}
+                        )}
                       />
                     ))}
                   </div>
