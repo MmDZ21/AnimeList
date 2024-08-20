@@ -60,8 +60,23 @@ export type HeroSlide = {
   imgMobilePosition?: "right" | "left" | "center";
 };
 
-export type MediaCard = {
+export interface MediaCardType {
   imgUrl: string;
   name: string;
   desc: string;
+  href: string;
+}
+
+export type EpisodeCardType = {
+  type: "episode" | "userEpisode";
+  name: string;
+  imgUrl: string;
+  episode: number;
+  tags?: string[];
+  time?: string;
+  href: string;
+  malScore?: number;
+  aniScore?: number;
+  episodes?: number;
+  watched?: number;
 };

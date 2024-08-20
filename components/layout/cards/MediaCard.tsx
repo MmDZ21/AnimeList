@@ -8,13 +8,13 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import Image from "next/image";
-import { type MediaCard } from "@/types/types";
+import { type MediaCardType } from "@/types/types";
 
 export default function MediaCard({
   data,
   className,
 }: {
-  data: MediaCard;
+  data: MediaCardType;
   className?: string;
 }) {
   return (

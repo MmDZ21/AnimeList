@@ -31,6 +31,7 @@ const config = {
       },
       backgroundImage: {
         login: "url('/images/loginpic.webp')",
+        trending: "url('/images/trending.webp')",
       },
       colors: {
         primary: {

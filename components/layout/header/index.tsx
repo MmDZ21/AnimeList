@@ -12,7 +12,7 @@ import Profile from "./Profile";
 
 export default function Header() {
   return (
-    <header className="bg-[#17212B] sticky top-0 z-10 lg:static h-16 lg:h-[72px] w-full flex justify-between items-center px-6 lg:px-16">
+    <header className="bg-[#17212B] sticky top-0 z-50 lg:static h-16 lg:h-[72px] w-full flex justify-between items-center px-6 lg:px-16">
       {/* logo */}
       {/* navbar */}
       <div className="w-full flex justify-between items-center lg:hidden">

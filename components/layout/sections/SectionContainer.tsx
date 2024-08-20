@@ -6,18 +6,21 @@ export default function SectionContainer({
   title,
   description,
   children,
+  styles,
 }: {
   className?: string;
   title?: string;
   description?: string;
   children: ReactNode;
+  styles?: {};
 }) {
   return (
     <div
       className={cn(
-        "flex flex-col gap-3 lg:gap-6 h-full mx-auto w-full px-4 lg:px-16",
+        "flex flex-col gap-3 lg:gap-6 lg:h-full mx-auto w-full",
         className
       )}
+      style={styles || {}}
     >
       {title && (
         <div className="flex flex-col gap-1 lg:gap-2 z-10">
