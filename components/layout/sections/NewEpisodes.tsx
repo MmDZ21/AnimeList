@@ -6,7 +6,10 @@ import { Button } from "@/components/ui/button";
 
 export default function NewEpisodes() {
   return (
-    <SectionContainer title="قسمت‌ جدید انیمه‌های فصلی">
+    <SectionContainer
+      title="قسمت‌ جدید انیمه‌های فصلی"
+      description="قسمت‌های امروز"
+    >
       <div className="hidden lg:block">
         <EpisodeCarousel data={newEpisodes} />
       </div>
