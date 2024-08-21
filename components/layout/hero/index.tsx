@@ -78,6 +78,16 @@ export default function Hero() {
                 )}
                 style={{ backgroundImage: `url(${hero.imageUrl})` }}
               >
+                <link
+                  rel="preload"
+                  as="image"
+                  href={hero.imageUrl}
+                  type="image/webp"
+                  style={{
+                    display: "none !important",
+                  }}
+                />
+
                 <div className="flex flex-col z-20 w-full items-center lg:items-start lg:w-[536px] gap-1 lg:gap-8">
                   <h2 className="text-2xl font-bold lg:leading-none lg:text-[64px] lg:font-black">
                     {hero.title}
