@@ -78,11 +78,11 @@ export default function Hero() {
                 )}
                 style={{ backgroundImage: `url(${hero.imageUrl})` }}
               >
-                <link
-                  rel="preload"
-                  as="image"
-                  href={hero.imageUrl}
-                  type="image/webp"
+                <img
+                  src={hero.imageUrl}
+                  alt=""
+                  width="0"
+                  height="0"
                   style={{
                     display: "none !important",
                   }}
