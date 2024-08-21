@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import {
   Carousel,
@@ -11,13 +13,14 @@ import Actions from "./Actions";
 import { type CarouselApi } from "@/components/ui/hero-carousel";
 import Autoplay from "embla-carousel-autoplay";
 import Fade from "embla-carousel-fade";
-
+import { useDirection } from "@radix-ui/react-direction";
 import { cn } from "@/lib/utils"; // Import the cn function
 
 export default function Hero() {
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
   const [count, setCount] = React.useState(0);
+  const dir = useDirection();
 
   React.useEffect(() => {
     if (!api) {
@@ -47,7 +50,7 @@ export default function Hero() {
         ]}
         opts={{
           loop: true,
-
+          direction: dir,
           duration: 100,
         }}
       >
