@@ -80,3 +80,77 @@ export type EpisodeCardType = {
   episodes?: number;
   watched?: number;
 };
+// Define the type for an Episode
+export interface Episode {
+  animeTitle: string;
+  episodeTitle: string;
+  preview: string; // URL or path to the image
+}
+
+// Define the type for a Similar Anime
+export interface SimilarAnime {
+  title: string;
+  image: string; // URL or path to the image
+}
+
+// Define the type for a Character
+export interface Character {
+  name: string;
+  role: string;
+  image: string; // URL or path to the image
+}
+
+// Define the type for a Voice Actor
+export interface VoiceActor {
+  name: string;
+  language: string;
+  image: string; // URL or path to the image
+}
+
+// Define the type for a Character with its Voice Actor
+export interface CharacterWithVoice {
+  character: Character;
+  voice: VoiceActor;
+}
+
+// Define the type for a Producer
+export interface Producer {
+  name: string;
+  role: string;
+  image: string; // URL or path to the image
+}
+
+// Define the type for a Comment
+export interface Comment {
+  user: {
+    name: string;
+    avatar: string; // URL or path to the avatar
+  };
+  comment: string;
+  time: string;
+  date: string;
+  spoiler: boolean;
+}
+
+// Define the type for the Staff section
+export interface Staff {
+  characters: CharacterWithVoice[];
+  producers: Producer[];
+}
+
+// Define the main Anime type
+export interface Anime {
+  type: string;
+  language: string;
+  title: string;
+  image: string; // URL or path to the image
+  rating: number;
+  votesCount: number;
+  malRating: number;
+  anilistRating: number;
+  summary: string;
+  episodes: Episode[];
+  similars: SimilarAnime[];
+  staff: Staff;
+  comments: Comment[];
+}

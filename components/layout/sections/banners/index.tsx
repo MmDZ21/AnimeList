@@ -22,7 +22,7 @@ export default function Banners() {
                 src={banner.logo}
                 width={400}
                 height={100}
-                objectFit="contain"
+                className="object-contain"
                 alt={banner.title}
               />
 

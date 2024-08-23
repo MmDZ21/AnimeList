@@ -25,8 +25,7 @@ export default function MediaCard({
             src={data.imgUrl}
             alt={data.name}
             fill
-            objectFit="cover"
-            className="rounded-[4px]"
+            className="rounded-[4px] object-cover"
           />
         </div>
         <div className="flex flex-col gap-1">

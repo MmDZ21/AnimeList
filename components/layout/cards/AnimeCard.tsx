@@ -10,9 +10,7 @@ export default function AnimeCard({ data }: { data: any }) {
           src={data.image}
           alt={data.title}
           fill
-          objectFit="cover"
-          objectPosition="center"
-          className="rounded-[4px]"
+          className="rounded-[4px] object-cover object-center"
         />
       </div>
       <div className="flex flex-col gap-2">

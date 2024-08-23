@@ -25,8 +25,7 @@ export default function EpisodeCard({
             src={data.imgUrl}
             alt={data.name}
             fill
-            objectFit="cover"
-            objectPosition="center"
+            className="object-cover object-center"
           />
         </div>
         <div className="w-full flex flex-col justify-start gap-4">

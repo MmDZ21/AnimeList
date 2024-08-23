@@ -1,4 +1,9 @@
-import { EpisodeCardType, HeroSlide, MediaCardType } from "@/types/types";
+import {
+  Anime,
+  EpisodeCardType,
+  HeroSlide,
+  MediaCardType,
+} from "@/types/types";
 
 export const heroSlides: HeroSlide[] = [
   {
@@ -484,3 +489,90 @@ export const trending = [
       "در دنیایی پر از حیوانات انسان‌نما، «بل لبلانک» تنها کسی بود که به شکل یک انسان عادی به‌دنیا آمده است. بدون داشتن دندان‌های تیز، خز و پولک، به اون لقب بی‌هویت را داده بودند و اون زندگی سخت و پر از تنهایی را سپری می‌کرد و کسی قادر به همدردی با او نبود...",
   },
 ];
+
+export const exampleAnime: Anime = {
+  type: "series",
+  language: "japanese",
+  title: "Frieren: Beyond the Journey’s End",
+  image: "/images/frieren/cover.webp",
+  rating: 8.5,
+  votesCount: 250,
+  malRating: 8.97,
+  anilistRating: 86,
+  summary:
+    "شاه شیطان شکست خورده و گروه قهرمانان پیروز به سرزمین‌شان بازمی‌گردند و پیش از از هم پاشیدن، از مسیر ده‌ساله‌شان یادآوری می‌کنند. چهار نفر: جادوگر فریرن، قهرمان هیمل، کشیش هایتر و جنگجو ایزن در موقعیتی که باید از یکدیگر خداحافظی کنند...",
+  episodes: [
+    {
+      animeTitle: "Frieren: Beyond the Journey’s End",
+      episodeTitle: "The Journey's End",
+      preview: "/images/frieren/ep1.webp", // Add correct path or URL
+    },
+    {
+      animeTitle: "Frieren: Beyond the Journey’s End",
+      episodeTitle: "A Mischievous Demon",
+      preview: "/images/frieren/ep2.webp", // Add correct path or URL
+    },
+    // Add more episodes as necessary
+  ],
+  similars: [
+    { title: "Violet Evergarden", image: "/images/frieren/violet.webp" }, // Add correct path or URL
+    {
+      title: "Wandering Witch: The Journey of Elaina",
+      image: "/images/frieren/witch.webp",
+    }, // Add correct path or URL
+    // Add more similar anime as necessary
+  ],
+  staff: {
+    characters: [
+      {
+        character: {
+          name: "Frieren",
+          role: "Main",
+          image: "/images/frieren/frieren.webp", // Add correct path or URL
+        },
+        voice: {
+          name: "Atsumi Tanezaki",
+          language: "Japanese",
+          image: "/images/frieren/tenezaki.webp", // Add correct path or URL
+        },
+      },
+      // Add more characters and voices as necessary
+    ],
+    producers: [
+      {
+        name: "Keiichiro Saito",
+        role: "Director",
+        image: "/images/frieren/saito.webp",
+      },
+      {
+        name: "Reiko Nagasawa",
+        role: "Character Designer",
+        image: "/images/frieren/nagasawa.webp",
+      },
+      // Add more producers as necessary
+    ],
+  },
+  comments: [
+    {
+      user: {
+        name: "Arlecchino",
+        avatar: "/images/frieren/arlecchino.webp", // Add correct path or URL
+      },
+      comment: "انیمه از نظر دنیا سازی و کاراکتر پردازی خیلی خوبه...",
+      time: "11:00 AM",
+      date: "1402/08/08",
+      spoiler: false,
+    },
+    {
+      user: {
+        name: "Ellen Joe",
+        avatar: "/images/frieren/joe.webp", // Add correct path or URL
+      },
+      comment: "تا اینجای ۱۲ خیلی خوب بوده...",
+      time: "14:00 PM",
+      date: "1402/08/08",
+      spoiler: false,
+    },
+    // Add more comments as necessary
+  ],
+};
