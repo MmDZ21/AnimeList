@@ -509,7 +509,7 @@ export const exampleAnime: Anime = {
     },
     {
       animeTitle: "Frieren: Beyond the Journey’s End",
-      episodeTitle: "A Mischievous Demon",
+      episodeTitle: "It Didn't Have to Be Magic...",
       preview: "/images/frieren/ep2.webp", // Add correct path or URL
     },
     // Add more episodes as necessary
@@ -519,21 +519,60 @@ export const exampleAnime: Anime = {
     {
       title: "Wandering Witch: The Journey of Elaina",
       image: "/images/frieren/witch.webp",
-    }, // Add correct path or URL
-    // Add more similar anime as necessary
+    },
+    {
+      title: "Wandering Witch: The Journey of Elaina",
+      image: "/images/frieren/witch.webp",
+    },
+    {
+      title: "Wandering Witch: The Journey of Elaina",
+      image: "/images/frieren/witch.webp",
+    },
+    {
+      title: "Wandering Witch: The Journey of Elaina",
+      image: "/images/frieren/witch.webp",
+    },
+    {
+      title: "Wandering Witch: The Journey of Elaina",
+      image: "/images/frieren/witch.webp",
+    },
   ],
   staff: {
     characters: [
       {
         character: {
           name: "Frieren",
-          role: "Main",
+          role: "main",
           image: "/images/frieren/frieren.webp", // Add correct path or URL
         },
         voice: {
           name: "Atsumi Tanezaki",
           language: "Japanese",
-          image: "/images/frieren/tenezaki.webp", // Add correct path or URL
+          image: "/images/frieren/tanezaki.webp", // Add correct path or URL
+        },
+      },
+      {
+        character: {
+          name: "Frieren",
+          role: "main",
+          image: "/images/frieren/frieren.webp", // Add correct path or URL
+        },
+        voice: {
+          name: "Atsumi Tanezaki",
+          language: "Japanese",
+          image: "/images/frieren/tanezaki.webp", // Add correct path or URL
+        },
+      },
+      {
+        character: {
+          name: "Frieren",
+          role: "main",
+          image: "/images/frieren/frieren.webp", // Add correct path or URL
+        },
+        voice: {
+          name: "Atsumi Tanezaki",
+          language: "Japanese",
+          image: "/images/frieren/tanezaki.webp", // Add correct path or URL
         },
       },
       // Add more characters and voices as necessary

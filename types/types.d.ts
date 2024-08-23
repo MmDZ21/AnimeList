@@ -96,7 +96,7 @@ export interface SimilarAnime {
 // Define the type for a Character
 export interface Character {
   name: string;
-  role: string;
+  role: "main" | "supporting";
   image: string; // URL or path to the image
 }
 
