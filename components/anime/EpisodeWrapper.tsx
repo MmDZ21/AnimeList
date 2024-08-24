@@ -27,7 +27,9 @@ export default function EpisodeWrapper({
           </p>
           <div className="text-sm font-bold text-white flex flex-row-reverse justify-end gap-1">
             <p dir="ltr">{i + 1}.</p>
-            <p dir="ltr">{episode.episodeTitle}</p>
+            <p dir="ltr" className="text-ellipsis overflow-hidden text-nowrap">
+              {episode.episodeTitle}
+            </p>
           </div>
           <div className="flex gap-2 items-center">
             <p className="text-[#979CA6] text-xs font-medium">پخش آنلاین</p>

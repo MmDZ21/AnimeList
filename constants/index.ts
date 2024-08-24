@@ -593,25 +593,96 @@ export const exampleAnime: Anime = {
   },
   comments: [
     {
+      id: 1,
       user: {
         name: "Arlecchino",
         avatar: "/images/frieren/arlecchino.webp", // Add correct path or URL
       },
-      comment: "انیمه از نظر دنیا سازی و کاراکتر پردازی خیلی خوبه...",
+      comment:
+        "انیمه از نظر دنیا سازی و کاراکتر پردازی خیلی خوبه داستانش هم میشه گفت جوریه که آدم دلش میخواد دنبالش کنه",
       time: "11:00 AM",
       date: "1402/08/08",
       spoiler: false,
+      replies: [
+        {
+          id: 2,
+          user: {
+            name: "Franz",
+            avatar: "/images/frieren/franz.webp", // Add correct path or URL
+          },
+          comment:
+            "کاملاً موافقم، طراحی کاراکترها واقعاً جذاب و منحصر به فرده.",
+          time: "11:30 AM",
+          date: "1402/08/08",
+          spoiler: false,
+          replies: [
+            {
+              id: 3,
+              user: {
+                name: "Sakura",
+                avatar: "/images/frieren/sakura.webp", // Add correct path or URL
+              },
+              comment: "همچنین، جهان‌سازی به طرز شگفت‌آوری پیچیده و کامل است.",
+              time: "12:00 PM",
+              date: "1402/08/08",
+              spoiler: false,
+              replies: [
+                {
+                  id: 4,
+                  user: {
+                    name: "Yuki",
+                    avatar: "/images/frieren/yuki.webp", // Add correct path or URL
+                  },
+                  comment:
+                    "این یکی از دلایل اصلیه که من هر هفته منتظر اپیزود جدید هستم.",
+                  time: "12:30 PM",
+                  date: "1402/08/08",
+                  spoiler: false,
+                },
+              ],
+            },
+          ],
+        },
+      ],
     },
     {
+      id: 5,
       user: {
         name: "Ellen Joe",
         avatar: "/images/frieren/joe.webp", // Add correct path or URL
       },
-      comment: "تا اینجای ۱۲ خیلی خوب بوده...",
+      comment:
+        "تا اپیزود 16 خیلی خوب (نمره 8)، از 16 به بعد عالی (نمره 9). امیدوارم سیزن دومش هم تایید بشه.",
       time: "14:00 PM",
       date: "1402/08/08",
       spoiler: false,
+      replies: [
+        {
+          id: 6,
+          user: {
+            name: "Hikaru",
+            avatar: "/images/frieren/hikaru.webp", // Add correct path or URL
+          },
+          comment:
+            "دقیقاً! خیلی امیدوارم که کیفیتش افت نکنه و مدهاوس کارو ادامه بده.",
+          time: "14:30 PM",
+          date: "1402/08/08",
+          spoiler: false,
+        },
+        {
+          id: 7,
+          user: {
+            name: "Aiko",
+            avatar: "/images/frieren/aiko.webp", // Add correct path or URL
+          },
+          comment:
+            "منم نگران همین هستم، مخصوصاً با تجربه‌ای که از فصل‌های بعدی وان پانچ من داریم.",
+          time: "15:00 PM",
+          date: "1402/08/08",
+          spoiler: false,
+        },
+      ],
     },
-    // Add more comments as necessary
+    // Add more comments and nested replies as needed
   ],
 };

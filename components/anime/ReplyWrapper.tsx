@@ -1,12 +1,22 @@
+import React from "react";
+
 import { Comment } from "@/types/types";
 import Image from "next/image";
-import React from "react";
-import ReplyWrapper from "./ReplyWrapper";
+import { ChevronLeftIcon } from "@radix-ui/react-icons";
+import { cn } from "@/lib/utils";
 
-export default function CommentWrapper({ comment }: { comment: Comment }) {
+export default function ReplyWrapper({
+  comment,
+  repliesTo,
+  className,
+}: {
+  comment: Comment;
+  repliesTo: { name: string; avatar: string };
+  className?: string;
+}) {
   return (
-    <div className="flex flex-col p-3 gap-3 rounded-lg bg-[#17212B]">
-      <div className="rounded-lg flex flex-col gap-4">
+    <div className={cn("flex flex-col gap-3 rounded-lg ", className)}>
+      <div className="rounded-lg flex flex-col gap-4 bg-background p-3">
         <div className="flex justify-between items-center">
           <div className="flex gap-3 items-center">
             <div className="relative size-10">
@@ -18,6 +28,10 @@ export default function CommentWrapper({ comment }: { comment: Comment }) {
               />
             </div>
             <p className="text-base font-medium">{comment.user.name}</p>
+            <ChevronLeftIcon className="size-5" />
+            <p dir="ltr" className="text-base font-medium text-primary-500">
+              @{repliesTo.name}
+            </p>
           </div>
           <div className="size-6 flex justify-center items-center">
             <svg
@@ -82,7 +96,7 @@ export default function CommentWrapper({ comment }: { comment: Comment }) {
           </div>
         </div>
       </div>
-      <div className="flex flex-col">
+      <div className="flex flex-col gap-3">
         {comment.replies?.map((reply) => (
           <ReplyWrapper
             comment={reply}
@@ -90,33 +104,6 @@ export default function CommentWrapper({ comment }: { comment: Comment }) {
             key={reply.id}
           />
         ))}
-        <div className="flex gap-2 text-primary-500">
-          <div className="flex items-center justify-center size-6">
-            <svg
-              width="18"
-              height="20"
-              viewBox="0 0 18 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M17 1V3.07692C17 5.07786 17 6.07833 16.8547 6.91545C16.0547 11.5235 12.0934 15.1376 7.04264 15.8674C6.12509 16 4.19318 16 2 16"
-                stroke="#EB1187"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M4 19L1.70711 16.7071C1.37377 16.3738 1.20711 16.2071 1.20711 16C1.20711 15.7929 1.37377 15.6262 1.70711 15.2929L4 13"
-                stroke="#EB1187"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </div>
-          <p className="text-base font-medium">نمایش پاسخ‌های بیشتر</p>
-        </div>
       </div>
     </div>
   );

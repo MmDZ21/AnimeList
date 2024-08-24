@@ -19,6 +19,7 @@ import { from } from "@apollo/client";
 import CharacterWrapper from "@/components/anime/CharacterWrapper";
 import ProducerWrapper from "@/components/anime/ProducerWrapper";
 import CommentWrapper from "@/components/anime/CommentWrapper";
+import CommentForm from "@/components/forms/comment";
 
 export default function page({
   params,
@@ -111,7 +112,7 @@ export default function page({
             </CustomTabsContent>
             <CustomTabsContent value="staff">
               <div className="py-2">
-                <Tabs defaultValue="characters" className="w-[400px]">
+                <Tabs defaultValue="characters" className="w-full">
                   <TabsList className="dark:bg-[#17212B] dark:text-[#A1A1AA] w-full justify-start gap-[10px] rounded-md h-12">
                     <TabsTrigger
                       className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white rounded-lg p-2"
@@ -153,10 +154,15 @@ export default function page({
               </div>
             </CustomTabsContent>
             <CustomTabsContent value="comments">
-              <div>
-                {anime.comments.map((comment) => (
-                  <CommentWrapper key={comment.comment} comment={comment} />
-                ))}
+              <div className="flex flex-col gap-[14px]">
+                <div className="bg-[#17212B] p-3">
+                  <CommentForm />
+                </div>
+                <div className="flex flex-col gap-[14px]">
+                  {anime.comments.map((comment) => (
+                    <CommentWrapper key={comment.id} comment={comment} />
+                  ))}
+                </div>
               </div>
             </CustomTabsContent>
           </CustomTabs>

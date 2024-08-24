@@ -122,6 +122,7 @@ export interface Producer {
 
 // Define the type for a Comment
 export interface Comment {
+  id: number;
   user: {
     name: string;
     avatar: string; // URL or path to the avatar
@@ -130,6 +131,7 @@ export interface Comment {
   time: string;
   date: string;
   spoiler: boolean;
+  replies?: Comment[];
 }
 
 // Define the type for the Staff section
