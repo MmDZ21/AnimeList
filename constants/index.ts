@@ -667,7 +667,7 @@ export const exampleAnime: Anime = {
             "دقیقاً! خیلی امیدوارم که کیفیتش افت نکنه و مدهاوس کارو ادامه بده.",
           time: "14:30 PM",
           date: "1402/08/08",
-          spoiler: false,
+          spoiler: true,
         },
         {
           id: 7,

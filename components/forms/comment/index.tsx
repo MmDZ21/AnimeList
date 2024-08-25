@@ -129,9 +129,9 @@ export default function CommentForm() {
                           <path
                             d="M3.82338 10L2.27922 8.45584C0.573593 6.75022 0.573593 3.98485 2.27922 2.27922C3.98485 0.573593 6.75022 0.573593 8.45584 2.27922L17.7208 11.5442C19.4264 13.2498 19.4264 16.0152 17.7208 17.7208C16.0152 19.4264 13.2498 19.4264 11.5442 17.7208L8.0698 14.2464C7.00379 13.1804 7.00379 11.4521 8.0698 10.386C9.13582 9.32002 10.8642 9.32002 11.9302 10.386L13.8604 12.3162"
                             stroke="#979CA6"
-                            stroke-width="1.5"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                         </svg>
                       </div>
@@ -162,23 +162,23 @@ export default function CommentForm() {
                             cy="11"
                             r="10"
                             stroke="#979CA6"
-                            stroke-width="1.5"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                           <path
                             d="M7 14C7.91212 15.2144 9.36433 16 11 16C12.6357 16 14.0879 15.2144 15 14"
                             stroke="#979CA6"
-                            stroke-width="1.5"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                           <path
                             d="M7.00897 8L7 8M15 8L14.991 8"
                             stroke="#979CA6"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                           />
                         </svg>
                       </div>

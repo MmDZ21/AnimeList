@@ -52,16 +52,16 @@ export default function EpisodeWrapper({
               <path
                 d="M9 11.5L9 1.5M9 11.5C8.29977 11.5 6.99153 9.5057 6.5 9M9 11.5C9.70023 11.5 11.0085 9.5057 11.5 9"
                 stroke="#979CA6"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
               <path
                 d="M17 13.5C17 15.982 16.482 16.5 14 16.5H4C1.518 16.5 1 15.982 1 13.5"
                 stroke="#979CA6"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           </div>
@@ -76,17 +76,17 @@ export default function EpisodeWrapper({
               <path
                 d="M4.5 2.5C4.5 1.67157 3.82843 1 3 1C2.17157 1 1.5 1.67157 1.5 2.5C1.5 3.32843 2.17157 4 3 4C3.82843 4 4.5 3.32843 4.5 2.5Z"
                 stroke="#979CA6"
-                stroke-width="1.5"
+                strokeWidth="1.5"
               />
               <path
                 d="M4.5 10C4.5 9.17157 3.82843 8.5 3 8.5C2.17157 8.5 1.5 9.17157 1.5 10C1.5 10.8284 2.17157 11.5 3 11.5C3.82843 11.5 4.5 10.8284 4.5 10Z"
                 stroke="#979CA6"
-                stroke-width="1.5"
+                strokeWidth="1.5"
               />
               <path
                 d="M4.5 17.5C4.5 16.6716 3.82843 16 3 16C2.17157 16 1.5 16.6716 1.5 17.5C1.5 18.3284 2.17157 19 3 19C3.82843 19 4.5 18.3284 4.5 17.5Z"
                 stroke="#979CA6"
-                stroke-width="1.5"
+                strokeWidth="1.5"
               />
             </svg>
           </div>
