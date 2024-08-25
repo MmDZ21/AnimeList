@@ -5,7 +5,7 @@ import { exampleAnime } from "@/constants";
 import AddToWatchList from "@/components/buttons/AddToWatchList";
 import WatchOnline from "@/components/buttons/WatchOnline";
 import Rating from "@/components/ui/Rating";
-import { ChevronLeftIcon } from "@radix-ui/react-icons";
+import { ChevronLeftIcon, Cross2Icon } from "@radix-ui/react-icons";
 import {
   Tabs as CustomTabs,
   TabsContent as CustomTabsContent,
@@ -20,6 +20,19 @@ import CharacterWrapper from "@/components/anime/CharacterWrapper";
 import ProducerWrapper from "@/components/anime/ProducerWrapper";
 import CommentWrapper from "@/components/anime/CommentWrapper";
 import CommentForm from "@/components/forms/comment";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import Details from "@/components/anime/Details";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import AdvancedRating from "@/components/ui/AdvancedRating";
 
 export default function page({
   params,
@@ -59,7 +72,52 @@ export default function page({
               میانگین: {anime.rating} / 10{" "}
               <span className="text-xs font-normal text-[#B5B8BF]">{`(${anime.votesCount} نفر)`}</span>
             </p>
-            <ChevronLeftIcon className="size-6" />
+            <Dialog>
+              <DialogTrigger>
+                <ChevronLeftIcon className="size-6" />
+              </DialogTrigger>
+              <DialogContent className="w-full h-full flex flex-col">
+                <DialogHeader className="gap-3">
+                  <DialogTitle className="flex justify-between ">
+                    <h2 className="text-base font-bold">جزئیات نمره</h2>
+                    <DialogClose className="rounded-sm opacity-70 ring-offset-white transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-slate-100 data-[state=open]:text-slate-500 dark:ring-offset-slate-950 dark:focus:ring-slate-300 dark:data-[state=open]:bg-slate-800 dark:data-[state=open]:text-slate-400">
+                      <Cross2Icon className="h-6 w-6" />
+                      <span className="sr-only">Close</span>
+                    </DialogClose>
+                  </DialogTitle>
+                </DialogHeader>
+                <ScrollArea className="h-full">
+                  <div className="flex flex-col items-center gap-6 pb-16">
+                    <div className="relative h-48 w-full">
+                      <Image
+                        src={anime.image}
+                        alt={anime.title}
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
+                    <div className="flex flex-col gap-2 justify-center items-center">
+                      <h2 className="text-base font-bold">{anime.title}</h2>
+                      <p className="text-sm font-medium text-[#979CA6]">
+                        شما به این اثر ۴ ستاره دادید
+                      </p>
+                    </div>
+                    <Rating rating={4} className="w-10 h-10" gap="gap-6" />
+                    <AdvancedRating
+                      rating={4}
+                      totalRatings={250}
+                      breakdown={[
+                        { rating: 5, percentage: 70 },
+                        { rating: 4, percentage: 17 },
+                        { rating: 3, percentage: 8 },
+                        { rating: 2, percentage: 4 },
+                        { rating: 1, percentage: 1 },
+                      ]}
+                    />
+                  </div>
+                </ScrollArea>
+              </DialogContent>
+            </Dialog>
           </div>
           <div className="flex text-sm font-medium gap-[10px]">
             <p>MAL Rating: {anime.malRating}</p>
@@ -69,9 +127,34 @@ export default function page({
         <div className="flex flex-col gap-4">
           <div className="text-sm font-medium leading-6">{anime.summary}</div>
           <div className="flex justify-center items-center">
-            <p className="text-primary-500 text-base font-medium">
-              جزئیات بیشتر
-            </p>
+            <Dialog>
+              <DialogTrigger>
+                <p className="text-primary-500 text-base font-medium">
+                  جزئیات بیشتر
+                </p>
+              </DialogTrigger>
+              <DialogContent className="w-full h-full">
+                <DialogHeader className="gap-3 min-h-0">
+                  <DialogTitle className="flex justify-between ">
+                    <h2 className="text-base font-bold">{anime.title}</h2>
+                    <DialogClose className="rounded-sm opacity-70 ring-offset-white transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-slate-100 data-[state=open]:text-slate-500 dark:ring-offset-slate-950 dark:focus:ring-slate-300 dark:data-[state=open]:bg-slate-800 dark:data-[state=open]:text-slate-400">
+                      <Cross2Icon className="h-6 w-6" />
+                      <span className="sr-only">Close</span>
+                    </DialogClose>
+                  </DialogTitle>
+                </DialogHeader>
+                <ScrollArea className="h-full">
+                  <div className="flex flex-col gap-6 pb-16">
+                    <DialogDescription className="text-start leading-[22px] font-medium text-white">
+                      {anime.summary}
+                      <span className="text-primary-500 ms-1">نمایش بیشتر</span>
+                    </DialogDescription>
+                    {/* 8 divs */}
+                    <Details anime={anime} />
+                  </div>
+                </ScrollArea>
+              </DialogContent>
+            </Dialog>
           </div>
         </div>
         <div className="w-full">

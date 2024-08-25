@@ -4,11 +4,18 @@ import React from "react";
 interface RatingStarsProps {
   rating: number; // Number of filled stars
   totalStars?: number; // Total number of stars, default is 5
+  className?: string; //
+  gap?: string; //
 }
 
-const Rating: React.FC<RatingStarsProps> = ({ rating, totalStars = 5 }) => {
+const Rating: React.FC<RatingStarsProps> = ({
+  rating,
+  totalStars = 5,
+  className,
+  gap,
+}) => {
   return (
-    <div className="flex gap-2 items-center">
+    <div className={cn("flex items-center gap-2", gap)}>
       {[...Array(totalStars)].map((_, index) => {
         const isFilled = index < rating;
         return (
@@ -16,7 +23,8 @@ const Rating: React.FC<RatingStarsProps> = ({ rating, totalStars = 5 }) => {
             key={index}
             className={cn(
               "w-4 h-4",
-              isFilled ? "text-primary-500" : "text-[#94A3B8]"
+              isFilled ? "text-primary-500" : "text-[#94A3B8]",
+              className
             )}
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"

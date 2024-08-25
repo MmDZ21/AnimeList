@@ -142,15 +142,27 @@ export interface Staff {
 
 // Define the main Anime type
 export interface Anime {
-  type: string;
+  type: "series" | "movie";
+  status: "ongoing" | "completed" | "notAired";
+  startDate?: string;
+  endDate?: string;
+  studio: string;
+  genres: string[];
+  themes: string[];
+  producers: string[];
+  source: "manga" | "ln" | "vn" | "original";
+  season?: "spring" | "summer" | "fall" | "winter";
+  year?: number;
   language: string;
   title: string;
-  image: string; // URL or path to the image
+  image: string;
   rating: number;
   votesCount: number;
   malRating: number;
   anilistRating: number;
   summary: string;
+  episodesCount?: number;
+  episodeTime?: number;
   episodes: Episode[];
   similars: SimilarAnime[];
   staff: Staff;
