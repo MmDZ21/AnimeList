@@ -85,6 +85,7 @@ export interface Episode {
   animeTitle: string;
   episodeTitle: string;
   preview: string; // URL or path to the image
+  files: { resolution: number; size: number; url: string }[];
 }
 
 // Define the type for a Similar Anime
@@ -156,6 +157,7 @@ export interface Anime {
   language: string;
   title: string;
   image: string;
+  imageLg: string;
   rating: number;
   votesCount: number;
   malRating: number;

@@ -2,6 +2,16 @@ import { Episode } from "@/types/types";
 import Image from "next/image";
 import React from "react";
 import { Separator } from "../ui/separator";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { Cross2Icon } from "@radix-ui/react-icons";
 
 export default function EpisodeWrapper({
   episode,
@@ -41,30 +51,117 @@ export default function EpisodeWrapper({
           </div>
         </div>
         <div className="flex justify-end gap-2">
-          <div className="size-6 flex items-center justify-center">
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 18 18"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M9 11.5L9 1.5M9 11.5C8.29977 11.5 6.99153 9.5057 6.5 9M9 11.5C9.70023 11.5 11.0085 9.5057 11.5 9"
-                stroke="#979CA6"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M17 13.5C17 15.982 16.482 16.5 14 16.5H4C1.518 16.5 1 15.982 1 13.5"
-                stroke="#979CA6"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </div>
+          <Sheet>
+            <SheetTrigger>
+              <div className="size-6 flex items-center justify-center">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M9 11.5L9 1.5M9 11.5C8.29977 11.5 6.99153 9.5057 6.5 9M9 11.5C9.70023 11.5 11.0085 9.5057 11.5 9"
+                    stroke="#979CA6"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M17 13.5C17 15.982 16.482 16.5 14 16.5H4C1.518 16.5 1 15.982 1 13.5"
+                    stroke="#979CA6"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+            </SheetTrigger>
+            <SheetContent className="flex flex-col gap-6" side="bottom">
+              <SheetHeader>
+                <SheetTitle className="flex justify-between">
+                  <p>قسمت {i + 1}</p>
+                  <SheetClose className="rounded-sm opacity-70 ring-offset-white transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-slate-100 dark:ring-offset-slate-950 dark:focus:ring-slate-300 dark:data-[state=open]:bg-slate-800">
+                    <Cross2Icon className="h-6 w-6" />
+                    <span className="sr-only">Close</span>
+                  </SheetClose>
+                </SheetTitle>
+              </SheetHeader>
+              <div className="flex flex-col gap-5">
+                {episode.files.map((file) => (
+                  <div className="flex justify-between items-center text-sm font-semibold">
+                    <div className="flex gap-[10px]">
+                      <p>{file.resolution}p</p>
+                      <Separator className="h-4" orientation="vertical" />
+                      <p>{file.size}MB</p>
+                    </div>
+                    <div className="bg-[#242F3D] rounded flex justify-center items-center p-2">
+                      <div className="size-6 flex justify-center items-center">
+                        <svg
+                          width="18"
+                          height="18"
+                          viewBox="0 0 18 18"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M9 11.5L9 1.5M9 11.5C8.29977 11.5 6.99153 9.5057 6.5 9M9 11.5C9.70023 11.5 11.0085 9.5057 11.5 9"
+                            stroke="white"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                          <path
+                            d="M17 13.5C17 15.982 16.482 16.5 14 16.5H4C1.518 16.5 1 15.982 1 13.5"
+                            stroke="white"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <h6 className="text-[#979CA6] text-sm font-medium">زیرنویس</h6>
+              <div className="flex justify-between items-center text-sm font-semibold">
+                <div className="flex gap-[10px]">
+                  <p>مترجم:</p>
+                  <p>Shinsekai Yuri</p>
+                  <Separator className="h-4" orientation="vertical" />
+                  <p>Captain Paran</p>
+                </div>
+                <div className="bg-[#242F3D] rounded flex justify-center items-center p-2">
+                  <div className="size-6 flex justify-center items-center">
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 18 18"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M9 11.5L9 1.5M9 11.5C8.29977 11.5 6.99153 9.5057 6.5 9M9 11.5C9.70023 11.5 11.0085 9.5057 11.5 9"
+                        stroke="white"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M17 13.5C17 15.982 16.482 16.5 14 16.5H4C1.518 16.5 1 15.982 1 13.5"
+                        stroke="white"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </SheetContent>
+          </Sheet>
           <div className="size-6 flex items-center justify-center">
             <svg
               width="6"

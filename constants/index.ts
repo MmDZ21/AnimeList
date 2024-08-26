@@ -533,6 +533,7 @@ export const exampleAnime: Anime = {
   language: "japanese",
   title: "Frieren: Beyond the Journey’s End",
   image: "/images/frieren/cover.webp",
+  imageLg: "/images/frieren/lgbg.webp",
   rating: 8.5,
   votesCount: 250,
   malRating: 8.97,
@@ -544,11 +545,21 @@ export const exampleAnime: Anime = {
       animeTitle: "Frieren: Beyond the Journey’s End",
       episodeTitle: "The Journey's End",
       preview: "/images/frieren/ep1.webp", // Add correct path or URL
+      files: [
+        { resolution: 480, size: 94.45, url: "/" },
+        { resolution: 720, size: 150.24, url: "/" },
+        { resolution: 1080, size: 320.35, url: "/" },
+      ],
     },
     {
       animeTitle: "Frieren: Beyond the Journey’s End",
       episodeTitle: "It Didn't Have to Be Magic...",
       preview: "/images/frieren/ep2.webp", // Add correct path or URL
+      files: [
+        { resolution: 480, size: 94.45, url: "/" },
+        { resolution: 720, size: 150.24, url: "/" },
+        { resolution: 1080, size: 320.35, url: "/" },
+      ],
     },
     // Add more episodes as necessary
   ],
