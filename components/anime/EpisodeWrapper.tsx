@@ -90,7 +90,10 @@ export default function EpisodeWrapper({
               </SheetHeader>
               <div className="flex flex-col gap-5">
                 {episode.files.map((file) => (
-                  <div className="flex justify-between items-center text-sm font-semibold">
+                  <div
+                    key={file.url}
+                    className="flex justify-between items-center text-sm font-semibold"
+                  >
                     <div className="flex gap-[10px]">
                       <p>{file.resolution}p</p>
                       <Separator className="h-4" orientation="vertical" />
