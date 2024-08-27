@@ -36,6 +36,7 @@ import AdvancedRating from "@/components/ui/AdvancedRating";
 import WatchOnline from "@/components/buttons/WatchOnline";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
+import TrailerWrapper from "@/components/anime/TrailerWrapper";
 
 export default function page({
   params,
@@ -71,7 +72,7 @@ export default function page({
                   src={anime.image}
                   alt={anime.title}
                   fill
-                  className="object-cover"
+                  className="object-cover rounded"
                 />
               </div>
               <div className="w-full">
@@ -348,47 +349,47 @@ export default function page({
             </div>
           </div>
           <div className="w-full hidden lg:block">
-            <Tabs defaultValue="episodes" className="w-full">
+            <Tabs defaultValue="trailers" className="w-full">
               <TabsList className="w-full dark:bg-[#17212B] rounded-lg justify-start items-center p-1 h-fit gap-2">
                 <TabsTrigger
                   className="py-3 px-2 w-[160px] flex items-center justify-center rounded-lg text-base font-semibold text-white dark:data-[state=active]:bg-background"
-                  value="episodes"
+                  value="trailers"
                 >
                   تریلر
                 </TabsTrigger>
                 <TabsTrigger
                   className="py-3 px-2 w-[160px] flex items-center justify-center rounded-lg text-base font-semibold text-white dark:data-[state=active]:bg-background"
-                  value="similars"
+                  value="download"
                 >
                   دانلود
                 </TabsTrigger>
                 <TabsTrigger
                   className="py-3 px-2 w-[160px] flex items-center justify-center rounded-lg text-base font-semibold text-white dark:data-[state=active]:bg-background"
-                  value="staff"
+                  value="cc"
                 >
                   زیرنویس
                 </TabsTrigger>
                 <TabsTrigger
                   className="py-3 px-2 w-[160px] flex items-center justify-center rounded-lg text-base font-semibold text-white dark:data-[state=active]:bg-background"
-                  value="comments"
+                  value="staff"
                 >
                   شخصیت‌ها و عوامل
                 </TabsTrigger>
                 <TabsTrigger
                   className="py-3 px-2 w-[160px] flex items-center justify-center rounded-lg text-base font-semibold text-white dark:data-[state=active]:bg-background"
-                  value="dsada"
+                  value="details"
                 >
                   اطلاعات تکمیلی
                 </TabsTrigger>
                 <TabsTrigger
                   className="py-3 px-2 w-[160px] flex items-center justify-center rounded-lg text-base font-semibold text-white dark:data-[state=active]:bg-background"
-                  value="adasda"
+                  value="similars"
                 >
                   آثار مشابه
                 </TabsTrigger>
                 <TabsTrigger
                   className="py-3 px-2 w-[160px] flex items-center justify-center rounded-lg text-base font-semibold text-white dark:data-[state=active]:bg-background gap-2"
-                  value="ewer"
+                  value="comments"
                 >
                   نظرات
                   <div className="size-6 rounded bg-[#A1A1AA] text-white text-sm font-semibold flex justify-center items-center">
@@ -396,43 +397,106 @@ export default function page({
                   </div>
                 </TabsTrigger>
               </TabsList>
-              <TabsContent value="episodes">
-                <div className="flex flex-col gap-2 pb-16">
-                  {anime.episodes.map((episode, i) => (
-                    <EpisodeWrapper
-                      key={episode.episodeTitle}
-                      episode={episode}
-                      i={i}
-                    />
-                  ))}
-                </div>
-              </TabsContent>
-              <TabsContent value="similars">
+              <TabsContent className="py-4" value="trailers">
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                  {anime.similars.map((anime) => (
-                    <SimilarAnimeWrapper key={anime.title} anime={anime} />
+                  {anime.trailers?.map((trailer) => (
+                    <TrailerWrapper key={trailer.title} trailer={trailer} />
                   ))}
                 </div>
               </TabsContent>
-              <TabsContent value="staff">
-                <div className="py-2">
-                  <Tabs defaultValue="characters" className="w-full">
-                    <TabsList className="dark:bg-[#17212B] dark:text-[#A1A1AA] w-full justify-start gap-[10px] rounded-md h-12">
+              <TabsContent className="py-4" value="download">
+                <div className="w-full px-[10px] py-4 bg-[#17212B] flex flex-col gap[10px]">
+                  <Tabs defaultValue="480p">
+                    <TabsList className="dark:bg-transparent dark:text-[#A1A1AA] w-full justify-start">
+                      <h5 className="flex-1 text-white text-base font-semibold">
+                        باکس دانلود
+                      </h5>
                       <TabsTrigger
-                        className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white rounded-lg p-2"
+                        className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white rounded-lg"
+                        value="480p"
+                      >
+                        480p
+                      </TabsTrigger>
+                      <TabsTrigger
+                        className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
+                        value="720p"
+                      >
+                        720p
+                      </TabsTrigger>
+                      <TabsTrigger
+                        className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
+                        value="1080p"
+                      >
+                        1080p
+                      </TabsTrigger>
+                      <TabsTrigger
+                        className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
+                        value="720p x265 | 10Bit"
+                      >
+                        720p x265 | 10Bit
+                      </TabsTrigger>
+                      <TabsTrigger
+                        className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
+                        value="1080p x265 | 10Bit"
+                      >
+                        1080p x265 | 10Bit
+                      </TabsTrigger>
+                    </TabsList>
+                    <TabsContent value="480p"></TabsContent>
+                    <TabsContent value="720p"></TabsContent>
+                    <TabsContent value="1080p"></TabsContent>
+                    <TabsContent value="720p x265 | 10Bit"></TabsContent>
+                    <TabsContent value="1080p x265 | 10Bit"></TabsContent>
+                  </Tabs>
+                </div>
+              </TabsContent>
+              <TabsContent className="py-4" value="cc">
+                <div className="w-full px-[10px] py-4 bg-[#17212B] flex flex-col gap[10px]">
+                  <Tabs defaultValue="dedicated">
+                    <TabsList className="dark:bg-transparent dark:text-[#A1A1AA] w-full justify-start">
+                      <h5 className="flex-1 text-white text-base font-semibold">
+                        باکس دانلود
+                      </h5>
+                      <TabsTrigger
+                        className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white rounded-lg"
+                        value="dedicated"
+                      >
+                        زیرنویس‌های اختصاصی
+                      </TabsTrigger>
+                      <TabsTrigger
+                        className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
+                        value="sent"
+                      >
+                        زیرنویس‌های ارسالی
+                      </TabsTrigger>
+                    </TabsList>
+                    <TabsContent value="dedicated"></TabsContent>
+                    <TabsContent value="sent"></TabsContent>
+                  </Tabs>
+                </div>
+              </TabsContent>
+              <TabsContent value="staff" className="py-4">
+                <div className="w-full px-[10px] py-4 bg-[#17212B] flex flex-col gap[10px]">
+                  <Tabs defaultValue="characters" className="w-full">
+                    <TabsList className="dark:bg-transparent dark:text-[#A1A1AA] w-full justify-start">
+                      <h5 className="flex-1 text-white text-base font-semibold">
+                        شخصیت‌ها و عوامل
+                      </h5>
+                      <TabsTrigger
+                        className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white rounded-lg"
                         value="characters"
                       >
                         شخصیت‌ها و صداپیشه‌ها
                       </TabsTrigger>
                       <TabsTrigger
-                        className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
+                        className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white rounded-lg"
                         value="producers"
                       >
                         عوامل تولید
                       </TabsTrigger>
                     </TabsList>
                     <TabsContent value="characters">
-                      <div className="py-2 flex flex-col gap-2">
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                         {anime.staff.characters.map((character) => (
                           <CharacterWrapper
                             key={character.character.name}
@@ -445,7 +509,7 @@ export default function page({
                       </div>
                     </TabsContent>
                     <TabsContent value="producers">
-                      <div className="py-2 flex flex-col gap-2">
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                         {anime.staff.producers.map((producer) => (
                           <ProducerWrapper
                             key={producer.name}
@@ -455,6 +519,14 @@ export default function page({
                       </div>
                     </TabsContent>
                   </Tabs>
+                </div>
+              </TabsContent>
+              <TabsContent value="details"></TabsContent>
+              <TabsContent value="similars">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                  {anime.similars.map((anime) => (
+                    <SimilarAnimeWrapper key={anime.title} anime={anime} />
+                  ))}
                 </div>
               </TabsContent>
               <TabsContent value="comments">

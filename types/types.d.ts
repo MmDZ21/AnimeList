@@ -141,11 +141,18 @@ export interface Staff {
   producers: Producer[];
 }
 
+export interface Trailer {
+  preview: string;
+  title: string;
+  url: string;
+}
+
 // Define the main Anime type
 export interface Anime {
   type: "series" | "movie";
   status: "ongoing" | "completed" | "notAired";
   startDate?: string;
+  trailers?: Trailer[];
   endDate?: string;
   studio: string;
   genres: string[];

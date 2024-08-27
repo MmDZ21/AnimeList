@@ -534,6 +534,28 @@ export const exampleAnime: Anime = {
   title: "Frieren: Beyond the Journey’s End",
   image: "/images/frieren/cover.webp",
   imageLg: "/images/frieren/lgbg.webp",
+  trailers: [
+    {
+      preview: "/images/frieren/t1.webp",
+      title: "Frieren: Beyond Journey's End - PV4",
+      url: "/",
+    },
+    {
+      preview: "/images/frieren/t2.webp",
+      title: "Frieren: Beyond Journey's End - PV3",
+      url: "/",
+    },
+    {
+      preview: "/images/frieren/t3.webp",
+      title: "Frieren: Beyond Journey's End - PV2",
+      url: "/",
+    },
+    {
+      preview: "/images/frieren/t4.webp",
+      title: "Frieren: Beyond Journey's End - PV1",
+      url: "/",
+    },
+  ],
   rating: 8.5,
   votesCount: 250,
   malRating: 8.97,
