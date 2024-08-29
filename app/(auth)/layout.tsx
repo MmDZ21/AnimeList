@@ -22,6 +22,7 @@ export default function AuthLayout({
           <div className="hidden lg:flex rtl:lg:justify-end ltr:lg:justify-start xl:items-center lg:w-full lg:max-h-screen ">
             <div className="rounded-r-[99px] max-h-screen flex items-center overflow-hidden">
               <Image
+                priority
                 src="/images/loginpic.webp"
                 width={960}
                 height={1080}

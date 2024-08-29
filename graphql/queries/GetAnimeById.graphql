@@ -1,0 +1,5 @@
+query GetAnimeById($id: ID!) {
+  anime(id: $id) {
+    ...AnimeFragment
+  }
+}

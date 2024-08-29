@@ -567,6 +567,7 @@ export const exampleAnime: Anime = {
       animeTitle: "Frieren: Beyond the Journey’s End",
       episodeTitle: "The Journey's End",
       preview: "/images/frieren/ep1.webp", // Add correct path or URL
+      episodeNumber: 1,
       files: [
         { resolution: 480, size: 94.45, url: "/" },
         { resolution: 720, size: 150.24, url: "/" },
@@ -577,6 +578,7 @@ export const exampleAnime: Anime = {
       animeTitle: "Frieren: Beyond the Journey’s End",
       episodeTitle: "It Didn't Have to Be Magic...",
       preview: "/images/frieren/ep2.webp", // Add correct path or URL
+      episodeNumber: 2,
       files: [
         { resolution: 480, size: 94.45, url: "/" },
         { resolution: 720, size: 150.24, url: "/" },

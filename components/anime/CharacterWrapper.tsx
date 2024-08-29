@@ -1,4 +1,4 @@
-import { Character, CharacterWithVoice, VoiceActor } from "@/types/types";
+import { CharacterWithVoice } from "@/types/types";
 import Image from "next/image";
 import React from "react";
 

@@ -84,6 +84,7 @@ export type EpisodeCardType = {
 export interface Episode {
   animeTitle: string;
   episodeTitle: string;
+  episodeNumber: number;
   preview: string; // URL or path to the image
   files: { resolution: number; size: number; url: string }[];
 }
@@ -176,4 +177,65 @@ export interface Anime {
   similars: SimilarAnime[];
   staff: Staff;
   comments: Comment[];
+}
+
+export interface User {
+  id: string;
+  name: string;
+  avatar: string;
+  isVip: boolean;
+  vipExpiresIn: number;
+  bio: string;
+  animeCount: number;
+  watchTime: number;
+  averageRating: number;
+  subtitles: Subtitle[];
+  animeShows: UserAnime[];
+  movies: UserMovie[];
+  series: UserSeries[];
+  dramas: UserDrama[];
+  favorites: UserFavorite[];
+  announcements: UserAnnounce[];
+  tickets: UserTicket[];
+}
+
+export interface Subtitle {
+  episode: Episode;
+  translator: User;
+  href: string;
+  downloadUrl: string;
+}
+
+export interface UserAnime extends Anime {
+  userRating: number;
+}
+export interface UserMovie extends Movie {
+  userRating: number;
+}
+export interface UserSeries extends Series {
+  userRating: number;
+}
+export interface UserDrama extends Drama {
+  userRating: number;
+}
+
+export interface UserFavorite {
+  animeShows: UserAnime[];
+  movies: UserMovie[];
+  series: UserSeries[];
+  dramas: UserDrama[];
+}
+
+export interface UserAnnounce {
+  type: any;
+  body: string;
+  createdAt: number;
+}
+export interface UserTicket {
+  title: string;
+  body: string;
+  type: string;
+  createdAt: string;
+  number: number;
+  status: "pending" | "replied" | "closed";
 }
