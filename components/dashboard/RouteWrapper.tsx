@@ -1,6 +1,13 @@
 "use client";
 
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+} from "@/components/ui/custom-tabs";
+import { dashboardRoutes } from "@/constants";
+import { cn } from "@/lib/utils";
 import { useRouter, usePathname } from "next/navigation";
 
 export default function RouteWrapper({
@@ -17,27 +24,37 @@ export default function RouteWrapper({
   return (
     <Tabs
       value={activeTab}
-      onValueChange={(value) => router.push(`/dashboard/${value}`)}
+      onValueChange={(value) =>
+        value === "dashboard"
+          ? router.push("/dashboard/")
+          : router.push(`/dashboard/${value}`)
+      }
+      className="w-full"
     >
-      <TabsList>
-        <TabsTrigger value="dashboard">داشبورد</TabsTrigger>
-        <TabsTrigger value="anime-list">لیست انیمه‌ها</TabsTrigger>
-        <TabsTrigger value="favorites">علاقه‌مندی‌ها</TabsTrigger>
-        <TabsTrigger value="settings">تنظیمات</TabsTrigger>
+      <TabsList className="w-full dark:bg-transparent border-b border-[hsla(215,20%,65%,0.24)] flex justify-between px-4">
+        {dashboardRoutes.map((route) => (
+          <TabsTrigger
+            key={route.value}
+            value={route.value}
+            className={cn(
+              "px-0 py-3",
+              route.value === "settings" && "hidden lg:inline-flex"
+            )}
+          >
+            {route.label}
+          </TabsTrigger>
+        ))}
       </TabsList>
 
-      <TabsContent value="dashboard">
-        {activeTab === "dashboard" && children}
-      </TabsContent>
-      <TabsContent value="anime-list">
-        {activeTab === "anime-list" && children}
-      </TabsContent>
-      <TabsContent value="favorites">
-        {activeTab === "favorites" && children}
-      </TabsContent>
-      <TabsContent value="settings">
-        {activeTab === "settings" && children}
-      </TabsContent>
+      {dashboardRoutes.map((route) => (
+        <TabsContent
+          key={route.value}
+          value={route.value}
+          className={cn("", route.value === "settings" && "hidden lg:block")}
+        >
+          {activeTab === route.value && children}
+        </TabsContent>
+      ))}
     </Tabs>
   );
 }

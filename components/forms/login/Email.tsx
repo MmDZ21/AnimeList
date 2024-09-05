@@ -24,7 +24,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { login } from "@/actions/login";
+// import { login } from "@/actions/login";
 import router from "next/router";
 
 const Email = () => {

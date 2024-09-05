@@ -194,8 +194,8 @@ export interface User {
   movies: UserMovie[];
   series: UserSeries[];
   dramas: UserDrama[];
-  favorites: UserFavorite[];
-  announcements: UserAnnounce[];
+  favorites: UserFavorites;
+  notifications: UserNotification[];
   tickets: UserTicket[];
 }
 
@@ -219,14 +219,14 @@ export interface UserDrama extends Drama {
   userRating: number;
 }
 
-export interface UserFavorite {
+export interface UserFavorites {
   animeShows: UserAnime[];
   movies: UserMovie[];
   series: UserSeries[];
   dramas: UserDrama[];
 }
 
-export interface UserAnnounce {
+export interface UserNotification {
   type: any;
   body: string;
   createdAt: number;

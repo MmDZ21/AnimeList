@@ -3,6 +3,7 @@ import {
   EpisodeCardType,
   HeroSlide,
   MediaCardType,
+  User,
 } from "@/types/types";
 
 export const heroSlides: HeroSlide[] = [
@@ -757,5 +758,47 @@ export const exampleAnime: Anime = {
       ],
     },
     // Add more comments and nested replies as needed
+  ],
+};
+export const dashboardRoutes = [
+  { value: "dashboard", label: "داشبورد" },
+  { value: "list", label: "لیست من" },
+  { value: "subtitles", label: "زیرنویس" },
+  { value: "notifications", label: "اطلاعیه‌ها" },
+  { value: "tickets", label: "تیکت‌ها" },
+  { value: "settings", label: "تنظیمات" },
+];
+
+export const sampleUser: User = {
+  id: "12345",
+  name: "Dawn",
+  avatar: "/images/frieren/frieren.webp",
+  isVip: true,
+  vipExpiresIn: 1380,
+  bio: "عاشق انیمه، علاقه‌مند به فیلم‌ها و مترجم نیمه‌وقت.",
+  animeCount: 85,
+  watchTime: 6000,
+  averageRating: 8.5,
+  subtitles: [],
+  animeShows: [],
+  movies: [],
+  series: [],
+  dramas: [],
+  favorites: {
+    animeShows: [],
+    movies: [],
+    series: [],
+    dramas: [],
+  },
+  notifications: [],
+  tickets: [
+    {
+      title: "پشتیبانی VIP",
+      body: "مشکل در استفاده از اکانت VIP دارم.",
+      type: "پشتیبانی",
+      createdAt: "1402/05/15",
+      number: 1,
+      status: "pending",
+    },
   ],
 };
