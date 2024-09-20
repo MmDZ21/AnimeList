@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
-import { exampleAnime } from "@/constants";
+import { frierenAnime } from "@/constants";
 import AddToWatchList from "@/components/buttons/AddToWatchList";
 
 import Rating from "@/components/ui/Rating";
@@ -68,7 +68,7 @@ export default async function page({ params }: { params: { nameId: string } }) {
   //   query: graphql(GetAnimeById),
   //   variables: { id },
   // });
-  const anime = exampleAnime;
+  const anime = frierenAnime;
 
   return (
     <div className="min-h-screen w-full flex flex-col">

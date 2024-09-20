@@ -3,9 +3,10 @@ import {
   EpisodeCardType,
   HeroSlide,
   MediaCardType,
+  Subtitle,
   User,
+  UserNotification,
 } from "@/types/types";
-
 export const heroSlides: HeroSlide[] = [
   {
     title: "عنوان انیمه",
@@ -491,7 +492,7 @@ export const trending = [
   },
 ];
 
-export const exampleAnime: Anime = {
+export const frierenAnime: Anime = {
   type: "series",
   source: "manga",
   status: "completed",
@@ -760,6 +761,97 @@ export const exampleAnime: Anime = {
     // Add more comments and nested replies as needed
   ],
 };
+
+// Kusuriya no Hitorigoto
+export const kusuriyaAnime: Anime = {
+  type: "series",
+  status: "ongoing",
+  startDate: "2023-10-01",
+  studio: "Doga Kobo",
+  genres: ["Mystery", "Historical"],
+  themes: ["Intrigue", "Court Drama"],
+  producers: ["Sony Music Entertainment"],
+  source: "manga",
+  season: "fall",
+  year: 2023,
+  language: "Japanese",
+  title: "Kusuriya no Hitorigoto",
+  image: "/images/kusuriya/cover.jpg",
+  imageLg: "/images/kusuriya/cover-lg.jpg",
+  rating: 8.1,
+  votesCount: 12000,
+  malRating: 8.1,
+  anilistRating: 8.0,
+  summary:
+    "داستان خدمتکار باهوشی که وارد دربار امپراتوری چین می‌شود و به حل معماهای خطرناک می‌پردازد.",
+  episodesCount: 12,
+  episodeTime: 24,
+  episodes: [],
+  similars: [],
+  staff: { characters: [], producers: [] },
+  comments: [],
+};
+
+// Vinland Saga Season 2
+export const vinlandSagaAnime: Anime = {
+  type: "series",
+  status: "ongoing",
+  startDate: "2023-01-09",
+  studio: "MAPPA",
+  genres: ["Action", "Adventure", "Drama"],
+  themes: ["Historical", "Warfare"],
+  producers: ["Twin Engine", "Kodansha"],
+  source: "manga",
+  season: "winter",
+  year: 2023,
+  language: "Japanese",
+  title: "Vinland Saga Season 2",
+  image: "/images/vinland/cover.webp",
+  imageLg: "/images/vinland/cover-lg.webp",
+  rating: 9.0,
+  votesCount: 30000,
+  malRating: 9.0,
+  anilistRating: 9.1,
+  summary:
+    "ماجراجویی‌های تاریخی وایکینگ‌ها و تلاش ثورفین برای رسیدن به سرزمین ونلاند.",
+  episodesCount: 24,
+  episodeTime: 24,
+  episodes: [],
+  similars: [],
+  staff: { characters: [], producers: [] },
+  comments: [],
+};
+
+// 86 EIGHTY-SIX Part 2
+export const eightySixAnime: Anime = {
+  type: "series",
+  status: "completed",
+  startDate: "2021-10-02",
+  endDate: "2022-03-19",
+  studio: "A-1 Pictures",
+  genres: ["Action", "Drama", "Sci-Fi"],
+  themes: ["Military", "Mecha"],
+  producers: ["Aniplex", "Kadokawa"],
+  source: "ln",
+  season: "fall",
+  year: 2021,
+  language: "Japanese",
+  title: "86 EIGHTY-SIX Part 2",
+  image: "/images/86/cover.jpg",
+  imageLg: "/images/86/cover-lg.jpg",
+  rating: 8.7,
+  votesCount: 18000,
+  malRating: 8.7,
+  anilistRating: 8.8,
+  summary: "ادامه نبردهای یگان 86 و تلاش آنها برای نجات از جنگ‌های بی‌پایان.",
+  episodesCount: 12,
+  episodeTime: 23,
+  episodes: [],
+  similars: [],
+  staff: { characters: [], producers: [] },
+  comments: [],
+};
+
 export const dashboardRoutes = [
   { value: "dashboard", label: "داشبورد" },
   { value: "list", label: "لیست من" },
@@ -768,8 +860,7 @@ export const dashboardRoutes = [
   { value: "tickets", label: "تیکت‌ها" },
   { value: "settings", label: "تنظیمات" },
 ];
-
-export const sampleUser: User = {
+export const dawn: User = {
   id: "12345",
   name: "Dawn",
   avatar: "/images/frieren/frieren.webp",
@@ -780,7 +871,22 @@ export const sampleUser: User = {
   watchTime: 6000,
   averageRating: 8.5,
   subtitles: [],
-  animeShows: [],
+  animeShows: [
+    {
+      ...frierenAnime,
+      episodesWatched: 28,
+      seasonsWatched: 1,
+      userRating: 10,
+      userStatus: "completed",
+    },
+    {
+      ...vinlandSagaAnime,
+      episodesWatched: 24,
+      seasonsWatched: 1,
+      userRating: 9,
+      userStatus: "completed",
+    },
+  ],
   movies: [],
   series: [],
   dramas: [],
@@ -793,12 +899,188 @@ export const sampleUser: User = {
   notifications: [],
   tickets: [
     {
-      title: "پشتیبانی VIP",
+      title: "Frieren: Beyond Journey’s End",
       body: "مشکل در استفاده از اکانت VIP دارم.",
-      type: "پشتیبانی",
-      createdAt: "1402/05/15",
-      number: 1,
+      category: "درخواست انیمه",
+      createdAt: "۴ تیر ۱۴۰۳ - ۲۱:۳۰",
+      number: 853760,
+      status: "replied",
+    },
+    {
+      title: "Frieren: Beyond Journey’s End",
+      body: "مشکل در استفاده از اکانت VIP دارم.",
+      category: "درخواست انیمه",
+      createdAt: "۴ تیر ۱۴۰۳ - ۲۱:۳۰",
+      number: 853760,
+      status: "closed",
+    },
+    {
+      title: "Frieren: Beyond Journey’s End",
+      body: "مشکل در استفاده از اکانت VIP دارم.",
+      category: "درخواست انیمه",
+      createdAt: "۴ تیر ۱۴۰۳ - ۲۱:۳۰",
+      number: 853760,
       status: "pending",
     },
   ],
 };
+// Sample user for ShinseKai Yuri
+export const shinsekaiYuri: User = {
+  id: "12346",
+  name: "ShinseKai Yuri",
+  avatar: "/images/avatars/yuri.png",
+  isVip: true,
+  vipExpiresIn: 920,
+  bio: "مترجم و علاقه‌مند به تاریخ و انیمه‌های حماسی.",
+  animeCount: 45,
+  watchTime: 3200,
+  averageRating: 9.0,
+  subtitles: [],
+  animeShows: [],
+  movies: [],
+  series: [],
+  dramas: [],
+  favorites: {
+    animeShows: [],
+    movies: [],
+    series: [],
+    dramas: [],
+  },
+  notifications: [],
+  tickets: [],
+};
+
+// Sample user for SayaKa
+export const sayaka: User = {
+  id: "12347",
+  name: "SayaKa",
+  avatar: "/images/avatars/sayaka.png",
+  isVip: false,
+  vipExpiresIn: 0,
+  bio: "مترجم نیمه‌وقت، دوستدار فانتزی و انیمه‌های جادویی.",
+  animeCount: 55,
+  watchTime: 4000,
+  averageRating: 8.2,
+  subtitles: [],
+  animeShows: [],
+  movies: [],
+  series: [],
+  dramas: [],
+  favorites: {
+    animeShows: [],
+    movies: [],
+    series: [],
+    dramas: [],
+  },
+  notifications: [],
+  tickets: [],
+};
+
+// Sample user for CWThierry
+export const cwThierry: User = {
+  id: "12348",
+  name: "CWThierry",
+  avatar: "/images/avatars/cwthierry.png",
+  isVip: true,
+  vipExpiresIn: 720,
+  bio: "عاشق انیمه و فرهنگ‌های مختلف، مترجم چند زبانه.",
+  animeCount: 70,
+  watchTime: 5800,
+  averageRating: 8.7,
+  subtitles: [],
+  animeShows: [],
+  movies: [],
+  series: [],
+  dramas: [],
+  favorites: {
+    animeShows: [],
+    movies: [],
+    series: [],
+    dramas: [],
+  },
+  notifications: [],
+  tickets: [],
+};
+
+export const kusuriyaSubtitle: Subtitle = {
+  episode: {
+    animeTitle: "Kusuriya no Hitorigoto",
+    episodeTitle: "Episode 12",
+    episodeNumber: 12,
+    preview: "/images/kusuriyaSub.webp",
+    files: [
+      { resolution: 720, size: 500, url: "/subs/kusuriya/ep12-720p.srt" },
+      { resolution: 1080, size: 800, url: "/subs/kusuriya/ep12-1080p.srt" },
+    ],
+  },
+  translators: [],
+  href: "/subs/kusuriya",
+  downloadUrl: "/subs/kusuriya/download",
+  anime: kusuriyaAnime,
+};
+
+// Subtitle for "Vinland Saga Season 2"
+export const vinlandSagaSubtitle: Subtitle = {
+  episode: {
+    animeTitle: "Vinland Saga Season 2",
+    episodeTitle: "Episode 14",
+    episodeNumber: 14,
+    preview: "/images/vinlandSub.webp",
+    files: [
+      { resolution: 720, size: 600, url: "/subs/vinland/ep14-720p.srt" },
+      { resolution: 1080, size: 900, url: "/subs/vinland/ep14-1080p.srt" },
+    ],
+  },
+  translators: [],
+  href: "/subs/vinland",
+  downloadUrl: "/subs/vinland/download",
+  anime: vinlandSagaAnime,
+};
+
+// Subtitle for "86 EIGHTY-SIX Part 2"
+export const eightySixSubtitle: Subtitle = {
+  episode: {
+    animeTitle: "86 EIGHTY-SIX Part 2",
+    episodeTitle: "Episode 14",
+    episodeNumber: 14,
+    preview: "/images/eightysixSub.webp",
+    files: [
+      { resolution: 720, size: 550, url: "/subs/86/ep14-720p.srt" },
+      { resolution: 1080, size: 850, url: "/subs/86/ep14-1080p.srt" },
+    ],
+  },
+  translators: [],
+  href: "/subs/86",
+  downloadUrl: "/subs/86/download",
+  anime: eightySixAnime,
+};
+
+kusuriyaSubtitle.translators = [sayaka, cwThierry, dawn];
+vinlandSagaSubtitle.translators = [shinsekaiYuri, dawn];
+eightySixSubtitle.translators = [dawn];
+
+sayaka.subtitles.push(kusuriyaSubtitle);
+cwThierry.subtitles.push(kusuriyaSubtitle);
+dawn.subtitles.push(kusuriyaSubtitle, vinlandSagaSubtitle, eightySixSubtitle);
+shinsekaiYuri.subtitles.push(vinlandSagaSubtitle);
+
+export const exampleNotif1: UserNotification = {
+  createdAt: 5,
+  body: "قسمت بیست‌و‌هشتم Frieren: Beyond Journey’s End منتشر شد.",
+  image: "/images/frieren/cover.webp",
+  seen: false,
+};
+export const exampleNotif2: UserNotification = {
+  createdAt: 5,
+  body: "کاربر ArvinA454 فعالیت شما را لایک کرد.",
+  image: "/images/frieren/cover.webp",
+  seen: false,
+};
+export const exampleNotif3: UserNotification = {
+  createdAt: 5,
+  body: "کاربر ThatGuySky فعالیت شما را لایک کرد.",
+  image: "/images/frieren/cover.webp",
+  seen: false,
+};
+
+dawn.notifications.push(exampleNotif1, exampleNotif2, exampleNotif3);

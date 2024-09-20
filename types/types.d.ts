@@ -80,6 +80,7 @@ export type EpisodeCardType = {
   episodes?: number;
   watched?: number;
 };
+
 // Define the type for an Episode
 export interface Episode {
   animeTitle: string;
@@ -201,22 +202,35 @@ export interface User {
 
 export interface Subtitle {
   episode: Episode;
-  translator: User;
+  translators: User[];
   href: string;
   downloadUrl: string;
+  anime: Anime;
 }
 
 export interface UserAnime extends Anime {
   userRating: number;
+  userStatus: "completed" | "onHold" | "dropped" | "watching" | "planToWatch";
+  seasonsWatched: number;
+  episodesWatched: number;
 }
-export interface UserMovie extends Movie {
+export interface UserMovie extends Anime {
   userRating: number;
+  userStatus: "completed" | "onHold" | "dropped" | "watching";
+  seasonsWatched: number;
+  episodesWatched: number;
 }
-export interface UserSeries extends Series {
+export interface UserSeries extends Anime {
   userRating: number;
+  userStatus: "completed" | "onHold" | "dropped" | "watching";
+  seasonsWatched: number;
+  episodesWatched: number;
 }
-export interface UserDrama extends Drama {
+export interface UserDrama extends Anime {
   userRating: number;
+  userStatus: "completed" | "onHold" | "dropped" | "watching";
+  seasonsWatched: number;
+  episodesWatched: number;
 }
 
 export interface UserFavorites {
@@ -227,14 +241,15 @@ export interface UserFavorites {
 }
 
 export interface UserNotification {
-  type: any;
+  image: string;
   body: string;
   createdAt: number;
+  seen: boolean;
 }
 export interface UserTicket {
   title: string;
   body: string;
-  type: string;
+  category: string;
   createdAt: string;
   number: number;
   status: "pending" | "replied" | "closed";
