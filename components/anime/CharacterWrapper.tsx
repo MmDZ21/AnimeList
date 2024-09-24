@@ -1,14 +1,22 @@
+import { cn } from "@/lib/utils";
 import { CharacterWithVoice } from "@/types/types";
 import Image from "next/image";
 import React from "react";
 
 export default function CharacterWrapper({
   characterWithVoice,
+  className,
 }: {
   characterWithVoice: CharacterWithVoice;
+  className?: string;
 }) {
   return (
-    <div className="bg-[#17212B] lg:bg-background w-full flex p-2 justify-between rounded-lg">
+    <div
+      className={cn(
+        "bg-[#17212B] lg:bg-background w-full flex p-2 justify-between rounded-lg",
+        className
+      )}
+    >
       <div className="flex gap-4 items-center">
         <div className="relative aspect-square size-[72px]">
           <Image

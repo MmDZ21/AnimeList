@@ -1,34 +1,93 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
+import {
+  MagnifyingGlassIcon,
+  Cross2Icon,
+  ArrowRightIcon,
+} from "@radix-ui/react-icons";
+import { Input } from "@/components/ui/input";
+import { useSearchParams, usePathname, useRouter } from "next/navigation";
+import { useDebouncedCallback } from "use-debounce";
+import Link from "next/link";
 
 export default function Search() {
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const { replace } = useRouter();
+
+  const [searchTerm, setSearchTerm] = useState(searchParams.get("query") || "");
+
+  const handleSearch = useDebouncedCallback((term: string) => {
+    const params = new URLSearchParams(searchParams);
+    if (term) {
+      params.set("query", term);
+    } else {
+      params.delete("query");
+    }
+    replace(`${pathname}?${params.toString()}`);
+  }, 300);
+
+  const saveRecentSearch = useDebouncedCallback((term: string) => {
+    if (term.length > 2) {
+      const recentSearches = JSON.parse(
+        localStorage.getItem("recentSearches") || "[]"
+      );
+      const updatedSearches = [
+        term,
+        ...recentSearches.filter((search: string) => search !== term),
+      ].slice(0, 8);
+      localStorage.setItem("recentSearches", JSON.stringify(updatedSearches));
+    }
+  }, 1500);
+
+  const onSearch = (value: string) => {
+    setSearchTerm(value);
+    handleSearch(value);
+    saveRecentSearch(value);
+  };
+
   return (
-    <div>
-      <svg
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M14 14L16.5 16.5"
-          stroke="white"
-          strokeWidth="1.5"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M16.4333 18.5252C15.8556 17.9475 15.8556 17.0109 16.4333 16.4333C17.0109 15.8556 17.9475 15.8556 18.5252 16.4333L21.5667 19.4748C22.1444 20.0525 22.1444 20.9891 21.5667 21.5667C20.9891 22.1444 20.0525 22.1444 19.4748 21.5667L16.4333 18.5252Z"
-          stroke="white"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-        />
-        <path
-          d="M16 9C16 5.13401 12.866 2 9 2C5.13401 2 2 5.13401 2 9C2 12.866 5.13401 16 9 16C12.866 16 16 12.866 16 9Z"
-          stroke="white"
-          strokeWidth="1.5"
-          strokeLinejoin="round"
-        />
-      </svg>
-    </div>
+    <>
+      {!isSearchOpen ? (
+        // Only allow the Link to work if not on the search page
+        pathname !== "/search" ? (
+          <Link href="/search" onClick={() => setIsSearchOpen(true)}>
+            <MagnifyingGlassIcon className="text-white w-6 h-6" />
+          </Link>
+        ) : (
+          <button onClick={() => setIsSearchOpen(true)}>
+            <MagnifyingGlassIcon className="text-white w-6 h-6" />
+          </button>
+        )
+      ) : (
+        <div className="absolute top-0 left-0 w-full h-16 z-50">
+          {/* Clear input on Cross click */}
+          <button
+            onClick={() => setSearchTerm("")}
+            className="text-white absolute top-5 end-4"
+          >
+            <Cross2Icon className="w-6 h-6" />
+          </button>
+          <button
+            onClick={() => {
+              setIsSearchOpen(false);
+              setSearchTerm("");
+            }}
+            className="text-white absolute top-5 start-4"
+          >
+            <ArrowRightIcon className="w-6 h-6" />
+          </button>
+          <div className="w-full">
+            <Input
+              placeholder="انیمه، دراما، سریال، فیلم و..."
+              className="w-full h-16 rounded-none border-none px-16 dark:bg-[#17212B] dark:focus-visible:ring-0 dark:placeholder:text-[#979CA6]"
+              value={searchTerm}
+              onChange={(e) => onSearch(e.target.value)}
+            />
+          </div>
+        </div>
+      )}
+    </>
   );
 }

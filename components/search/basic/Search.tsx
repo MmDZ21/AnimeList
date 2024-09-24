@@ -1,9 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
-import { useState } from "react";
 
 export default function Search({ placeholder }: { placeholder: string }) {
   const searchParams = useSearchParams();
@@ -48,7 +48,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
   };
 
   return (
-    <div className="relative flex w-full justify-center">
+    <div className="hidden relative lg:flex w-full justify-center">
       <Input
         className="w-full rounded-lg px-4 max-w-[800px] h-16 placeholder:text-lg placeholder:font-medium dark:placeholder:text-[#979CA6]"
         placeholder={placeholder}

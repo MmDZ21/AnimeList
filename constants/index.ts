@@ -776,7 +776,7 @@ export const kusuriyaAnime: Anime = {
   year: 2023,
   language: "Japanese",
   title: "Kusuriya no Hitorigoto",
-  image: "/images/kusuriya/cover.jpg",
+  image: "/images/kusuriya/cover.webp",
   imageLg: "/images/kusuriya/cover-lg.jpg",
   rating: 8.1,
   votesCount: 12000,
@@ -1084,3 +1084,37 @@ export const exampleNotif3: UserNotification = {
 };
 
 dawn.notifications.push(exampleNotif1, exampleNotif2, exampleNotif3);
+
+export const blog1: {
+  user: User;
+  createdAt: string;
+  title: string;
+  image: string;
+} = {
+  title: "لیستی از بهترین انیمه‌های فانتزی",
+  createdAt: "چهارشنبه، ۱۶ مهر",
+  user: dawn,
+  image: "/images/blogs/b1.webp",
+};
+export const blog2: {
+  user: User;
+  createdAt: string;
+  title: string;
+  image: string;
+} = {
+  title: "تاپ ۱۰ لحظات برتر انیمهٔ فریرن",
+  createdAt: "چهارشنبه، ۱۶ مهر",
+  user: dawn,
+  image: "/images/blogs/b2.webp",
+};
+export const blog3: {
+  user: User;
+  createdAt: string;
+  title: string;
+  image: string;
+} = {
+  title: "نگاهی به آثار استودیو مدهوس",
+  createdAt: "چهارشنبه، ۱۶ مهر",
+  user: dawn,
+  image: "/images/blogs/b3.webp",
+};
