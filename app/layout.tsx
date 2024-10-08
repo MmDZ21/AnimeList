@@ -142,7 +142,7 @@ export default async function GlobalLayout({
           <LocaleProvider value={locale}>
             <ThemeProvider
               attribute="class"
-              defaultTheme="system"
+              defaultTheme="dark"
               enableSystem
               disableTransitionOnChange
             >

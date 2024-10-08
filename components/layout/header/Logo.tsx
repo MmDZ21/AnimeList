@@ -1,11 +1,12 @@
 import { getLocale } from "@/i18n/server";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 import React from "react";
 
 export default function Logo({ className }: { className?: string }) {
   const locale = getLocale();
   return (
-    <div className="flex gap-0 items-center justify-center">
+    <Link href="/" className="flex gap-0 items-center justify-center">
       {locale === "fa" ? (
         <h1 className="text-white font-black text-lg lg:text-xl">
           انیمه‌<span className={cn("", className)}>لیست</span>
@@ -15,6 +16,6 @@ export default function Logo({ className }: { className?: string }) {
           Anime <span className={cn("", className)}>List</span>
         </h1>
       )}
-    </div>
+    </Link>
   );
 }

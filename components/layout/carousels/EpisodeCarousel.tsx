@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import {
   Carousel,
@@ -8,6 +9,7 @@ import {
 import { cn } from "@/lib/utils";
 import { EpisodeCardType } from "@/types/types";
 import EpisodeCard from "../cards/EpisodeCard";
+import { useDirection } from "@radix-ui/react-direction";
 
 // Utility function to group the episodes by 2
 function chunkArray<T>(array: T[], size: number): T[][] {
@@ -28,8 +30,9 @@ export default function EpisodeCarousel({
   orient?: "vertical" | "horizontal";
 }) {
   const groupedEpisodes = chunkArray(data, 2);
+  const dir = useDirection();
   return (
-    <Carousel orientation={orient || "horizontal"}>
+    <Carousel orientation={orient || "horizontal"} opts={{ direction: dir }}>
       <CarouselContent className={cn("-mt-4 lg:-ml-10 lg:-mt-0", className)}>
         {groupedEpisodes.map((item, i) => (
           <CarouselItem className="basis-auto pt-4 lg:pt-0 lg:pl-10" key={i}>

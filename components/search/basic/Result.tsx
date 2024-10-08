@@ -46,6 +46,7 @@ export default function Result({ data }: { data: ResultProps }) {
                 className="w-[280px] p-2 h-[460px]"
                 imageClassName="h-[400px]"
                 actions={false}
+                overlay
               />
             ))}
           </div>

@@ -13,10 +13,10 @@ export default function EpisodeCard({
 }) {
   return (
     <div className="relative flex rounded-lg bg-[#182533] items-center p-2 w-full lg:w-[570px] overflow-hidden">
-      <div className="relative flex gap-3 items-center p-2 w-full h-full">
+      <div className="relative flex gap-3 items-center p-2 w-full min-h-[90px]">
         <div
           className={cn(
-            "w-[31.25%] relative",
+            "min-w-[90px] h-full min-h-[88px] relative",
             data.type === "userEpisode" && "aspect-[10/15]",
             data.type === "episode" && "aspect-square"
           )}
@@ -29,8 +29,10 @@ export default function EpisodeCard({
           />
         </div>
         <div className="w-full flex flex-col justify-start gap-4">
-          <div className="space-y-1">
-            <h6 className="text-base font-bold">{data.name}</h6>
+          <div className="space-y-2">
+            <h6 className="text-sm font-semibold lg:text-base lg:font-bold">
+              {data.name}
+            </h6>
             <div className="flex gap-2 items-center text-base font-medium">
               <Image
                 src="/svg/episode.svg"
@@ -70,7 +72,7 @@ export default function EpisodeCard({
               <div className="flex gap-2">
                 {data.tags?.map((tag) => (
                   <div
-                    className="bg-[#242F3D] flex items-center justify-center text-sm px-2 py-1"
+                    className="bg-[#242F3D] flex items-center justify-center text-xs sm:text-sm px-2 py-1"
                     key={tag}
                   >
                     {tag}
@@ -92,7 +94,7 @@ export default function EpisodeCard({
             )}
           </div>
         </div>
-        <div className="w-[31.25%] h-full self-start flex justify-end items-start">
+        <div className="w-[31.25%] h-full self-start flex justify-end items-start font-medium text-sm text-[#979CA6]">
           {data.time}
         </div>
       </div>

@@ -18,7 +18,7 @@ export default function Header() {
       <div className="w-full flex justify-between items-center lg:hidden">
         <div className="flex items-center gap-6 w-full">
           <MobileNav />
-          <Logo />
+          <Logo className="text-primary-500" />
         </div>
         <div className="flex items-center gap-6">
           <Search />
@@ -26,7 +26,7 @@ export default function Header() {
         </div>
       </div>
       <div className="hidden lg:flex items-center gap-8 lg:max-w-screen-4xl">
-        <Logo className="text-white lg:text-primary-500" />
+        <Logo className="text-primary-500" />
         <NavBar />
       </div>
       {/* search */}

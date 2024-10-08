@@ -14,8 +14,7 @@ export default function Search() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const searchParams = useSearchParams();
   const pathname = usePathname();
-  const { replace } = useRouter();
-
+  const { replace, back } = useRouter();
   const [searchTerm, setSearchTerm] = useState(searchParams.get("query") || "");
 
   const handleSearch = useDebouncedCallback((term: string) => {
@@ -49,19 +48,27 @@ export default function Search() {
 
   return (
     <>
-      {!isSearchOpen ? (
-        // Only allow the Link to work if not on the search page
-        pathname !== "/search" ? (
-          <Link href="/search" onClick={() => setIsSearchOpen(true)}>
-            <MagnifyingGlassIcon className="text-white w-6 h-6" />
-          </Link>
-        ) : (
-          <button onClick={() => setIsSearchOpen(true)}>
-            <MagnifyingGlassIcon className="text-white w-6 h-6" />
+      {/* Desktop: Link to search page */}
+      <div>
+        <Link href="/search">
+          <MagnifyingGlassIcon className="text-white w-6 h-6" />
+        </Link>
+      </div>
+
+      {/* Mobile: Input always open on search page */}
+      {pathname === "/search" && (
+        <div className="absolute top-0 left-0 w-full h-16 z-50 block lg:hidden">
+          {/* Back Button */}
+          <button
+            onClick={() => {
+              back();
+              setSearchTerm("");
+            }}
+            className="text-white absolute top-5 start-4"
+          >
+            <ArrowRightIcon className="w-6 h-6" />
           </button>
-        )
-      ) : (
-        <div className="absolute top-0 left-0 w-full h-16 z-50">
+
           {/* Clear input on Cross click */}
           <button
             onClick={() => setSearchTerm("")}
@@ -69,15 +76,8 @@ export default function Search() {
           >
             <Cross2Icon className="w-6 h-6" />
           </button>
-          <button
-            onClick={() => {
-              setIsSearchOpen(false);
-              setSearchTerm("");
-            }}
-            className="text-white absolute top-5 start-4"
-          >
-            <ArrowRightIcon className="w-6 h-6" />
-          </button>
+
+          {/* Search input */}
           <div className="w-full">
             <Input
               placeholder="انیمه، دراما، سریال، فیلم و..."
