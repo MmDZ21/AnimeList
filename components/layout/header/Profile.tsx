@@ -1,8 +1,9 @@
+import Link from "next/link";
 import React from "react";
 
 export default function Profile() {
   return (
-    <div>
+    <Link href="/dashboard">
       <svg
         width="24"
         height="24"
@@ -23,6 +24,6 @@ export default function Profile() {
           strokeWidth="1.5"
         />
       </svg>
-    </div>
+    </Link>
   );
 }

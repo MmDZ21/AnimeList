@@ -1,6 +1,7 @@
 import {
   Anime,
   EpisodeCardType,
+  Genre,
   HeroSlide,
   MediaCardType,
   Subtitle,
@@ -1118,3 +1119,91 @@ export const blog3: {
   user: dawn,
   image: "/images/blogs/b3.webp",
 };
+
+export const genres: Genre[] = [
+  {
+    image: "/images/genres/cover.webp",
+    title: "اکشن",
+    subtitle: "Action Anime",
+  },
+  {
+    image: "/images/genres/cover.webp",
+    title: "درام",
+    subtitle: "Drama Anime",
+  },
+  {
+    image: "/images/genres/cover.webp",
+    title: "کمدی",
+    subtitle: "Comedy Anime",
+  },
+  {
+    image: "/images/genres/cover.webp",
+    title: "ماجراجویی",
+    subtitle: "Adventure Anime",
+  },
+  {
+    image: "/images/genres/cover.webp",
+    title: "موسیقی",
+    subtitle: "Music Anime",
+  },
+  {
+    image: "/images/genres/cover.webp",
+    title: "مکا",
+    subtitle: "Mecha Anime",
+  },
+  {
+    image: "/images/genres/cover.webp",
+    title: "دختران جادویی",
+    subtitle: "Mahou Shoujo Anime",
+  },
+  {
+    image: "/images/genres/cover.webp",
+    title: "ترسناک",
+    subtitle: "Horror Anime",
+  },
+  {
+    image: "/images/genres/cover.webp",
+    title: "فانتزی",
+    subtitle: "Fantasy Anime",
+  },
+  {
+    image: "/images/genres/cover.webp",
+    title: "عاشقانه",
+    subtitle: "Romance Anime",
+  },
+  {
+    image: "/images/genres/cover.webp",
+    title: "علمی تخیلی",
+    subtitle: "Sci-Fi Anime",
+  },
+  {
+    image: "/images/genres/cover.webp",
+    title: "روان شناختی",
+    subtitle: "Psychological Anime",
+  },
+  {
+    image: "/images/genres/cover.webp",
+    title: "معمایی",
+    subtitle: "Mystery Anime",
+  },
+  {
+    image: "/images/genres/cover.webp",
+    title: "ورزشی",
+    subtitle: "Sports Anime",
+  },
+  {
+    image: "/images/genres/cover.webp",
+    title: "هیجان انگیز",
+    subtitle: "Thriller Anime",
+  },
+  {
+    image: "/images/genres/cover.webp",
+    title: "ماوراء طبیعی",
+    subtitle: "Supernatural Anime",
+  },
+  {
+    image: "/images/genres/cover.webp",
+    title: "برشی از زندگی",
+    subtitle: "Slice of Life Anime",
+  },
+];

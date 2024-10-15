@@ -254,3 +254,9 @@ export interface UserTicket {
   number: number;
   status: "pending" | "replied" | "closed";
 }
+
+export interface Genre {
+  image: string;
+  title: string;
+  subtitle: string;
+}
