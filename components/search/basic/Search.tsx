@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
+import Link from "next/link";
 
 export default function Search({ placeholder }: { placeholder: string }) {
   const searchParams = useSearchParams();
@@ -48,7 +49,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
   };
 
   return (
-    <div className="hidden relative lg:flex w-full justify-center">
+    <div className="hidden relative lg:flex lg:flex-col w-full items-center gap-4">
       <Input
         className="w-full rounded-lg px-4 max-w-[800px] h-16 placeholder:text-lg placeholder:font-medium dark:placeholder:text-[#979CA6]"
         placeholder={placeholder}
@@ -57,6 +58,9 @@ export default function Search({ placeholder }: { placeholder: string }) {
           onSearch(e.target.value);
         }}
       />
+      <Link href="/search/advanced" className="text-primary-500 text-sm">
+        جستجوی پیشرفته
+      </Link>
     </div>
   );
 }
