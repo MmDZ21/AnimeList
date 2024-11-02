@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 
 import { Comment } from "@/types/types";
 import Image from "next/image";
@@ -15,9 +16,12 @@ export default function ReplyWrapper({
   repliesTo: { name: string; avatar: string };
   className?: string;
 }) {
+  const [blur, setBlur] = useState<boolean>(true);
   return (
     <div className="relative flex flex-col rounded-lg">
-      <div className={cn("flex flex-col gap-3", comment.spoiler && "blur")}>
+      <div
+        className={cn("flex flex-col gap-3", comment.spoiler && blur && "blur")}
+      >
         <div className="rounded-lg flex flex-col gap-4 bg-background p-3">
           <div className="flex justify-between items-center">
             <div className="flex gap-3 items-center">
@@ -108,14 +112,18 @@ export default function ReplyWrapper({
           ))}
         </div>
       </div>
-      {comment.spoiler && (
+      {comment.spoiler && blur && (
         <div className="absolute inset-0">
           <div className="w-full h-full flex justify-center items-center">
             <div className="flex flex-col gap-3 items-center w-1/2">
               <p className="text-base font-medium leading-7 text-center">
                 این کامنت حاوی اسپویل است و بخش‌هایی از داستان را لو می‌دهد.
               </p>
-              <Button variant="outline" className="text-sm font-medium h-9">
+              <Button
+                variant="outline"
+                className="text-sm font-medium h-9"
+                onClick={() => setBlur(false)}
+              >
                 نمایش دیدگاه
               </Button>
             </div>

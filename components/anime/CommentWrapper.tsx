@@ -1,15 +1,22 @@
+"use client";
 import { Comment } from "@/types/types";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import ReplyWrapper from "./ReplyWrapper";
 
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
 
 export default function CommentWrapper({ comment }: { comment: Comment }) {
+  const [blur, setBlur] = useState<boolean>(true);
   return (
     <div className="relative rounded-lg bg-[#17212B]">
-      <div className={cn("flex flex-col p-3 gap-3", comment.spoiler && "blur")}>
+      <div
+        className={cn(
+          "flex flex-col p-3 gap-3",
+          comment.spoiler && blur && "blur"
+        )}
+      >
         <div className="rounded-lg flex flex-col gap-4">
           <div className="flex justify-between items-center">
             <div className="flex gap-3 items-center">
@@ -123,14 +130,18 @@ export default function CommentWrapper({ comment }: { comment: Comment }) {
           </div>
         </div>
       </div>
-      {comment.spoiler && (
+      {comment.spoiler && blur && (
         <div className="absolute inset-0">
           <div className="w-full h-full flex justify-center items-center">
             <div className="flex flex-col gap-3 items-center w-1/2">
               <p className="text-base font-medium leading-7 text-center">
                 این کامنت حاوی اسپویل است و بخش‌هایی از داستان را لو می‌دهد.
               </p>
-              <Button variant="outline" className="text-sm font-medium h-9">
+              <Button
+                variant="outline"
+                className="text-sm font-medium h-9"
+                onClick={() => setBlur(false)}
+              >
                 نمایش دیدگاه
               </Button>
             </div>

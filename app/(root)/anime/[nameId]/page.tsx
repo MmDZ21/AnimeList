@@ -107,16 +107,25 @@ export default async function page({ params }: { params: { nameId: string } }) {
             </div>
             <div className="flex flex-col gap-4 px-4 ">
               <div className="flex flex-col gap-1">
-                <h1 className="text-2xl font-bold">{anime.title}</h1>
-                <div className="flex items-center gap-2">
-                  {anime.type === "series" ? (
-                    <p className="text-[#11EB75] text-xs font-medium">سریالی</p>
-                  ) : (
-                    <p className="text-[#11EB75]">سینمایی</p>
-                  )}
-                  <p className="text-xs font-medium">پخش آنلاین</p>
-                  <p className="text-xs font-medium">زیرنویس چسبیده</p>
-                </div>
+                <h1 className="text-2xl lg:text-4xl font-bold">
+                  {anime.title}
+                </h1>
+                <h2 className="hidden lg:block text-xl font-normal text-[#979CA6]">
+                  {anime.englishTitle}
+                </h2>
+                <h2 className="hidden lg:block text-xl font-normal text-[#979CA6]">
+                  {anime.persianTitle}
+                </h2>
+              </div>
+              <div className="flex items-center gap-2">
+                {anime.genres.map((genre) => (
+                  <div
+                    key={genre}
+                    className="text-xs lg:text-sm rounded px-[6px] py-[2px] border border-[hsla(215,20%,65%,0.24)]"
+                  >
+                    {genre}
+                  </div>
+                ))}
               </div>
               <div className="flex flex-col lg:flex-row lg:items-center gap-2">
                 <div className="flex items-center gap-2">
@@ -194,7 +203,7 @@ export default async function page({ params }: { params: { nameId: string } }) {
                 </div>
                 <div className="flex justify-center items-center">
                   <Dialog>
-                    <DialogTrigger>
+                    <DialogTrigger className="lg:hidden">
                       <p className="text-primary-500 text-base font-medium">
                         جزئیات بیشتر
                       </p>
@@ -342,7 +351,7 @@ export default async function page({ params }: { params: { nameId: string } }) {
               </p>
             </div>
             <div className="flex items-center justify-center">
-              <Button className="h-10 px-[10px] bg-white text-primary-500 text-base font-semibold flex gap-2 items-center justify-center">
+              <Button className="h-10 px-[10px] bg-white text-primary-500 text-base font-semibold flex gap-2 items-center justify-center hover:bg-[#f9cae6]">
                 <div className="flex justify-center items-center size-5">
                   <svg
                     width="24"

@@ -56,6 +56,14 @@ export function useNavMenus(t: (key: string) => string) {
         label: t("blog"),
         href: "/blog",
       },
+      {
+        label: t("ads"),
+        href: "/ads",
+      },
+      {
+        label: t("apps"),
+        href: "/apps",
+      },
     ],
   };
 }

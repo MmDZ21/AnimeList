@@ -165,6 +165,8 @@ export interface Anime {
   year?: number;
   language: string;
   title: string;
+  englishTitle: string;
+  persianTitle: string;
   image: string;
   imageLg: string;
   rating: number;
