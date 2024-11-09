@@ -35,7 +35,7 @@ export default function Result({ data }: { data: ResultProps }) {
           </h2>
           <div className="flex flex-col gap-2 w-full lg:hidden">
             {data.top.map((show, i) => (
-              <ResultCard key={i} data={show} />
+              <ResultCard key={i} data={show} index={i} />
             ))}
           </div>
           <div className="hidden lg:flex gap-2 w-full">
@@ -47,6 +47,7 @@ export default function Result({ data }: { data: ResultProps }) {
                 imageClassName="h-[400px]"
                 actions={false}
                 overlay
+                priority={i === 0 ? true : false}
               />
             ))}
           </div>

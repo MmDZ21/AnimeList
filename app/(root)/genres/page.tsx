@@ -55,8 +55,12 @@ export default function page() {
           </TabsList>
           <TabsContent value="anime">
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 py-5">
-              {genres.map((genre) => (
-                <CategoryCard key={genre.title} category={genre} />
+              {genres.map((genre, i) => (
+                <CategoryCard
+                  key={genre.title}
+                  category={genre}
+                  priority={i === 0 ? true : false}
+                />
               ))}
             </div>
           </TabsContent>

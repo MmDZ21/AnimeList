@@ -3,7 +3,13 @@ import { Anime } from "@/types/types";
 import Image from "next/image";
 import React from "react";
 
-export default function ResultCard({ data }: { data: Anime }) {
+export default function ResultCard({
+  data,
+  index,
+}: {
+  data: Anime;
+  index?: number;
+}) {
   return (
     <div className="flex gap-4 h-[140px] w-full lg:bg-[#17212B] lg:p-2 lg:rounded-lg lg:h-[160px]">
       <div className="relative w-[100px] h-full shrink-0">
@@ -11,6 +17,7 @@ export default function ResultCard({ data }: { data: Anime }) {
           src={data.image}
           alt={data.title}
           fill
+          priority={index === 0 ? true : false}
           className="object-cover object-center rounded "
         />
       </div>

@@ -10,12 +10,14 @@ export default function SimilarAnimeWrapper({
   imageClassName,
   actions = true,
   overlay = false,
+  priority,
 }: {
   anime: SimilarAnime;
   className?: string;
   imageClassName?: string;
   actions?: boolean;
   overlay?: boolean;
+  priority?: boolean;
 }) {
   return (
     <div className={cn("w-full h-[344px] flex flex-col gap-2", className)}>
@@ -24,6 +26,7 @@ export default function SimilarAnimeWrapper({
           src={anime.image}
           alt={anime.title}
           fill
+          priority={priority}
           className="object-cover object-center rounded"
         />
         {overlay && (

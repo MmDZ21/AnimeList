@@ -2,13 +2,20 @@ import { Genre } from "@/types/types";
 import Image from "next/image";
 import React from "react";
 
-export default function CategoryCard({ category }: { category: Genre }) {
+export default function CategoryCard({
+  category,
+  priority,
+}: {
+  category: Genre;
+  priority?: boolean;
+}) {
   return (
     <div className="w-full h-[110px] md:h-[160px] lg:h-[200px] relative rounded-lg">
       <Image
         src={category.image}
         alt={category.title}
         fill
+        priority={priority}
         className="object-cover object-center rounded-lg"
       />
       <div className="absolute inset-0 z-10 flex items-end p-4 bg-gradient-to-t from-[#17212B] to-transparent">
