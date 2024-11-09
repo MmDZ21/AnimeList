@@ -119,6 +119,7 @@ const modam = localFont({
     },
   ],
   display: "swap",
+  fallback: ["system-ui", "arial"],
 });
 
 // Global Layout Component
@@ -137,7 +138,7 @@ export default async function GlobalLayout({
       dir={locale === "fa" ? "rtl" : "ltr"}
       suppressHydrationWarning
     >
-      <body className={`dark:bg-background ${modam.className} w-screen`}>
+      <body className={`dark:bg-background ${modam.className} w-full`}>
         <ApolloClientProvider>
           <LocaleProvider value={locale}>
             <ThemeProvider

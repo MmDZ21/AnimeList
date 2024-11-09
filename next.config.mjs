@@ -1,18 +1,11 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  async headers() {
-    return [
-      {
-        source: "/(.*)",
-        headers: [
-          {
-            key: "Authorization",
-            value: "Bearer my-token", // Example value
-          },
-        ],
-      },
-    ];
-  },
-};
+import withBundleAnalyzer from "@next/bundle-analyzer";
 
-export default nextConfig;
+const bundleAnalyzer = withBundleAnalyzer({
+  enabled: process.env.ANALYZE === "true",
+});
+
+export default bundleAnalyzer({
+  experimental: {
+    optimizePackageImports: ["@radix-ui"],
+  },
+});

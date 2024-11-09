@@ -27,8 +27,8 @@ export default function MediaCarousels({
       }}
     >
       <CarouselContent className={cn("", className)}>
-        {data.map((item) => (
-          <CarouselItem className="basis-auto" key={item.name}>
+        {data.slice(0, 10).map((item, i) => (
+          <CarouselItem className="basis-auto" key={i}>
             <Link href="/anime/example">
               <MediaCard data={item} />
             </Link>

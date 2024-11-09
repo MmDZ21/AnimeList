@@ -254,34 +254,34 @@ export default function SubscriptionBtn() {
                       <path
                         d="M4 11.7998V15.7998C4 19.0996 4 20.7496 5.02513 21.7747C6.05025 22.7998 7.70017 22.7998 11 22.7998H13C16.2998 22.7998 17.9497 22.7998 18.9749 21.7747C20 20.7496 20 19.0996 20 15.7998V11.7998"
                         stroke="#FFC107"
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                       <path
                         d="M3 9.7998C3 9.05211 3 8.67827 3.20096 8.3998C3.33261 8.21738 3.52197 8.0659 3.75 7.96057C4.09808 7.7998 4.56538 7.7998 5.5 7.7998H18.5C19.4346 7.7998 19.9019 7.7998 20.25 7.96057C20.478 8.0659 20.6674 8.21738 20.799 8.3998C21 8.67827 21 9.05211 21 9.7998C21 10.5475 21 10.9213 20.799 11.1998C20.6674 11.3822 20.478 11.5337 20.25 11.639C19.9019 11.7998 19.4346 11.7998 18.5 11.7998H5.5C4.56538 11.7998 4.09808 11.7998 3.75 11.639C3.52197 11.5337 3.33261 11.3822 3.20096 11.1998C3 10.9213 3 10.5475 3 9.7998Z"
                         stroke="#FFC107"
-                        stroke-width="1.5"
-                        stroke-linejoin="round"
+                        strokeWidth="1.5"
+                        strokeLinejoin="round"
                       />
                       <path
                         d="M6 4.58552C6 3.5993 6.79949 2.7998 7.78571 2.7998H8.14286C10.2731 2.7998 12 4.52671 12 6.65695V7.7998H9.21429C7.43908 7.7998 6 6.36072 6 4.58552Z"
                         stroke="#FFC107"
-                        stroke-width="1.5"
-                        stroke-linejoin="round"
+                        strokeWidth="1.5"
+                        strokeLinejoin="round"
                       />
                       <path
                         d="M18 4.58552C18 3.5993 17.2005 2.7998 16.2143 2.7998H15.8571C13.7269 2.7998 12 4.52671 12 6.65695V7.7998H14.7857C16.5609 7.7998 18 6.36072 18 4.58552Z"
                         stroke="#FFC107"
-                        stroke-width="1.5"
-                        stroke-linejoin="round"
+                        strokeWidth="1.5"
+                        strokeLinejoin="round"
                       />
                       <path
                         d="M12 11.7998L12 22.7998"
                         stroke="#FFC107"
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                     </svg>
 
@@ -477,34 +477,34 @@ export default function SubscriptionBtn() {
                       <path
                         d="M4 11.7998V15.7998C4 19.0996 4 20.7496 5.02513 21.7747C6.05025 22.7998 7.70017 22.7998 11 22.7998H13C16.2998 22.7998 17.9497 22.7998 18.9749 21.7747C20 20.7496 20 19.0996 20 15.7998V11.7998"
                         stroke="#FFC107"
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                       <path
                         d="M3 9.7998C3 9.05211 3 8.67827 3.20096 8.3998C3.33261 8.21738 3.52197 8.0659 3.75 7.96057C4.09808 7.7998 4.56538 7.7998 5.5 7.7998H18.5C19.4346 7.7998 19.9019 7.7998 20.25 7.96057C20.478 8.0659 20.6674 8.21738 20.799 8.3998C21 8.67827 21 9.05211 21 9.7998C21 10.5475 21 10.9213 20.799 11.1998C20.6674 11.3822 20.478 11.5337 20.25 11.639C19.9019 11.7998 19.4346 11.7998 18.5 11.7998H5.5C4.56538 11.7998 4.09808 11.7998 3.75 11.639C3.52197 11.5337 3.33261 11.3822 3.20096 11.1998C3 10.9213 3 10.5475 3 9.7998Z"
                         stroke="#FFC107"
-                        stroke-width="1.5"
-                        stroke-linejoin="round"
+                        strokeWidth="1.5"
+                        strokeLinejoin="round"
                       />
                       <path
                         d="M6 4.58552C6 3.5993 6.79949 2.7998 7.78571 2.7998H8.14286C10.2731 2.7998 12 4.52671 12 6.65695V7.7998H9.21429C7.43908 7.7998 6 6.36072 6 4.58552Z"
                         stroke="#FFC107"
-                        stroke-width="1.5"
-                        stroke-linejoin="round"
+                        strokeWidth="1.5"
+                        strokeLinejoin="round"
                       />
                       <path
                         d="M18 4.58552C18 3.5993 17.2005 2.7998 16.2143 2.7998H15.8571C13.7269 2.7998 12 4.52671 12 6.65695V7.7998H14.7857C16.5609 7.7998 18 6.36072 18 4.58552Z"
                         stroke="#FFC107"
-                        stroke-width="1.5"
-                        stroke-linejoin="round"
+                        strokeWidth="1.5"
+                        strokeLinejoin="round"
                       />
                       <path
                         d="M12 11.7998L12 22.7998"
                         stroke="#FFC107"
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                     </svg>
 

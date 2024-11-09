@@ -30,7 +30,6 @@ export default function Hero() {
 
     setCount(api.scrollSnapList().length);
     setCurrent(api.selectedScrollSnap());
-
     api.on("select", () => {
       setCurrent(api.selectedScrollSnap());
     });
@@ -56,14 +55,14 @@ export default function Hero() {
         }}
       >
         <CarouselContent>
-          {heroSlides.map((hero) => (
+          {heroSlides.map((hero, i) => (
             <CarouselItem key={hero.title}>
               <div className="relative w-full h-[420px] lg:h-[900px]">
                 <Image
                   src={hero.imageUrl}
                   alt={hero.title}
                   fill
-                  priority // Ensures the image loads quickly as it's likely the main visual
+                  priority={current === i ? true : false} // Ensures the image loads quickly as it's likely the main visual
                   className={cn(
                     "object-cover",
                     hero.imgMobilePosition === "right"

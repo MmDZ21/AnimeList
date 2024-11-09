@@ -57,7 +57,7 @@ export default function SubtitleCard({ data }: { data: Subtitle }) {
                 d="M17 13.5C17 15.982 16.482 16.5 14 16.5H4C1.518 16.5 1 15.982 1 13.5"
                 stroke="white"
                 strokeWidth="1.5"
-                stroke-Linecap="round"
+                strokeLinecap="round"
                 strokeLinejoin="round"
               />
             </svg>

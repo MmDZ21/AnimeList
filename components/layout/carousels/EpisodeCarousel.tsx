@@ -34,7 +34,7 @@ export default function EpisodeCarousel({
   return (
     <Carousel orientation={orient || "horizontal"} opts={{ direction: dir }}>
       <CarouselContent className={cn("-mt-4 lg:-ml-10 lg:-mt-0", className)}>
-        {groupedEpisodes.map((item, i) => (
+        {groupedEpisodes.slice(0, 5).map((item, i) => (
           <CarouselItem className="basis-auto pt-4 lg:pt-0 lg:pl-10" key={i}>
             <div className="flex flex-col gap-4 lg:gap-6">
               <EpisodeCard data={item[0]} />
