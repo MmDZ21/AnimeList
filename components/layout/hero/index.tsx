@@ -15,7 +15,7 @@ import Autoplay from "embla-carousel-autoplay";
 import Fade from "embla-carousel-fade";
 import { useDirection } from "@radix-ui/react-direction";
 import { cn } from "@/lib/utils";
-import Image from "next/image"; // Import the Next.js Image component
+import Image from "next/image";
 
 export default function Hero() {
   const [api, setApi] = React.useState<CarouselApi>();
@@ -62,7 +62,7 @@ export default function Hero() {
                   src={hero.imageUrl}
                   alt={hero.title}
                   fill
-                  priority={current === i ? true : false} // Ensures the image loads quickly as it's likely the main visual
+                  priority={i === 0 ? true : false} // Ensures the image loads quickly as it's likely the main visual
                   className={cn(
                     "object-cover",
                     hero.imgMobilePosition === "right"
