@@ -1,0 +1,10 @@
+query GetSeasonalAnimes($first: Int!) {
+  animesSeason(first: $first) {
+    paginatorInfo {
+      count
+    }
+    data {
+        ...TrendingAnimeFragment
+    }
+  }
+}

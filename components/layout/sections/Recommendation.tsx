@@ -3,7 +3,7 @@ import SectionContainer from "./SectionContainer";
 import { recommendations } from "@/constants";
 import MediaCarousels from "../carousels/MediaCarousels";
 
-export default function Recommendation() {
+export default async function Recommendation() {
   return (
     <SectionContainer
       title="بهترین‌ها برای شما"

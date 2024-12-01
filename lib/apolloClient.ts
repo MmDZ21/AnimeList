@@ -1,38 +1,19 @@
-import { ApolloLink, HttpLink } from "@apollo/client";
-import { setContext } from "@apollo/client/link/context";
-
+import { HttpLink } from "@apollo/client";
 import {
+  registerApolloClient,
   ApolloClient,
   InMemoryCache,
-  registerApolloClient,
-  SSRMultipartLink,
 } from "@apollo/experimental-nextjs-app-support";
-// import { getSession } from "./authUtils";
-
-const httpLink = new HttpLink({
-  uri: "https://api.anilist.top/graphql",
-});
-
-// const authLink = setContext(async (_, { headers }) => {
-//   const session = await getSession();
-
-//   const token = session?.accessToken || "";
-//   return {
-//     headers: {
-//       ...headers,
-//       Authorization: token ? `Bearer ${token}` : "",
-//     },
-//   };
-// });
 
 export const { getClient, query, PreloadQuery } = registerApolloClient(() => {
   return new ApolloClient({
     cache: new InMemoryCache(),
-    // link: ApolloLink.from([
-    //   authLink,
-    //   new SSRMultipartLink({ stripDefer: true }),
-    //   httpLink,
-    // ]),
-    link: httpLink,
+    link: new HttpLink({
+      // this needs to be an absolute url, as relative urls cannot be used in SSR
+      uri: "https://dev-api.alplayer.ir/graphql",
+      // you can disable result caching here if you want to
+      // (this does not work if you are rendering your page with `export const dynamic = "force-static"`)
+      // fetchOptions: { cache: "no-store" },
+    }),
   });
 });

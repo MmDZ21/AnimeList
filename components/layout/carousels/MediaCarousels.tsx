@@ -11,12 +11,13 @@ import { cn } from "@/lib/utils";
 import { MediaCardType } from "@/types/types";
 import Link from "next/link";
 import { useDirection } from "@radix-ui/react-direction";
+import { TrendingAnimeFragmentFragment } from "@/generated/graphql";
 
 export default function MediaCarousels({
   data,
   className,
 }: {
-  data: MediaCardType[];
+  data: TrendingAnimeFragmentFragment[];
   className?: string;
 }) {
   const dir = useDirection();

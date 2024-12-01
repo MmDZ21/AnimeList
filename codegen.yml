@@ -1,0 +1,12 @@
+schema: 'https://dev-api.alplayer.ir/graphql' # Replace with your GraphQL endpoint
+documents: '**/*.graphql'
+generates:
+  generated/graphql.tsx:
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
+    config:
+      withHooks: true
+      reactApolloVersion: 3
+      addDocBlocks: false

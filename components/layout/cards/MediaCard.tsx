@@ -9,12 +9,13 @@ import {
 } from "@/components/ui/card";
 import Image from "next/image";
 import { type MediaCardType } from "@/types/types";
+import { TrendingAnimeFragmentFragment } from "@/generated/graphql";
 
 export default function MediaCard({
   data,
   className,
 }: {
-  data: MediaCardType;
+  data: TrendingAnimeFragmentFragment;
   className?: string;
 }) {
   return (
@@ -22,13 +23,13 @@ export default function MediaCard({
       <div className="flex flex-col gap-2 w-full h-full md:p-2">
         <div className="w-full h-full relative">
           <Image
-            src={data.imgUrl}
-            alt={data.name}
+          src={ data.mal_image_url? "https://dev-api.alplayer.ir"+data.mal_image_url : data.anilist_image_url ? "https://dev-api.alplayer.ir"+data.anilist_image_url : "/images/frieren/cover.webp"}
+          alt={data.dic_title!}
             fill
             className="rounded object-cover"
           />
           <div className="absolute bg-[#182533]/95 inset-0 rounded p-3 flex flex-col gap-2 opacity-0 hover:opacity-100 transition-opacity duration-300">
-            <h2 className="font-bold text-lg text-white">{data.name}</h2>
+            <h2 className="font-bold text-lg text-white">{data.dic_title}</h2>
             <div className="flex gap-1 items-center">
               <svg
                 width="18"
@@ -75,8 +76,8 @@ export default function MediaCard({
                   </defs>
                 </svg>
                 <div className="flex gap-1 items-center">
-                  <p className="text-sm font-normal">9.53</p>
-                  <p className="text-xs font-normal opacity-65">{`(3850)`}</p>
+                  <p className="text-sm font-normal">{data.al_score || 0}</p>
+                  <p className="text-xs font-normal opacity-65">{data.al_score_count ? `(${data.al_score_count})` : `(0)`}</p>
                 </div>
               </div>
               <div className="flex gap-1 items-center">
@@ -114,7 +115,7 @@ export default function MediaCard({
                     />
                   </defs>
                 </svg>
-                <p className="text-sm font-bold">8.23</p>
+                <p className="text-sm font-bold">{data.dic_score || 0}</p>
               </div>
               <div className="flex gap-1 items-center">
                 <svg
@@ -151,23 +152,21 @@ export default function MediaCard({
                     />
                   </defs>
                 </svg>
-                <p className="text-sm font-bold">79%</p>
+                <p className="text-sm font-bold">{data.anilist_score + "%" || "0%"}</p>
               </div>
             </div>
-            <p className="font-normal text-sm">۱۲ قسمت</p>
-            <p className="text-sm font-medium">
-              سرنوشت جهان در تعادل است زیرا «ارن» قدرت نهایی تایتان ها را آزاد
-              می‌کند. او با عزم شدیدی برای از بین بردن همه کسانی که الدیا را
-              تهدید می‌کنند، ارتش غیرقابل توقفی از تایتان های عظیم الجثه را به
-              سمت مارلی هدایت می‌کند. حالا یک خدمه متشکل از دوستان و دشمنان
-              سابقش به تقلا می‌افتند تا مأموریت مرگ‌بار او را متوقف کنند...
+            <p className="font-normal text-sm">{data.dic_episodes} قسمت</p>
+            <p className="text-sm font-medium line-clamp-[8]">
+{data.dic_body}
             </p>
           </div>
         </div>
         <div className="flex flex-col gap-1">
-          <h6 className="text-base font-bold">{data.name}</h6>
+<div className="flex justify-start">
+<h6 dir="ltr" className="text-base font-bold truncate">{data.dic_title}</h6>
+</div>
           <p className="text-xs font-normal text-[#979CA6] lg:text-sm lg:text-white">
-            {data.desc}
+            زیرنویس چسبیده | پخش آنلاین
           </p>
         </div>
       </div>

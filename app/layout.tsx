@@ -3,7 +3,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { getLocale } from "../i18n/server";
 import localFont from "next/font/local";
-import { ApolloClientProvider } from "@/components/ApolloWrapper";
+import { ApolloWrapper } from "@/components/ApolloWrapper";
 import { LocaleProvider } from "../hooks/locale-provider";
 import { Locales } from "@/i18n/settings";
 import DirProvider from "@/components/DirProvider";
@@ -139,7 +139,7 @@ export default async function GlobalLayout({
       suppressHydrationWarning
     >
       <body className={`dark:bg-background ${modam.className} w-full`}>
-        <ApolloClientProvider>
+        <ApolloWrapper>
           <LocaleProvider value={locale}>
             <ThemeProvider
               attribute="class"
@@ -152,7 +152,7 @@ export default async function GlobalLayout({
               </DirProvider>
             </ThemeProvider>
           </LocaleProvider>
-        </ApolloClientProvider>
+        </ApolloWrapper>
       </body>
     </html>
   );

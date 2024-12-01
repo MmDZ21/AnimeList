@@ -1,5 +1,5 @@
-query GetAnimeById($id: ID!) {
-  anime(id: $id) {
-    ...AnimeFragment
-  }
-}
+# query GetAnimeById($id: ID!) {
+#   anime(id: $id) {
+#     ...AnimeFragment
+#   }
+# }

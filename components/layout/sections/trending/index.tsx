@@ -1,11 +1,20 @@
-import React from "react";
+import React, { Suspense } from "react";
 import SectionContainer from "../SectionContainer";
 import TrendingParallel from "./Parallel";
-import { recommendations, trending } from "@/constants";
-import AnimeCard from "../../cards/AnimeCard";
+import { PreloadQuery } from "@/lib/ApolloClient";
+
+import TrendingContent from "./TrendingContent";
+import { GetSeasonalAnimesDocument } from "@/generated/graphql";
 
 export default function Trending() {
   return (
+        <PreloadQuery
+          query={GetSeasonalAnimesDocument}
+          variables={{
+            first: 10,
+          }}
+        >
+          <Suspense fallback={<p>Loading trending anime...</p>}>
     <div>
       <div className="hidden lg:block">
         <TrendingParallel />
@@ -14,12 +23,10 @@ export default function Trending() {
         title="محبوب‌ترین‌های فصل"
         className="flex flex-col lg:hidden"
       >
-        <div className="flex flex-col gap-6">
-          {trending.map((item) => (
-            <AnimeCard data={item} key={item.title} />
-          ))}
-        </div>
+            <TrendingContent />
       </SectionContainer>
     </div>
+          </Suspense>
+        </PreloadQuery>
   );
 }

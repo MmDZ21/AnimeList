@@ -38,7 +38,7 @@ import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import TrailerWrapper from "@/components/anime/TrailerWrapper";
 import { Anime } from "@/generated/gql/graphql";
-import { query } from "@/lib/apolloClient";
+import { query } from "@/lib/ApolloClient";
 import { GetAnimeById } from "@/graphql/queries/getAnimeById.graphql";
 import { graphql } from "@/generated/gql";
 // Next.js will invalidate the cache when a

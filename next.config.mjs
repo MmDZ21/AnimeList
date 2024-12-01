@@ -8,4 +8,7 @@ export default bundleAnalyzer({
   experimental: {
     optimizePackageImports: ["@radix-ui"],
   },
+  images: {
+    domains: ['dev-api.alplayer.ir'],
+  },
 });

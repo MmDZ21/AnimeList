@@ -1,5 +1,5 @@
-/* eslint-disable */
-import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
+import { gql } from '@apollo/client';
+import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -7,6 +7,7 @@ export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: 
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
+const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: { input: string; output: string; }
@@ -25,15 +26,20 @@ export type Actor = {
 
 export type Anime = {
   __typename?: 'Anime';
+  al_score?: Maybe<Scalars['Int']['output']>;
+  al_score_count?: Maybe<Scalars['Int']['output']>;
+  anilist_image_url?: Maybe<Scalars['String']['output']>;
+  anilist_popularity?: Maybe<Scalars['Int']['output']>;
+  anilist_score?: Maybe<Scalars['Int']['output']>;
   anime_links: Array<DbAnimeLinks>;
-  animelistScore?: Maybe<AnimelistScore>;
   characters: Array<Character>;
-  dic_aired?: Maybe<Scalars['String']['output']>;
+  dic_aired_from?: Maybe<Scalars['String']['output']>;
+  dic_aired_to?: Maybe<Scalars['String']['output']>;
   dic_body?: Maybe<Scalars['String']['output']>;
+  dic_body_normalized?: Maybe<Scalars['String']['output']>;
   dic_broadcast?: Maybe<Scalars['String']['output']>;
   dic_duration?: Maybe<Scalars['String']['output']>;
   dic_episodes?: Maybe<Scalars['String']['output']>;
-  dic_image_url?: Maybe<Scalars['String']['output']>;
   dic_kayfet?: Maybe<Scalars['String']['output']>;
   dic_last_update?: Maybe<Scalars['String']['output']>;
   dic_score?: Maybe<Scalars['String']['output']>;
@@ -43,22 +49,26 @@ export type Anime = {
   dic_title_jp?: Maybe<Scalars['String']['output']>;
   dic_title_other?: Maybe<Scalars['String']['output']>;
   dic_types?: Maybe<Scalars['Int']['output']>;
-  exclusiveSubCount?: Maybe<Scalars['Int']['output']>;
-  genre_pivot: Array<Categorie>;
+  genres: Array<Categorie>;
   id: Scalars['ID']['output'];
   mal_id: Scalars['ID']['output'];
+  mal_image_url?: Maybe<Scalars['String']['output']>;
+  mal_popularity?: Maybe<Scalars['Int']['output']>;
+  mal_rank?: Maybe<Scalars['Int']['output']>;
   movie_desc?: Maybe<MovieDesc>;
   post_hit?: Maybe<Scalars['Int']['output']>;
+  post_title?: Maybe<Scalars['String']['output']>;
   recommendation?: Maybe<Scalars['String']['output']>;
   related?: Maybe<Scalars['String']['output']>;
+  season_year?: Maybe<Scalars['String']['output']>;
+  seo_desc?: Maybe<Scalars['String']['output']>;
   title_fa?: Maybe<Scalars['String']['output']>;
   trailers: Array<AnimeTrailer>;
-  userSubCount?: Maybe<Scalars['Int']['output']>;
-  vipSubCount?: Maybe<Scalars['Int']['output']>;
+  wide_image?: Maybe<Scalars['String']['output']>;
 };
 
 
-export type AnimeGenre_PivotArgs = {
+export type AnimeGenresArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
 };
 
@@ -1442,31 +1452,101 @@ export type VerifyPaymentRequest = {
   authority: Scalars['String']['input'];
 };
 
-export type AnimeFragmentFragment = { __typename?: 'Anime', mal_id: string, dic_body?: string | null, dic_image_url?: string | null, dic_title?: string | null, dic_title_en?: string | null, dic_title_jp?: string | null, dic_title_other?: string | null, title_fa?: string | null, vipSubCount?: number | null, exclusiveSubCount?: number | null, userSubCount?: number | null, dic_score?: string | null, post_hit?: number | null, dic_types?: number | null, dic_kayfet?: string | null, dic_episodes?: string | null, dic_duration?: string | null, dic_last_update?: string | null, dic_aired?: string | null, dic_broadcast?: string | null, dic_status?: number | null, related?: string | null, recommendation?: string | null, animelistScore?: { __typename?: 'AnimelistScore', score?: string | null, count_user?: number | null } | null, movie_desc?: { __typename?: 'MovieDesc', body?: string | null } | null, genre_pivot: Array<{ __typename?: 'Categorie', id: string, name_fa?: string | null, name_en?: string | null, slug?: string | null, backdrop?: string | null }>, anime_links: Array<{ __typename?: 'DbAnimeLinks', id: string, anime_id: string, link?: string | null, quality?: string | null, ep?: string | null, size?: string | null, subtitle_link?: string | null, subtitle_name?: string | null, directory_links: Array<{ __typename?: 'DbAnimeDirectoryLinks', directory_id: string, link?: string | null, quality?: string | null, ep?: string | null, size?: string | null, subtitle_link?: string | null, subtitle_name?: string | null, signedLink?: string | null }> }>, characters: Array<{ __typename?: 'Character', id?: string | null, name?: string | null, image_url?: string | null }>, trailers: Array<{ __typename?: 'AnimeTrailer', title?: string | null, online_play?: string | null }> } & { ' $fragmentName'?: 'AnimeFragmentFragment' };
+export type TrendingAnimeFragmentFragment = { __typename?: 'Anime', id: string, dic_title?: string | null, dic_body?: string | null, anilist_image_url?: string | null, mal_image_url?: string | null, wide_image?: string | null, al_score?: number | null, dic_score?: string | null, anilist_score?: number | null, al_score_count?: number | null, dic_episodes?: string | null, season_year?: string | null, mal_popularity?: number | null, anilist_popularity?: number | null, genres: Array<{ __typename?: 'Categorie', name_fa?: string | null, name_en?: string | null, backdrop?: string | null }> };
 
-export type UserFragmentFragment = { __typename?: 'User', id: string, name?: string | null, email?: string | null, avatar?: string | null } & { ' $fragmentName'?: 'UserFragmentFragment' };
+export type UserFragmentFragment = { __typename?: 'User', id: string, name?: string | null, email?: string | null, avatar?: string | null };
 
 export type LoginMutationVariables = Exact<{
   input: LoginInput;
 }>;
 
 
-export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'AuthPayload', access_token?: string | null, expires_in?: number | null, refresh_token?: string | null, token_type?: string | null, user?: (
-      { __typename?: 'User' }
-      & { ' $fragmentRefs'?: { 'UserFragmentFragment': UserFragmentFragment } }
-    ) | null } };
+export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'AuthPayload', access_token?: string | null, expires_in?: number | null, refresh_token?: string | null, token_type?: string | null, user?: { __typename?: 'User', id: string, name?: string | null, email?: string | null, avatar?: string | null } | null } };
 
-export type GetAnimeByIdQueryVariables = Exact<{
-  id: Scalars['ID']['input'];
+export type GetSeasonalAnimesQueryVariables = Exact<{
+  first: Scalars['Int']['input'];
 }>;
 
 
-export type GetAnimeByIdQuery = { __typename?: 'Query', anime?: (
-    { __typename?: 'Anime' }
-    & { ' $fragmentRefs'?: { 'AnimeFragmentFragment': AnimeFragmentFragment } }
-  ) | null };
+export type GetSeasonalAnimesQuery = { __typename?: 'Query', animesSeason: { __typename?: 'AnimePaginator', paginatorInfo: { __typename?: 'PaginatorInfo', count: number }, data: Array<{ __typename?: 'Anime', id: string, dic_title?: string | null, dic_body?: string | null, anilist_image_url?: string | null, mal_image_url?: string | null, wide_image?: string | null, al_score?: number | null, dic_score?: string | null, anilist_score?: number | null, al_score_count?: number | null, dic_episodes?: string | null, season_year?: string | null, mal_popularity?: number | null, anilist_popularity?: number | null, genres: Array<{ __typename?: 'Categorie', name_fa?: string | null, name_en?: string | null, backdrop?: string | null }> }> } };
 
-export const AnimeFragmentFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"AnimeFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Anime"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"mal_id"}},{"kind":"Field","name":{"kind":"Name","value":"dic_body"}},{"kind":"Field","name":{"kind":"Name","value":"dic_image_url"}},{"kind":"Field","name":{"kind":"Name","value":"dic_title"}},{"kind":"Field","name":{"kind":"Name","value":"dic_title_en"}},{"kind":"Field","name":{"kind":"Name","value":"dic_title_jp"}},{"kind":"Field","name":{"kind":"Name","value":"dic_title_other"}},{"kind":"Field","name":{"kind":"Name","value":"title_fa"}},{"kind":"Field","name":{"kind":"Name","value":"animelistScore"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"score"}},{"kind":"Field","name":{"kind":"Name","value":"count_user"}}]}},{"kind":"Field","name":{"kind":"Name","value":"vipSubCount"}},{"kind":"Field","name":{"kind":"Name","value":"exclusiveSubCount"}},{"kind":"Field","name":{"kind":"Name","value":"userSubCount"}},{"kind":"Field","name":{"kind":"Name","value":"dic_score"}},{"kind":"Field","name":{"kind":"Name","value":"post_hit"}},{"kind":"Field","name":{"kind":"Name","value":"dic_types"}},{"kind":"Field","name":{"kind":"Name","value":"dic_kayfet"}},{"kind":"Field","name":{"kind":"Name","value":"dic_episodes"}},{"kind":"Field","name":{"kind":"Name","value":"dic_duration"}},{"kind":"Field","name":{"kind":"Name","value":"dic_last_update"}},{"kind":"Field","name":{"kind":"Name","value":"dic_aired"}},{"kind":"Field","name":{"kind":"Name","value":"dic_broadcast"}},{"kind":"Field","name":{"kind":"Name","value":"dic_status"}},{"kind":"Field","name":{"kind":"Name","value":"movie_desc"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"body"}}]}},{"kind":"Field","name":{"kind":"Name","value":"genre_pivot"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name_fa"}},{"kind":"Field","name":{"kind":"Name","value":"name_en"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"backdrop"}}]}},{"kind":"Field","name":{"kind":"Name","value":"anime_links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"anime_id"}},{"kind":"Field","name":{"kind":"Name","value":"link"}},{"kind":"Field","name":{"kind":"Name","value":"quality"}},{"kind":"Field","name":{"kind":"Name","value":"ep"}},{"kind":"Field","name":{"kind":"Name","value":"size"}},{"kind":"Field","name":{"kind":"Name","value":"subtitle_link"}},{"kind":"Field","name":{"kind":"Name","value":"subtitle_name"}},{"kind":"Field","name":{"kind":"Name","value":"directory_links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"directory_id"}},{"kind":"Field","name":{"kind":"Name","value":"link"}},{"kind":"Field","name":{"kind":"Name","value":"quality"}},{"kind":"Field","name":{"kind":"Name","value":"ep"}},{"kind":"Field","name":{"kind":"Name","value":"size"}},{"kind":"Field","name":{"kind":"Name","value":"subtitle_link"}},{"kind":"Field","name":{"kind":"Name","value":"subtitle_name"}},{"kind":"Field","name":{"kind":"Name","value":"signedLink"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"characters"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"image_url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"related"}},{"kind":"Field","name":{"kind":"Name","value":"recommendation"}},{"kind":"Field","name":{"kind":"Name","value":"trailers"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"online_play"}}]}}]}}]} as unknown as DocumentNode<AnimeFragmentFragment, unknown>;
-export const UserFragmentFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"UserFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"User"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"avatar"}}]}}]} as unknown as DocumentNode<UserFragmentFragment, unknown>;
-export const LoginDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"Login"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"LoginInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"login"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"access_token"}},{"kind":"Field","name":{"kind":"Name","value":"expires_in"}},{"kind":"Field","name":{"kind":"Name","value":"refresh_token"}},{"kind":"Field","name":{"kind":"Name","value":"token_type"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"UserFragment"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"UserFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"User"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"avatar"}}]}}]} as unknown as DocumentNode<LoginMutation, LoginMutationVariables>;
-export const GetAnimeByIdDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetAnimeById"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"anime"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"AnimeFragment"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"AnimeFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Anime"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"mal_id"}},{"kind":"Field","name":{"kind":"Name","value":"dic_body"}},{"kind":"Field","name":{"kind":"Name","value":"dic_image_url"}},{"kind":"Field","name":{"kind":"Name","value":"dic_title"}},{"kind":"Field","name":{"kind":"Name","value":"dic_title_en"}},{"kind":"Field","name":{"kind":"Name","value":"dic_title_jp"}},{"kind":"Field","name":{"kind":"Name","value":"dic_title_other"}},{"kind":"Field","name":{"kind":"Name","value":"title_fa"}},{"kind":"Field","name":{"kind":"Name","value":"animelistScore"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"score"}},{"kind":"Field","name":{"kind":"Name","value":"count_user"}}]}},{"kind":"Field","name":{"kind":"Name","value":"vipSubCount"}},{"kind":"Field","name":{"kind":"Name","value":"exclusiveSubCount"}},{"kind":"Field","name":{"kind":"Name","value":"userSubCount"}},{"kind":"Field","name":{"kind":"Name","value":"dic_score"}},{"kind":"Field","name":{"kind":"Name","value":"post_hit"}},{"kind":"Field","name":{"kind":"Name","value":"dic_types"}},{"kind":"Field","name":{"kind":"Name","value":"dic_kayfet"}},{"kind":"Field","name":{"kind":"Name","value":"dic_episodes"}},{"kind":"Field","name":{"kind":"Name","value":"dic_duration"}},{"kind":"Field","name":{"kind":"Name","value":"dic_last_update"}},{"kind":"Field","name":{"kind":"Name","value":"dic_aired"}},{"kind":"Field","name":{"kind":"Name","value":"dic_broadcast"}},{"kind":"Field","name":{"kind":"Name","value":"dic_status"}},{"kind":"Field","name":{"kind":"Name","value":"movie_desc"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"body"}}]}},{"kind":"Field","name":{"kind":"Name","value":"genre_pivot"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name_fa"}},{"kind":"Field","name":{"kind":"Name","value":"name_en"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"backdrop"}}]}},{"kind":"Field","name":{"kind":"Name","value":"anime_links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"anime_id"}},{"kind":"Field","name":{"kind":"Name","value":"link"}},{"kind":"Field","name":{"kind":"Name","value":"quality"}},{"kind":"Field","name":{"kind":"Name","value":"ep"}},{"kind":"Field","name":{"kind":"Name","value":"size"}},{"kind":"Field","name":{"kind":"Name","value":"subtitle_link"}},{"kind":"Field","name":{"kind":"Name","value":"subtitle_name"}},{"kind":"Field","name":{"kind":"Name","value":"directory_links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"directory_id"}},{"kind":"Field","name":{"kind":"Name","value":"link"}},{"kind":"Field","name":{"kind":"Name","value":"quality"}},{"kind":"Field","name":{"kind":"Name","value":"ep"}},{"kind":"Field","name":{"kind":"Name","value":"size"}},{"kind":"Field","name":{"kind":"Name","value":"subtitle_link"}},{"kind":"Field","name":{"kind":"Name","value":"subtitle_name"}},{"kind":"Field","name":{"kind":"Name","value":"signedLink"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"characters"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"image_url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"related"}},{"kind":"Field","name":{"kind":"Name","value":"recommendation"}},{"kind":"Field","name":{"kind":"Name","value":"trailers"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"online_play"}}]}}]}}]} as unknown as DocumentNode<GetAnimeByIdQuery, GetAnimeByIdQueryVariables>;
+export const TrendingAnimeFragmentFragmentDoc = gql`
+    fragment TrendingAnimeFragment on Anime {
+  id
+  dic_title
+  dic_body
+  anilist_image_url
+  mal_image_url
+  wide_image
+  al_score
+  dic_score
+  anilist_score
+  al_score_count
+  dic_episodes
+  genres {
+    name_fa
+    name_en
+    backdrop
+  }
+  season_year
+  mal_popularity
+  anilist_popularity
+}
+    `;
+export const UserFragmentFragmentDoc = gql`
+    fragment UserFragment on User {
+  id
+  name
+  email
+  avatar
+}
+    `;
+export const LoginDocument = gql`
+    mutation Login($input: LoginInput!) {
+  login(input: $input) {
+    access_token
+    expires_in
+    refresh_token
+    token_type
+    user {
+      ...UserFragment
+    }
+  }
+}
+    ${UserFragmentFragmentDoc}`;
+export type LoginMutationFn = Apollo.MutationFunction<LoginMutation, LoginMutationVariables>;
+export function useLoginMutation(baseOptions?: Apollo.MutationHookOptions<LoginMutation, LoginMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<LoginMutation, LoginMutationVariables>(LoginDocument, options);
+      }
+export type LoginMutationHookResult = ReturnType<typeof useLoginMutation>;
+export type LoginMutationResult = Apollo.MutationResult<LoginMutation>;
+export type LoginMutationOptions = Apollo.BaseMutationOptions<LoginMutation, LoginMutationVariables>;
+export const GetSeasonalAnimesDocument = gql`
+    query GetSeasonalAnimes($first: Int!) {
+  animesSeason(first: $first) {
+    paginatorInfo {
+      count
+    }
+    data {
+      ...TrendingAnimeFragment
+    }
+  }
+}
+    ${TrendingAnimeFragmentFragmentDoc}`;
+export function useGetSeasonalAnimesQuery(baseOptions: Apollo.QueryHookOptions<GetSeasonalAnimesQuery, GetSeasonalAnimesQueryVariables> & ({ variables: GetSeasonalAnimesQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetSeasonalAnimesQuery, GetSeasonalAnimesQueryVariables>(GetSeasonalAnimesDocument, options);
+      }
+export function useGetSeasonalAnimesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetSeasonalAnimesQuery, GetSeasonalAnimesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetSeasonalAnimesQuery, GetSeasonalAnimesQueryVariables>(GetSeasonalAnimesDocument, options);
+        }
+export function useGetSeasonalAnimesSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetSeasonalAnimesQuery, GetSeasonalAnimesQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetSeasonalAnimesQuery, GetSeasonalAnimesQueryVariables>(GetSeasonalAnimesDocument, options);
+        }
+export type GetSeasonalAnimesQueryHookResult = ReturnType<typeof useGetSeasonalAnimesQuery>;
+export type GetSeasonalAnimesLazyQueryHookResult = ReturnType<typeof useGetSeasonalAnimesLazyQuery>;
+export type GetSeasonalAnimesSuspenseQueryHookResult = ReturnType<typeof useGetSeasonalAnimesSuspenseQuery>;
+export type GetSeasonalAnimesQueryResult = Apollo.QueryResult<GetSeasonalAnimesQuery, GetSeasonalAnimesQueryVariables>;
