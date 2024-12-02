@@ -1,7 +1,8 @@
+import { AnimeFragmentFragment } from "@/generated/graphql";
 import { Anime } from "@/types/types";
 import React from "react";
 
-export default function Details({ anime }: { anime: Anime }) {
+export default function Details({ anime }: { anime: AnimeFragmentFragment }) {
   return (
     <div className="flex flex-col gap-6 w-full">
       <div className="flex gap-6">

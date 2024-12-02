@@ -32,7 +32,7 @@ export type Anime = {
   anilist_popularity?: Maybe<Scalars['Int']['output']>;
   anilist_score?: Maybe<Scalars['Int']['output']>;
   anime_links: Array<DbAnimeLinks>;
-  characters: Array<Character>;
+  characters: Array<CharacterDetail>;
   dic_aired_from?: Maybe<Scalars['String']['output']>;
   dic_aired_to?: Maybe<Scalars['String']['output']>;
   dic_body?: Maybe<Scalars['String']['output']>;
@@ -58,8 +58,8 @@ export type Anime = {
   movie_desc?: Maybe<MovieDesc>;
   post_hit?: Maybe<Scalars['Int']['output']>;
   post_title?: Maybe<Scalars['String']['output']>;
-  recommendation?: Maybe<Scalars['String']['output']>;
-  related?: Maybe<Scalars['String']['output']>;
+  recommendations: Array<AnimeRecommendation>;
+  relations: Array<AnimeRelation>;
   season_year?: Maybe<Scalars['String']['output']>;
   seo_desc?: Maybe<Scalars['String']['output']>;
   title_fa?: Maybe<Scalars['String']['output']>;
@@ -84,6 +84,14 @@ export type AnimeAdvancedSearch = {
   year?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type AnimeCharacter = {
+  __typename?: 'AnimeCharacter';
+  favorites?: Maybe<Scalars['Int']['output']>;
+  id: Scalars['ID']['output'];
+  image_url?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+};
+
 /** A paginated list of Anime items. */
 export type AnimePaginator = {
   __typename?: 'AnimePaginator';
@@ -91,6 +99,27 @@ export type AnimePaginator = {
   data: Array<Anime>;
   /** Pagination information about the list of items. */
   paginatorInfo: PaginatorInfo;
+};
+
+export type AnimePerson = {
+  __typename?: 'AnimePerson';
+  hometown?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  image_url?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+};
+
+export type AnimeRecommendation = {
+  __typename?: 'AnimeRecommendation';
+  recommendation: Anime;
+  votes?: Maybe<Scalars['Int']['output']>;
+};
+
+export type AnimeRelation = {
+  __typename?: 'AnimeRelation';
+  relation?: Maybe<Scalars['String']['output']>;
+  relationship: Anime;
+  type?: Maybe<Scalars['String']['output']>;
 };
 
 export type AnimeSchedule = {
@@ -164,11 +193,12 @@ export type Categorie = {
   slug?: Maybe<Scalars['String']['output']>;
 };
 
-export type Character = {
-  __typename?: 'Character';
-  id?: Maybe<Scalars['ID']['output']>;
-  image_url?: Maybe<Scalars['String']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
+export type CharacterDetail = {
+  __typename?: 'CharacterDetail';
+  character?: Maybe<AnimeCharacter>;
+  character_role?: Maybe<Scalars['String']['output']>;
+  person?: Maybe<AnimePerson>;
+  person_role?: Maybe<Scalars['String']['output']>;
 };
 
 export type Comment = {
@@ -1452,6 +1482,8 @@ export type VerifyPaymentRequest = {
   authority: Scalars['String']['input'];
 };
 
+export type AnimeFragmentFragment = { __typename?: 'Anime', id: string, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, al_score?: number | null, al_score_count?: number | null, wide_image?: string | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_episodes?: string | null, dic_score?: string | null, anilist_score?: number | null, genres: Array<{ __typename?: 'Categorie', id: string, name_fa?: string | null }>, trailers: Array<{ __typename?: 'AnimeTrailer', title?: string | null, online_play?: string | null }> };
+
 export type TrendingAnimeFragmentFragment = { __typename?: 'Anime', id: string, dic_title?: string | null, dic_body?: string | null, anilist_image_url?: string | null, mal_image_url?: string | null, wide_image?: string | null, al_score?: number | null, dic_score?: string | null, anilist_score?: number | null, al_score_count?: number | null, dic_episodes?: string | null, season_year?: string | null, mal_popularity?: number | null, anilist_popularity?: number | null, genres: Array<{ __typename?: 'Categorie', name_fa?: string | null, name_en?: string | null, backdrop?: string | null }> };
 
 export type UserFragmentFragment = { __typename?: 'User', id: string, name?: string | null, email?: string | null, avatar?: string | null };
@@ -1463,6 +1495,13 @@ export type LoginMutationVariables = Exact<{
 
 export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'AuthPayload', access_token?: string | null, expires_in?: number | null, refresh_token?: string | null, token_type?: string | null, user?: { __typename?: 'User', id: string, name?: string | null, email?: string | null, avatar?: string | null } | null } };
 
+export type GetAnimeByIdQueryVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type GetAnimeByIdQuery = { __typename?: 'Query', anime?: { __typename?: 'Anime', id: string, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, al_score?: number | null, al_score_count?: number | null, wide_image?: string | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_episodes?: string | null, dic_score?: string | null, anilist_score?: number | null, genres: Array<{ __typename?: 'Categorie', id: string, name_fa?: string | null }>, trailers: Array<{ __typename?: 'AnimeTrailer', title?: string | null, online_play?: string | null }> } | null };
+
 export type GetSeasonalAnimesQueryVariables = Exact<{
   first: Scalars['Int']['input'];
 }>;
@@ -1470,6 +1509,31 @@ export type GetSeasonalAnimesQueryVariables = Exact<{
 
 export type GetSeasonalAnimesQuery = { __typename?: 'Query', animesSeason: { __typename?: 'AnimePaginator', paginatorInfo: { __typename?: 'PaginatorInfo', count: number }, data: Array<{ __typename?: 'Anime', id: string, dic_title?: string | null, dic_body?: string | null, anilist_image_url?: string | null, mal_image_url?: string | null, wide_image?: string | null, al_score?: number | null, dic_score?: string | null, anilist_score?: number | null, al_score_count?: number | null, dic_episodes?: string | null, season_year?: string | null, mal_popularity?: number | null, anilist_popularity?: number | null, genres: Array<{ __typename?: 'Categorie', name_fa?: string | null, name_en?: string | null, backdrop?: string | null }> }> } };
 
+export const AnimeFragmentFragmentDoc = gql`
+    fragment AnimeFragment on Anime {
+  id
+  dic_body
+  dic_title
+  dic_title_en
+  title_fa
+  al_score
+  al_score_count
+  wide_image
+  anilist_image_url
+  mal_image_url
+  dic_episodes
+  dic_score
+  anilist_score
+  genres {
+    id
+    name_fa
+  }
+  trailers {
+    title
+    online_play
+  }
+}
+    `;
 export const TrendingAnimeFragmentFragmentDoc = gql`
     fragment TrendingAnimeFragment on Anime {
   id
@@ -1515,6 +1579,24 @@ export const LoginDocument = gql`
 }
     ${UserFragmentFragmentDoc}`;
 export type LoginMutationFn = Apollo.MutationFunction<LoginMutation, LoginMutationVariables>;
+
+/**
+ * __useLoginMutation__
+ *
+ * To run a mutation, you first call `useLoginMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useLoginMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [loginMutation, { data, loading, error }] = useLoginMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
 export function useLoginMutation(baseOptions?: Apollo.MutationHookOptions<LoginMutation, LoginMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
         return Apollo.useMutation<LoginMutation, LoginMutationVariables>(LoginDocument, options);
@@ -1522,6 +1604,46 @@ export function useLoginMutation(baseOptions?: Apollo.MutationHookOptions<LoginM
 export type LoginMutationHookResult = ReturnType<typeof useLoginMutation>;
 export type LoginMutationResult = Apollo.MutationResult<LoginMutation>;
 export type LoginMutationOptions = Apollo.BaseMutationOptions<LoginMutation, LoginMutationVariables>;
+export const GetAnimeByIdDocument = gql`
+    query GetAnimeById($id: ID!) {
+  anime: anime(id: $id) {
+    ...AnimeFragment
+  }
+}
+    ${AnimeFragmentFragmentDoc}`;
+
+/**
+ * __useGetAnimeByIdQuery__
+ *
+ * To run a query within a React component, call `useGetAnimeByIdQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAnimeByIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAnimeByIdQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetAnimeByIdQuery(baseOptions: Apollo.QueryHookOptions<GetAnimeByIdQuery, GetAnimeByIdQueryVariables> & ({ variables: GetAnimeByIdQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetAnimeByIdQuery, GetAnimeByIdQueryVariables>(GetAnimeByIdDocument, options);
+      }
+export function useGetAnimeByIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAnimeByIdQuery, GetAnimeByIdQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetAnimeByIdQuery, GetAnimeByIdQueryVariables>(GetAnimeByIdDocument, options);
+        }
+export function useGetAnimeByIdSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetAnimeByIdQuery, GetAnimeByIdQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetAnimeByIdQuery, GetAnimeByIdQueryVariables>(GetAnimeByIdDocument, options);
+        }
+export type GetAnimeByIdQueryHookResult = ReturnType<typeof useGetAnimeByIdQuery>;
+export type GetAnimeByIdLazyQueryHookResult = ReturnType<typeof useGetAnimeByIdLazyQuery>;
+export type GetAnimeByIdSuspenseQueryHookResult = ReturnType<typeof useGetAnimeByIdSuspenseQuery>;
+export type GetAnimeByIdQueryResult = Apollo.QueryResult<GetAnimeByIdQuery, GetAnimeByIdQueryVariables>;
 export const GetSeasonalAnimesDocument = gql`
     query GetSeasonalAnimes($first: Int!) {
   animesSeason(first: $first) {
@@ -1534,6 +1656,23 @@ export const GetSeasonalAnimesDocument = gql`
   }
 }
     ${TrendingAnimeFragmentFragmentDoc}`;
+
+/**
+ * __useGetSeasonalAnimesQuery__
+ *
+ * To run a query within a React component, call `useGetSeasonalAnimesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetSeasonalAnimesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetSeasonalAnimesQuery({
+ *   variables: {
+ *      first: // value for 'first'
+ *   },
+ * });
+ */
 export function useGetSeasonalAnimesQuery(baseOptions: Apollo.QueryHookOptions<GetSeasonalAnimesQuery, GetSeasonalAnimesQueryVariables> & ({ variables: GetSeasonalAnimesQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
         const options = {...defaultOptions, ...baseOptions}
         return Apollo.useQuery<GetSeasonalAnimesQuery, GetSeasonalAnimesQueryVariables>(GetSeasonalAnimesDocument, options);
@@ -1542,8 +1681,8 @@ export function useGetSeasonalAnimesLazyQuery(baseOptions?: Apollo.LazyQueryHook
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<GetSeasonalAnimesQuery, GetSeasonalAnimesQueryVariables>(GetSeasonalAnimesDocument, options);
         }
-export function useGetSeasonalAnimesSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetSeasonalAnimesQuery, GetSeasonalAnimesQueryVariables>) {
-          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+export function useGetSeasonalAnimesSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetSeasonalAnimesQuery, GetSeasonalAnimesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
           return Apollo.useSuspenseQuery<GetSeasonalAnimesQuery, GetSeasonalAnimesQueryVariables>(GetSeasonalAnimesDocument, options);
         }
 export type GetSeasonalAnimesQueryHookResult = ReturnType<typeof useGetSeasonalAnimesQuery>;

@@ -11,16 +11,21 @@ import { cn } from "@/lib/utils";
 import { MediaCardType } from "@/types/types";
 import Link from "next/link";
 import { useDirection } from "@radix-ui/react-direction";
-import { TrendingAnimeFragmentFragment } from "@/generated/graphql";
+import { GetSeasonalAnimesDocument, GetSeasonalAnimesQuery, TrendingAnimeFragmentFragment } from "@/generated/graphql";
+import { useSuspenseQuery } from "@apollo/client";
 
 export default function MediaCarousels({
-  data,
   className,
 }: {
-  data: TrendingAnimeFragmentFragment[];
   className?: string;
 }) {
   const dir = useDirection();
+  const {data, error} = useSuspenseQuery<GetSeasonalAnimesQuery>(GetSeasonalAnimesDocument, {
+    variables:{
+      first:10
+    }
+  })
+ const items = data.animesSeason.data
   return (
     <Carousel
       opts={{
@@ -28,9 +33,9 @@ export default function MediaCarousels({
       }}
     >
       <CarouselContent className={cn("", className)}>
-        {data.slice(0, 10).map((item, i) => (
-          <CarouselItem className="basis-auto" key={i}>
-            <Link href="/anime/example">
+        {items.map((item, i) => (
+          <CarouselItem className="basis-auto" key={item.id}>
+            <Link href={`/anime/${item.dic_title}-${item.id}`}>
               <MediaCard data={item} />
             </Link>
           </CarouselItem>

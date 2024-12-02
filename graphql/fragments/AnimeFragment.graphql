@@ -1,68 +1,23 @@
-# fragment AnimeFragment on Anime {
-#   mal_id
-#   dic_body
-#   dic_image_url
-#   dic_title
-#   dic_title_en
-#   dic_title_jp
-#   dic_title_other
-#   title_fa
-#   animelistScore {
-#     score
-#     count_user
-#   }
-#   vipSubCount
-#   exclusiveSubCount
-#   userSubCount
-#   dic_score
-#   post_hit
-#   dic_types
-#   dic_kayfet
-#   dic_episodes
-#   dic_duration
-#   dic_last_update
-#   dic_aired
-#   dic_broadcast
-#   dic_status
-#   movie_desc {
-#     body
-#   }
-#   genre_pivot {
-#     id
-#     name_fa
-#     name_en
-#     slug
-#     backdrop
-#   }
-#   anime_links {
-#     id
-#     anime_id
-#     link
-#     quality
-#     ep
-#     size
-#     subtitle_link
-#     subtitle_name
-#     directory_links {
-#       directory_id
-#       link
-#       quality
-#       ep
-#       size
-#       subtitle_link
-#       subtitle_name
-#       signedLink
-#     }
-#   }
-#   characters {
-#     id
-#     name
-#     image_url
-#   }
-#   related
-#   recommendation
-#   trailers {
-#     title
-#     online_play
-#   }
-# }
+fragment AnimeFragment on Anime {
+  id
+  dic_body
+  dic_title
+  dic_title_en
+  title_fa
+  al_score
+  al_score_count
+  wide_image
+  anilist_image_url
+  mal_image_url
+  dic_episodes
+  dic_score
+  anilist_score
+  genres {
+    id
+    name_fa
+  }
+  trailers {
+    title
+    online_play
+  }
+}

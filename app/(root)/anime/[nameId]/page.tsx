@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
 
-import { frierenAnime } from "@/constants";
 import AddToWatchList from "@/components/buttons/AddToWatchList";
 
 import Rating from "@/components/ui/Rating";
@@ -37,10 +36,9 @@ import WatchOnline from "@/components/buttons/WatchOnline";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import TrailerWrapper from "@/components/anime/TrailerWrapper";
-import { Anime } from "@/generated/gql/graphql";
-import { query } from "@/lib/ApolloClient";
-import { GetAnimeById } from "@/graphql/queries/getAnimeById.graphql";
-import { graphql } from "@/generated/gql";
+import { getClient } from "@/lib/apolloClient";
+import { GetAnimeByIdDocument, GetAnimeByIdQuery, GetAnimeByIdQueryVariables } from "@/generated/graphql";
+
 // Next.js will invalidate the cache when a
 // request comes in, at most once every 60 seconds.
 export const revalidate = 60;
@@ -59,32 +57,41 @@ export const dynamicParams = true; // or false, to 404 on unknown paths
 // }
 
 export default async function page({ params }: { params: { nameId: string } }) {
-  const id = params.nameId.split("-").pop();
-  // const {
-  //   data: anime,
-  //   loading,
-  //   error,
-  // } = await query({
-  //   query: graphql(GetAnimeById),
-  //   variables: { id },
-  // });
-  const anime = frierenAnime;
+  const id = params.nameId.split("-").pop() as string;
+
+  const client = getClient();
+
+  const { data, error } = await client.query<GetAnimeByIdQuery, GetAnimeByIdQueryVariables>({
+    query: GetAnimeByIdDocument,
+    variables: { id },
+  });
+
+  if (error) {
+    console.error("Error fetching anime data:", error);
+    return <p>Error loading anime data.</p>;
+  }
+
+  const anime = data?.anime;
+
+  if (!anime) {
+    return <p>Anime not found.</p>;
+  }
 
   return (
     <div className="min-h-screen w-full flex flex-col">
       <div className="w-full h-[585px] relative">
         <Image
           priority
-          src={anime.image}
+          src={anime.mal_image_url? "https://dev-api.alplayer.ir"+anime.mal_image_url : anime.anilist_image_url ? "https://dev-api.alplayer.ir"+anime.anilist_image_url : "/images/frieren/cover.webp"}
           fill
-          alt={anime.title}
+          alt={anime.dic_title!}
           className="object-cover lg:hidden"
         />
         <Image
           priority
-          src={anime.imageLg}
+          src={anime.wide_image? "https://dev-api.alplayer.ir"+anime.wide_image : "/images/frieren/lgbg.webp"}
           fill
-          alt={anime.title}
+          alt={anime.dic_title!}
           className="object-cover hidden lg:block"
         />
         <div className="absolute h-1/2 bottom-0 left-0 right-0 z-10 dark:bg-gradient-to-t dark:from-background dark:to-background/0"></div>
@@ -95,8 +102,8 @@ export default async function page({ params }: { params: { nameId: string } }) {
             <div className="lg:flex flex-col gap-2 hidden">
               <div className="relative w-[220px] h-[288px]">
                 <Image
-                  src={anime.image}
-                  alt={anime.title}
+                  src={anime.mal_image_url? "https://dev-api.alplayer.ir"+anime.mal_image_url : anime.anilist_image_url ? "https://dev-api.alplayer.ir"+anime.anilist_image_url : "/images/frieren/cover.webp"}
+                  alt={anime.dic_title!}
                   fill
                   className="object-cover rounded"
                 />
@@ -108,22 +115,22 @@ export default async function page({ params }: { params: { nameId: string } }) {
             <div className="flex flex-col gap-4 px-4 ">
               <div className="flex flex-col gap-1">
                 <h1 className="text-2xl lg:text-4xl font-bold">
-                  {anime.title}
+                  {anime.dic_title}
                 </h1>
                 <h2 className="hidden lg:block text-xl font-normal text-[#979CA6]">
-                  {anime.englishTitle}
+                  {anime.dic_title_en}
                 </h2>
                 <h2 className="hidden lg:block text-xl font-normal text-[#979CA6]">
-                  {anime.persianTitle}
+                  {anime.title_fa}
                 </h2>
               </div>
               <div className="flex items-center gap-2">
                 {anime.genres.map((genre) => (
                   <div
-                    key={genre}
+                    key={genre.id}
                     className="text-xs lg:text-sm rounded px-[6px] py-[2px] border border-[hsla(215,20%,65%,0.24)]"
                   >
-                    {genre}
+                    {genre.name_fa}
                   </div>
                 ))}
               </div>
@@ -131,8 +138,8 @@ export default async function page({ params }: { params: { nameId: string } }) {
                 <div className="flex items-center gap-2">
                   <Rating rating={4} />
                   <p className="text-sm font-medium">
-                    میانگین: {anime.rating} / 10{" "}
-                    <span className="text-xs font-normal text-[#B5B8BF]">{`(${anime.votesCount} نفر)`}</span>
+                    میانگین: {anime.al_score} / 10{" "}
+                    <span className="text-xs font-normal text-[#B5B8BF]">{`(${anime.al_score_count} نفر)`}</span>
                   </p>
                   <Dialog>
                     <DialogTrigger>
@@ -152,15 +159,15 @@ export default async function page({ params }: { params: { nameId: string } }) {
                         <div className="flex flex-col items-center gap-6 pb-16">
                           <div className="relative h-48 w-full">
                             <Image
-                              src={anime.image}
-                              alt={anime.title}
+                              src={anime.mal_image_url? "https://dev-api.alplayer.ir"+anime.mal_image_url : anime.anilist_image_url ? "https://dev-api.alplayer.ir"+anime.anilist_image_url : "/images/frieren/cover.webp"}
+                              alt={anime.dic_title!}
                               fill
                               className="object-contain"
                             />
                           </div>
                           <div className="flex flex-col gap-2 justify-center items-center">
                             <h2 className="text-base font-bold">
-                              {anime.title}
+                              {anime.dic_title}
                             </h2>
                             <p className="text-sm font-medium text-[#979CA6]">
                               شما به این اثر ۴ ستاره دادید
@@ -192,14 +199,14 @@ export default async function page({ params }: { params: { nameId: string } }) {
                   className="h-4 hidden lg:block"
                 />
                 <div className="flex text-sm font-medium gap-[10px]">
-                  <p>MAL Rating: {anime.malRating}</p>
+                  <p>MAL Rating: {anime.dic_score}</p>
                   <Separator orientation="vertical" className="h-4" />
-                  <p>AniList Rating: {anime.anilistRating}%</p>
+                  <p>AniList Rating: {anime.anilist_score}%</p>
                 </div>
               </div>
               <div className="flex flex-col gap-4">
                 <div className="text-sm font-medium leading-6">
-                  {anime.summary}
+                  {anime.dic_body}
                 </div>
                 <div className="flex justify-center items-center">
                   <Dialog>
@@ -211,7 +218,7 @@ export default async function page({ params }: { params: { nameId: string } }) {
                     <DialogContent className="w-full h-full bg-background">
                       <DialogHeader className="gap-3 min-h-0">
                         <DialogTitle className="flex justify-between ">
-                          <h2 className="text-base font-bold">{anime.title}</h2>
+                          <h2 className="text-base font-bold">{anime.dic_title}</h2>
                           <DialogClose className="rounded-sm opacity-70 ring-offset-white transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-slate-100 data-[state=open]:text-slate-500 dark:ring-offset-slate-950 dark:focus:ring-slate-300 dark:data-[state=open]:bg-slate-800 dark:data-[state=open]:text-slate-400">
                             <Cross2Icon className="h-6 w-6" />
                             <span className="sr-only">Close</span>
@@ -221,7 +228,7 @@ export default async function page({ params }: { params: { nameId: string } }) {
                       <ScrollArea className="h-full">
                         <div className="flex flex-col gap-6 pb-16">
                           <DialogDescription className="text-start leading-[22px] font-medium text-white">
-                            {anime.summary}
+                            {anime.dic_body}
                             <span className="text-primary-500 ms-1">
                               نمایش بیشتر
                             </span>
@@ -250,13 +257,13 @@ export default async function page({ params }: { params: { nameId: string } }) {
                   </CustomTabsList>
                   <CustomTabsContent value="episodes">
                     <div className="flex flex-col gap-2 pb-16">
-                      {anime.episodes.map((episode, i) => (
+                      {/* {anime.episodes.map((episode, i) => (
                         <EpisodeWrapper
                           key={episode.episodeTitle}
                           episode={episode}
                           i={i}
                         />
-                      ))}
+                      ))} */}
                       <div
                         className="fixed px-4 py-6 z-40 bottom-0 flex items-center w-full justify-center"
                         style={{
@@ -271,9 +278,9 @@ export default async function page({ params }: { params: { nameId: string } }) {
                   </CustomTabsContent>
                   <CustomTabsContent value="similars">
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                      {anime.similars.map((anime) => (
+                      {/* {anime.similars.map((anime) => (
                         <SimilarAnimeWrapper key={anime.title} anime={anime} />
-                      ))}
+                      ))} */}
                     </div>
                   </CustomTabsContent>
                   <CustomTabsContent value="staff">
@@ -295,7 +302,7 @@ export default async function page({ params }: { params: { nameId: string } }) {
                         </TabsList>
                         <TabsContent value="characters">
                           <div className="py-2 flex flex-col gap-2">
-                            {anime.staff.characters.map((character) => (
+                            {/* {anime.staff.characters.map((character) => (
                               <CharacterWrapper
                                 key={character.character.name}
                                 characterWithVoice={{
@@ -303,17 +310,17 @@ export default async function page({ params }: { params: { nameId: string } }) {
                                   voice: character.voice,
                                 }}
                               />
-                            ))}
+                            ))} */}
                           </div>
                         </TabsContent>
                         <TabsContent value="producers">
                           <div className="py-2 flex flex-col gap-2">
-                            {anime.staff.producers.map((producer) => (
+                            {/* {anime.staff.producers.map((producer) => (
                               <ProducerWrapper
                                 key={producer.name}
                                 producer={producer}
                               />
-                            ))}
+                            ))} */}
                           </div>
                         </TabsContent>
                       </Tabs>
@@ -325,9 +332,9 @@ export default async function page({ params }: { params: { nameId: string } }) {
                         <CommentForm />
                       </div>
                       <div className="flex flex-col gap-[14px]">
-                        {anime.comments.map((comment) => (
+                        {/* {anime.comments.map((comment) => (
                           <CommentWrapper key={comment.id} comment={comment} />
-                        ))}
+                        ))} */}
                       </div>
                     </div>
                   </CustomTabsContent>
@@ -428,15 +435,15 @@ export default async function page({ params }: { params: { nameId: string } }) {
                 >
                   نظرات
                   <div className="size-6 rounded bg-[#A1A1AA] text-white text-sm font-semibold flex justify-center items-center">
-                    {anime.comments.length}
+                    {/* {anime.comments.length} */}
                   </div>
                 </TabsTrigger>
               </TabsList>
               <TabsContent className="py-4" value="trailers">
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                  {anime.trailers?.map((trailer) => (
+                  {/* {anime.trailers?.map((trailer) => (
                     <TrailerWrapper key={trailer.title} trailer={trailer} />
-                  ))}
+                  ))} */}
                 </div>
               </TabsContent>
               <TabsContent className="py-4" value="download">
@@ -532,7 +539,7 @@ export default async function page({ params }: { params: { nameId: string } }) {
                     </TabsList>
                     <TabsContent value="characters">
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {anime.staff.characters.map((character) => (
+                        {/* {anime.staff.characters.map((character) => (
                           <CharacterWrapper
                             key={character.character.name}
                             characterWithVoice={{
@@ -540,17 +547,17 @@ export default async function page({ params }: { params: { nameId: string } }) {
                               voice: character.voice,
                             }}
                           />
-                        ))}
+                        ))} */}
                       </div>
                     </TabsContent>
                     <TabsContent value="producers">
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {anime.staff.producers.map((producer) => (
+                        {/* {anime.staff.producers.map((producer) => (
                           <ProducerWrapper
                             key={producer.name}
                             producer={producer}
                           />
-                        ))}
+                        ))} */}
                       </div>
                     </TabsContent>
                   </Tabs>
@@ -559,9 +566,9 @@ export default async function page({ params }: { params: { nameId: string } }) {
               <TabsContent value="details"></TabsContent>
               <TabsContent value="similars">
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                  {anime.similars.map((anime) => (
+                  {/* {anime.similars.map((anime) => (
                     <SimilarAnimeWrapper key={anime.title} anime={anime} />
-                  ))}
+                  ))} */}
                 </div>
               </TabsContent>
               <TabsContent value="comments">
@@ -570,9 +577,9 @@ export default async function page({ params }: { params: { nameId: string } }) {
                     <CommentForm />
                   </div>
                   <div className="flex flex-col gap-[14px]">
-                    {anime.comments.map((comment) => (
+                    {/* {anime.comments.map((comment) => (
                       <CommentWrapper key={comment.id} comment={comment} />
-                    ))}
+                    ))} */}
                   </div>
                 </div>
               </TabsContent>

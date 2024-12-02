@@ -9,4 +9,9 @@ generates:
     config:
       withHooks: true
       reactApolloVersion: 3
-      addDocBlocks: false
+      withComponent: false
+      withHOC: false
+      useTypeImports: true
+      useSuspense: true
+      skipTypename: false
+      documentMode: 'graphQLTag'  # Ensure this is set

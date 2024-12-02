@@ -6,7 +6,7 @@ import Hero from "@/components/layout/hero";
 // // // import Banners from "@/components/layout/sections/banners";
 // // // import NewEpisodes from "@/components/layout/sections/NewEpisodes";
 // // // import Parallel from "@/components/layout/sections/Parallel";
-import Recommendation from "@/components/layout/sections/Recommendation";
+import SeasonalAnimes from "@/components/layout/sections/SeasonalAnimes";
 // // import SummerAnime from "@/components/layout/sections/SummerAnime";
 // // import Trending from "@/components/layout/sections/trending";
 const MediaCarousels = dynamic(
@@ -37,13 +37,13 @@ export default async function HomePage() {
     <div className="min-h-screen w-full flex flex-col gap-10">
       <Hero />
       <div className="min-h-screen w-full flex flex-col gap-10 px-4 lg:px-16">
-        <Recommendation />
+        <SeasonalAnimes />
         <UserEpisodes />
         <Trending />
         <SummerAnime />
         <NewEpisodes />
         <Banners />
-        <Parallel
+        {/* <Parallel
           bgGradient="to top, hsla(226,90%,11%,0.8), hsla(224,71%,14%,0.48)"
           bgUrl="/images/conan.webp"
           title="Detective Conan Collection"
@@ -51,7 +51,7 @@ export default async function HomePage() {
           actions={[<WatchOnline key={1} />, <AddToWatchList key={2} />]}
         >
           <MediaCarousels data={recommendations} />
-        </Parallel>
+        </Parallel> */}
       </div>
     </div>
   );

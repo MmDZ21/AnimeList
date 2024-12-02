@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import SectionContainer from "../SectionContainer";
 import TrendingParallel from "./Parallel";
-import { PreloadQuery } from "@/lib/ApolloClient";
+import { PreloadQuery } from "@/lib/apolloClient";
 
 import TrendingContent from "./TrendingContent";
 import { GetSeasonalAnimesDocument } from "@/generated/graphql";
