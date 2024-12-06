@@ -5,7 +5,7 @@ import React from "react";
 export default function Details({ anime }: { anime: AnimeFragmentFragment }) {
   return (
     <div className="flex flex-col gap-6 w-full">
-      <div className="flex gap-6">
+      {/* <div className="flex gap-6">
         <div className="w-full rounded-lg flex flex-col gap-[10px]">
           <h6 className="text-sm font-medium text-[#979CA6]">نوع اثر</h6>
           <p className="text-base font-bold text-white">{anime.dic_types === 0 ? "نامشخص" : anime.dic_types === 1 ? "سریالی"}</p>
@@ -100,7 +100,7 @@ export default function Details({ anime }: { anime: AnimeFragmentFragment }) {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
