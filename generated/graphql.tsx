@@ -1482,9 +1482,19 @@ export type VerifyPaymentRequest = {
   authority: Scalars['String']['input'];
 };
 
-export type AnimeFragmentFragment = { __typename?: 'Anime', id: string, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, al_score?: number | null, al_score_count?: number | null, wide_image?: string | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_episodes?: string | null, dic_score?: string | null, anilist_score?: number | null, genres: Array<{ __typename?: 'Categorie', id: string, name_fa?: string | null }>, trailers: Array<{ __typename?: 'AnimeTrailer', title?: string | null, online_play?: string | null }> };
+export type AnimeFragmentFragment = { __typename?: 'Anime', id: string, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, mal_popularity?: number | null, al_score?: number | null, al_score_count?: number | null, wide_image?: string | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, dic_episodes?: string | null, genres: Array<{ __typename?: 'Categorie', id: string, name_fa?: string | null }>, trailers: Array<{ __typename?: 'AnimeTrailer', title?: string | null, online_play?: string | null }>, recommendations: Array<{ __typename?: 'AnimeRecommendation', recommendation: { __typename?: 'Anime', id: string, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, mal_popularity?: number | null, al_score?: number | null, al_score_count?: number | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, dic_episodes?: string | null, genres: Array<{ __typename?: 'Categorie', id: string, name_fa?: string | null }> } }>, relations: Array<{ __typename?: 'AnimeRelation', type?: string | null, relation?: string | null, relationship: { __typename?: 'Anime', id: string } }>, characters: Array<{ __typename?: 'CharacterDetail', character_role?: string | null, person_role?: string | null, character?: { __typename?: 'AnimeCharacter', id: string, name?: string | null, image_url?: string | null } | null, person?: { __typename?: 'AnimePerson', id: string, name?: string | null, hometown?: string | null, image_url?: string | null } | null }> };
 
-export type TrendingAnimeFragmentFragment = { __typename?: 'Anime', id: string, dic_title?: string | null, dic_body?: string | null, anilist_image_url?: string | null, mal_image_url?: string | null, wide_image?: string | null, al_score?: number | null, dic_score?: string | null, anilist_score?: number | null, al_score_count?: number | null, dic_episodes?: string | null, season_year?: string | null, mal_popularity?: number | null, anilist_popularity?: number | null, genres: Array<{ __typename?: 'Categorie', name_fa?: string | null, name_en?: string | null, backdrop?: string | null }> };
+export type CharactersFragmentFragment = { __typename?: 'CharacterDetail', character_role?: string | null, person_role?: string | null, character?: { __typename?: 'AnimeCharacter', id: string, name?: string | null, image_url?: string | null } | null, person?: { __typename?: 'AnimePerson', id: string, name?: string | null, hometown?: string | null, image_url?: string | null } | null };
+
+export type CommentsFragmentFragment = { __typename?: 'Comment', id: string, body?: string | null, user_id?: string | null, created_at?: string | null, spoil?: number | null, replies_count: number, user?: { __typename?: 'User', id: string, name?: string | null, avatar?: string | null } | null, replies: Array<{ __typename?: 'Comment', id: string, body?: string | null, user_id?: string | null, created_at?: string | null, spoil?: number | null, replies_count: number, user?: { __typename?: 'User', id: string, name?: string | null, avatar?: string | null } | null, replies: Array<{ __typename?: 'Comment', id: string, body?: string | null, user_id?: string | null, created_at?: string | null, spoil?: number | null, replies_count: number, user?: { __typename?: 'User', id: string, name?: string | null, avatar?: string | null } | null }> }> };
+
+export type RecommendationsFragmentFragment = { __typename?: 'Anime', id: string, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, mal_popularity?: number | null, al_score?: number | null, al_score_count?: number | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, dic_episodes?: string | null, genres: Array<{ __typename?: 'Categorie', id: string, name_fa?: string | null }> };
+
+export type RepliesFragmentFragment = { __typename?: 'Comment', id: string, body?: string | null, user_id?: string | null, created_at?: string | null, spoil?: number | null, replies_count: number, user?: { __typename?: 'User', id: string, name?: string | null, avatar?: string | null } | null, replies: Array<{ __typename?: 'Comment', id: string, body?: string | null, user_id?: string | null, created_at?: string | null, spoil?: number | null, replies_count: number, user?: { __typename?: 'User', id: string, name?: string | null, avatar?: string | null } | null }> };
+
+export type RepliesSecondFragmentFragment = { __typename?: 'Comment', id: string, body?: string | null, user_id?: string | null, created_at?: string | null, spoil?: number | null, replies_count: number, user?: { __typename?: 'User', id: string, name?: string | null, avatar?: string | null } | null };
+
+export type SubtitlesFragmentFragment = { __typename?: 'Sub', id: string, user_id: string, title?: string | null, to_episode?: string | null, from_episode?: string | null, body?: string | null, link_file?: string | null };
 
 export type UserFragmentFragment = { __typename?: 'User', id: string, name?: string | null, email?: string | null, avatar?: string | null };
 
@@ -1500,15 +1510,53 @@ export type GetAnimeByIdQueryVariables = Exact<{
 }>;
 
 
-export type GetAnimeByIdQuery = { __typename?: 'Query', anime?: { __typename?: 'Anime', id: string, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, al_score?: number | null, al_score_count?: number | null, wide_image?: string | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_episodes?: string | null, dic_score?: string | null, anilist_score?: number | null, genres: Array<{ __typename?: 'Categorie', id: string, name_fa?: string | null }>, trailers: Array<{ __typename?: 'AnimeTrailer', title?: string | null, online_play?: string | null }> } | null };
+export type GetAnimeByIdQuery = { __typename?: 'Query', anime?: { __typename?: 'Anime', id: string, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, mal_popularity?: number | null, al_score?: number | null, al_score_count?: number | null, wide_image?: string | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, dic_episodes?: string | null, genres: Array<{ __typename?: 'Categorie', id: string, name_fa?: string | null }>, trailers: Array<{ __typename?: 'AnimeTrailer', title?: string | null, online_play?: string | null }>, recommendations: Array<{ __typename?: 'AnimeRecommendation', recommendation: { __typename?: 'Anime', id: string, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, mal_popularity?: number | null, al_score?: number | null, al_score_count?: number | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, dic_episodes?: string | null, genres: Array<{ __typename?: 'Categorie', id: string, name_fa?: string | null }> } }>, relations: Array<{ __typename?: 'AnimeRelation', type?: string | null, relation?: string | null, relationship: { __typename?: 'Anime', id: string } }>, characters: Array<{ __typename?: 'CharacterDetail', character_role?: string | null, person_role?: string | null, character?: { __typename?: 'AnimeCharacter', id: string, name?: string | null, image_url?: string | null } | null, person?: { __typename?: 'AnimePerson', id: string, name?: string | null, hometown?: string | null, image_url?: string | null } | null }> } | null, subtitles: { __typename?: 'SubPaginator', data: Array<{ __typename?: 'Sub', id: string, user_id: string, title?: string | null, to_episode?: string | null, from_episode?: string | null, body?: string | null, link_file?: string | null }> }, comments: { __typename?: 'CommentPaginator', data: Array<{ __typename?: 'Comment', id: string, body?: string | null, user_id?: string | null, created_at?: string | null, spoil?: number | null, replies_count: number, user?: { __typename?: 'User', id: string, name?: string | null, avatar?: string | null } | null, replies: Array<{ __typename?: 'Comment', id: string, body?: string | null, user_id?: string | null, created_at?: string | null, spoil?: number | null, replies_count: number, user?: { __typename?: 'User', id: string, name?: string | null, avatar?: string | null } | null, replies: Array<{ __typename?: 'Comment', id: string, body?: string | null, user_id?: string | null, created_at?: string | null, spoil?: number | null, replies_count: number, user?: { __typename?: 'User', id: string, name?: string | null, avatar?: string | null } | null }> }> }> } };
 
 export type GetSeasonalAnimesQueryVariables = Exact<{
   first: Scalars['Int']['input'];
 }>;
 
 
-export type GetSeasonalAnimesQuery = { __typename?: 'Query', animesSeason: { __typename?: 'AnimePaginator', paginatorInfo: { __typename?: 'PaginatorInfo', count: number }, data: Array<{ __typename?: 'Anime', id: string, dic_title?: string | null, dic_body?: string | null, anilist_image_url?: string | null, mal_image_url?: string | null, wide_image?: string | null, al_score?: number | null, dic_score?: string | null, anilist_score?: number | null, al_score_count?: number | null, dic_episodes?: string | null, season_year?: string | null, mal_popularity?: number | null, anilist_popularity?: number | null, genres: Array<{ __typename?: 'Categorie', name_fa?: string | null, name_en?: string | null, backdrop?: string | null }> }> } };
+export type GetSeasonalAnimesQuery = { __typename?: 'Query', animesSeason: { __typename?: 'AnimePaginator', paginatorInfo: { __typename?: 'PaginatorInfo', count: number }, data: Array<{ __typename?: 'Anime', id: string, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, mal_popularity?: number | null, al_score?: number | null, al_score_count?: number | null, wide_image?: string | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, dic_episodes?: string | null, genres: Array<{ __typename?: 'Categorie', id: string, name_fa?: string | null }>, trailers: Array<{ __typename?: 'AnimeTrailer', title?: string | null, online_play?: string | null }>, recommendations: Array<{ __typename?: 'AnimeRecommendation', recommendation: { __typename?: 'Anime', id: string, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, mal_popularity?: number | null, al_score?: number | null, al_score_count?: number | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, dic_episodes?: string | null, genres: Array<{ __typename?: 'Categorie', id: string, name_fa?: string | null }> } }>, relations: Array<{ __typename?: 'AnimeRelation', type?: string | null, relation?: string | null, relationship: { __typename?: 'Anime', id: string } }>, characters: Array<{ __typename?: 'CharacterDetail', character_role?: string | null, person_role?: string | null, character?: { __typename?: 'AnimeCharacter', id: string, name?: string | null, image_url?: string | null } | null, person?: { __typename?: 'AnimePerson', id: string, name?: string | null, hometown?: string | null, image_url?: string | null } | null }> }> } };
 
+export const RecommendationsFragmentFragmentDoc = gql`
+    fragment RecommendationsFragment on Anime {
+  id
+  dic_body
+  dic_title
+  dic_title_en
+  title_fa
+  mal_popularity
+  al_score
+  al_score_count
+  anilist_image_url
+  mal_image_url
+  dic_score
+  anilist_score
+  genres {
+    id
+    name_fa
+  }
+  dic_episodes
+}
+    `;
+export const CharactersFragmentFragmentDoc = gql`
+    fragment CharactersFragment on CharacterDetail {
+  character_role
+  person_role
+  character {
+    id
+    name
+    image_url
+  }
+  person {
+    id
+    name
+    hometown
+    image_url
+  }
+}
+    `;
 export const AnimeFragmentFragmentDoc = gql`
     fragment AnimeFragment on Anime {
   id
@@ -1516,12 +1564,12 @@ export const AnimeFragmentFragmentDoc = gql`
   dic_title
   dic_title_en
   title_fa
+  mal_popularity
   al_score
   al_score_count
   wide_image
   anilist_image_url
   mal_image_url
-  dic_episodes
   dic_score
   anilist_score
   genres {
@@ -1532,29 +1580,85 @@ export const AnimeFragmentFragmentDoc = gql`
     title
     online_play
   }
+  dic_episodes
+  recommendations {
+    recommendation {
+      ...RecommendationsFragment
+    }
+  }
+  relations {
+    type
+    relation
+    relationship {
+      id
+    }
+  }
+  characters {
+    ...CharactersFragment
+  }
+}
+    ${RecommendationsFragmentFragmentDoc}
+${CharactersFragmentFragmentDoc}`;
+export const RepliesSecondFragmentFragmentDoc = gql`
+    fragment RepliesSecondFragment on Comment {
+  id
+  body
+  user_id
+  user {
+    id
+    name
+    avatar
+  }
+  created_at
+  spoil
+  replies_count
 }
     `;
-export const TrendingAnimeFragmentFragmentDoc = gql`
-    fragment TrendingAnimeFragment on Anime {
+export const RepliesFragmentFragmentDoc = gql`
+    fragment RepliesFragment on Comment {
   id
-  dic_title
-  dic_body
-  anilist_image_url
-  mal_image_url
-  wide_image
-  al_score
-  dic_score
-  anilist_score
-  al_score_count
-  dic_episodes
-  genres {
-    name_fa
-    name_en
-    backdrop
+  body
+  user_id
+  user {
+    id
+    name
+    avatar
   }
-  season_year
-  mal_popularity
-  anilist_popularity
+  replies {
+    ...RepliesSecondFragment
+  }
+  created_at
+  spoil
+  replies_count
+}
+    ${RepliesSecondFragmentFragmentDoc}`;
+export const CommentsFragmentFragmentDoc = gql`
+    fragment CommentsFragment on Comment {
+  id
+  body
+  user_id
+  user {
+    id
+    name
+    avatar
+  }
+  replies {
+    ...RepliesFragment
+  }
+  created_at
+  spoil
+  replies_count
+}
+    ${RepliesFragmentFragmentDoc}`;
+export const SubtitlesFragmentFragmentDoc = gql`
+    fragment SubtitlesFragment on Sub {
+  id
+  user_id
+  title
+  to_episode
+  from_episode
+  body
+  link_file
 }
     `;
 export const UserFragmentFragmentDoc = gql`
@@ -1609,8 +1713,20 @@ export const GetAnimeByIdDocument = gql`
   anime: anime(id: $id) {
     ...AnimeFragment
   }
+  subtitles: subtitles(anime_id: $id, type: 2, first: 30) {
+    data {
+      ...SubtitlesFragment
+    }
+  }
+  comments: animeComments(first: 10, parent_id: 0, type: "anime", id: $id) {
+    data {
+      ...CommentsFragment
+    }
+  }
 }
-    ${AnimeFragmentFragmentDoc}`;
+    ${AnimeFragmentFragmentDoc}
+${SubtitlesFragmentFragmentDoc}
+${CommentsFragmentFragmentDoc}`;
 
 /**
  * __useGetAnimeByIdQuery__
@@ -1651,11 +1767,11 @@ export const GetSeasonalAnimesDocument = gql`
       count
     }
     data {
-      ...TrendingAnimeFragment
+      ...AnimeFragment
     }
   }
 }
-    ${TrendingAnimeFragmentFragmentDoc}`;
+    ${AnimeFragmentFragmentDoc}`;
 
 /**
  * __useGetSeasonalAnimesQuery__

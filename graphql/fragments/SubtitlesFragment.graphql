@@ -1,0 +1,9 @@
+fragment SubtitlesFragment on Sub {
+          id
+      user_id
+      title
+      to_episode
+      from_episode
+      body
+      link_file
+}

@@ -1,8 +1,9 @@
-import { SimilarAnime } from "@/types/types";
+
 import Image from "next/image";
 import React from "react";
 import { Separator } from "../ui/separator";
 import { cn } from "@/lib/utils";
+import { RecommendationsFragmentFragment } from "@/generated/graphql";
 
 export default function SimilarAnimeWrapper({
   anime,
@@ -12,7 +13,7 @@ export default function SimilarAnimeWrapper({
   overlay = false,
   priority,
 }: {
-  anime: SimilarAnime;
+  anime: RecommendationsFragmentFragment;
   className?: string;
   imageClassName?: string;
   actions?: boolean;
@@ -23,15 +24,15 @@ export default function SimilarAnimeWrapper({
     <div className={cn("w-full h-[344px] flex flex-col gap-2", className)}>
       <div className={cn("w-full h-[290px] relative", imageClassName)}>
         <Image
-          src={anime.image}
-          alt={anime.title}
+          src={anime.mal_image_url? "https://dev-api.alplayer.ir"+anime.mal_image_url : anime.anilist_image_url ? "https://dev-api.alplayer.ir"+anime.anilist_image_url : "/images/frieren/cover.webp"}
+          alt={anime.dic_title!}
           fill
           priority={priority}
-          className="object-cover object-center rounded"
+          className="object-cover object-top rounded"
         />
         {overlay && (
           <div className="absolute bg-[#182533]/95 inset-0 rounded p-3 flex flex-col gap-2 opacity-0 hover:opacity-100 transition-opacity duration-300">
-            <h2 className="font-bold text-lg text-white">{anime.title}</h2>
+            <h2 className="font-bold text-lg text-white">{anime.dic_title}</h2>
             <div className="flex gap-1 items-center">
               <svg
                 width="18"
@@ -78,8 +79,8 @@ export default function SimilarAnimeWrapper({
                   </defs>
                 </svg>
                 <div className="flex gap-1 items-center">
-                  <p className="text-sm font-normal">9.53</p>
-                  <p className="text-xs font-normal opacity-65">{`(3850)`}</p>
+                <p className="text-sm font-normal">{anime.al_score || 0}</p>
+                <p className="text-xs font-normal opacity-65">{anime.al_score_count ? `(${anime.al_score_count})` : `(0)`}</p>
                 </div>
               </div>
               <div className="flex gap-1 items-center">
@@ -117,7 +118,7 @@ export default function SimilarAnimeWrapper({
                     />
                   </defs>
                 </svg>
-                <p className="text-sm font-bold">8.23</p>
+                <p className="text-sm font-bold">{anime.dic_score || 0}</p>
               </div>
               <div className="flex gap-1 items-center">
                 <svg
@@ -154,16 +155,12 @@ export default function SimilarAnimeWrapper({
                     />
                   </defs>
                 </svg>
-                <p className="text-sm font-bold">79%</p>
+                <p className="text-sm font-bold">{anime.anilist_score + "%" || "0%"}</p>
               </div>
             </div>
-            <p className="font-normal text-sm">۱۲ قسمت</p>
-            <p className="text-sm font-medium">
-              سرنوشت جهان در تعادل است زیرا «ارن» قدرت نهایی تایتان ها را آزاد
-              می‌کند. او با عزم شدیدی برای از بین بردن همه کسانی که الدیا را
-              تهدید می‌کنند، ارتش غیرقابل توقفی از تایتان های عظیم الجثه را به
-              سمت مارلی هدایت می‌کند. حالا یک خدمه متشکل از دوستان و دشمنان
-              سابقش به تقلا می‌افتند تا مأموریت مرگ‌بار او را متوقف کنند...
+            <p className="font-normal text-sm">{anime.dic_episodes || 0} قسمت</p>
+            <p className="text-sm font-medium line-clamp-[8]">
+            {anime.dic_body}
             </p>
           </div>
         )}
@@ -174,7 +171,7 @@ export default function SimilarAnimeWrapper({
             dir="ltr"
             className="text-ellipsis whitespace-nowrap overflow-hidden text-start lg:font-bold"
           >
-            {anime.title}
+            {anime.dic_title}
           </h3>
         </div>
         <div className="flex justify-between">

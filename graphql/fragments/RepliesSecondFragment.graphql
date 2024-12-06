@@ -1,0 +1,14 @@
+fragment RepliesSecondFragment on Comment {
+  id
+  body
+  user_id
+  user {
+    id
+    name
+    avatar
+  }
+  created_at
+  spoil
+  replies_count
+  # NOTE: No `replies` field here!
+}

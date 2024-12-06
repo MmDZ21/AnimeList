@@ -2,13 +2,13 @@ import React from "react";
 
 import Image from "next/image";
 
-import { TrendingAnimeFragmentFragment } from "@/generated/graphql";
+import { AnimeFragmentFragment } from "@/generated/graphql";
 
 export default function MediaCard({
   data,
   className,
 }: {
-  data: TrendingAnimeFragmentFragment;
+  data: AnimeFragmentFragment;
   className?: string;
 }) {
   return (

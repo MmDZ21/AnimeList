@@ -1,39 +1,67 @@
 "use client";
 import React, { useState } from "react";
-
-import { Comment } from "@/types/types";
 import Image from "next/image";
 import { ChevronLeftIcon } from "@radix-ui/react-icons";
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
+import {RepliesFragmentFragment, RepliesSecondFragmentFragment } from "@/generated/graphql";
 
+type ReplyType = RepliesFragmentFragment | RepliesSecondFragmentFragment;
+function hasReplies(comment: ReplyType): comment is RepliesFragmentFragment {
+  return 'replies' in comment;
+}
 export default function ReplyWrapper({
   comment,
   repliesTo,
   className,
 }: {
-  comment: Comment;
+  comment: ReplyType;
   repliesTo: { name: string; avatar: string };
   className?: string;
 }) {
+  function hasReplies(
+    comment: ReplyType
+  ): comment is RepliesFragmentFragment {
+    return 'replies' in comment;
+  }
+
   const [blur, setBlur] = useState<boolean>(true);
+
+  // Check if this comment has replies before rendering
+  let nestedReplies = null;
+  if (hasReplies(comment)) {
+    // Here, `comment` is now a RepliesFragmentFragment
+    nestedReplies = comment.replies.map((r) => (
+      <ReplyWrapper
+        comment={r}
+        repliesTo={{
+          name: comment.user?.name || "کاربر",
+          avatar: comment.user?.avatar || "/images/frieren/frieren.webp",
+        }}
+        key={r.id}
+      />
+    ));
+  }
+
+  const imageUrl = comment.user?.avatar ? "https://dev-api.alplayer.ir/" + comment.user.avatar : "/images/frieren/frieren.webp";
+  const title = comment.user?.name || "User";
   return (
     <div className="relative flex flex-col rounded-lg">
       <div
-        className={cn("flex flex-col gap-3", comment.spoiler && blur && "blur")}
+        className={cn("flex flex-col gap-3", comment.spoil && blur && "blur")}
       >
         <div className="rounded-lg flex flex-col gap-4 bg-background p-3">
           <div className="flex justify-between items-center">
             <div className="flex gap-3 items-center">
               <div className="relative size-10">
                 <Image
-                  src={comment.user.avatar}
-                  alt={comment.user.name}
+                  src={imageUrl}
+                  alt={title}
                   fill
                   className="object-cover object-center rounded-full"
                 />
               </div>
-              <p className="text-base font-medium">{comment.user.name}</p>
+              <p className="text-base font-medium">{comment.user?.name}</p>
               <ChevronLeftIcon className="size-5" />
               <p dir="ltr" className="text-base font-medium text-primary-500">
                 @{repliesTo.name}
@@ -66,7 +94,7 @@ export default function ReplyWrapper({
             </div>
           </div>
           <div>
-            <p className="text-base font-normal">{comment.comment}</p>
+            <p className="text-base font-normal">{comment.body}</p>
           </div>
           <div className="flex justify-between items-center text-[#979CA6]">
             <div className="flex gap-2 items-center">
@@ -97,22 +125,16 @@ export default function ReplyWrapper({
             </div>
             <div>
               <p dir="ltr" className="text-sm font-normal">
-                {comment.date} | {comment.time}
+                {comment.created_at}
               </p>
             </div>
           </div>
         </div>
         <div className="flex flex-col gap-3">
-          {comment.replies?.map((reply) => (
-            <ReplyWrapper
-              comment={reply}
-              repliesTo={comment.user}
-              key={reply.id}
-            />
-          ))}
+{nestedReplies}
         </div>
       </div>
-      {comment.spoiler && blur && (
+      {comment.spoil && blur && (
         <div className="absolute inset-0">
           <div className="w-full h-full flex justify-center items-center">
             <div className="flex flex-col gap-3 items-center w-1/2">

@@ -1,16 +1,16 @@
-import { Trailer } from "@/types/types";
+import { AnimeTrailer } from "@/generated/graphql";
 import Image from "next/image";
 import React from "react";
 
-export default function TrailerWrapper({ trailer }: { trailer: Trailer }) {
+export default function TrailerWrapper({ trailer }: { trailer: AnimeTrailer }) {
   return (
     <div className="w-full flex flex-col gap-2">
       <div className="relative aspect-video">
         <Image
-          src={trailer.preview}
+          src={"/images/frieren/t3.webp"}
           fill
           className="object-cover rounded"
-          alt={trailer.title}
+          alt={trailer.title!}
         />
       </div>
       <div>

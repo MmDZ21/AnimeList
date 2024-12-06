@@ -1,3 +1,4 @@
+import { CharactersFragmentFragment } from "@/generated/graphql";
 import { cn } from "@/lib/utils";
 import { CharacterWithVoice } from "@/types/types";
 import Image from "next/image";
@@ -7,7 +8,7 @@ export default function CharacterWrapper({
   characterWithVoice,
   className,
 }: {
-  characterWithVoice: CharacterWithVoice;
+  characterWithVoice: CharactersFragmentFragment;
   className?: string;
 }) {
   return (
@@ -20,36 +21,38 @@ export default function CharacterWrapper({
       <div className="flex gap-4 items-center">
         <div className="relative aspect-square size-[72px]">
           <Image
-            src={characterWithVoice.character.image}
-            alt={characterWithVoice.character.name}
+            src={characterWithVoice.character?.image_url? "https://dev-api.alplayer.ir"+characterWithVoice.character.image_url : "/images/frieren/frieren.webp"}
+            alt={characterWithVoice.character?.name!}
             fill
             className="object-cover object-center rounded"
           />
         </div>
         <div className="flex flex-col gap-1">
           <h5 className="text-base font-bold">
-            {characterWithVoice.character.name}
+            {characterWithVoice.character?.name}
           </h5>
           <p className="text-sm font-medium text-[#979CA6]">
-            {characterWithVoice.character.role === "main" ? "اصلی" : "مکمل"}
+            {characterWithVoice.character_role === "MAIN" ? "اصلی" : "مکمل"}
           </p>
         </div>
       </div>
       <div dir="ltr" className="flex gap-4 items-center">
         <div className="relative aspect-square size-[72px]">
           <Image
-            src={characterWithVoice.voice.image}
-            alt={characterWithVoice.voice.name}
+            src={characterWithVoice.person?.image_url ? "https://dev-api.alplayer.ir"+characterWithVoice.person?.image_url : "/images/frieren/tanezaki.webp"}
+            alt={characterWithVoice.person?.name!}
             fill
             className="object-cover object-center rounded"
           />
         </div>
         <div className="flex flex-col gap-1">
           <h6 className="text-sm font-medium">
-            {characterWithVoice.voice.name}
+            {characterWithVoice.person?.name}
           </h6>
           <p className="text-xs font-medium text-[#979CA6]">
-            {characterWithVoice.voice.language}
+            {/* {characterWithVoice.voice.language} */}
+
+            ژاپنی
           </p>
         </div>
       </div>

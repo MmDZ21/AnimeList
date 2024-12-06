@@ -37,7 +37,7 @@ import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import TrailerWrapper from "@/components/anime/TrailerWrapper";
 import { getClient } from "@/lib/apolloClient";
-import { GetAnimeByIdDocument, GetAnimeByIdQuery, GetAnimeByIdQueryVariables } from "@/generated/graphql";
+import { Anime, GetAnimeByIdDocument, GetAnimeByIdQuery, GetAnimeByIdQueryVariables } from "@/generated/graphql";
 
 // Next.js will invalidate the cache when a
 // request comes in, at most once every 60 seconds.
@@ -71,7 +71,9 @@ export default async function page({ params }: { params: { nameId: string } }) {
     return <p>Error loading anime data.</p>;
   }
 
-  const anime = data?.anime;
+  const anime= data?.anime;
+  const subtitles = data?.subtitles
+  const comments = data?.comments
 
   if (!anime) {
     return <p>Anime not found.</p>;
@@ -138,7 +140,7 @@ export default async function page({ params }: { params: { nameId: string } }) {
                 <div className="flex items-center gap-2">
                   <Rating rating={4} />
                   <p className="text-sm font-medium">
-                    میانگین: {anime.al_score} / 10{" "}
+                    میانگین: {anime.al_score} / 10
                     <span className="text-xs font-normal text-[#B5B8BF]">{`(${anime.al_score_count} نفر)`}</span>
                   </p>
                   <Dialog>
@@ -234,7 +236,7 @@ export default async function page({ params }: { params: { nameId: string } }) {
                             </span>
                           </DialogDescription>
                           {/* 8 divs */}
-                          <Details anime={anime} />
+                          {/* <Details anime={anime} /> */}
                         </div>
                       </ScrollArea>
                     </DialogContent>
@@ -278,9 +280,9 @@ export default async function page({ params }: { params: { nameId: string } }) {
                   </CustomTabsContent>
                   <CustomTabsContent value="similars">
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                      {/* {anime.similars.map((anime) => (
-                        <SimilarAnimeWrapper key={anime.title} anime={anime} />
-                      ))} */}
+                      {anime.recommendations.map((anime) => (
+                        <SimilarAnimeWrapper key={anime.recommendation.id} anime={anime.recommendation} />
+                      ))}
                     </div>
                   </CustomTabsContent>
                   <CustomTabsContent value="staff">
@@ -302,15 +304,12 @@ export default async function page({ params }: { params: { nameId: string } }) {
                         </TabsList>
                         <TabsContent value="characters">
                           <div className="py-2 flex flex-col gap-2">
-                            {/* {anime.staff.characters.map((character) => (
+                            {anime.characters.map((character) => (
                               <CharacterWrapper
-                                key={character.character.name}
-                                characterWithVoice={{
-                                  character: character.character,
-                                  voice: character.voice,
-                                }}
+                                key={character.character?.id}
+                                characterWithVoice={character}
                               />
-                            ))} */}
+                            ))}
                           </div>
                         </TabsContent>
                         <TabsContent value="producers">
@@ -441,9 +440,9 @@ export default async function page({ params }: { params: { nameId: string } }) {
               </TabsList>
               <TabsContent className="py-4" value="trailers">
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                  {/* {anime.trailers?.map((trailer) => (
+                  {anime.trailers?.map((trailer) => (
                     <TrailerWrapper key={trailer.title} trailer={trailer} />
-                  ))} */}
+                  ))}
                 </div>
               </TabsContent>
               <TabsContent className="py-4" value="download">
@@ -539,15 +538,12 @@ export default async function page({ params }: { params: { nameId: string } }) {
                     </TabsList>
                     <TabsContent value="characters">
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {/* {anime.staff.characters.map((character) => (
-                          <CharacterWrapper
-                            key={character.character.name}
-                            characterWithVoice={{
-                              character: character.character,
-                              voice: character.voice,
-                            }}
-                          />
-                        ))} */}
+                      {anime.characters.map((character) => (
+                              <CharacterWrapper
+                                key={character.character?.id}
+                                characterWithVoice={character}
+                              />
+                            ))}
                       </div>
                     </TabsContent>
                     <TabsContent value="producers">
@@ -566,9 +562,9 @@ export default async function page({ params }: { params: { nameId: string } }) {
               <TabsContent value="details"></TabsContent>
               <TabsContent value="similars">
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                  {/* {anime.similars.map((anime) => (
-                    <SimilarAnimeWrapper key={anime.title} anime={anime} />
-                  ))} */}
+                {anime.recommendations.map((anime) => (
+                        <SimilarAnimeWrapper key={anime.recommendation.id} anime={anime.recommendation} />
+                      ))}
                 </div>
               </TabsContent>
               <TabsContent value="comments">
@@ -577,9 +573,9 @@ export default async function page({ params }: { params: { nameId: string } }) {
                     <CommentForm />
                   </div>
                   <div className="flex flex-col gap-[14px]">
-                    {/* {anime.comments.map((comment) => (
+                    {comments.data.map((comment) => (
                       <CommentWrapper key={comment.id} comment={comment} />
-                    ))} */}
+                    ))}
                   </div>
                 </div>
               </TabsContent>

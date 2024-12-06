@@ -1,0 +1,15 @@
+fragment CharactersFragment on CharacterDetail {
+        character_role
+    person_role
+    character{
+      id
+      name
+      image_url
+    }
+    person{
+      id
+      name
+      hometown
+      image_url
+    }
+}

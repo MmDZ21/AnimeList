@@ -1,20 +1,20 @@
 "use client";
-import { Comment } from "@/types/types";
 import Image from "next/image";
 import React, { useState } from "react";
 import ReplyWrapper from "./ReplyWrapper";
 
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
+import { CommentsFragmentFragment, RepliesFragmentFragment } from "@/generated/graphql";
 
-export default function CommentWrapper({ comment }: { comment: Comment }) {
+export default function CommentWrapper({ comment }: { comment: CommentsFragmentFragment }) {
   const [blur, setBlur] = useState<boolean>(true);
   return (
     <div className="relative rounded-lg bg-[#17212B]">
       <div
         className={cn(
           "flex flex-col p-3 gap-3",
-          comment.spoiler && blur && "blur"
+          comment.spoil && blur && "blur"
         )}
       >
         <div className="rounded-lg flex flex-col gap-4">
@@ -22,13 +22,13 @@ export default function CommentWrapper({ comment }: { comment: Comment }) {
             <div className="flex gap-3 items-center">
               <div className="relative size-10">
                 <Image
-                  src={comment.user.avatar}
-                  alt={comment.user.name}
+                  src={comment.user?.avatar ? "https://dev-api.alplayer.ir/"+comment.user?.avatar : "/images/frieren/frieren.webp"}
+                  alt={comment.user?.name!}
                   fill
                   className="object-cover object-center rounded-full"
                 />
               </div>
-              <p className="text-base font-medium">{comment.user.name}</p>
+              <p className="text-base font-medium">{comment.user?.name}</p>
             </div>
             <div className="size-6 flex justify-center items-center">
               <svg
@@ -57,7 +57,7 @@ export default function CommentWrapper({ comment }: { comment: Comment }) {
             </div>
           </div>
           <div>
-            <p className="text-base font-normal">{comment.comment}</p>
+            <p className="text-base font-normal">{comment.body}</p>
           </div>
           <div className="flex justify-between items-center text-[#979CA6]">
             <div className="flex gap-2 items-center">
@@ -88,16 +88,16 @@ export default function CommentWrapper({ comment }: { comment: Comment }) {
             </div>
             <div>
               <p dir="ltr" className="text-sm font-normal">
-                {comment.date} | {comment.time}
+                {comment.created_at}
               </p>
             </div>
           </div>
         </div>
         <div className="flex flex-col">
-          {comment.replies?.map((reply) => (
+          {comment.replies?.map((reply : RepliesFragmentFragment) => (
             <ReplyWrapper
               comment={reply}
-              repliesTo={comment.user}
+              repliesTo={{name:comment.user?.name! , avatar: comment.user?.avatar || "/images/frieren/frieren.webp"}}
               key={reply.id}
             />
           ))}
@@ -130,7 +130,7 @@ export default function CommentWrapper({ comment }: { comment: Comment }) {
           </div>
         </div>
       </div>
-      {comment.spoiler && blur && (
+      {comment.spoil && blur && (
         <div className="absolute inset-0">
           <div className="w-full h-full flex justify-center items-center">
             <div className="flex flex-col gap-3 items-center w-1/2">

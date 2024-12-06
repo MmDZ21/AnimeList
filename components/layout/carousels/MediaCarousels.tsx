@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 import { MediaCardType } from "@/types/types";
 import Link from "next/link";
 import { useDirection } from "@radix-ui/react-direction";
-import { GetSeasonalAnimesDocument, GetSeasonalAnimesQuery, TrendingAnimeFragmentFragment } from "@/generated/graphql";
+import { GetSeasonalAnimesDocument, GetSeasonalAnimesQuery } from "@/generated/graphql";
 import { useSuspenseQuery } from "@apollo/client";
 
 export default function MediaCarousels({

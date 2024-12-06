@@ -1,5 +1,15 @@
 query GetAnimeById($id: ID!) {
-  anime: anime(id: $id) {
+  anime:anime(id: $id) {
     ...AnimeFragment
+  }
+  subtitles: subtitles(anime_id: $id, type: 2, first: 30){
+    data{
+...SubtitlesFragment
+    }
+  }
+  comments: animeComments(first:10, parent_id:0, type: "anime", id:$id){
+    data{
+     ...CommentsFragment
+    }
   }
 }

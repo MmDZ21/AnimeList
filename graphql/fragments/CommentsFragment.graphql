@@ -1,0 +1,17 @@
+fragment CommentsFragment on Comment {
+       id
+      body
+      user_id
+        user{
+    id
+    name
+    avatar
+  }
+      replies{
+...RepliesFragment
+      }
+      created_at
+      spoil
+      replies_count
+      
+}
