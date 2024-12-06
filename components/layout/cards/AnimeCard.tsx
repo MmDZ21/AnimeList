@@ -1,9 +1,9 @@
 import WatchOnline from "@/components/buttons/WatchOnline";
-import { TrendingAnimeFragmentFragment } from "@/generated/graphql";
+import { AnimeFragmentFragment } from "@/generated/graphql";
 import Image from "next/image";
 import React from "react";
 
-export default function AnimeCard({ data }: { data: TrendingAnimeFragmentFragment }) {
+export default function AnimeCard({ data }: { data: AnimeFragmentFragment }) {
   return (
     <div className="flex flex-col gap-3 w-full">
       <div className="relative w-full h-[235px]">
