@@ -31,6 +31,9 @@ const UserEpisodes = dynamic(
 
 // import UserEpisodes from "@/components/layout/sections/UserEpisodes";
 import { recommendations } from "@/constants";
+import { PreloadQuery } from "@/lib/apolloClient";
+import { Suspense } from "react";
+import { GetSeasonalAnimesDocument } from "@/generated/graphql";
 
 export default async function HomePage() {
   return (
@@ -38,20 +41,30 @@ export default async function HomePage() {
       <Hero />
       <div className="min-h-screen w-full flex flex-col gap-10 px-4 lg:px-16">
         <SeasonalAnimes />
-        <UserEpisodes />
+        {/* <UserEpisodes />
         <Trending />
-        <SummerAnime />
+        <SummerAnime /> */}
+        <PreloadQuery
+          query={GetSeasonalAnimesDocument}
+          variables={{
+            first: 10,
+          }}
+        >
+          <Parallel
+            bgGradient="to top, hsla(226,90%,11%,0.8), hsla(224,71%,14%,0.48)"
+            bgUrl="/images/conan.webp"
+            title="Detective Conan Collection"
+            description="مجموعهٔ کامل انیمه سریالی و سینمایی‌های کارآگاه کوچک محبوب دل ها رو اینجا با ترجمهٔ اختصاصی و زیرنویس چسبیده ببین"
+            actions={[<WatchOnline key={1} />, <AddToWatchList key={2} />]}
+          >
+
+            <Suspense fallback={<p>Loading trending anime...</p>}>
+              <MediaCarousels />{" "}
+            </Suspense>
+          </Parallel>{" "}
+        </PreloadQuery>
         <NewEpisodes />
         <Banners />
-        {/* <Parallel
-          bgGradient="to top, hsla(226,90%,11%,0.8), hsla(224,71%,14%,0.48)"
-          bgUrl="/images/conan.webp"
-          title="Detective Conan Collection"
-          description="مجموعهٔ کامل انیمه سریالی و سینمایی‌های کارآگاه کوچک محبوب دل ها رو اینجا با ترجمهٔ اختصاصی و زیرنویس چسبیده ببین"
-          actions={[<WatchOnline key={1} />, <AddToWatchList key={2} />]}
-        >
-          <MediaCarousels data={recommendations} />
-        </Parallel> */}
       </div>
     </div>
   );

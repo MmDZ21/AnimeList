@@ -4,12 +4,10 @@ import MediaCarousels from '../carousels/MediaCarousels';
 import { PreloadQuery } from '@/lib/apolloClient';
 import {
   GetSeasonalAnimesDocument,
-  GetSeasonalAnimesQuery,
-  GetSeasonalAnimesQueryVariables,
 } from '@/generated/graphql';
 
 export default function SeasonalAnimes() {
-  console.log(GetSeasonalAnimesDocument)
+  // console.log(GetSeasonalAnimesDocument)
   return (
     <PreloadQuery
       query={GetSeasonalAnimesDocument}
