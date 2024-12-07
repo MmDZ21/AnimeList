@@ -4,15 +4,15 @@ import React from 'react';
 import { useSuspenseQuery } from '@apollo/client';
 
 import AnimeCard from '../../cards/AnimeCard';
-import { GetSeasonalAnimesDocument, TrendingAnimeFragmentFragment } from '@/generated/graphql';
+import { GetSeasonalAnimesDocument, GetSeasonalAnimesQuery } from '@/generated/graphql';
 
 export default function TrendingContent() {
-  const { data } = useSuspenseQuery(GetSeasonalAnimesDocument, {
+  const { data } = useSuspenseQuery<GetSeasonalAnimesQuery>(GetSeasonalAnimesDocument, {
     variables: {
       first: 2,
     },
   });
-  const animes : TrendingAnimeFragmentFragment[] = data?.animesSeason.data || []
+  const animes = data?.animesSeason.data || []
   console.log(animes)
   return (
     <div className="flex flex-col gap-6">
