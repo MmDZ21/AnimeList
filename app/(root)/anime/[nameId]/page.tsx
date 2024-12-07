@@ -37,7 +37,14 @@ import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import TrailerWrapper from "@/components/anime/TrailerWrapper";
 import { getClient } from "@/lib/apolloClient";
-import { Anime, GetAnimeByIdDocument, GetAnimeByIdQuery, GetAnimeByIdQueryVariables } from "@/generated/graphql";
+import {
+  Anime,
+  GetAnimeByIdDocument,
+  GetAnimeByIdQuery,
+  GetAnimeByIdQueryVariables,
+} from "@/generated/graphql";
+import SubtitleWrapper from "@/components/anime/SubtitleWrapper";
+import DownloadWrapper from "@/components/anime/DownloadWrapper";
 
 // Next.js will invalidate the cache when a
 // request comes in, at most once every 60 seconds.
@@ -61,7 +68,10 @@ export default async function page({ params }: { params: { nameId: string } }) {
 
   const client = getClient();
 
-  const { data, error } = await client.query<GetAnimeByIdQuery, GetAnimeByIdQueryVariables>({
+  const { data, error } = await client.query<
+    GetAnimeByIdQuery,
+    GetAnimeByIdQueryVariables
+  >({
     query: GetAnimeByIdDocument,
     variables: { id },
   });
@@ -71,9 +81,10 @@ export default async function page({ params }: { params: { nameId: string } }) {
     return <p>Error loading anime data.</p>;
   }
 
-  const anime= data?.anime;
-  const subtitles = data?.subtitles
-  const comments = data?.comments
+  const anime = data?.anime;
+  const exclusiveSubtitles = data?.exclusiveSubtitles.data;
+  const userSubtitles = data?.userSubtitles.data;
+  const comments = data?.comments.data;
 
   if (!anime) {
     return <p>Anime not found.</p>;
@@ -84,14 +95,24 @@ export default async function page({ params }: { params: { nameId: string } }) {
       <div className="w-full h-[585px] relative">
         <Image
           priority
-          src={anime.mal_image_url? "https://dev-api.alplayer.ir"+anime.mal_image_url : anime.anilist_image_url ? "https://dev-api.alplayer.ir"+anime.anilist_image_url : "/images/frieren/cover.webp"}
+          src={
+            anime.mal_image_url
+              ? "https://dev-api.alplayer.ir" + anime.mal_image_url
+              : anime.anilist_image_url
+              ? "https://dev-api.alplayer.ir" + anime.anilist_image_url
+              : "/images/frieren/cover.webp"
+          }
           fill
           alt={anime.dic_title!}
           className="object-cover lg:hidden"
         />
         <Image
           priority
-          src={anime.wide_image? "https://dev-api.alplayer.ir"+anime.wide_image : "/images/frieren/lgbg.webp"}
+          src={
+            anime.wide_image
+              ? "https://dev-api.alplayer.ir" + anime.wide_image
+              : "/images/frieren/lgbg.webp"
+          }
           fill
           alt={anime.dic_title!}
           className="object-cover hidden lg:block"
@@ -104,7 +125,13 @@ export default async function page({ params }: { params: { nameId: string } }) {
             <div className="lg:flex flex-col gap-2 hidden">
               <div className="relative w-[220px] h-[288px]">
                 <Image
-                  src={anime.mal_image_url? "https://dev-api.alplayer.ir"+anime.mal_image_url : anime.anilist_image_url ? "https://dev-api.alplayer.ir"+anime.anilist_image_url : "/images/frieren/cover.webp"}
+                  src={
+                    anime.mal_image_url
+                      ? "https://dev-api.alplayer.ir" + anime.mal_image_url
+                      : anime.anilist_image_url
+                      ? "https://dev-api.alplayer.ir" + anime.anilist_image_url
+                      : "/images/frieren/cover.webp"
+                  }
                   alt={anime.dic_title!}
                   fill
                   className="object-cover rounded"
@@ -161,7 +188,15 @@ export default async function page({ params }: { params: { nameId: string } }) {
                         <div className="flex flex-col items-center gap-6 pb-16">
                           <div className="relative h-48 w-full">
                             <Image
-                              src={anime.mal_image_url? "https://dev-api.alplayer.ir"+anime.mal_image_url : anime.anilist_image_url ? "https://dev-api.alplayer.ir"+anime.anilist_image_url : "/images/frieren/cover.webp"}
+                              src={
+                                anime.mal_image_url
+                                  ? "https://dev-api.alplayer.ir" +
+                                    anime.mal_image_url
+                                  : anime.anilist_image_url
+                                  ? "https://dev-api.alplayer.ir" +
+                                    anime.anilist_image_url
+                                  : "/images/frieren/cover.webp"
+                              }
                               alt={anime.dic_title!}
                               fill
                               className="object-contain"
@@ -220,7 +255,9 @@ export default async function page({ params }: { params: { nameId: string } }) {
                     <DialogContent className="w-full h-full bg-background">
                       <DialogHeader className="gap-3 min-h-0">
                         <DialogTitle className="flex justify-between ">
-                          <h2 className="text-base font-bold">{anime.dic_title}</h2>
+                          <h2 className="text-base font-bold">
+                            {anime.dic_title}
+                          </h2>
                           <DialogClose className="rounded-sm opacity-70 ring-offset-white transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-slate-100 data-[state=open]:text-slate-500 dark:ring-offset-slate-950 dark:focus:ring-slate-300 dark:data-[state=open]:bg-slate-800 dark:data-[state=open]:text-slate-400">
                             <Cross2Icon className="h-6 w-6" />
                             <span className="sr-only">Close</span>
@@ -281,7 +318,10 @@ export default async function page({ params }: { params: { nameId: string } }) {
                   <CustomTabsContent value="similars">
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
                       {anime.recommendations.map((anime) => (
-                        <SimilarAnimeWrapper key={anime.recommendation.id} anime={anime.recommendation} />
+                        <SimilarAnimeWrapper
+                          key={anime.recommendation.id}
+                          anime={anime.recommendation}
+                        />
                       ))}
                     </div>
                   </CustomTabsContent>
@@ -434,7 +474,7 @@ export default async function page({ params }: { params: { nameId: string } }) {
                 >
                   نظرات
                   <div className="size-6 rounded bg-[#A1A1AA] text-white text-sm font-semibold flex justify-center items-center">
-                    {/* {anime.comments.length} */}
+                    {comments.length}
                   </div>
                 </TabsTrigger>
               </TabsList>
@@ -472,22 +512,110 @@ export default async function page({ params }: { params: { nameId: string } }) {
                       </TabsTrigger>
                       <TabsTrigger
                         className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
-                        value="720p x265 | 10Bit"
+                        value="720p x265"
                       >
-                        720p x265 | 10Bit
+                        720p x265
                       </TabsTrigger>
                       <TabsTrigger
                         className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
-                        value="1080p x265 | 10Bit"
+                        value="1080p x265"
                       >
-                        1080p x265 | 10Bit
+                        1080p x265
                       </TabsTrigger>
                     </TabsList>
-                    <TabsContent value="480p"></TabsContent>
-                    <TabsContent value="720p"></TabsContent>
-                    <TabsContent value="1080p"></TabsContent>
-                    <TabsContent value="720p x265 | 10Bit"></TabsContent>
-                    <TabsContent value="1080p x265 | 10Bit"></TabsContent>
+                    <TabsContent value="480p">
+                      <div className="flex flex-col gap-[10px]">
+                        {anime.anime_links.map((link) =>
+                          link.quality === "480p" ? (
+                            <DownloadWrapper
+                              key={link.id}
+                              links={{
+                                ep: link.ep || "نامشخص",
+                                link: link.link || "#",
+                                quality: link.quality || "نامشخص",
+                                size: link.size || "نامشخص",
+                                subtitle: link.subtitle_link || "#",
+                              }}
+                            />
+                          ) : null
+                        )}
+                      </div>
+                    </TabsContent>
+                    <TabsContent value="720p">
+                      {" "}
+                      <div className="flex flex-col gap-[10px]">
+                        {anime.anime_links.map((link) =>
+                          link.quality === "720p" ? (
+                            <DownloadWrapper
+                              key={link.id}
+                              links={{
+                                ep: link.ep || "نامشخص",
+                                link: link.link || "#",
+                                quality: link.quality || "نامشخص",
+                                size: link.size || "نامشخص",
+                                subtitle: link.subtitle_link || "#",
+                              }}
+                            />
+                          ) : null
+                        )}
+                      </div>
+                    </TabsContent>
+                    <TabsContent value="1080p">
+                      {" "}
+                      <div className="flex flex-col gap-[10px]">
+                        {anime.anime_links.map((link) =>
+                          link.quality === "1080p" ? (
+                            <DownloadWrapper
+                              key={link.id}
+                              links={{
+                                ep: link.ep || "نامشخص",
+                                link: link.link || "#",
+                                quality: link.quality || "نامشخص",
+                                size: link.size || "نامشخص",
+                                subtitle: link.subtitle_link || "#",
+                              }}
+                            />
+                          ) : null
+                        )}
+                      </div>
+                    </TabsContent>
+                    <TabsContent value="720p x265">
+                      {" "}
+                      <div className="flex flex-col gap-[10px]">
+                        {anime.anime_links.map((link) =>
+                          link.quality === "720p x265" ? (
+                            <DownloadWrapper
+                              key={link.id}
+                              links={{
+                                ep: link.ep || "نامشخص",
+                                link: link.link || "#",
+                                quality: link.quality || "نامشخص",
+                                size: link.size || "نامشخص",
+                                subtitle: link.subtitle_link || "#",
+                              }}
+                            />
+                          ) : null
+                        )}
+                      </div>
+                    </TabsContent>
+                    <TabsContent value="1080p x265">
+                      <div className="flex flex-col gap-[10px]">
+                        {anime.anime_links.map((link) =>
+                          link.quality === "1080p x265" ? (
+                            <DownloadWrapper
+                              key={link.id}
+                              links={{
+                                ep: link.ep || "نامشخص",
+                                link: link.link || "#",
+                                quality: link.quality || "نامشخص",
+                                size: link.size || "نامشخص",
+                                subtitle: link.subtitle_link || "#",
+                              }}
+                            />
+                          ) : null
+                        )}
+                      </div>
+                    </TabsContent>
                   </Tabs>
                 </div>
               </TabsContent>
@@ -511,8 +639,20 @@ export default async function page({ params }: { params: { nameId: string } }) {
                         زیرنویس‌های ارسالی
                       </TabsTrigger>
                     </TabsList>
-                    <TabsContent value="dedicated"></TabsContent>
-                    <TabsContent value="sent"></TabsContent>
+                    <TabsContent value="dedicated">
+                      <div className="grid grid-cols-4 gap-x-[10px] gap-y-4">
+                        {exclusiveSubtitles.map((sub) => (
+                          <SubtitleWrapper key={sub.id} subtitle={sub} />
+                        ))}
+                      </div>
+                    </TabsContent>
+                    <TabsContent value="sent">
+                      <div className="grid grid-cols-4 gap-x-[10px] gap-y-4">
+                        {userSubtitles.map((sub) => (
+                          <SubtitleWrapper key={sub.id} subtitle={sub} />
+                        ))}
+                      </div>
+                    </TabsContent>
                   </Tabs>
                 </div>
               </TabsContent>
@@ -538,12 +678,12 @@ export default async function page({ params }: { params: { nameId: string } }) {
                     </TabsList>
                     <TabsContent value="characters">
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                      {anime.characters.map((character) => (
-                              <CharacterWrapper
-                                key={character.character?.id}
-                                characterWithVoice={character}
-                              />
-                            ))}
+                        {anime.characters.map((character) => (
+                          <CharacterWrapper
+                            key={character.character?.id}
+                            characterWithVoice={character}
+                          />
+                        ))}
                       </div>
                     </TabsContent>
                     <TabsContent value="producers">
@@ -562,9 +702,12 @@ export default async function page({ params }: { params: { nameId: string } }) {
               <TabsContent value="details"></TabsContent>
               <TabsContent value="similars">
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                {anime.recommendations.map((anime) => (
-                        <SimilarAnimeWrapper key={anime.recommendation.id} anime={anime.recommendation} />
-                      ))}
+                  {anime.recommendations.map((anime) => (
+                    <SimilarAnimeWrapper
+                      key={anime.recommendation.id}
+                      anime={anime.recommendation}
+                    />
+                  ))}
                 </div>
               </TabsContent>
               <TabsContent value="comments">
@@ -573,7 +716,7 @@ export default async function page({ params }: { params: { nameId: string } }) {
                     <CommentForm />
                   </div>
                   <div className="flex flex-col gap-[14px]">
-                    {comments.data.map((comment) => (
+                    {comments.map((comment) => (
                       <CommentWrapper key={comment.id} comment={comment} />
                     ))}
                   </div>

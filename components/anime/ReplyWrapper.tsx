@@ -36,7 +36,7 @@ export default function ReplyWrapper({
         comment={r}
         repliesTo={{
           name: comment.user?.name || "کاربر",
-          avatar: comment.user?.avatar || "/images/frieren/frieren.webp",
+          avatar:"/svg/imageloader.svg",
         }}
         key={r.id}
       />

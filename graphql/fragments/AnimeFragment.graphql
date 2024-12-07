@@ -12,6 +12,14 @@ fragment AnimeFragment on Anime {
   mal_image_url
   dic_score
   anilist_score
+    anime_links{
+    link
+    quality
+    id
+    size
+    ep
+    subtitle_link
+  }
   genres {
     id
     name_fa
