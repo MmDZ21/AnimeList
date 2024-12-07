@@ -6,14 +6,15 @@ import SimilarAnimeWrapper from "@/components/anime/SimilarAnimeWrapper";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import CharacterWrapper from "@/components/anime/CharacterWrapper";
 import BlogCard from "@/components/layout/cards/BlogCard";
+import { CharactersFragmentFragment, RecommendationsFragmentFragment } from "@/generated/graphql";
 
 interface ResultProps {
-  top: Anime[];
-  animeShows: Anime[];
-  movies: Anime[];
-  dramas: Anime[];
-  series: Anime[];
-  characters: CharacterWithVoice[];
+  top: RecommendationsFragmentFragment[];
+  animeShows: RecommendationsFragmentFragment[];
+  movies: RecommendationsFragmentFragment[];
+  dramas: RecommendationsFragmentFragment[];
+  series: RecommendationsFragmentFragment[];
+  characters: CharactersFragmentFragment[];
   blog: {
     user: User;
     createdAt: string;

@@ -1,4 +1,5 @@
 import { Separator } from "@/components/ui/separator";
+import { RecommendationsFragmentFragment } from "@/generated/graphql";
 import { Anime } from "@/types/types";
 import Image from "next/image";
 import React from "react";
@@ -7,15 +8,15 @@ export default function ResultCard({
   data,
   index,
 }: {
-  data: Anime;
+  data: RecommendationsFragmentFragment;
   index?: number;
 }) {
   return (
     <div className="flex gap-4 h-[140px] w-full lg:bg-[#17212B] lg:p-2 lg:rounded-lg lg:h-[160px]">
       <div className="relative w-[100px] h-full shrink-0">
         <Image
-          src={data.image}
-          alt={data.title}
+          src={data.mal_image_url? "https://dev-api.alplayer.ir"+data.mal_image_url : data.anilist_image_url ? "https://dev-api.alplayer.ir"+data.anilist_image_url : "/images/frieren/cover.webp"}
+          alt={data.dic_title!}
           fill
           priority={index === 0 ? true : false}
           className="object-cover object-center rounded "
@@ -28,7 +29,7 @@ export default function ResultCard({
               dir="ltr"
               className="truncate text-start text-white text-base font-bold"
             >
-              {data.title}
+              {data.dic_title}
             </h3>
           </div>
           <div className="flex gap-1">
@@ -45,20 +46,20 @@ export default function ResultCard({
               />
             </svg>
             <div className="text-xs font-medium">
-              {data.rating} / 10 &nbsp;
-              <span className="font-normal text-[#B5B8BF]">{`(${data.votesCount} نفر)`}</span>
+            {data.al_score || 0} / 10 &nbsp;
+              <span className="font-normal text-[#B5B8BF]">{data.al_score_count ? `(${data.al_score_count})` : `(0)`}</span>
             </div>
           </div>
           <div className="flex gap-2">
             <p className="text-[#979CA6] text-sm font-medium">۱ فصل</p>
             <Separator orientation="vertical" className="h-3" />
             <p className="text-[#979CA6] text-sm font-medium">
-              {data.episodesCount} قسمت
+              {data.dic_episodes} قسمت
             </p>
           </div>
           <div className="flex gap-1">
             <p className="text-xs font-medium text-[#0EA774]">
-              {data.type === "series" ? "سریالی" : "سینمایی"}
+              {/* {data.type === "series" ? "سریالی" : "سینمایی"} */}
             </p>
             <Separator orientation="vertical" className="h-3" />
             <p className="text-xs font-medium text-[#979CA6]">پخش آنلاین</p>
