@@ -27,7 +27,7 @@ export default function page({
     <div className="min-h-screen w-full flex flex-col gap-6 px-4 lg:px-16 py-6">
       <Search placeholder="دنبال چی می‌گردی؟ انیمه، دراما، سریال، فیلم و ..." />
       <Recent />
-      <Result
+      {/* <Result
         data={{
           animeShows: [
             frierenAnime,
@@ -44,7 +44,7 @@ export default function page({
           characters: frierenAnime.staff.characters,
           blog: [blog1, blog2, blog3],
         }}
-      />
+      /> */}
       {/* <Suspense key={query} fallback={<InvoicesTableSkeleton />}></Suspense> */}
     </div>
   );
