@@ -1,9 +1,5 @@
 import React, { ReactElement, ReactNode } from "react";
 import SectionContainer from "./SectionContainer";
-import MediaCarousels from "../carousels/MediaCarousels";
-import { recommendations } from "@/constants";
-import { Button } from "@/components/ui/button";
-import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import { cn } from "@/lib/utils";
 
 export default function Parallel({
