@@ -7,9 +7,13 @@ import { GetAnimeGenresDocument, GetAnimeGenresQuery } from "@/generated/graphql
 
 async function fetchGenres() {
     const client = getClient();
+  
+    await new Promise((resolve) => setTimeout(resolve, 5000));
+  
     const { data } = await client.query<GetAnimeGenresQuery>({
       query: GetAnimeGenresDocument,
     });
+  
     return data?.genres || [];
   }
 export default async function GenresList() {
