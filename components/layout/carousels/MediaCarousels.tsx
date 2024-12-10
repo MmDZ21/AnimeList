@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/carousel";
 import React from "react";
 import MediaCard from "../cards/MediaCard";
-import { cn } from "@/lib/utils";
+import { cn, generateSlug } from "@/lib/utils";
 import { MediaCardType } from "@/types/types";
 import Link from "next/link";
 import { useDirection } from "@radix-ui/react-direction";
@@ -35,7 +35,7 @@ export default function MediaCarousels({
       <CarouselContent className={cn("", className)}>
         {items.map((item, i) => (
           <CarouselItem className="basis-auto" key={item.id}>
-            <Link href={`/anime/${item.dic_title}-${item.id}`}>
+            <Link href={`/anime/${item.id}/${generateSlug(item.dic_title!)}`}>
               <MediaCard data={item} />
             </Link>
           </CarouselItem>

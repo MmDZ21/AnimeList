@@ -46,26 +46,9 @@ import {
 import SubtitleWrapper from "@/components/anime/SubtitleWrapper";
 import DownloadWrapper from "@/components/anime/DownloadWrapper";
 
-// Next.js will invalidate the cache when a
-// request comes in, at most once every 60 seconds.
-export const revalidate = 60;
 
-// We'll prerender only the params from `generateStaticParams` at build time.
-// If a request comes in for a path that hasn't been generated,
-// Next.js will server-render the page on-demand.
-export const dynamicParams = true; // or false, to 404 on unknown paths
-
-// export async function generateStaticParams() {
-//   const { data } = await query({ query: GetAnimeById, variables:{id:} });
-//   let animeShows: Anime[] =
-//   return animeShows.map((anime) => ({
-//     nameId: anime.id + anime.dic_title,
-//   }));
-// }
-
-export default async function page({ params }: { params: { nameId: string } }) {
-  const id = params.nameId.split("-").pop() as string;
-
+export default async function page({ params }: { params: { id: string, slug: string } }) {
+  const {id} = params
   const client = getClient();
 
   const { data, error } = await client.query<
