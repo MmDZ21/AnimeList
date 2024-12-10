@@ -1,0 +1,5 @@
+query GetAnimeGenres{
+    genres: anime_categories{
+        ...AnimeGenreFragment
+    }
+}

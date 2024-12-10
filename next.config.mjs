@@ -9,6 +9,6 @@ export default bundleAnalyzer({
     optimizePackageImports: ["@radix-ui"],
   },
   images: {
-    domains: ['dev-api.alplayer.ir'],
+    domains: ['dev-api.alplayer.ir', 'anilist.top'],
   },
 });

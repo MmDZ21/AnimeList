@@ -2,8 +2,29 @@ import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { genres } from "@/constants";
 import CategoryCard from "@/components/layout/cards/CategoryCard";
+import { getClient } from "@/lib/apolloClient";
+import { GetAnimeGenresDocument, GetAnimeGenresQuery } from "@/generated/graphql";
 
-export default function page() {
+export default async function page() {
+  const client = getClient();
+  
+  const { data, error } = await client.query<
+    GetAnimeGenresQuery
+  >({
+    query: GetAnimeGenresDocument,
+  });
+
+  if (error) {
+    console.error("Error fetching genres data:", error);
+    return <p>Error loading genres data.</p>;
+  }
+
+  const genres = data?.genres;
+
+  if (!genres) {
+    return <p>Genres not found.</p>;
+  }
+
   return (
     <div className="w-full flex flex-col gap-6 px-4 lg:px-16 py-6">
       <h1 className="font-bold text-2xl">دسته‌بندی‌ها</h1>
@@ -57,7 +78,7 @@ export default function page() {
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 py-5">
               {genres.map((genre, i) => (
                 <CategoryCard
-                  key={genre.title}
+                  key={genre.id}
                   category={genre}
                   priority={i === 0 ? true : false}
                 />

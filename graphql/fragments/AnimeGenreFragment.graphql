@@ -1,0 +1,7 @@
+fragment AnimeGenreFragment on AnimeGenre {
+    id
+    name_fa
+    name_en
+    slug
+    backdrop
+}
