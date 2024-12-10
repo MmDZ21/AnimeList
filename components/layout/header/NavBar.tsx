@@ -207,7 +207,7 @@ export default function NavBar() {
                       <div className="grid grid-cols-3 gap-4">
                         {menuItems.map((item) => (
                           <Link
-                            href="#"
+                            href="/genres"
                             key={item.label}
                             className="w-44 h-10 rounded hover:bg-background flex items-center justify-center text-base font-medium"
                           >
