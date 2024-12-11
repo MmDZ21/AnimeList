@@ -5,9 +5,10 @@ import { PreloadQuery } from '@/lib/apolloClient';
 import {
   GetSeasonalAnimesDocument,
 } from '@/generated/graphql';
+import MediaCarouselSkeleton from '../Skeletons/MediaCarouselSkeleton';
 
 export default function SeasonalAnimes() {
-  // console.log(GetSeasonalAnimesDocument)
+
   return (
     <PreloadQuery
       query={GetSeasonalAnimesDocument}
@@ -20,7 +21,7 @@ export default function SeasonalAnimes() {
           description="لیستی از بهترین انیمه‌های این فصل"
           className="lg:-mt-28"
         >
-      <Suspense fallback={<p>Loading trending anime...</p>}>
+      <Suspense fallback={<MediaCarouselSkeleton length={10}/>}>
           <MediaCarousels
           />
       </Suspense>
