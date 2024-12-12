@@ -36,6 +36,7 @@ import { Suspense } from "react";
 import { GetSeasonalAnimesDocument } from "@/generated/graphql";
 import MediaCardSkeleton from "@/components/layout/Skeletons/MediaCardSkeleton";
 import MediaCarouselSkeleton from "@/components/layout/Skeletons/MediaCarouselSkeleton";
+import EpisodeCarouselSkeleton from "@/components/layout/Skeletons/EpisodeCarouselSkeleton";
 
 export default async function HomePage() {
   return (
@@ -67,7 +68,6 @@ export default async function HomePage() {
         </PreloadQuery>
         <NewEpisodes />
         <Banners />
-
       </div>
     </div>
   );

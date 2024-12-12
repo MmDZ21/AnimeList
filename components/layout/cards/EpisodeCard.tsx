@@ -12,11 +12,11 @@ export default function EpisodeCard({
   className?: string;
 }) {
   return (
-    <div className="relative flex rounded-lg bg-[#182533] items-center p-2 w-full lg:w-[570px] overflow-hidden">
-      <div className="relative flex gap-3 items-center p-2 w-full min-h-[90px]">
+    <div className="relative flex rounded-lg bg-[#182533] items-center p-2 w-full lg:w-[570px] h-36 overflow-hidden">
+      <div className="relative flex gap-3 items-center p-2 w-full h-full">
         <div
           className={cn(
-            "min-w-[90px] h-full min-h-[88px] relative",
+            "min-w-[90px] h-full min-h-[90px] relative",
             data.type === "userEpisode" && "aspect-[10/15]",
             data.type === "episode" && "aspect-square"
           )}
@@ -28,19 +28,24 @@ export default function EpisodeCard({
             className="object-cover object-center"
           />
         </div>
-        <div className="w-full flex flex-col justify-start gap-4">
-          <div className="space-y-2">
-            <h6 className="text-sm font-semibold lg:text-base lg:font-bold">
-              {data.name}
-            </h6>
-            <div className="flex gap-2 items-center text-base font-medium">
-              <Image
-                src="/svg/episode.svg"
-                width={24}
-                height={24}
-                alt="episode"
-              />
-              قسمت {data.episode}
+        <div className="w-full flex flex-col justify-between gap-4 h-full min-h-[90px]">
+          <div className="flex w-full justify-between items-start">
+            <div className="space-y-2">
+              <h6 className="text-sm font-semibold lg:text-base lg:font-bold">
+                {data.name}
+              </h6>
+              <div className="flex gap-2 items-center text-base font-medium">
+                <Image
+                  src="/svg/episode.svg"
+                  width={24}
+                  height={24}
+                  alt="episode"
+                />
+                قسمت {data.episode}
+              </div>
+            </div>
+            <div className="w-[31.25%] h-full self-start flex justify-end items-start font-medium text-sm text-[#979CA6]">
+              {data.time}
             </div>
           </div>
           {data.type === "userEpisode" && (
@@ -93,9 +98,6 @@ export default function EpisodeCard({
               </div>
             )}
           </div>
-        </div>
-        <div className="w-[31.25%] h-full self-start flex justify-end items-start font-medium text-sm text-[#979CA6]">
-          {data.time}
         </div>
       </div>
 
