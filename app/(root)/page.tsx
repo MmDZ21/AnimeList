@@ -10,8 +10,7 @@ import SeasonalAnimes from "@/components/layout/sections/SeasonalAnimes";
 // // import SummerAnime from "@/components/layout/sections/SummerAnime";
 // // import Trending from "@/components/layout/sections/trending";
 const MediaCarousels = dynamic(
-  () => import("@/components/layout/carousels/MediaCarousels"),
-  { ssr: false }
+  () => import("@/components/layout/carousels/MediaCarousels")
 );
 const Banners = dynamic(() => import("@/components/layout/sections/banners"));
 const NewEpisodes = dynamic(

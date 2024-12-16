@@ -48,7 +48,7 @@ import DownloadWrapper from "@/components/anime/DownloadWrapper";
 
 
 export default async function page({ params }: { params: { id: string, slug: string } }) {
-  const {id} = params
+  const {id} = await params
   const client = getClient();
 
   const { data, error } = await client.query<

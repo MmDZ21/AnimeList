@@ -13,7 +13,7 @@ import {
   vinlandSagaAnime,
 } from "@/constants";
 
-export default function page({
+export default async function page({
   searchParams,
 }: {
   searchParams?: {
@@ -21,7 +21,8 @@ export default function page({
     page?: string;
   };
 }) {
-  const query = searchParams?.query || "";
+  const sp = await searchParams
+  const query = sp?.query || ""
 
   return (
     <div className="min-h-screen w-full flex flex-col gap-6 px-4 lg:px-16 py-6">

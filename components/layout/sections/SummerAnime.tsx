@@ -1,9 +1,7 @@
 import React from "react";
 
 import dynamic from "next/dynamic";
-const MediaCarousels = dynamic(() => import("../carousels/MediaCarousels"), {
-  ssr: false,
-});
+const MediaCarousels = dynamic(() => import("../carousels/MediaCarousels"));
 import SectionContainer from "./SectionContainer";
 
 export default function SummerAnime() {
