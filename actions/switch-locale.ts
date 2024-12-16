@@ -1,13 +1,13 @@
-"use server";
+// "use server";
 
-import { cookies } from "next/headers";
-import { LANGUAGE_COOKIE } from "../i18n/settings";
+// import { cookies } from "next/headers";
+// import { LANGUAGE_COOKIE } from "../i18n/settings";
 
-export async function switchLocaleAction(value: string) {
-  cookies().set(LANGUAGE_COOKIE, value);
+// export async function switchLocaleAction(value: string) {
+//   cookies().set(LANGUAGE_COOKIE, value);
 
-  // It does not matter what we return here
-  return {
-    status: "success",
-  };
-}
+//   // It does not matter what we return here
+//   return {
+//     status: "success",
+//   };
+// }
