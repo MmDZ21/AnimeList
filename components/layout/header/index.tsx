@@ -2,7 +2,7 @@ import React from "react";
 
 import Logo from "./Logo";
 import NavBar from "./NavBar";
-import ChangeLocale from "@/components/common/ChangeLocale";
+// import ChangeLocale from "@/components/common/ChangeLocale";
 import Search from "./Search";
 import LoginBtn from "./LoginBtn";
 import SubscriptionBtn from "./SubscriptionBtn";
@@ -63,7 +63,7 @@ export default function Header() {
       {/* login */}
       {/* subscription */}
       <div className="hidden lg:flex items-center gap-6">
-        <ChangeLocale />
+        {/* <ChangeLocale /> */}
         <Search />
         <Separator orientation="vertical" className="h-4" />
         <div className="flex items-center gap-3">
