@@ -47,7 +47,7 @@ import SubtitleWrapper from "@/components/anime/SubtitleWrapper";
 import DownloadWrapper from "@/components/anime/DownloadWrapper";
 
 
-export default async function page({ params }: { params: { id: string, slug: string } }) {
+export default async function page({ params }: { params: Promise<{ id: string, slug: string }> }) {
   const {id} = await params
   const client = getClient();
 
