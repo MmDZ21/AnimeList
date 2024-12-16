@@ -1,4 +1,4 @@
-import ChangeLocale from "@/components/common/ChangeLocale";
+// import ChangeLocale from "@/components/common/ChangeLocale";
 
 import Image from "next/image";
 
@@ -10,7 +10,7 @@ export default function AuthLayout({
   return (
     <div className="relative min-h-screen">
       <div className="absolute z-30 right-4 top-4">
-        <ChangeLocale />
+        {/* <ChangeLocale /> */}
       </div>
       <div className="bg-login bg-cover bg-center lg:hidden absolute inset-0 z-0"></div>
       <div className="absolute lg:hidden inset-0 z-10 dark:bg-gradient-to-t dark:from-background dark:via-background dark:to-background/0"></div>
