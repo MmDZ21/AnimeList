@@ -16,10 +16,10 @@ import {
 export default async function page({
   searchParams,
 }: {
-  searchParams?: {
+  searchParams?: Promise<{
     query?: string;
     page?: string;
-  };
+  }>
 }) {
   const sp = await searchParams
   const query = sp?.query || ""
