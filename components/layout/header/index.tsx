@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 
 import Logo from "./Logo";
 import NavBar from "./NavBar";
@@ -64,7 +64,9 @@ export default function Header() {
       {/* subscription */}
       <div className="hidden lg:flex items-center gap-6">
         {/* <ChangeLocale /> */}
+        <Suspense>
         <Search />
+        </Suspense>
         <Separator orientation="vertical" className="h-4" />
         <div className="flex items-center gap-3">
           <LoginBtn />
