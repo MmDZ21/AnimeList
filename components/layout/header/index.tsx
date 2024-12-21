@@ -51,7 +51,9 @@ export default function Header() {
               />
             </svg>
           </Link>
+          <Suspense>
           <Search />
+          </Suspense>
           <Profile />
         </div>
       </div>
