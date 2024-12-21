@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { getLocale } from "../i18n/server";
+// import { getLocale } from "../i18n/server";
 import localFont from "next/font/local";
 import { ApolloWrapper } from "@/components/ApolloWrapper";
 import { LocaleProvider } from "../hooks/locale-provider";
