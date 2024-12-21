@@ -7,7 +7,7 @@ import { ApolloWrapper } from "@/components/ApolloWrapper";
 import { LocaleProvider } from "../hooks/locale-provider";
 import { Locales } from "@/i18n/settings";
 import DirProvider from "@/components/DirProvider";
-
+import { SpeedInsights } from "@vercel/speed-insights/next"
 // Define the expected type for the parameters
 // interface MetadataParams {
 //   params: {
@@ -171,6 +171,7 @@ export default async function GlobalLayout({
             >
               <DirProvider dir="rtl">
                 {children}
+                <SpeedInsights />
               </DirProvider>
             </ThemeProvider>
           {/* </LocaleProvider> */}
