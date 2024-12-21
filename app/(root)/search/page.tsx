@@ -26,8 +26,9 @@ export default async function page({
 
   return (
     <div className="min-h-screen w-full flex flex-col gap-6 px-4 lg:px-16 py-6">
-      <Search placeholder="دنبال چی می‌گردی؟ انیمه، دراما، سریال، فیلم و ..." />
-      <Recent />
+<Suspense>
+<Search placeholder="دنبال چی می‌گردی؟ انیمه، دراما، سریال، فیلم و ..." />
+</Suspense>      <Recent />
       {/* <Result
         data={{
           animeShows: [

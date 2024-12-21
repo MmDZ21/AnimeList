@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Filters from "@/components/search/advanced/Filters";
 import Result from "@/components/search/advanced/Result";
@@ -52,8 +52,10 @@ export default function page() {
           </TabsTrigger>
         </TabsList>
         <TabsContent value="anime">
-          <Filters />
-          <Result />
+<Suspense>
+<Filters />
+<Result />
+</Suspense>
         </TabsContent>
         <TabsContent value="donghua"></TabsContent>
         <TabsContent value="movie"></TabsContent>
