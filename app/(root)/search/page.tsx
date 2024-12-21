@@ -19,16 +19,17 @@ export default async function page({
   searchParams?: Promise<{
     query?: string;
     page?: string;
-  }>
+  }>;
 }) {
-  const sp = await searchParams
-  const query = sp?.query || ""
+  const sp = await searchParams;
+  const query = sp?.query || "";
 
   return (
     <div className="min-h-screen w-full flex flex-col gap-6 px-4 lg:px-16 py-6">
-<Suspense>
-<Search placeholder="دنبال چی می‌گردی؟ انیمه، دراما، سریال، فیلم و ..." />
-</Suspense>      <Recent />
+      <Suspense>
+        <Search placeholder="دنبال چی می‌گردی؟ انیمه، دراما، سریال، فیلم و ..." />
+      </Suspense>{" "}
+      <Recent />
       {/* <Result
         data={{
           animeShows: [
