@@ -20,6 +20,7 @@ import Trailers from "./Trailers";
 import Download from "./Download";
 import Subtitle from "./Subtitle";
 import Comments from "./Comments";
+import AnimeHeroSkeleton from "@/components/layout/Skeletons/AnimeHeroSkeleton";
 
 export const revalidate = 3600;
 
@@ -39,7 +40,7 @@ export default async function page({
   const { id } = await params;
   return (
     <div className="min-h-screen w-full flex flex-col">
-      <Suspense>
+      <Suspense fallback={<AnimeHeroSkeleton/>}>
         <HeroImage id={id} />
       </Suspense>
       <div className="w-full flex flex-col justify-center max-w-[1280px] mx-auto z-20 gap-6">
