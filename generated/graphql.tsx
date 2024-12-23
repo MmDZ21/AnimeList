@@ -1512,7 +1512,15 @@ export type GetAnimeByIdQueryVariables = Exact<{
 }>;
 
 
-export type GetAnimeByIdQuery = { __typename?: 'Query', anime?: { __typename?: 'Anime', id: string, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, mal_popularity?: number | null, al_score?: number | null, al_score_count?: number | null, wide_image?: string | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, dic_episodes?: string | null, anime_links: Array<{ __typename?: 'DbAnimeLinks', link?: string | null, quality?: string | null, id: string, size?: string | null, ep?: string | null, subtitle_link?: string | null }>, genres: Array<{ __typename?: 'AnimeGenre', id: string, name_fa?: string | null }>, trailers: Array<{ __typename?: 'AnimeTrailer', title?: string | null, online_play?: string | null }>, recommendations: Array<{ __typename?: 'AnimeRecommendation', recommendation: { __typename?: 'Anime', id: string, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, mal_popularity?: number | null, al_score?: number | null, al_score_count?: number | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, dic_episodes?: string | null, genres: Array<{ __typename?: 'AnimeGenre', id: string, name_fa?: string | null }> } }>, relations: Array<{ __typename?: 'AnimeRelation', type?: string | null, relation?: string | null, relationship: { __typename?: 'Anime', id: string } }>, characters: Array<{ __typename?: 'CharacterDetail', character_role?: string | null, person_role?: string | null, character?: { __typename?: 'AnimeCharacter', id: string, name?: string | null, image_url?: string | null } | null, person?: { __typename?: 'AnimePerson', id: string, name?: string | null, hometown?: string | null, image_url?: string | null } | null }> } | null, exclusiveSubtitles: { __typename?: 'SubPaginator', data: Array<{ __typename?: 'Sub', id: string, user_id: string, title?: string | null, to_episode?: string | null, from_episode?: string | null, body?: string | null, link_file?: string | null }> }, userSubtitles: { __typename?: 'SubPaginator', data: Array<{ __typename?: 'Sub', id: string, user_id: string, title?: string | null, to_episode?: string | null, from_episode?: string | null, body?: string | null, link_file?: string | null }> }, comments: { __typename?: 'CommentPaginator', data: Array<{ __typename?: 'Comment', id: string, body?: string | null, user_id?: string | null, created_at?: string | null, spoil?: number | null, replies_count: number, user?: { __typename?: 'User', id: string, name?: string | null, avatar?: string | null } | null, replies: Array<{ __typename?: 'Comment', id: string, body?: string | null, user_id?: string | null, created_at?: string | null, spoil?: number | null, replies_count: number, user?: { __typename?: 'User', id: string, name?: string | null, avatar?: string | null } | null, replies: Array<{ __typename?: 'Comment', id: string, body?: string | null, user_id?: string | null, created_at?: string | null, spoil?: number | null, replies_count: number, user?: { __typename?: 'User', id: string, name?: string | null, avatar?: string | null } | null }> }> }> } };
+export type GetAnimeByIdQuery = { __typename?: 'Query', anime?: { __typename?: 'Anime', id: string, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, mal_popularity?: number | null, al_score?: number | null, al_score_count?: number | null, wide_image?: string | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, dic_episodes?: string | null, anime_links: Array<{ __typename?: 'DbAnimeLinks', link?: string | null, quality?: string | null, id: string, size?: string | null, ep?: string | null, subtitle_link?: string | null }>, genres: Array<{ __typename?: 'AnimeGenre', id: string, name_fa?: string | null }>, trailers: Array<{ __typename?: 'AnimeTrailer', title?: string | null, online_play?: string | null }>, recommendations: Array<{ __typename?: 'AnimeRecommendation', recommendation: { __typename?: 'Anime', id: string, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, mal_popularity?: number | null, al_score?: number | null, al_score_count?: number | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, dic_episodes?: string | null, genres: Array<{ __typename?: 'AnimeGenre', id: string, name_fa?: string | null }> } }>, relations: Array<{ __typename?: 'AnimeRelation', type?: string | null, relation?: string | null, relationship: { __typename?: 'Anime', id: string } }>, characters: Array<{ __typename?: 'CharacterDetail', character_role?: string | null, person_role?: string | null, character?: { __typename?: 'AnimeCharacter', id: string, name?: string | null, image_url?: string | null } | null, person?: { __typename?: 'AnimePerson', id: string, name?: string | null, hometown?: string | null, image_url?: string | null } | null }> } | null };
+
+export type GetAnimeCommentsQueryVariables = Exact<{
+  first: Scalars['Int']['input'];
+  id?: InputMaybe<Scalars['ID']['input']>;
+}>;
+
+
+export type GetAnimeCommentsQuery = { __typename?: 'Query', comments: { __typename?: 'CommentPaginator', data: Array<{ __typename?: 'Comment', id: string, body?: string | null, user_id?: string | null, created_at?: string | null, spoil?: number | null, replies_count: number, user?: { __typename?: 'User', id: string, name?: string | null, avatar?: string | null } | null, replies: Array<{ __typename?: 'Comment', id: string, body?: string | null, user_id?: string | null, created_at?: string | null, spoil?: number | null, replies_count: number, user?: { __typename?: 'User', id: string, name?: string | null, avatar?: string | null } | null, replies: Array<{ __typename?: 'Comment', id: string, body?: string | null, user_id?: string | null, created_at?: string | null, spoil?: number | null, replies_count: number, user?: { __typename?: 'User', id: string, name?: string | null, avatar?: string | null } | null }> }> }> } };
 
 export type GetAnimeGenresQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -1525,6 +1533,15 @@ export type GetSeasonalAnimesQueryVariables = Exact<{
 
 
 export type GetSeasonalAnimesQuery = { __typename?: 'Query', animesSeason: { __typename?: 'AnimePaginator', paginatorInfo: { __typename?: 'PaginatorInfo', count: number }, data: Array<{ __typename?: 'Anime', id: string, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, mal_popularity?: number | null, al_score?: number | null, al_score_count?: number | null, wide_image?: string | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, dic_episodes?: string | null, anime_links: Array<{ __typename?: 'DbAnimeLinks', link?: string | null, quality?: string | null, id: string, size?: string | null, ep?: string | null, subtitle_link?: string | null }>, genres: Array<{ __typename?: 'AnimeGenre', id: string, name_fa?: string | null }>, trailers: Array<{ __typename?: 'AnimeTrailer', title?: string | null, online_play?: string | null }>, recommendations: Array<{ __typename?: 'AnimeRecommendation', recommendation: { __typename?: 'Anime', id: string, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, mal_popularity?: number | null, al_score?: number | null, al_score_count?: number | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, dic_episodes?: string | null, genres: Array<{ __typename?: 'AnimeGenre', id: string, name_fa?: string | null }> } }>, relations: Array<{ __typename?: 'AnimeRelation', type?: string | null, relation?: string | null, relationship: { __typename?: 'Anime', id: string } }>, characters: Array<{ __typename?: 'CharacterDetail', character_role?: string | null, person_role?: string | null, character?: { __typename?: 'AnimeCharacter', id: string, name?: string | null, image_url?: string | null } | null, person?: { __typename?: 'AnimePerson', id: string, name?: string | null, hometown?: string | null, image_url?: string | null } | null }> }> } };
+
+export type GetSubtitlesQueryVariables = Exact<{
+  anime_id: Scalars['ID']['input'];
+  type: Scalars['Int']['input'];
+  first: Scalars['Int']['input'];
+}>;
+
+
+export type GetSubtitlesQuery = { __typename?: 'Query', subtitles: { __typename?: 'SubPaginator', data: Array<{ __typename?: 'Sub', id: string, user_id: string, title?: string | null, to_episode?: string | null, from_episode?: string | null, body?: string | null, link_file?: string | null }> } };
 
 export const RecommendationsFragmentFragmentDoc = gql`
     fragment RecommendationsFragment on Anime {
@@ -1737,25 +1754,8 @@ export const GetAnimeByIdDocument = gql`
   anime: anime(id: $id) {
     ...AnimeFragment
   }
-  exclusiveSubtitles: subtitles(anime_id: $id, type: 2, first: 30) {
-    data {
-      ...SubtitlesFragment
-    }
-  }
-  userSubtitles: subtitles(anime_id: $id, type: 1, first: 30) {
-    data {
-      ...SubtitlesFragment
-    }
-  }
-  comments: animeComments(first: 10, parent_id: 0, type: "anime", id: $id) {
-    data {
-      ...CommentsFragment
-    }
-  }
 }
-    ${AnimeFragmentFragmentDoc}
-${SubtitlesFragmentFragmentDoc}
-${CommentsFragmentFragmentDoc}`;
+    ${AnimeFragmentFragmentDoc}`;
 
 /**
  * __useGetAnimeByIdQuery__
@@ -1781,14 +1781,57 @@ export function useGetAnimeByIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptio
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<GetAnimeByIdQuery, GetAnimeByIdQueryVariables>(GetAnimeByIdDocument, options);
         }
-export function useGetAnimeByIdSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetAnimeByIdQuery, GetAnimeByIdQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
+export function useGetAnimeByIdSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetAnimeByIdQuery, GetAnimeByIdQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
           return Apollo.useSuspenseQuery<GetAnimeByIdQuery, GetAnimeByIdQueryVariables>(GetAnimeByIdDocument, options);
         }
 export type GetAnimeByIdQueryHookResult = ReturnType<typeof useGetAnimeByIdQuery>;
 export type GetAnimeByIdLazyQueryHookResult = ReturnType<typeof useGetAnimeByIdLazyQuery>;
 export type GetAnimeByIdSuspenseQueryHookResult = ReturnType<typeof useGetAnimeByIdSuspenseQuery>;
 export type GetAnimeByIdQueryResult = Apollo.QueryResult<GetAnimeByIdQuery, GetAnimeByIdQueryVariables>;
+export const GetAnimeCommentsDocument = gql`
+    query GetAnimeComments($first: Int!, $id: ID) {
+  comments: animeComments(first: $first, parent_id: 0, type: "anime", id: $id) {
+    data {
+      ...CommentsFragment
+    }
+  }
+}
+    ${CommentsFragmentFragmentDoc}`;
+
+/**
+ * __useGetAnimeCommentsQuery__
+ *
+ * To run a query within a React component, call `useGetAnimeCommentsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAnimeCommentsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAnimeCommentsQuery({
+ *   variables: {
+ *      first: // value for 'first'
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetAnimeCommentsQuery(baseOptions: Apollo.QueryHookOptions<GetAnimeCommentsQuery, GetAnimeCommentsQueryVariables> & ({ variables: GetAnimeCommentsQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetAnimeCommentsQuery, GetAnimeCommentsQueryVariables>(GetAnimeCommentsDocument, options);
+      }
+export function useGetAnimeCommentsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAnimeCommentsQuery, GetAnimeCommentsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetAnimeCommentsQuery, GetAnimeCommentsQueryVariables>(GetAnimeCommentsDocument, options);
+        }
+export function useGetAnimeCommentsSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetAnimeCommentsQuery, GetAnimeCommentsQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetAnimeCommentsQuery, GetAnimeCommentsQueryVariables>(GetAnimeCommentsDocument, options);
+        }
+export type GetAnimeCommentsQueryHookResult = ReturnType<typeof useGetAnimeCommentsQuery>;
+export type GetAnimeCommentsLazyQueryHookResult = ReturnType<typeof useGetAnimeCommentsLazyQuery>;
+export type GetAnimeCommentsSuspenseQueryHookResult = ReturnType<typeof useGetAnimeCommentsSuspenseQuery>;
+export type GetAnimeCommentsQueryResult = Apollo.QueryResult<GetAnimeCommentsQuery, GetAnimeCommentsQueryVariables>;
 export const GetAnimeGenresDocument = gql`
     query GetAnimeGenres {
   genres: anime_categories {
@@ -1820,8 +1863,8 @@ export function useGetAnimeGenresLazyQuery(baseOptions?: Apollo.LazyQueryHookOpt
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<GetAnimeGenresQuery, GetAnimeGenresQueryVariables>(GetAnimeGenresDocument, options);
         }
-export function useGetAnimeGenresSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetAnimeGenresQuery, GetAnimeGenresQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
+export function useGetAnimeGenresSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetAnimeGenresQuery, GetAnimeGenresQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
           return Apollo.useSuspenseQuery<GetAnimeGenresQuery, GetAnimeGenresQueryVariables>(GetAnimeGenresDocument, options);
         }
 export type GetAnimeGenresQueryHookResult = ReturnType<typeof useGetAnimeGenresQuery>;
@@ -1865,11 +1908,55 @@ export function useGetSeasonalAnimesLazyQuery(baseOptions?: Apollo.LazyQueryHook
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<GetSeasonalAnimesQuery, GetSeasonalAnimesQueryVariables>(GetSeasonalAnimesDocument, options);
         }
-export function useGetSeasonalAnimesSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetSeasonalAnimesQuery, GetSeasonalAnimesQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
+export function useGetSeasonalAnimesSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetSeasonalAnimesQuery, GetSeasonalAnimesQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
           return Apollo.useSuspenseQuery<GetSeasonalAnimesQuery, GetSeasonalAnimesQueryVariables>(GetSeasonalAnimesDocument, options);
         }
 export type GetSeasonalAnimesQueryHookResult = ReturnType<typeof useGetSeasonalAnimesQuery>;
 export type GetSeasonalAnimesLazyQueryHookResult = ReturnType<typeof useGetSeasonalAnimesLazyQuery>;
 export type GetSeasonalAnimesSuspenseQueryHookResult = ReturnType<typeof useGetSeasonalAnimesSuspenseQuery>;
 export type GetSeasonalAnimesQueryResult = Apollo.QueryResult<GetSeasonalAnimesQuery, GetSeasonalAnimesQueryVariables>;
+export const GetSubtitlesDocument = gql`
+    query GetSubtitles($anime_id: ID!, $type: Int!, $first: Int!) {
+  subtitles: subtitles(anime_id: $anime_id, type: $type, first: $first) {
+    data {
+      ...SubtitlesFragment
+    }
+  }
+}
+    ${SubtitlesFragmentFragmentDoc}`;
+
+/**
+ * __useGetSubtitlesQuery__
+ *
+ * To run a query within a React component, call `useGetSubtitlesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetSubtitlesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetSubtitlesQuery({
+ *   variables: {
+ *      anime_id: // value for 'anime_id'
+ *      type: // value for 'type'
+ *      first: // value for 'first'
+ *   },
+ * });
+ */
+export function useGetSubtitlesQuery(baseOptions: Apollo.QueryHookOptions<GetSubtitlesQuery, GetSubtitlesQueryVariables> & ({ variables: GetSubtitlesQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetSubtitlesQuery, GetSubtitlesQueryVariables>(GetSubtitlesDocument, options);
+      }
+export function useGetSubtitlesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetSubtitlesQuery, GetSubtitlesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetSubtitlesQuery, GetSubtitlesQueryVariables>(GetSubtitlesDocument, options);
+        }
+export function useGetSubtitlesSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetSubtitlesQuery, GetSubtitlesQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetSubtitlesQuery, GetSubtitlesQueryVariables>(GetSubtitlesDocument, options);
+        }
+export type GetSubtitlesQueryHookResult = ReturnType<typeof useGetSubtitlesQuery>;
+export type GetSubtitlesLazyQueryHookResult = ReturnType<typeof useGetSubtitlesLazyQuery>;
+export type GetSubtitlesSuspenseQueryHookResult = ReturnType<typeof useGetSubtitlesSuspenseQuery>;
+export type GetSubtitlesQueryResult = Apollo.QueryResult<GetSubtitlesQuery, GetSubtitlesQueryVariables>;

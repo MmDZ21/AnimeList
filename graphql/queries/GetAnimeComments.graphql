@@ -1,0 +1,7 @@
+query GetAnimeComments($first: Int!, $id : ID){
+      comments: animeComments(first:$first, parent_id:0, type: "anime", id:$id){
+    data{
+     ...CommentsFragment
+    }
+  }
+}

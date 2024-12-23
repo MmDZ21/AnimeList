@@ -1,0 +1,7 @@
+query GetSubtitles($anime_id : ID!, $type:Int!, $first: Int!) {
+      subtitles: subtitles(anime_id: $anime_id, type: $type, first: $first) {
+    data {
+      ...SubtitlesFragment
+    }
+  }
+}
