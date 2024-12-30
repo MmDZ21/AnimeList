@@ -15,7 +15,7 @@ export const { getClient, query, PreloadQuery } = registerApolloClient(() => {
       // (this does not work if you are rendering your page with `export const dynamic = "force-static"`)
       fetchOptions: { 
         next: {
-          revalidate: 86400
+          revalidate: 3600
         }
        },
     }),

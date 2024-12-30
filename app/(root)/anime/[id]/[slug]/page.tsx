@@ -25,20 +25,20 @@ import { generateSlug } from "@/lib/utils";
 
 export const revalidate = 86400
 
-// export async function generateStaticParams() {
-//   const client = getClient();
-//   const { data } = await client.query<GetSeasonalAnimesQuery, GetSeasonalAnimesQueryVariables>({
-//     query: GetSeasonalAnimesDocument,
-//   variables:{
-//     first:30
-//   }
-//   });
+export async function generateStaticParams() {
+  const client = getClient();
+  const { data } = await client.query<GetSeasonalAnimesQuery, GetSeasonalAnimesQueryVariables>({
+    query: GetSeasonalAnimesDocument,
+  variables:{
+    first:30
+  }
+  });
 
-//   return data.animesSeason.data.map((anime) => ({
-//     id: anime.id,
-//     slug: generateSlug(anime.dic_title!),
-//   }));
-// }
+  return data.animesSeason.data.map((anime) => ({
+    id: anime.id,
+    slug: generateSlug(anime.dic_title!),
+  }));
+}
 export default async function page({
   params,
 }: {
