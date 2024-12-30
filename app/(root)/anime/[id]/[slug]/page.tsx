@@ -12,7 +12,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import CommentForm from "@/components/forms/comment";
 import WatchOnline from "@/components/buttons/WatchOnline";
 import { Button } from "@/components/ui/button";
-import HeroImage from "./HeroImage";
 import { Preview } from "./Preview";
 import Recommendations from "./Recommendations";
 import Characters from "./Characters";
@@ -20,9 +19,10 @@ import Trailers from "./Trailers";
 import Download from "./Download";
 import Subtitle from "./Subtitle";
 import Comments from "./Comments";
-import AnimeHeroSkeleton from "@/components/layout/Skeletons/AnimeHeroSkeleton";
+import { Anime, GetAnimeByIdDocument, GetAnimeByIdQuery, GetAnimeByIdQueryVariables } from "@/generated/graphql";
+import { getClient } from "@/lib/apolloClient";
 
-export const revalidate = 3600;
+export let revalidate = 60 * 60 * 24;
 
 // We'll prerender only the params from `generateStaticParams` at build time.
 // If a request comes in for a path that hasn't been generated,
@@ -38,16 +38,58 @@ export default async function page({
   params: Promise<{ id: string; slug: string }>;
 }) {
   const { id } = await params;
+  const client = getClient();
+
+  const { data, error } = await client.query<
+    GetAnimeByIdQuery,
+    GetAnimeByIdQueryVariables
+  >({
+    query: GetAnimeByIdDocument,
+    variables: { id },
+  });
+
+  if (error) {
+    console.error("Error fetching anime data:", error);
+    return <p>Error loading anime data.</p>;
+  }
+
+  const anime = data?.anime as Anime;
+
+  if (!anime) {
+    return <p>Anime not found.</p>;
+  }
+
+  const desktopSrc = anime.mal_image_url
+    ? "https://dev-api.alplayer.ir" + anime.wide_image
+    : "/svg/imageloader.svg";
+  const mobileSrc = anime.mal_image_url
+    ? "https://dev-api.alplayer.ir" + anime.mal_image_url
+    : anime.anilist_image_url
+    ? "https://dev-api.alplayer.ir" + anime.anilist_image_url
+    : "/svg/imageloader.svg";
+
   return (
     <div className="min-h-screen w-full flex flex-col">
-      <Suspense fallback={<AnimeHeroSkeleton/>}>
-        <HeroImage id={id} />
-      </Suspense>
+    <div className="w-full h-[585px] relative">
+      <Image
+        priority
+        src={mobileSrc}
+        fill
+        alt={anime.dic_title!}
+        className="object-cover lg:hidden"
+      />
+      <Image
+        priority
+        src={desktopSrc}
+        fill
+        alt={anime.dic_title!}
+        className="object-cover hidden lg:block"
+      />
+      <div className="absolute h-1/2 bottom-0 left-0 right-0 z-10 dark:bg-gradient-to-t dark:from-background dark:to-background/0"></div>
+    </div>
       <div className="w-full flex flex-col justify-center max-w-[1280px] mx-auto z-20 gap-6">
         <div className="flex flex-col gap-4 -mt-14">
-          <Suspense>
-            <Preview id={id} />
-          </Suspense>
+            <Preview anime={anime} />
           <div className="w-full block lg:hidden px-4">
             <CustomTabs defaultValue="episodes" className="w-full">
               <CustomTabsList className="w-full dark:bg-transparent border-b border-[hsla(215,20%,65%,0.24)]">
@@ -80,9 +122,7 @@ export default async function page({
                 </div>
               </CustomTabsContent>
               <CustomTabsContent value="similars">
-                <Suspense>
-                  <Recommendations id={id} />
-                </Suspense>
+                  <Recommendations anime={anime} />
               </CustomTabsContent>
               <CustomTabsContent value="staff">
                 <div className="py-2">
@@ -102,9 +142,7 @@ export default async function page({
                       </TabsTrigger>
                     </TabsList>
                     <TabsContent value="characters">
-                      <Suspense>
-                        <Characters id={id} />
-                      </Suspense>
+                        <Characters anime={anime}/>
                     </TabsContent>
                     <TabsContent value="producers">
                       <div className="py-2 flex flex-col gap-2">
@@ -232,9 +270,7 @@ export default async function page({
               </TabsTrigger>
             </TabsList>
             <TabsContent className="py-4" value="trailers">
-              <Suspense>
-                <Trailers id={id} />
-              </Suspense>
+                <Trailers anime={anime} />
             </TabsContent>
             <TabsContent className="py-4" value="download">
               <div className="w-full px-[10px] py-4 bg-[#17212B] flex flex-col gap[10px]">
@@ -244,7 +280,7 @@ export default async function page({
                       باکس دانلود
                     </h5>
                     <TabsTrigger
-                      className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white rounded-lg"
+                      className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
                       value="480p"
                     >
                       480p
@@ -275,29 +311,19 @@ export default async function page({
                     </TabsTrigger>
                   </TabsList>
                   <TabsContent value="480p">
-                    <Suspense>
-                      <Download id={id} quality="480p" />
-                    </Suspense>
+                      <Download anime={anime} quality="480p" />
                   </TabsContent>
                   <TabsContent value="720p">
-                    <Suspense>
-                      <Download id={id} quality="720p" />
-                    </Suspense>
+                      <Download anime={anime}quality="720p" />
                   </TabsContent>
                   <TabsContent value="1080p">
-                    <Suspense>
-                      <Download id={id} quality="1080p" />
-                    </Suspense>
+                      <Download anime={anime} quality="1080p" />
                   </TabsContent>
                   <TabsContent value="720p x265">
-                    <Suspense>
-                      <Download id={id} quality="720p x265" />
-                    </Suspense>
+                      <Download  anime={anime} quality="720p x265" />
                   </TabsContent>
                   <TabsContent value="1080p x265">
-                    <Suspense>
-                      <Download id={id} quality="1080p x265" />
-                    </Suspense>
+                      <Download  anime={anime} quality="1080p x265" />
                   </TabsContent>
                 </Tabs>
               </div>
@@ -323,14 +349,10 @@ export default async function page({
                     </TabsTrigger>
                   </TabsList>
                   <TabsContent value="exclusive">
-                    <Suspense>
                       <Subtitle anime_id={id} type={2} />
-                    </Suspense>
                   </TabsContent>
                   <TabsContent value="sent">
-                    <Suspense>
                       <Subtitle anime_id={id} type={1} />
-                    </Suspense>
                   </TabsContent>
                 </Tabs>
               </div>
@@ -356,9 +378,7 @@ export default async function page({
                     </TabsTrigger>
                   </TabsList>
                   <TabsContent value="characters">
-                    <Suspense>
-                      <Characters id={id} />
-                    </Suspense>
+                      <Characters  anime={anime}/>
                   </TabsContent>
                   <TabsContent value="producers">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -375,18 +395,14 @@ export default async function page({
             </TabsContent>
             <TabsContent value="details"></TabsContent>
             <TabsContent value="similars">
-              <Suspense>
-                <Recommendations id={id} />
-              </Suspense>
+                <Recommendations anime={anime}/>
             </TabsContent>
             <TabsContent value="comments">
               <div className="flex flex-col gap-[14px]">
                 <div className="bg-[#17212B] p-3">
                   <CommentForm />
                 </div>
-                <Suspense>
                   <Comments id={id} />
-                </Suspense>
               </div>
             </TabsContent>
           </Tabs>

@@ -15,34 +15,10 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { ChevronLeftIcon, Cross2Icon } from "@radix-ui/react-icons";
 import Image from "next/image";
-import {
-  GetAnimeByIdDocument,
-  GetAnimeByIdQuery,
-  GetAnimeByIdQueryVariables,
-} from "@/generated/graphql";
-import { getClient } from "@/lib/apolloClient";
+import { Anime, GetAnimeByIdQuery, GetAnimeByIdQueryResult } from "@/generated/graphql";
 
-export const Preview = async ({ id }: { id: string }) => {
-  const client = getClient();
 
-  const { data, error } = await client.query<
-    GetAnimeByIdQuery,
-    GetAnimeByIdQueryVariables
-  >({
-    query: GetAnimeByIdDocument,
-    variables: { id },
-  });
-
-  if (error) {
-    console.error("Error fetching anime data:", error);
-    return <p>Error loading anime data.</p>;
-  }
-
-  const anime = data?.anime;
-
-  if (!anime) {
-    return <p>Anime not found.</p>;
-  }
+export const Preview = async ({anime }: { anime: Anime }) => {
   return (
     <div className="flex lg:gap-4">
       <div className="lg:flex flex-col gap-2 hidden">

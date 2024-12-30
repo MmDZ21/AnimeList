@@ -1,33 +1,11 @@
 import React from "react";
 import {
-  GetAnimeByIdDocument,
-  GetAnimeByIdQuery,
-  GetAnimeByIdQueryVariables,
+  Anime,
 } from "@/generated/graphql";
-import { getClient } from "@/lib/apolloClient";
 import CharacterWrapper from "@/components/anime/CharacterWrapper";
 
-const Characters = async ({ id }: { id: string }) => {
-  const client = getClient();
+const Characters = async ({ anime }: { anime: Anime }) => {
 
-  const { data, error } = await client.query<
-    GetAnimeByIdQuery,
-    GetAnimeByIdQueryVariables
-  >({
-    query: GetAnimeByIdDocument,
-    variables: { id },
-  });
-
-  if (error) {
-    console.error("Error fetching anime data:", error);
-    return <p>Error loading anime data.</p>;
-  }
-
-  const anime = data?.anime;
-
-  if (!anime) {
-    return <p>Anime not found.</p>;
-  }
   return (
     <div
       className="py-2 flex flex-col 
