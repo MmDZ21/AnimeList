@@ -19,19 +19,26 @@ import Trailers from "./Trailers";
 import Download from "./Download";
 import Subtitle from "./Subtitle";
 import Comments from "./Comments";
-import { Anime, GetAnimeByIdDocument, GetAnimeByIdQuery, GetAnimeByIdQueryVariables } from "@/generated/graphql";
+import { Anime, GetAnimeByIdDocument, GetAnimeByIdQuery, GetAnimeByIdQueryVariables, GetSeasonalAnimesDocument, GetSeasonalAnimesQuery, GetSeasonalAnimesQueryVariables } from "@/generated/graphql";
 import { getClient } from "@/lib/apolloClient";
+import { generateSlug } from "@/lib/utils";
 
-export let revalidate = 60 * 60 * 24;
+export const revalidate = 86400
 
-// We'll prerender only the params from `generateStaticParams` at build time.
-// If a request comes in for a path that hasn't been generated,
-// Next.js will server-render the page on-demand.
-export const dynamicParams = true; // or false, to 404 on unknown paths
+export async function generateStaticParams() {
+  const client = getClient();
+  const { data } = await client.query<GetSeasonalAnimesQuery, GetSeasonalAnimesQueryVariables>({
+    query: GetSeasonalAnimesDocument,
+  variables:{
+    first:30
+  }
+  });
 
-// export async function generateStaticParams() {
-//   //for popular and seasonal animes
-// }
+  return data.animesSeason.data.map((anime) => ({
+    id: anime.id,
+    slug: generateSlug(anime.dic_title!),
+  }));
+}
 export default async function page({
   params,
 }: {
