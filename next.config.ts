@@ -5,7 +5,16 @@ const nextConfig: NextConfig = {
   //   ppr: 'incremental',
   // },
   images: {
-    domains: ['dev-api.alplayer.ir', 'anilist.top'],
+    remotePatterns:[
+      {
+        protocol:'https',
+        hostname: 'dev-api.alplayer.ir'
+      },
+      {
+        protocol:'https',
+        hostname: 'anilist.top'
+      }
+    ]
   },
 }
  
