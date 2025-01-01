@@ -19,6 +19,8 @@ import { Anime, GetAnimeByIdQuery, GetAnimeByIdQueryResult } from "@/generated/g
 
 
 export const Preview = async ({anime }: { anime: Anime }) => {
+  console.log(anime.dic_body)
+  console.log(anime)
   return (
     <div className="flex lg:gap-4">
       <div className="lg:flex flex-col gap-2 hidden">
@@ -130,7 +132,7 @@ export const Preview = async ({anime }: { anime: Anime }) => {
           </div>
         </div>
         <div className="flex flex-col gap-4">
-          <div className="text-sm font-medium leading-6">{anime.dic_body}</div>
+          <div className="text-sm font-medium leading-6" dangerouslySetInnerHTML={{__html:anime.dic_body!}}/>
           <div className="flex justify-center items-center">
             <Dialog>
               <DialogTrigger className="lg:hidden">
@@ -151,7 +153,9 @@ export const Preview = async ({anime }: { anime: Anime }) => {
                 <ScrollArea className="h-full">
                   <div className="flex flex-col gap-6 pb-16">
                     <DialogDescription className="text-start leading-[22px] font-medium text-white">
-                      {anime.dic_body}
+                      <p dangerouslySetInnerHTML={{
+                        __html:anime.dic_body!
+                      }}></p>
                       <span className="text-primary-500 ms-1">نمایش بیشتر</span>
                     </DialogDescription>
                     {/* 8 divs */}

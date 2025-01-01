@@ -149,9 +149,7 @@ export default function MediaCard({
               </div>
             </div>
             <p className="font-normal text-sm">{data.dic_episodes} قسمت</p>
-            <p className="text-sm font-medium line-clamp-[8]">
-{data.dic_body}
-            </p>
+            <p className="text-sm font-medium line-clamp-[8]"  dangerouslySetInnerHTML={{__html:data.dic_body!}}/>
           </div>
         </div>
         <div className="flex flex-col gap-1">

@@ -159,8 +159,7 @@ export default function SimilarAnimeWrapper({
               </div>
             </div>
             <p className="font-normal text-sm">{anime.dic_episodes || 0} قسمت</p>
-            <p className="text-sm font-medium line-clamp-[8]">
-            {anime.dic_body}
+            <p className="text-sm font-medium line-clamp-[8]" dangerouslySetInnerHTML={{__html:anime.dic_body!}}>
             </p>
           </div>
         )}

@@ -2,8 +2,6 @@ import AnimeHeroSkeleton from "@/components/layout/Skeletons/AnimeHeroSkeleton";
 import DesktopPreviewSkeleton from "@/components/layout/Skeletons/DesktopPreviewSkeleton";
 import { Skeleton } from "@/components/ui/skeleton";
 import React from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import TrailerSkeleton from "@/components/layout/Skeletons/TrailerSkeleton";
 const loading = () => {
   return (
     <div className="min-h-screen w-full flex flex-col">
