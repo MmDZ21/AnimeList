@@ -25,10 +25,12 @@ export default function SimilarAnimeWrapper({
       <div className={cn("w-full h-[290px] relative", imageClassName)}>
         <Image
           src={getImagePath(anime.mal_image_url, anime.anilist_image_url)}
-          alt={anime.dic_title!}
+          alt={anime.dic_title || "انیمه"}
           fill
           priority={priority}
           className="object-cover object-top rounded"
+          placeholder="blur"
+          blurDataURL="/svg/placeholder.svg"
         />
         {overlay && (
           <div className="absolute bg-[#182533]/95 inset-0 rounded p-3 flex flex-col gap-2 opacity-0 hover:opacity-100 transition-opacity duration-300">

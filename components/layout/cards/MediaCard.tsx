@@ -20,7 +20,7 @@ export default function MediaCard({
             src={
 getImagePath(data.mal_image_url, data.anilist_image_url)
             }
-            alt={data.dic_title!}
+            alt={data.dic_title || "انیمه"}
             fill
             className="rounded object-cover"
           />

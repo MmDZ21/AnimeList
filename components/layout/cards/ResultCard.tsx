@@ -17,7 +17,7 @@ export default function ResultCard({
       <div className="relative w-[100px] h-full shrink-0">
         <Image
           src={getImagePath(data.mal_image_url, data.anilist_image_url)}
-          alt={data.dic_title!}
+          alt={data.dic_title || "انیمه"}
           fill
           priority={index === 0 ? true : false}
           className="object-cover object-center rounded "

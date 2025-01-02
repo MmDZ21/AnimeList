@@ -30,7 +30,7 @@ export const Preview = async ({anime }: { anime: Anime }) => {
             src={
 getImagePath(anime.mal_image_url, anime.anilist_image_url)
             }
-            alt={anime.dic_title!}
+            alt={anime.dic_title || "انیمه"}
             fill
             className="object-cover rounded"
           />
@@ -87,7 +87,7 @@ getImagePath(anime.mal_image_url, anime.anilist_image_url)
                         src={
 getImagePath(anime.mal_image_url, anime.anilist_image_url)
                         }
-                        alt={anime.dic_title!}
+                        alt={anime.dic_title || "انیمه"}
                         fill
                         className="object-contain"
                       />
