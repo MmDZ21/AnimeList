@@ -21,7 +21,7 @@ import Subtitle from "./Subtitle";
 import Comments from "./Comments";
 import { Anime, GetAnimeByIdDocument, GetAnimeByIdQuery, GetAnimeByIdQueryVariables, GetSeasonalAnimesDocument, GetSeasonalAnimesQuery, GetSeasonalAnimesQueryVariables } from "@/generated/graphql";
 import { getClient } from "@/lib/apolloClient";
-import { generateSlug } from "@/lib/utils";
+import { generateSlug, getImagePath } from "@/lib/utils";
 
 export const revalidate = 86400
 
@@ -66,14 +66,8 @@ export default async function page({
     return <p>Anime not found.</p>;
   }
 
-  const desktopSrc = anime.mal_image_url
-    ? "https://dev-api.alplayer.ir" + anime.wide_image
-    : "/svg/imageloader.svg";
-  const mobileSrc = anime.mal_image_url
-    ? "https://dev-api.alplayer.ir" + anime.mal_image_url
-    : anime.anilist_image_url
-    ? "https://dev-api.alplayer.ir" + anime.anilist_image_url
-    : "/svg/imageloader.svg";
+  const desktopSrc = getImagePath(anime.wide_image, null)
+  const mobileSrc = getImagePath(anime.mal_image_url, anime.anilist_image_url)
 
   return (
     <div className="min-h-screen w-full flex flex-col">

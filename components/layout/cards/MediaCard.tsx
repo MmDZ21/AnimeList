@@ -3,6 +3,7 @@ import React from "react";
 import Image from "next/image";
 
 import { AnimeFragmentFragment } from "@/generated/graphql";
+import { getImagePath } from "@/lib/utils";
 
 export default function MediaCard({
   data,
@@ -16,8 +17,10 @@ export default function MediaCard({
       <div className="flex flex-col gap-2 w-full h-full md:p-2">
         <div className="w-full h-full relative">
           <Image
-          src={ data.mal_image_url? "https://dev-api.alplayer.ir"+data.mal_image_url : data.anilist_image_url ? "https://dev-api.alplayer.ir"+data.anilist_image_url : "/images/frieren/cover.webp"}
-          alt={data.dic_title!}
+            src={
+getImagePath(data.mal_image_url, data.anilist_image_url)
+            }
+            alt={data.dic_title!}
             fill
             className="rounded object-cover"
           />
@@ -70,7 +73,9 @@ export default function MediaCard({
                 </svg>
                 <div className="flex gap-1 items-center">
                   <p className="text-sm font-normal">{data.al_score || 0}</p>
-                  <p className="text-xs font-normal opacity-65">{data.al_score_count ? `(${data.al_score_count})` : `(0)`}</p>
+                  <p className="text-xs font-normal opacity-65">
+                    {data.al_score_count ? `(${data.al_score_count})` : `(0)`}
+                  </p>
                 </div>
               </div>
               <div className="flex gap-1 items-center">
@@ -145,17 +150,24 @@ export default function MediaCard({
                     />
                   </defs>
                 </svg>
-                <p className="text-sm font-bold">{data.anilist_score + "%" || "0%"}</p>
+                <p className="text-sm font-bold">
+                  {data.anilist_score + "%" || "0%"}
+                </p>
               </div>
             </div>
             <p className="font-normal text-sm">{data.dic_episodes} قسمت</p>
-            <p className="text-sm font-medium line-clamp-[8]"  dangerouslySetInnerHTML={{__html:data.dic_body!}}/>
+            <div
+              className="text-sm font-medium line-clamp-[8]"
+              dangerouslySetInnerHTML={{ __html: data.dic_body! }}
+            />
           </div>
         </div>
         <div className="flex flex-col gap-1">
-<div className="flex justify-start">
-<h6 dir="ltr" className="text-base font-bold truncate">{data.dic_title}</h6>
-</div>
+          <div className="flex justify-start">
+            <h6 dir="ltr" className="text-base font-bold truncate">
+              {data.dic_title}
+            </h6>
+          </div>
           <p className="text-xs font-normal text-[#979CA6] lg:text-sm lg:text-white">
             زیرنویس چسبیده | پخش آنلاین
           </p>

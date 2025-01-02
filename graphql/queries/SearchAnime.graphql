@@ -1,0 +1,11 @@
+query SearchAnime(
+  $query: String
+  $orderBy: [QueryAnimeSearchOrderByOrderByClause!]
+  $first: Int!
+) {
+  animeSearch(query: $query, orderBy: $orderBy, first: $first) {
+    data {
+      ...AnimeFragment
+    }
+  }
+}

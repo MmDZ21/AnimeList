@@ -16,6 +16,7 @@ import { Separator } from "@/components/ui/separator";
 import { ChevronLeftIcon, Cross2Icon } from "@radix-ui/react-icons";
 import Image from "next/image";
 import { Anime, GetAnimeByIdQuery, GetAnimeByIdQueryResult } from "@/generated/graphql";
+import { getImagePath } from "@/lib/utils";
 
 
 export const Preview = async ({anime }: { anime: Anime }) => {
@@ -27,11 +28,7 @@ export const Preview = async ({anime }: { anime: Anime }) => {
         <div className="relative w-[220px] h-[288px]">
           <Image
             src={
-              anime.mal_image_url
-                ? "https://dev-api.alplayer.ir" + anime.mal_image_url
-                : anime.anilist_image_url
-                ? "https://dev-api.alplayer.ir" + anime.anilist_image_url
-                : "/images/frieren/cover.webp"
+getImagePath(anime.mal_image_url, anime.anilist_image_url)
             }
             alt={anime.dic_title!}
             fill
@@ -88,13 +85,7 @@ export const Preview = async ({anime }: { anime: Anime }) => {
                     <div className="relative h-48 w-full">
                       <Image
                         src={
-                          anime.mal_image_url
-                            ? "https://dev-api.alplayer.ir" +
-                              anime.mal_image_url
-                            : anime.anilist_image_url
-                            ? "https://dev-api.alplayer.ir" +
-                              anime.anilist_image_url
-                            : "/images/frieren/cover.webp"
+getImagePath(anime.mal_image_url, anime.anilist_image_url)
                         }
                         alt={anime.dic_title!}
                         fill
@@ -153,9 +144,9 @@ export const Preview = async ({anime }: { anime: Anime }) => {
                 <ScrollArea className="h-full">
                   <div className="flex flex-col gap-6 pb-16">
                     <DialogDescription className="text-start leading-[22px] font-medium text-white">
-                      <p dangerouslySetInnerHTML={{
+                      <div dangerouslySetInnerHTML={{
                         __html:anime.dic_body!
-                      }}></p>
+                      }}></div>
                       <span className="text-primary-500 ms-1">نمایش بیشتر</span>
                     </DialogDescription>
                     {/* 8 divs */}

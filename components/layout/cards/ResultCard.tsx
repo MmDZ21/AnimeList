@@ -1,5 +1,6 @@
 import { Separator } from "@/components/ui/separator";
 import { RecommendationsFragmentFragment } from "@/generated/graphql";
+import { getImagePath } from "@/lib/utils";
 import { Anime } from "@/types/types";
 import Image from "next/image";
 import React from "react";
@@ -12,10 +13,10 @@ export default function ResultCard({
   index?: number;
 }) {
   return (
-    <div className="flex gap-4 h-[140px] w-full lg:bg-[#17212B] lg:p-2 lg:rounded-lg lg:h-[160px]">
+    <div className="flex gap-4 h-[140px] w-full lg:w-[410px] lg:bg-[#17212B] lg:p-2 lg:rounded-lg lg:h-[160px] ">
       <div className="relative w-[100px] h-full shrink-0">
         <Image
-          src={data.mal_image_url? "https://dev-api.alplayer.ir"+data.mal_image_url : data.anilist_image_url ? "https://dev-api.alplayer.ir"+data.anilist_image_url : "/images/frieren/cover.webp"}
+          src={getImagePath(data.mal_image_url, data.anilist_image_url)}
           alt={data.dic_title!}
           fill
           priority={index === 0 ? true : false}
@@ -27,7 +28,7 @@ export default function ResultCard({
           <div className="flex justify-start items-center">
             <h3
               dir="ltr"
-              className="truncate text-start text-white text-base font-bold"
+              className="line-clamp-1 text-start text-white text-base font-bold"
             >
               {data.dic_title}
             </h3>
@@ -59,7 +60,7 @@ export default function ResultCard({
           </div>
           <div className="flex gap-1">
             <p className="text-xs font-medium text-[#0EA774]">
-              {/* {data.type === "series" ? "سریالی" : "سینمایی"} */}
+              {data.__typename === "Anime" ? "سریالی" : "سینمایی"}
             </p>
             <Separator orientation="vertical" className="h-3" />
             <p className="text-xs font-medium text-[#979CA6]">پخش آنلاین</p>

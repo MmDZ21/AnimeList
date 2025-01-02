@@ -1,31 +1,67 @@
 import React from "react";
-import Image from "next/image";
-import { Anime, Character, CharacterWithVoice, User } from "@/types/types";
+
 import ResultCard from "@/components/layout/cards/ResultCard";
 import SimilarAnimeWrapper from "@/components/anime/SimilarAnimeWrapper";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import CharacterWrapper from "@/components/anime/CharacterWrapper";
 import BlogCard from "@/components/layout/cards/BlogCard";
-import { CharactersFragmentFragment, RecommendationsFragmentFragment } from "@/generated/graphql";
+import { getClient } from "@/lib/apolloClient";
+import {
+  Anime,
+  QueryAnimeSearchOrderByColumn,
+  SearchAnimeDocument,
+  SearchAnimeQuery,
+  SearchAnimeQueryVariables,
+  SortOrder,
+} from "@/generated/graphql";
 
-interface ResultProps {
-  top: RecommendationsFragmentFragment[];
-  animeShows: RecommendationsFragmentFragment[];
-  movies: RecommendationsFragmentFragment[];
-  dramas: RecommendationsFragmentFragment[];
-  series: RecommendationsFragmentFragment[];
-  characters: CharactersFragmentFragment[];
-  blog: {
-    user: User;
-    createdAt: string;
-    title: string;
-    image: string;
-  }[];
-}
+import { blog1, blog2, blog3 } from "@/constants";
+import Link from "next/link";
+import { generateSlug } from "@/lib/utils";
 
-export default function Result({ data }: { data: ResultProps }) {
+export default async function Result({ query }: { query: string }) {
+  if (!query) {
+    // Avoid fetching when the query is empty
+    return;
+  }
+  const client = getClient();
+  const { data, error } = await client.query<
+    SearchAnimeQuery,
+    SearchAnimeQueryVariables
+  >({
+    query: SearchAnimeDocument,
+    variables: {
+      query,
+      first: 4,
+      orderBy: [
+        {
+          column: QueryAnimeSearchOrderByColumn.PostHit,
+          order: SortOrder.Desc,
+        },
+      ],
+    },
+  });
+
+  if (error) {
+    console.error("Error fetching anime data:", error);
+    return <p>Error loading anime data.</p>;
+  }
+  const animes= data?.animeSearch.data as Anime[]
+  if(animes.length === 0){
+    return <p>نتیجه‌ای یافت نشد</p>
+  }
+  const top = animes
+  const dramas = animes
+  const series = animes
+  const movies = animes
+  const characters = animes[0].characters
+  const blogs = [blog1, blog2, blog3]
+
+  if (!animes) {
+    return <p>Anime not found.</p>;
+  }
   return (
-    <div className="lg:flex justify-between w-full">
+    <div className="lg:flex justify-between w-full gap-8">
       <div className="flex flex-col w-full lg:gap-6 lg:w-4/5">
         <div
           id="top-result"
@@ -35,14 +71,14 @@ export default function Result({ data }: { data: ResultProps }) {
             برترین نتایج
           </h2>
           <div className="flex flex-col gap-2 w-full lg:hidden">
-            {data.top.map((show, i) => (
-              <ResultCard key={i} data={show} index={i} />
+            {top.map((show, i) => (
+              <Link href={`/anime/${show.id}/${generateSlug(show.dic_title!)}`} key={i}><ResultCard data={show} index={i} /></Link>
             ))}
           </div>
-          <div className="hidden lg:flex gap-2 w-full">
-            {data.top.map((show, i) => (
+          <div className="hidden lg:flex gap-2 lg:flex-wrap">
+            {top.map((show, i) => (
+               <Link href={`/anime/${show.id}/${generateSlug(show.dic_title!)}`} key={i}>
               <SimilarAnimeWrapper
-                key={i}
                 anime={show}
                 className="w-[280px] p-2 h-[460px]"
                 imageClassName="h-[400px]"
@@ -50,6 +86,7 @@ export default function Result({ data }: { data: ResultProps }) {
                 overlay
                 priority={i === 0 ? true : false}
               />
+              </Link>
             ))}
           </div>
         </div>
@@ -68,8 +105,8 @@ export default function Result({ data }: { data: ResultProps }) {
               <ArrowLeftIcon className="size-6 text-[#979CA6]" />
             </div>
           </div>
-          <div className="flex flex-col gap-2 w-full lg:grid lg:grid-cols-3 lg:grid-rows-2 lg:gap-y-6 lg:gap-x-4">
-            {data.animeShows.map((show, i) => (
+          <div className="flex flex-col gap-2 w-full lg:flex lg:flex-wrap lg:flex-row">
+            {animes.map((show, i) => (
               <ResultCard key={i} data={show} />
             ))}
           </div>
@@ -80,7 +117,7 @@ export default function Result({ data }: { data: ResultProps }) {
             <p className="text-xs font-medium text-primary-500">مشاهده همه</p>
           </div>
           <div className="flex flex-col gap-2 w-full">
-            {data.dramas.map((show, i) => (
+            {dramas.map((show, i) => (
               <ResultCard key={i} data={show} />
             ))}
           </div>
@@ -91,7 +128,7 @@ export default function Result({ data }: { data: ResultProps }) {
             <p className="text-xs font-medium text-primary-500">مشاهده همه</p>
           </div>
           <div className="flex flex-col gap-2 w-full">
-            {data.series.map((show, i) => (
+            {series.map((show, i) => (
               <ResultCard key={i} data={show} />
             ))}
           </div>
@@ -102,7 +139,7 @@ export default function Result({ data }: { data: ResultProps }) {
             <p className="text-xs font-medium text-primary-500">مشاهده همه</p>
           </div>
           <div className="flex flex-col gap-2 w-full">
-            {data.movies.map((show, i) => (
+            {movies.map((show, i) => (
               <ResultCard key={i} data={show} />
             ))}
           </div>
@@ -126,7 +163,7 @@ export default function Result({ data }: { data: ResultProps }) {
             </div>
           </div>
           <div className="flex flex-col gap-2 w-full lg:grid lg:grid-cols-3 lg:grid-rows-2 lg:gap-y-2 lg:gap-x-2">
-            {data.characters.map((character, i) => (
+            {characters.map((character, i) => (
               <CharacterWrapper
                 characterWithVoice={character}
                 key={i}
@@ -136,11 +173,11 @@ export default function Result({ data }: { data: ResultProps }) {
           </div>
         </div>
       </div>
-      <div className="w-1/6 hidden lg:flex flex-col gap-6">
+      <div className="w-1/6 min-w-[260px] hidden lg:flex flex-col gap-6">
         <h2 className="text-base font-medium lg:text-2xl lg:font-bold">
           اخبار و مقالات مرتبط
         </h2>
-        {data.blog.map((blog, i) => (
+        {blogs.map((blog, i) => (
           <BlogCard blog={blog} key={i} />
         ))}
       </div>

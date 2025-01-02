@@ -2,7 +2,7 @@
 import Image from "next/image";
 import React from "react";
 import { Separator } from "../ui/separator";
-import { cn } from "@/lib/utils";
+import { cn, getImagePath } from "@/lib/utils";
 import { RecommendationsFragmentFragment } from "@/generated/graphql";
 
 export default function SimilarAnimeWrapper({
@@ -24,7 +24,7 @@ export default function SimilarAnimeWrapper({
     <div className={cn("w-full h-[344px] flex flex-col gap-2", className)}>
       <div className={cn("w-full h-[290px] relative", imageClassName)}>
         <Image
-          src={anime.mal_image_url? "https://dev-api.alplayer.ir"+anime.mal_image_url : anime.anilist_image_url ? "https://dev-api.alplayer.ir"+anime.anilist_image_url : "/images/frieren/cover.webp"}
+          src={getImagePath(anime.mal_image_url, anime.anilist_image_url)}
           alt={anime.dic_title!}
           fill
           priority={priority}
@@ -159,8 +159,8 @@ export default function SimilarAnimeWrapper({
               </div>
             </div>
             <p className="font-normal text-sm">{anime.dic_episodes || 0} قسمت</p>
-            <p className="text-sm font-medium line-clamp-[8]" dangerouslySetInnerHTML={{__html:anime.dic_body!}}>
-            </p>
+            <div className="text-sm font-medium line-clamp-[8]" dangerouslySetInnerHTML={{__html:anime.dic_body!}}>
+            </div>
           </div>
         )}
       </div>

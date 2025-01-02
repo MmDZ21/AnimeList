@@ -13,6 +13,10 @@ const nextConfig: NextConfig = {
       {
         protocol:'https',
         hostname: 'anilist.top'
+      },
+      {
+        protocol:'https',
+        hostname: 'cdn.myanimelist.net'
       }
     ]
   },

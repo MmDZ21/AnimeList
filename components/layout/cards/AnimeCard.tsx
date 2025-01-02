@@ -1,5 +1,6 @@
 import WatchOnline from "@/components/buttons/WatchOnline";
 import { AnimeFragmentFragment } from "@/generated/graphql";
+import { getImagePath } from "@/lib/utils";
 import Image from "next/image";
 import React from "react";
 
@@ -8,7 +9,7 @@ export default function AnimeCard({ data }: { data: AnimeFragmentFragment }) {
     <div className="flex flex-col gap-3 w-full">
       <div className="relative w-full h-[235px]">
         <Image
-          src={"https://dev-api.alplayer.ir"+data.mal_image_url || "https://dev-api.alplayer.ir"+data.anilist_image_url || "/images/frieren/cover.webp"}
+          src={getImagePath(data.mal_image_url, data.anilist_image_url)}
           alt={data.dic_title!}
           fill
           className="rounded object-cover object-center"
