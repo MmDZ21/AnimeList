@@ -1,4 +1,11 @@
-// "use server";
+"use server";
+
+import { signIn } from "@/auth";
+
+export default async function login(formData: FormData) {
+   formData.append('redirectTo', '/dashboard');
+    await signIn("credentials", formData)
+  }
 
 // import { LOGIN_MUTATION } from "@/graphql/mutations/login";
 // import { makeClient } from "@/lib/apollo-login";

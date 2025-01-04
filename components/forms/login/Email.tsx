@@ -26,6 +26,7 @@ import {
 } from "@/components/ui/card";
 // import { login } from "@/actions/login";
 import router from "next/router";
+import login from "@/actions/login";
 
 const Email = () => {
   const [isPending, setIsPending] = useState(false);
@@ -38,57 +39,57 @@ const Email = () => {
     },
   });
 
-  async function onSubmit(values: z.infer<typeof emailLoginSchema>) {
-    setIsPending(true);
-    try {
-      const response = await fetch(process.env.NEXT_PUBLIC_AUTH_URL as string, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userName: values.email,
-          password: values.password,
-          rememberMe: values.rememberMe,
-        }),
-      });
+  // async function onSubmit(values: z.infer<typeof emailLoginSchema>) {
+  //   setIsPending(true);
+  //   try {
+  //     const response = await fetch(process.env.NEXT_PUBLIC_AUTH_URL as string, {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         userName: values.email,
+  //         password: values.password,
+  //         rememberMe: values.rememberMe,
+  //       }),
+  //     });
 
-      if (!response.ok) {
-        const errorData = await response.json(); // Assuming the server returns JSON with error details
+  //     if (!response.ok) {
+  //       const errorData = await response.json(); // Assuming the server returns JSON with error details
 
-        if (errorData.errors) {
-          // Loop over each error and set the corresponding form field error
-          errorData.errors.forEach(
-            (error: { field: string; message: string }) => {
-              form.setError(
-                error.field as keyof z.infer<typeof emailLoginSchema>,
-                {
-                  type: "server",
-                  message: error.message,
-                }
-              );
-            }
-          );
-        } else {
-          // Generic error handling if no specific field errors
-          form.setError("root", {
-            type: "server",
-            message: "An unexpected error occurred.",
-          });
-        }
-      } else {
-        // If successful, redirect or handle success
-        router.push("/");
-      }
-    } catch (error) {
-      form.setError("root", {
-        type: "server",
-        message: "Network error. Please try again.",
-      });
-    } finally {
-      setIsPending(false);
-    }
-  }
+  //       if (errorData.errors) {
+  //         // Loop over each error and set the corresponding form field error
+  //         errorData.errors.forEach(
+  //           (error: { field: string; message: string }) => {
+  //             form.setError(
+  //               error.field as keyof z.infer<typeof emailLoginSchema>,
+  //               {
+  //                 type: "server",
+  //                 message: error.message,
+  //               }
+  //             );
+  //           }
+  //         );
+  //       } else {
+  //         // Generic error handling if no specific field errors
+  //         form.setError("root", {
+  //           type: "server",
+  //           message: "An unexpected error occurred.",
+  //         });
+  //       }
+  //     } else {
+  //       // If successful, redirect or handle success
+  //       router.push("/");
+  //     }
+  //   } catch (error) {
+  //     form.setError("root", {
+  //       type: "server",
+  //       message: "Network error. Please try again.",
+  //     });
+  //   } finally {
+  //     setIsPending(false);
+  //   }
+  // }
 
   return (
     <Card className="z-30 rounded-none max-w-sm border-0 text-slate-950 shadow-none dark:border-0 dark:bg-transparent dark:text-slate-50 w-full">
@@ -106,7 +107,8 @@ const Email = () => {
             <Form {...form}>
               <form
                 className="flex flex-col gap-4 w-full"
-                onSubmit={form.handleSubmit(onSubmit)}
+                // onSubmit={form.handleSubmit(onSubmit)}
+                action={login}
               >
                 <FormField
                   control={form.control}

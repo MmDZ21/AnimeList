@@ -1,0 +1,7 @@
+mutation RefreshToken($input: RefreshTokenInput){
+  refreshToken(input:$input){
+    access_token
+    refresh_token
+    expires_in
+  }
+}
