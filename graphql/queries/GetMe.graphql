@@ -1,7 +1,5 @@
 query GetMe{
   me{
-    id
-    name
-    email
+...UserFragment
   }
 }

@@ -1,6 +1,9 @@
 fragment UserFragment on User {
-  id
-  name
-  email
-  avatar
+    id
+    name
+    email
+    avatar
+    expire_date
+    isVIP
+    favoriteCount
 }

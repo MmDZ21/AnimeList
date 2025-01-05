@@ -1498,14 +1498,14 @@ export type RepliesSecondFragmentFragment = { __typename?: 'Comment', id: string
 
 export type SubtitlesFragmentFragment = { __typename?: 'Sub', id: string, user_id: string, title?: string | null, to_episode?: string | null, from_episode?: string | null, body?: string | null, link_file?: string | null };
 
-export type UserFragmentFragment = { __typename?: 'User', id: string, name?: string | null, email?: string | null, avatar?: string | null };
+export type UserFragmentFragment = { __typename?: 'User', id: string, name?: string | null, email?: string | null, avatar?: string | null, expire_date?: string | null, isVIP?: boolean | null, favoriteCount: number };
 
 export type LoginMutationVariables = Exact<{
   input: LoginInput;
 }>;
 
 
-export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'AuthPayload', access_token?: string | null, expires_in?: number | null, refresh_token?: string | null, token_type?: string | null, user?: { __typename?: 'User', id: string, name?: string | null, email?: string | null, avatar?: string | null } | null } };
+export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'AuthPayload', access_token?: string | null, expires_in?: number | null, refresh_token?: string | null, token_type?: string | null, user?: { __typename?: 'User', id: string, name?: string | null, email?: string | null, avatar?: string | null, expire_date?: string | null, isVIP?: boolean | null, favoriteCount: number } | null } };
 
 export type RefreshTokenMutationVariables = Exact<{
   input?: InputMaybe<RefreshTokenInput>;
@@ -1537,7 +1537,7 @@ export type GetAnimeGenresQuery = { __typename?: 'Query', genres: Array<{ __type
 export type GetMeQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetMeQuery = { __typename?: 'Query', me: { __typename?: 'User', id: string, name?: string | null, email?: string | null } };
+export type GetMeQuery = { __typename?: 'Query', me: { __typename?: 'User', id: string, name?: string | null, email?: string | null, avatar?: string | null, expire_date?: string | null, isVIP?: boolean | null, favoriteCount: number } };
 
 export type GetSeasonalAnimesQueryVariables = Exact<{
   first: Scalars['Int']['input'];
@@ -1730,6 +1730,9 @@ export const UserFragmentFragmentDoc = gql`
   name
   email
   avatar
+  expire_date
+  isVIP
+  favoriteCount
 }
     `;
 export const LoginDocument = gql`
@@ -1931,12 +1934,10 @@ export type GetAnimeGenresQueryResult = Apollo.QueryResult<GetAnimeGenresQuery, 
 export const GetMeDocument = gql`
     query GetMe {
   me {
-    id
-    name
-    email
+    ...UserFragment
   }
 }
-    `;
+    ${UserFragmentFragmentDoc}`;
 
 /**
  * __useGetMeQuery__

@@ -1032,7 +1032,7 @@ export const kusuriyaSubtitle: Subtitle = {
 export const vinlandSagaSubtitle: Subtitle = {
   episode: {
     animeTitle: "Vinland Saga Season 2",
-    episodeTitle: "Episode 14",
+    episodeTitle: "Episode 13",
     episodeNumber: 14,
     preview: "/images/vinlandSub.webp",
     files: [
