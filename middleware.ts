@@ -96,6 +96,7 @@ export function updateCookie(
 export const middleware: NextMiddleware = async (request: NextRequest) => {
 	const token = await getToken({ req: request, secret:process.env.AUTH_SECRET});
   console.log("middleware token is: "+ JSON.stringify(token))
+  console.log("session is: ", SESSION_SECURE, SESSION_COOKIE)
 	const isAuthenticated = !!token;
 
 	let response = NextResponse.next();
