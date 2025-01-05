@@ -1,11 +1,10 @@
 import RouteWrapper from "@/components/dashboard/RouteWrapper";
 import UserInfo from "@/components/dashboard/UserInfo";
 import UserInfoSkeleton from "@/components/layout/Skeletons/UserInfoSkeleton";
-import { dawn } from "@/constants";
-
 import Image from "next/image";
 import React, { Suspense } from "react";
 
+export const dynamic = "force-dynamic"
 export default async function DashboardLayout({
   children,
 }: {
@@ -24,9 +23,9 @@ export default async function DashboardLayout({
         <div className="absolute h-1/2 lg:h-full bottom-0 left-0 right-0 z-10 dark:bg-gradient-to-t dark:from-background dark:to-background/0"></div>
       </div>
       <div className="w-full flex flex-col items-center gap-4 lg:gap-6 max-w-[1280px] pb-4 -mt-12 lg:-mt-44 z-20 lg:px-4">
-        <Suspense fallback={<UserInfoSkeleton/>}>
+          <Suspense fallback={<UserInfoSkeleton/>}>
           <UserInfo/>
-        </Suspense>
+          </Suspense>
         <RouteWrapper>{children}</RouteWrapper>
       </div>
     </div>
