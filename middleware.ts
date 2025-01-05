@@ -6,7 +6,7 @@ import { getAuthClient } from "./lib/apolloClient";
 export const SIGNIN_SUB_URL = "/login";
 export const SESSION_TIMEOUT = 600; // 10 mins
 export const TOKEN_REFRESH_BUFFER_SECONDS = 10;
-const SESSION_SECURE = process.env.NEXTAUTH_URL?.startsWith('https://');
+const SESSION_SECURE = process.env.AUTH_URL?.startsWith('https://');
 const SESSION_COOKIE = SESSION_SECURE ? '__Secure-authjs.session-token' : 'authjs.session-token';
 
 let isRefreshing = false;
