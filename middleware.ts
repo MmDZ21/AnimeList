@@ -26,7 +26,7 @@ export async function refreshAccessToken(token: JWT): Promise<JWT> {
 	isRefreshing = true;
 
 	try {
-    const { data, errors } = await getAuthClient().mutate<
+    const { data, errors} = await getAuthClient().mutate<
     RefreshTokenMutation,
     RefreshTokenMutationVariables
   >({
@@ -39,6 +39,7 @@ export async function refreshAccessToken(token: JWT): Promise<JWT> {
   });
 
 		if (errors || !data?.refreshToken) {
+			console.log("there was an error ...")
 			throw new Error(`Token refresh failed with status: ${errors}`);
 		}
     

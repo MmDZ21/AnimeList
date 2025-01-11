@@ -1,10 +1,11 @@
+import React from "react";
 import { GetMeDocument, GetMeQuery } from "@/generated/graphql";
 import { getAuthClient } from "@/lib/apolloClient";
 import { delay, getDaysToExpire, getImagePath } from "@/lib/utils";
 import Image from "next/image";
-import React from "react";
 
-const UserInfo = async () => {
+export default async function UserInfo() {
+  await delay(2000)
   const client = getAuthClient();
   const { data, error } = await client.query<GetMeQuery>({
     query: GetMeDocument,
@@ -81,6 +82,4 @@ const UserInfo = async () => {
       </div>
     </div>
   );
-};
-
-export default UserInfo;
+}

@@ -4,7 +4,7 @@ import UserInfoSkeleton from "@/components/layout/Skeletons/UserInfoSkeleton";
 import Image from "next/image";
 import React, { Suspense } from "react";
 
-export const dynamic = "force-dynamic"
+
 export default async function DashboardLayout({
   children,
 }: {

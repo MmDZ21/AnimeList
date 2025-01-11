@@ -5,7 +5,7 @@ import TicketCard from "@/components/layout/cards/TicketCard";
 import { dawn } from "@/constants";
 import React from "react";
 
-export default function page() {
+export default async function page() {
   return (
     <>
       <div className="flex flex-col gap-4 lg:hidden">

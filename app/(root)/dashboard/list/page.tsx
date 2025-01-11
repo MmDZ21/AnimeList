@@ -4,9 +4,10 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { dawn } from "@/constants";
 
 import { columns } from "@/components/dashboard/list/columns";
-import { DataTable } from "@/components/ui/data-table";
+import { DataTable } from "@/components/ui/data-table"
 
 export default async function page() {
+
   return (
     <>
       <Tabs className="w-full lg:hidden" defaultValue="anime">

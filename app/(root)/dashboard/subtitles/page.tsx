@@ -4,7 +4,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { dawn } from "@/constants";
 import SubtitleCard from "@/components/layout/cards/SubtitleCard";
 
-export default function page() {
+export default async function page() {
   return (
     <>
       <Tabs className="w-full" defaultValue="exclusive">
