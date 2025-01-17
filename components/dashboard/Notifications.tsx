@@ -4,7 +4,7 @@ import { dawn } from "@/constants";
 
 import React from "react";
 
-export default async function page() {
+export default async function Notifications() {
   return (
     <>
       <div className="flex flex-col gap-4 lg:hidden">

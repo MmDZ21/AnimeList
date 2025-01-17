@@ -6,7 +6,7 @@ import { dawn } from "@/constants";
 import { columns } from "@/components/dashboard/list/columns";
 import { DataTable } from "@/components/ui/data-table"
 
-export default async function page() {
+export default async function List() {
 
   return (
     <>

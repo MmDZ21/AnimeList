@@ -5,7 +5,7 @@ import { delay, getDaysToExpire, getImagePath } from "@/lib/utils";
 import Image from "next/image";
 
 export default async function UserInfo() {
-  await delay(2000)
+  // await delay(2000)
   const client = getAuthClient();
   const { data, error } = await client.query<GetMeQuery>({
     query: GetMeDocument,
@@ -31,7 +31,7 @@ export default async function UserInfo() {
           src={getImagePath(user.avatar, null)}
           fill
           className="object-cover rounded-lg object-center"
-          alt={user.name!}
+          alt={user.name || "name"}
         />
       </div>
       <div className="flex flex-col gap-1 items-center lg:items-start">

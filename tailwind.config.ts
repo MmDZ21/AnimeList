@@ -91,6 +91,16 @@ const config = {
             height: "0",
           },
         },
+        "fade-right": {
+          from: {
+            opacity: "0",
+            transform: "translateX(2rem)"
+          },
+          to: {
+            opacity: "1",
+            transform: "translateX(0)"
+          }
+        }
       },
       animation: {
         "caret-blink": "caret-blink 1.25s ease-out infinite",
@@ -98,6 +108,7 @@ const config = {
         "fade-out": "fade-out 0.3s ",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "fade-right": "fade-right 0.5s ease"
       },
     },
   },
