@@ -5,7 +5,6 @@ import { delay, getDaysToExpire, getImagePath } from "@/lib/utils";
 import Image from "next/image";
 
 export default async function UserInfo() {
-  // await delay(2000)
   const client = getAuthClient();
   const { data, error } = await client.query<GetMeQuery>({
     query: GetMeDocument,
