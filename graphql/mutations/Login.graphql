@@ -4,8 +4,8 @@ mutation Login($input: LoginInput!) {
     expires_in
     refresh_token
     token_type
-    user {
-      ...UserFragment
+    user{
+      ...UserInfoFragment
     }
   }
 }

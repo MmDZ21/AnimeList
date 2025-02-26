@@ -1,9 +1,22 @@
-import ActivityStatus from "@/components/dashboard/ActivityStatus";
-import Bio from "@/components/dashboard/Bio";
 import React from "react";
-import { dawn } from "@/constants";
-import SubtitleCard from "@/components/layout/cards/SubtitleCard";
-export default function Home() {
+import { GetUserInfoDocument, GetUserInfoQuery, GetUserStatusDocument, GetUserStatusQuery } from "@/generated/graphql";
+import { getAuthClient } from "@/lib/apolloClient";
+import { averageScore, delay, getDaysToExpire, getImagePath, watchTime } from "@/lib/utils";
+import Image from "next/image";
+import Bio from "./Bio";
+import ActivityStatus from "./ActivityStatus";
+import { fetchDashboardData } from "@/actions/fetchDashboardData";
+
+export default async function Dashboard() {
+  const data = await fetchDashboardData();
+  const user = data.me;
+
+  if (!user) {
+    return <p>User not found.</p>;
+  }
+
+  const userFavorites = user.favorites.map((fav) => fav.anime);
+  const userScores = user.favorites.map((fav) => fav.score);
   return (
     <>
       <div className="flex flex-col gap-4 lg:flex-row">
@@ -15,16 +28,16 @@ export default function Home() {
         </div>
         <div className="lg:w-3/5">
           <ActivityStatus
-            animeCount={435}
-            animeWatchTime={168}
-            averageScore={82.5}
+            animeCount={user.favoriteCount}
+            animeWatchTime={watchTime(userFavorites)}
+            averageScore={averageScore(userScores)}
           />
           <div className="flex flex-col gap-4 w-full py-4">
             <h2 className="text-base font-bold">آخرین زیرنویس‌های اختصاصی</h2>
             <div className="flex flex-col gap-2 w-full">
-              {dawn.subtitles.map((sub) => (
+              {/* {dawn.subtitles.map((sub) => (
                 <SubtitleCard data={sub} key={sub.episode.episodeTitle} />
-              ))}
+              ))} */}
             </div>
           </div>
         </div>

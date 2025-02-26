@@ -1,0 +1,7 @@
+fragment UserInfoFragment on User {
+    id
+    name
+    avatar
+    expire_date
+    isVIP
+}

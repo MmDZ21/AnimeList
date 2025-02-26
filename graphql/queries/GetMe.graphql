@@ -1,5 +1,10 @@
-query GetMe{
+query GetUserInfo{
   me{
-...UserFragment
+...UserInfoFragment
+  }
+}
+query GetUserStatus{
+  me{
+    ...UserStatusFragment
   }
 }

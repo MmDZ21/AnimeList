@@ -1498,14 +1498,16 @@ export type RepliesSecondFragmentFragment = { __typename?: 'Comment', id: string
 
 export type SubtitlesFragmentFragment = { __typename?: 'Sub', id: string, user_id: string, title?: string | null, to_episode?: string | null, from_episode?: string | null, body?: string | null, link_file?: string | null };
 
-export type UserFragmentFragment = { __typename?: 'User', id: string, name?: string | null, email?: string | null, avatar?: string | null, expire_date?: string | null, isVIP?: boolean | null, favoriteCount: number };
+export type UserInfoFragmentFragment = { __typename?: 'User', id: string, name?: string | null, avatar?: string | null, expire_date?: string | null, isVIP?: boolean | null };
+
+export type UserStatusFragmentFragment = { __typename?: 'User', id: string, favoriteCount: number, favorites: Array<{ __typename?: 'Beloved', score?: string | null, anime: { __typename?: 'Anime', dic_duration?: string | null, dic_episodes?: string | null } }> };
 
 export type LoginMutationVariables = Exact<{
   input: LoginInput;
 }>;
 
 
-export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'AuthPayload', access_token?: string | null, expires_in?: number | null, refresh_token?: string | null, token_type?: string | null, user?: { __typename?: 'User', id: string, name?: string | null, email?: string | null, avatar?: string | null, expire_date?: string | null, isVIP?: boolean | null, favoriteCount: number } | null } };
+export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'AuthPayload', access_token?: string | null, expires_in?: number | null, refresh_token?: string | null, token_type?: string | null, user?: { __typename?: 'User', id: string, name?: string | null, avatar?: string | null, expire_date?: string | null, isVIP?: boolean | null } | null } };
 
 export type RefreshTokenMutationVariables = Exact<{
   input?: InputMaybe<RefreshTokenInput>;
@@ -1534,10 +1536,15 @@ export type GetAnimeGenresQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetAnimeGenresQuery = { __typename?: 'Query', genres: Array<{ __typename?: 'AnimeGenre', id: string, name_fa?: string | null, name_en?: string | null, slug?: string | null, backdrop?: string | null }> };
 
-export type GetMeQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetUserInfoQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetMeQuery = { __typename?: 'Query', me: { __typename?: 'User', id: string, name?: string | null, email?: string | null, avatar?: string | null, expire_date?: string | null, isVIP?: boolean | null, favoriteCount: number } };
+export type GetUserInfoQuery = { __typename?: 'Query', me: { __typename?: 'User', id: string, name?: string | null, avatar?: string | null, expire_date?: string | null, isVIP?: boolean | null } };
+
+export type GetUserStatusQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetUserStatusQuery = { __typename?: 'Query', me: { __typename?: 'User', id: string, favoriteCount: number, favorites: Array<{ __typename?: 'Beloved', score?: string | null, anime: { __typename?: 'Anime', dic_duration?: string | null, dic_episodes?: string | null } }> } };
 
 export type GetSeasonalAnimesQueryVariables = Exact<{
   first: Scalars['Int']['input'];
@@ -1724,15 +1731,26 @@ export const SubtitlesFragmentFragmentDoc = gql`
   link_file
 }
     `;
-export const UserFragmentFragmentDoc = gql`
-    fragment UserFragment on User {
+export const UserInfoFragmentFragmentDoc = gql`
+    fragment UserInfoFragment on User {
   id
   name
-  email
   avatar
   expire_date
   isVIP
+}
+    `;
+export const UserStatusFragmentFragmentDoc = gql`
+    fragment UserStatusFragment on User {
+  id
   favoriteCount
+  favorites {
+    score
+    anime {
+      dic_duration
+      dic_episodes
+    }
+  }
 }
     `;
 export const LoginDocument = gql`
@@ -1743,11 +1761,11 @@ export const LoginDocument = gql`
     refresh_token
     token_type
     user {
-      ...UserFragment
+      ...UserInfoFragment
     }
   }
 }
-    ${UserFragmentFragmentDoc}`;
+    ${UserInfoFragmentFragmentDoc}`;
 export type LoginMutationFn = Apollo.MutationFunction<LoginMutation, LoginMutationVariables>;
 
 /**
@@ -1931,45 +1949,84 @@ export type GetAnimeGenresQueryHookResult = ReturnType<typeof useGetAnimeGenresQ
 export type GetAnimeGenresLazyQueryHookResult = ReturnType<typeof useGetAnimeGenresLazyQuery>;
 export type GetAnimeGenresSuspenseQueryHookResult = ReturnType<typeof useGetAnimeGenresSuspenseQuery>;
 export type GetAnimeGenresQueryResult = Apollo.QueryResult<GetAnimeGenresQuery, GetAnimeGenresQueryVariables>;
-export const GetMeDocument = gql`
-    query GetMe {
+export const GetUserInfoDocument = gql`
+    query GetUserInfo {
   me {
-    ...UserFragment
+    ...UserInfoFragment
   }
 }
-    ${UserFragmentFragmentDoc}`;
+    ${UserInfoFragmentFragmentDoc}`;
 
 /**
- * __useGetMeQuery__
+ * __useGetUserInfoQuery__
  *
- * To run a query within a React component, call `useGetMeQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetMeQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useGetUserInfoQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetUserInfoQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useGetMeQuery({
+ * const { data, loading, error } = useGetUserInfoQuery({
  *   variables: {
  *   },
  * });
  */
-export function useGetMeQuery(baseOptions?: Apollo.QueryHookOptions<GetMeQuery, GetMeQueryVariables>) {
+export function useGetUserInfoQuery(baseOptions?: Apollo.QueryHookOptions<GetUserInfoQuery, GetUserInfoQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetMeQuery, GetMeQueryVariables>(GetMeDocument, options);
+        return Apollo.useQuery<GetUserInfoQuery, GetUserInfoQueryVariables>(GetUserInfoDocument, options);
       }
-export function useGetMeLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetMeQuery, GetMeQueryVariables>) {
+export function useGetUserInfoLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetUserInfoQuery, GetUserInfoQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetMeQuery, GetMeQueryVariables>(GetMeDocument, options);
+          return Apollo.useLazyQuery<GetUserInfoQuery, GetUserInfoQueryVariables>(GetUserInfoDocument, options);
         }
-export function useGetMeSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetMeQuery, GetMeQueryVariables>) {
+export function useGetUserInfoSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetUserInfoQuery, GetUserInfoQueryVariables>) {
           const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<GetMeQuery, GetMeQueryVariables>(GetMeDocument, options);
+          return Apollo.useSuspenseQuery<GetUserInfoQuery, GetUserInfoQueryVariables>(GetUserInfoDocument, options);
         }
-export type GetMeQueryHookResult = ReturnType<typeof useGetMeQuery>;
-export type GetMeLazyQueryHookResult = ReturnType<typeof useGetMeLazyQuery>;
-export type GetMeSuspenseQueryHookResult = ReturnType<typeof useGetMeSuspenseQuery>;
-export type GetMeQueryResult = Apollo.QueryResult<GetMeQuery, GetMeQueryVariables>;
+export type GetUserInfoQueryHookResult = ReturnType<typeof useGetUserInfoQuery>;
+export type GetUserInfoLazyQueryHookResult = ReturnType<typeof useGetUserInfoLazyQuery>;
+export type GetUserInfoSuspenseQueryHookResult = ReturnType<typeof useGetUserInfoSuspenseQuery>;
+export type GetUserInfoQueryResult = Apollo.QueryResult<GetUserInfoQuery, GetUserInfoQueryVariables>;
+export const GetUserStatusDocument = gql`
+    query GetUserStatus {
+  me {
+    ...UserStatusFragment
+  }
+}
+    ${UserStatusFragmentFragmentDoc}`;
+
+/**
+ * __useGetUserStatusQuery__
+ *
+ * To run a query within a React component, call `useGetUserStatusQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetUserStatusQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetUserStatusQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetUserStatusQuery(baseOptions?: Apollo.QueryHookOptions<GetUserStatusQuery, GetUserStatusQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetUserStatusQuery, GetUserStatusQueryVariables>(GetUserStatusDocument, options);
+      }
+export function useGetUserStatusLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetUserStatusQuery, GetUserStatusQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetUserStatusQuery, GetUserStatusQueryVariables>(GetUserStatusDocument, options);
+        }
+export function useGetUserStatusSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetUserStatusQuery, GetUserStatusQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetUserStatusQuery, GetUserStatusQueryVariables>(GetUserStatusDocument, options);
+        }
+export type GetUserStatusQueryHookResult = ReturnType<typeof useGetUserStatusQuery>;
+export type GetUserStatusLazyQueryHookResult = ReturnType<typeof useGetUserStatusLazyQuery>;
+export type GetUserStatusSuspenseQueryHookResult = ReturnType<typeof useGetUserStatusSuspenseQuery>;
+export type GetUserStatusQueryResult = Apollo.QueryResult<GetUserStatusQuery, GetUserStatusQueryVariables>;
 export const GetSeasonalAnimesDocument = gql`
     query GetSeasonalAnimes($first: Int!) {
   animesSeason(first: $first) {

@@ -8,6 +8,10 @@ const nextConfig: NextConfig = {
     remotePatterns:[
       {
         protocol:'https',
+        hostname: 'dev-api.animelist.tv'
+      },
+      {
+        protocol:'https',
         hostname: 'dev-api.alplayer.ir'
       },
       {

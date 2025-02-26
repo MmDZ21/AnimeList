@@ -9,7 +9,7 @@ import {
   UserNotification,
 } from "@/types/types";
 
-import Home from "@/components/dashboard/Home"
+import Dashboard from "@/components/dashboard/Dashboard"
 import List from "@/components/dashboard/List";
 import Subtitles from "@/components/dashboard/Subtitles";
 import Notifications from "@/components/dashboard/Notifications";
@@ -869,7 +869,7 @@ export const eightySixAnime: Anime = {
 };
 
 export const dashboardRoutes = [
-  { value: "dashboard", label: "داشبورد", content: Home },
+  { value: "dashboard", label: "داشبورد", content: Dashboard },
   { value: "list", label: "لیست من" , content: List },
   { value: "subtitles", label: "زیرنویس" , content: Subtitles },
   { value: "notifications", label: "اطلاعیه‌ها", content: Notifications  },

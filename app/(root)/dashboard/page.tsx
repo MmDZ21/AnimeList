@@ -11,6 +11,9 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { dashboardRoutes } from "@/constants";
 import { cn } from "@/lib/utils";
+import Dashboard from "@/components/dashboard/Dashboard";
+
+
 
 export const dynamic = "force-dynamic";
 export default async function Page() {
@@ -19,9 +22,7 @@ export default async function Page() {
       {/* Main Dashboard Content */}
       <div className="w-full flex flex-col items-center gap-4 lg:gap-6 max-w-[1280px] pb-4 -mt-12 lg:-mt-44 z-20 lg:px-4">
         {/* User Info */}
-        <Suspense fallback={<UserInfoSkeleton />}>
           <UserInfo />
-        </Suspense>
         {/* Mobile Tabs (CustomTabs) */}
         <CustomTabs
           defaultValue={dashboardRoutes[0].value}
@@ -49,7 +50,9 @@ export default async function Page() {
               className={cn("", route.value === "settings" && "hidden")}
             >
               <div className="px-4 flex flex-col gap-2 animate-fade-right">
-                <route.content />
+
+<Dashboard />
+
               </div>
             </CustomTabsContent>
           ))}
@@ -75,7 +78,9 @@ export default async function Page() {
           {dashboardRoutes.map((route) => (
             <TabsContent key={route.value} value={route.value}>
               <div className="px-4 flex flex-col gap-4 py-4 lg:px-0 lg:py-2 animate-fade-right">
-                <route.content />
+
+              <Dashboard />
+
               </div>
             </TabsContent>
           ))}

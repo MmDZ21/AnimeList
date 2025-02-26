@@ -1,0 +1,11 @@
+fragment UserStatusFragment on User {
+  id
+  favoriteCount
+  favorites {
+    score
+        anime{
+      dic_duration
+      dic_episodes
+    }
+  }
+}

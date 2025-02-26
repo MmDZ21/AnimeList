@@ -4,7 +4,11 @@ import { signIn } from "@/auth";
 
 export default async function login(formData: FormData) {
    formData.append('redirectTo', '/dashboard');
-    await signIn("credentials", formData)
+    try {
+      await signIn("credentials", formData)
+    } catch (error) {
+      console.log("login error: " + error)
+    }
   }
 
 // import { LOGIN_MUTATION } from "@/graphql/mutations/login";

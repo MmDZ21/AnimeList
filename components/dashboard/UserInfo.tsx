@@ -1,13 +1,13 @@
 import React from "react";
-import { GetMeDocument, GetMeQuery } from "@/generated/graphql";
+import { GetUserInfoDocument, GetUserInfoQuery } from "@/generated/graphql";
 import { getAuthClient } from "@/lib/apolloClient";
 import { delay, getDaysToExpire, getImagePath } from "@/lib/utils";
 import Image from "next/image";
 
 export default async function UserInfo() {
   const client = getAuthClient();
-  const { data, error } = await client.query<GetMeQuery>({
-    query: GetMeDocument,
+  const { data, error } = await client.query<GetUserInfoQuery>({
+    query: GetUserInfoDocument,
   });
 
   if (error) {
