@@ -1498,7 +1498,7 @@ export type RepliesSecondFragmentFragment = { __typename?: 'Comment', id: string
 
 export type SubtitlesFragmentFragment = { __typename?: 'Sub', id: string, user_id: string, title?: string | null, to_episode?: string | null, from_episode?: string | null, body?: string | null, link_file?: string | null };
 
-export type UserInfoFragmentFragment = { __typename?: 'User', id: string, name?: string | null, avatar?: string | null, expire_date?: string | null, isVIP?: boolean | null };
+export type UserInfoFragmentFragment = { __typename?: 'User', id: string, name?: string | null, avatar?: string | null, expire_date?: string | null, isVIP?: boolean | null, email?: string | null };
 
 export type UserStatusFragmentFragment = { __typename?: 'User', id: string, favoriteCount: number, favorites: Array<{ __typename?: 'Beloved', score?: string | null, anime: { __typename?: 'Anime', dic_duration?: string | null, dic_episodes?: string | null } }> };
 
@@ -1507,7 +1507,7 @@ export type LoginMutationVariables = Exact<{
 }>;
 
 
-export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'AuthPayload', access_token?: string | null, expires_in?: number | null, refresh_token?: string | null, token_type?: string | null, user?: { __typename?: 'User', id: string, name?: string | null, avatar?: string | null, expire_date?: string | null, isVIP?: boolean | null } | null } };
+export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'AuthPayload', access_token?: string | null, expires_in?: number | null, refresh_token?: string | null, token_type?: string | null, user?: { __typename?: 'User', id: string, name?: string | null, avatar?: string | null, expire_date?: string | null, isVIP?: boolean | null, email?: string | null } | null } };
 
 export type RefreshTokenMutationVariables = Exact<{
   input?: InputMaybe<RefreshTokenInput>;
@@ -1539,7 +1539,7 @@ export type GetAnimeGenresQuery = { __typename?: 'Query', genres: Array<{ __type
 export type GetUserInfoQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetUserInfoQuery = { __typename?: 'Query', me: { __typename?: 'User', id: string, name?: string | null, avatar?: string | null, expire_date?: string | null, isVIP?: boolean | null } };
+export type GetUserInfoQuery = { __typename?: 'Query', me: { __typename?: 'User', id: string, name?: string | null, avatar?: string | null, expire_date?: string | null, isVIP?: boolean | null, email?: string | null } };
 
 export type GetUserStatusQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -1738,6 +1738,7 @@ export const UserInfoFragmentFragmentDoc = gql`
   avatar
   expire_date
   isVIP
+  email
 }
     `;
 export const UserStatusFragmentFragmentDoc = gql`

@@ -8,8 +8,6 @@ import { setContext } from "@apollo/client/link/context";
 import { cookies } from 'next/headers'
 import {jwtDecode} from "jwt-decode";
 import { auth } from "@/auth";
-import customFetch from "./customFetch";
-
 export const { getClient, query, PreloadQuery } = registerApolloClient(() => {
   return new ApolloClient({
     cache: new InMemoryCache(),

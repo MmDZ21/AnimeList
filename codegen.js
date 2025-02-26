@@ -1,5 +1,5 @@
 // codegen.config.js
-const customFetch = require('./lib/customFetch').default;
+const customFetch = require('./lib/customFetch.js').default;
 
 module.exports = {
   schema: {
