@@ -1,8 +1,5 @@
 import React from "react";
-import { GetUserInfoDocument, GetUserInfoQuery, GetUserStatusDocument, GetUserStatusQuery } from "@/generated/graphql";
-import { getAuthClient } from "@/lib/apolloClient";
-import { averageScore, delay, getDaysToExpire, getImagePath, watchTime } from "@/lib/utils";
-import Image from "next/image";
+import { averageScore, watchTime } from "@/lib/utils";
 import Bio from "./Bio";
 import ActivityStatus from "./ActivityStatus";
 import { fetchDashboardData } from "@/actions/fetchDashboardData";
