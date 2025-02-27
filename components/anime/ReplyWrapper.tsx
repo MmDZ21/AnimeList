@@ -43,7 +43,7 @@ export default function ReplyWrapper({
     ));
   }
 
-  const imageUrl = comment.user?.avatar ? "https://dev-api.animelist.tv/" + comment.user.avatar : "/images/frieren/frieren.webp";
+  const imageUrl = comment.user?.avatar ? "https://dev-api.animup.tv/" + comment.user.avatar : "/images/frieren/frieren.webp";
   const title = comment.user?.name || "User";
   return (
     <div className="relative flex flex-col rounded-lg">

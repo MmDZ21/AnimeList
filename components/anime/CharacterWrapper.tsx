@@ -21,7 +21,7 @@ export default function CharacterWrapper({
       <div className="flex gap-4 items-center">
         <div className="relative aspect-square size-[72px]">
           <Image
-            src={characterWithVoice.character?.image_url? "https://dev-api.animelist.tv"+characterWithVoice.character.image_url : "/svg/imageloader.svg"}
+            src={characterWithVoice.character?.image_url? "https://dev-api.animup.tv"+characterWithVoice.character.image_url : "/svg/imageloader.svg"}
             alt={characterWithVoice.character?.name!}
             fill
             className="object-cover object-center rounded"
@@ -39,7 +39,7 @@ export default function CharacterWrapper({
       <div dir="ltr" className="flex gap-4 items-center">
         <div className="relative aspect-square size-[72px]">
           <Image
-            src={characterWithVoice.person?.image_url ? "https://dev-api.animelist.tv"+characterWithVoice.person?.image_url : "/svg/imageloader.svg"}
+            src={characterWithVoice.person?.image_url ? "https://dev-api.animup.tv"+characterWithVoice.person?.image_url : "/svg/imageloader.svg"}
             alt={characterWithVoice.person?.name!}
             fill
             className="object-cover object-center rounded"

@@ -24,12 +24,12 @@ export function getImagePath(
   const path = path1
     ? path1.startsWith("http")
       ? path1
-      : "https://dev-api.animelist.tv" +
+      : "https://dev-api.animup.tv" +
         (path1.startsWith("/") ? path1 : "/" + path1)
     : path2
     ? path2.startsWith("http")
       ? path2
-      : "https://dev-api.animelist.tv" +
+      : "https://dev-api.animup.tv" +
         (path2.startsWith("/") ? path2 : "/" + path2)
     : "/svg/imageloader.svg";
   console.log("path is: " + path);

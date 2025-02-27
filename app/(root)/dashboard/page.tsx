@@ -51,7 +51,7 @@ export default async function Page() {
             >
               <div className="px-4 flex flex-col gap-2 animate-fade-right">
 
-<Dashboard />
+<route.content />
 
               </div>
             </CustomTabsContent>
@@ -79,7 +79,7 @@ export default async function Page() {
             <TabsContent key={route.value} value={route.value}>
               <div className="px-4 flex flex-col gap-4 py-4 lg:px-0 lg:py-2 animate-fade-right">
 
-              <Dashboard />
+              <route.content />
 
               </div>
             </TabsContent>

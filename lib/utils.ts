@@ -24,12 +24,12 @@ export function getImagePath(
   const path = path1
     ? path1.startsWith("http")
       ? path1
-      : "https://dev-api.animelist.tv" +
+      : "https://dev-api.animup.tv" +
         (path1.startsWith("/") ? path1 : "/" + path1)
     : path2
     ? path2.startsWith("http")
       ? path2
-      : "https://dev-api.animelist.tv" +
+      : "https://dev-api.animup.tv" +
         (path2.startsWith("/") ? path2 : "/" + path2)
     : "/svg/imageloader.svg";
   console.log("path is: " + path);
@@ -84,10 +84,9 @@ export function averageScore(scores: (string | null | undefined)[]): number {
   // Calculate the sum of scores
   const total = numericScores.reduce((sum, score) => sum + score, 0);
 
-  // Calculate and return the average
-  return total / numericScores.length;
+  // Calculate and return the average, limited to two decimal places
+  return parseFloat((total / numericScores.length).toFixed(2));
 }
-
 
 export function watchTime(
   shows: {
@@ -96,8 +95,8 @@ export function watchTime(
     dic_episodes?: string | null;
   }[]
 ): number {
-  // Calculate the total watch time
-  const totalWatchTime = shows
+  // Calculate the total watch time in minutes
+  const totalWatchTimeInMinutes = shows
     .map((show) => {
       const duration = show.dic_duration ? Number(show.dic_duration) : NaN;
       const episodes = show.dic_episodes ? Number(show.dic_episodes) : NaN;
@@ -106,5 +105,9 @@ export function watchTime(
     })
     .reduce((sum, time) => sum + time, 0); // Sum up all valid times
 
-  return totalWatchTime; // Return the total watch time
+  // Convert the total watch time from minutes to days
+  const totalWatchTimeInDays = totalWatchTimeInMinutes / 1440;
+
+  // Return the total watch time in days, limited to two decimal places
+  return parseFloat(totalWatchTimeInDays.toFixed(2));
 }

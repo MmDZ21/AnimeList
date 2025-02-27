@@ -12,6 +12,10 @@ const nextConfig: NextConfig = {
       },
       {
         protocol:'https',
+        hostname: 'dev-api.animup.tv'
+      },
+      {
+        protocol:'https',
         hostname: 'dev-api.alplayer.ir'
       },
       {

@@ -1,9 +1,9 @@
 // codegen.config.js
-const customFetch = require('./lib/customFetch.js').default;
+const customFetch = require('./lib/customFetch').default;
 
 module.exports = {
   schema: {
-    'https://dev-api.animelist.tv/graphql': {
+    'https://dev-api.animup.tv/graphql': {
       headers: {
         // Optionally add headers, e.g. Authorization
       },
