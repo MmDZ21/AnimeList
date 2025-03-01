@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { BioForm } from "@/components/forms/BioForm";
+import { cn } from "./utils";
 
 export default function Bio({
   bio,
@@ -57,7 +58,7 @@ export default function Bio({
         <BioForm bio={bio} setEditing={setEditing}/>
       ) : (
         <div>
-          <p className="text-sm font-medium lg:text-base me-5">{bio}</p>
+          <p className={cn("text-sm font-medium lg:text-base me-5", bio.length < 0 ? "text-[#979CA6]" : "")}>{bio.length > 0 ? bio : (editable ? "هنوز چیزی درباره خودت نگفتی" : "دوستمون چیزی از خودش نگفته")}</p>
         </div>
       )}
     </div>

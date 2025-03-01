@@ -1,4 +1,3 @@
-
 import Image from "next/image";
 import React from "react";
 import { Separator } from "../ui/separator";
@@ -20,17 +19,19 @@ export default function SimilarAnimeWrapper({
   overlay?: boolean;
   priority?: boolean;
 }) {
+  const imageLoader = () => {
+    return "/svg/placeholder.svg";
+  };
   return (
     <div className={cn("w-full h-[344px] flex flex-col gap-2", className)}>
       <div className={cn("w-full h-[290px] relative", imageClassName)}>
         <Image
+          loader={imageLoader}
           src={getImagePath(anime.mal_image_url, anime.anilist_image_url)}
           alt={anime.dic_title || "انیمه"}
           fill
           priority={priority}
           className="object-cover object-top rounded"
-          placeholder="blur"
-          blurDataURL="/svg/placeholder.svg"
         />
         {overlay && (
           <div className="absolute bg-[#182533]/95 inset-0 rounded p-3 flex flex-col gap-2 opacity-0 hover:opacity-100 transition-opacity duration-300">
@@ -81,8 +82,10 @@ export default function SimilarAnimeWrapper({
                   </defs>
                 </svg>
                 <div className="flex gap-1 items-center">
-                <p className="text-sm font-normal">{anime.al_score || 0}</p>
-                <p className="text-xs font-normal opacity-65">{anime.al_score_count ? `(${anime.al_score_count})` : `(0)`}</p>
+                  <p className="text-sm font-normal">{anime.al_score || 0}</p>
+                  <p className="text-xs font-normal opacity-65">
+                    {anime.al_score_count ? `(${anime.al_score_count})` : `(0)`}
+                  </p>
                 </div>
               </div>
               <div className="flex gap-1 items-center">
@@ -157,12 +160,18 @@ export default function SimilarAnimeWrapper({
                     />
                   </defs>
                 </svg>
-                <p className="text-sm font-bold">{anime.anilist_score + "%" || "0%"}</p>
+                <p className="text-sm font-bold">
+                  {anime.anilist_score + "%" || "0%"}
+                </p>
               </div>
             </div>
-            <p className="font-normal text-sm">{anime.dic_episodes || 0} قسمت</p>
-            <div className="text-sm font-medium line-clamp-[8]" dangerouslySetInnerHTML={{__html:anime.dic_body!}}>
-            </div>
+            <p className="font-normal text-sm">
+              {anime.dic_episodes || 0} قسمت
+            </p>
+            <div
+              className="text-sm font-medium line-clamp-[8]"
+              dangerouslySetInnerHTML={{ __html: anime.dic_body! }}
+            ></div>
           </div>
         )}
       </div>

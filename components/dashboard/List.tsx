@@ -5,9 +5,15 @@ import { dawn } from "@/constants";
 
 import { columns } from "@/components/dashboard/list/columns";
 import { DataTable } from "@/components/ui/data-table"
+import { fetchDashboardData } from "@/actions/fetchDashboardData";
 
 export default async function List() {
+  const data = await fetchDashboardData();
+  const user = data.me;
 
+  if (!user) {
+    return <p>User not found.</p>;
+  }
   return (
     <>
       <Tabs className="w-full lg:hidden" defaultValue="anime">
@@ -594,7 +600,7 @@ export default async function List() {
           </div>
         </TabsContent>
       </Tabs>
-      <DataTable columns={columns} data={dawn.animeShows} />
+      <DataTable columns={columns} data={user.favorites} />
     </>
   );
 }

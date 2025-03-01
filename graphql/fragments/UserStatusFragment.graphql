@@ -3,9 +3,13 @@ fragment UserStatusFragment on User {
   favoriteCount
   favorites {
     score
-        anime{
+    anime {
       dic_duration
       dic_episodes
+      dic_title
+      dic_types
+      anilist_image_url
+      mal_image_url
     }
   }
 }

@@ -1500,7 +1500,7 @@ export type SubtitlesFragmentFragment = { __typename?: 'Sub', id: string, user_i
 
 export type UserInfoFragmentFragment = { __typename?: 'User', id: string, name?: string | null, avatar?: string | null, expire_date?: string | null, isVIP?: boolean | null, email?: string | null };
 
-export type UserStatusFragmentFragment = { __typename?: 'User', id: string, favoriteCount: number, favorites: Array<{ __typename?: 'Beloved', score?: string | null, anime: { __typename?: 'Anime', dic_duration?: string | null, dic_episodes?: string | null } }> };
+export type UserStatusFragmentFragment = { __typename?: 'User', id: string, favoriteCount: number, favorites: Array<{ __typename?: 'Beloved', score?: string | null, anime: { __typename?: 'Anime', dic_duration?: string | null, dic_episodes?: string | null, dic_title?: string | null, dic_types?: number | null, anilist_image_url?: string | null, mal_image_url?: string | null } }> };
 
 export type LoginMutationVariables = Exact<{
   input: LoginInput;
@@ -1544,7 +1544,7 @@ export type GetUserInfoQuery = { __typename?: 'Query', me: { __typename?: 'User'
 export type GetUserStatusQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetUserStatusQuery = { __typename?: 'Query', me: { __typename?: 'User', id: string, favoriteCount: number, favorites: Array<{ __typename?: 'Beloved', score?: string | null, anime: { __typename?: 'Anime', dic_duration?: string | null, dic_episodes?: string | null } }> } };
+export type GetUserStatusQuery = { __typename?: 'Query', me: { __typename?: 'User', id: string, favoriteCount: number, favorites: Array<{ __typename?: 'Beloved', score?: string | null, anime: { __typename?: 'Anime', dic_duration?: string | null, dic_episodes?: string | null, dic_title?: string | null, dic_types?: number | null, anilist_image_url?: string | null, mal_image_url?: string | null } }> } };
 
 export type GetSeasonalAnimesQueryVariables = Exact<{
   first: Scalars['Int']['input'];
@@ -1750,6 +1750,10 @@ export const UserStatusFragmentFragmentDoc = gql`
     anime {
       dic_duration
       dic_episodes
+      dic_title
+      dic_types
+      anilist_image_url
+      mal_image_url
     }
   }
 }
