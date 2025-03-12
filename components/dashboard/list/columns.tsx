@@ -3,9 +3,6 @@ import { getImagePath } from "@/lib/utils";
 import { ColumnDef } from "@tanstack/react-table";
 import Image from "next/image";
 
-const imageLoader = () => {
-  return "/svg/placeholder.svg";
-};
 interface AnimeColumn {
   __typename?: "Beloved";
   score?: string | null;
@@ -27,7 +24,6 @@ export const columns: ColumnDef<AnimeColumn>[] = [
       return (
         <div className="flex items-center gap-4">
           <Image
-            loader={imageLoader}
             src={getImagePath(
               row.original.anime.mal_image_url,
               row.original.anime.anilist_image_url

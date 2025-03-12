@@ -10,7 +10,7 @@ export default async function RootLayout({
   return (
     <div className="w-full">
       <Header />
-      {children}
+        {children}
       <Footer />
     </div>
   );

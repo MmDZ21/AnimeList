@@ -94,7 +94,7 @@ export default async function page({
           <div className="w-full block lg:hidden px-4">
             <CustomTabs defaultValue="episodes" className="w-full">
               <CustomTabsList className="w-full dark:bg-transparent border-b border-[hsla(215,20%,65%,0.24)]">
-                <CustomTabsTrigger value="episodes">قسمت‌ها</CustomTabsTrigger>
+                <CustomTabsTrigger value="episodes">دانلود</CustomTabsTrigger>
                 <CustomTabsTrigger value="similars">
                   آثار مشابه
                 </CustomTabsTrigger>
@@ -102,23 +102,70 @@ export default async function page({
                 <CustomTabsTrigger value="comments">نظرات</CustomTabsTrigger>
               </CustomTabsList>
               <CustomTabsContent value="episodes">
-                <div className="flex flex-col gap-2 pb-16">
-                  {/* {anime.episodes.map((episode, i) => (
-                        <EpisodeWrapper
-                          key={episode.episodeTitle}
-                          episode={episode}
-                          i={i}
-                        />
-                      ))} */}
+                <div className="flex flex-col gap-2">
+                <div className="w-full px-[10px] py-4 bg-[#17212B] flex flex-col gap[10px]">
+                <Tabs defaultValue="480p">
+                  <TabsList className="dark:bg-transparent dark:text-[#A1A1AA] w-full justify-start">
+                    <h5 className="flex-1 text-white text-base font-semibold hidden lg:block">
+                      باکس دانلود
+                    </h5>
+                    <TabsTrigger
+                      className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
+                      value="480p"
+                    >
+                      480p
+                    </TabsTrigger>
+                    <TabsTrigger
+                      className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
+                      value="720p"
+                    >
+                      720p
+                    </TabsTrigger>
+                    <TabsTrigger
+                      className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
+                      value="1080p"
+                    >
+                      1080p
+                    </TabsTrigger>
+                    <TabsTrigger
+                      className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
+                      value="720p x265"
+                    >
+                      720p x265
+                    </TabsTrigger>
+                    <TabsTrigger
+                      className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
+                      value="1080p x265"
+                    >
+                      1080p x265
+                    </TabsTrigger>
+                  </TabsList>
+                  <TabsContent value="480p">
+                      <Download anime={anime} quality="480p" />
+                  </TabsContent>
+                  <TabsContent value="720p">
+                      <Download anime={anime}quality="720p" />
+                  </TabsContent>
+                  <TabsContent value="1080p">
+                      <Download anime={anime} quality="1080p" />
+                  </TabsContent>
+                  <TabsContent value="720p x265">
+                      <Download  anime={anime} quality="720p x265" />
+                  </TabsContent>
+                  <TabsContent value="1080p x265">
+                      <Download  anime={anime} quality="1080p x265" />
+                  </TabsContent>
+                </Tabs>
+              </div>
                   <div
-                    className="fixed px-4 py-6 z-40 bottom-0 flex items-center w-full justify-center"
-                    style={{
-                      background:
-                        "linear-gradient(180deg, rgba(14, 22, 33, 0) 0%, #0E1621 23.96%)",
-                    }}
+                    className="fixed px-4 py-6 z-40 bottom-0 end-0"
+                    // style={{
+                    //   background:
+                    //     "linear-gradient(180deg, rgba(14, 22, 33, 0) 0%, #0E1621 23.96%)",
+                    // }}
                   >
-                    <WatchOnline />
-                    <AddToWatchList />
+                    {/* <WatchOnline /> */}
+                    <AddToWatchList iconOnly={true} />
                   </div>
                 </div>
               </CustomTabsContent>
@@ -222,20 +269,15 @@ export default async function page({
           </div>
         </div>
         <div className="w-full hidden lg:block">
-          <Tabs defaultValue="trailers" className="w-full">
+          <Tabs defaultValue="download" className="w-full">
             <TabsList className="w-full dark:bg-[#17212B] rounded-lg justify-start items-center p-1 h-fit gap-2">
-              <TabsTrigger
-                className="py-3 px-2 w-[160px] flex items-center justify-center rounded-lg text-base font-semibold text-white dark:data-[state=active]:bg-background"
-                value="trailers"
-              >
-                تریلر
-              </TabsTrigger>
               <TabsTrigger
                 className="py-3 px-2 w-[160px] flex items-center justify-center rounded-lg text-base font-semibold text-white dark:data-[state=active]:bg-background"
                 value="download"
               >
                 دانلود
               </TabsTrigger>
+
               <TabsTrigger
                 className="py-3 px-2 w-[160px] flex items-center justify-center rounded-lg text-base font-semibold text-white dark:data-[state=active]:bg-background"
                 value="cc"
@@ -269,10 +311,13 @@ export default async function page({
                     {comments.length}
                   </div> */}
               </TabsTrigger>
+              <TabsTrigger
+                className="py-3 px-2 w-[160px] flex items-center justify-center rounded-lg text-base font-semibold text-white dark:data-[state=active]:bg-background"
+                value="trailers"
+              >
+                تریلر
+              </TabsTrigger>
             </TabsList>
-            <TabsContent className="py-4" value="trailers">
-                <Trailers anime={anime} />
-            </TabsContent>
             <TabsContent className="py-4" value="download">
               <div className="w-full px-[10px] py-4 bg-[#17212B] flex flex-col gap[10px]">
                 <Tabs defaultValue="480p">
@@ -405,6 +450,9 @@ export default async function page({
                 </div>
                   <Comments id={id} />
               </div>
+            </TabsContent>
+            <TabsContent className="py-4" value="trailers">
+                <Trailers anime={anime} />
             </TabsContent>
           </Tabs>
         </div>

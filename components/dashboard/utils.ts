@@ -31,7 +31,7 @@ export function getImagePath(
       ? path2
       : "https://dev-api.animup.tv" +
         (path2.startsWith("/") ? path2 : "/" + path2)
-    : "/svg/imageloader.svg";
+    : "/svg/placeholder.svg";
   console.log("path is: " + path);
   return path;
 }

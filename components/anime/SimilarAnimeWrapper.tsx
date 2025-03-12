@@ -1,8 +1,9 @@
 import Image from "next/image";
 import React from "react";
 import { Separator } from "../ui/separator";
-import { cn, getImagePath } from "@/lib/utils";
+import { cn, generateSlug, getImagePath } from "@/lib/utils";
 import { RecommendationsFragmentFragment } from "@/generated/graphql";
+import Link from "next/link";
 
 export default function SimilarAnimeWrapper({
   anime,
@@ -19,14 +20,11 @@ export default function SimilarAnimeWrapper({
   overlay?: boolean;
   priority?: boolean;
 }) {
-  const imageLoader = () => {
-    return "/svg/placeholder.svg";
-  };
+
   return (
-    <div className={cn("w-full h-[344px] flex flex-col gap-2", className)}>
+    <Link className={cn("w-full h-[344px] flex flex-col gap-2", className)} href={`/anime/${anime.id}/${generateSlug(anime.dic_title!)}`}>
       <div className={cn("w-full h-[290px] relative", imageClassName)}>
         <Image
-          loader={imageLoader}
           src={getImagePath(anime.mal_image_url, anime.anilist_image_url)}
           alt={anime.dic_title || "انیمه"}
           fill
@@ -222,6 +220,6 @@ export default function SimilarAnimeWrapper({
           )}
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

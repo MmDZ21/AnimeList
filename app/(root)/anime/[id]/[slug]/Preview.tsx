@@ -15,29 +15,31 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { ChevronLeftIcon, Cross2Icon } from "@radix-ui/react-icons";
 import Image from "next/image";
-import { Anime, GetAnimeByIdQuery, GetAnimeByIdQueryResult } from "@/generated/graphql";
+import {
+  Anime,
+  GetAnimeByIdQuery,
+  GetAnimeByIdQueryResult,
+} from "@/generated/graphql";
 import { getImagePath } from "@/lib/utils";
+// import Details from "@/components/anime/Details";
 
-
-export const Preview = async ({anime }: { anime: Anime }) => {
-  console.log(anime.dic_body)
-  console.log(anime)
+export const Preview = async ({ anime }: { anime: Anime }) => {
+  console.log(anime.dic_body);
+  console.log(anime);
   return (
     <div className="flex lg:gap-4">
       <div className="lg:flex flex-col gap-2 hidden">
-        <div className="relative w-[220px] h-[288px]">
+        <div className="relative w-[220px] h-80">
           <Image
-            src={
-getImagePath(anime.mal_image_url, anime.anilist_image_url)
-            }
+            src={getImagePath(anime.mal_image_url, anime.anilist_image_url)}
             alt={anime.dic_title || "انیمه"}
             fill
             className="object-cover rounded"
           />
         </div>
-        <div className="w-full">
+        {/* <div className="w-full">
           <WatchOnline className="w-full" />
-        </div>
+        </div> */}
       </div>
       <div className="flex flex-col gap-4 px-4 ">
         <div className="flex flex-col gap-1">
@@ -73,7 +75,7 @@ getImagePath(anime.mal_image_url, anime.anilist_image_url)
               <DialogContent className="w-full h-full flex flex-col bg-background">
                 <DialogHeader className="gap-3">
                   <DialogTitle className="flex justify-between ">
-                    <h2 className="text-base font-bold">جزئیات نمره</h2>
+                    <p className="text-base font-bold">جزئیات نمره</p>
                     <DialogClose className="rounded-sm opacity-70 ring-offset-white transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-slate-100 data-[state=open]:text-slate-500 dark:ring-offset-slate-950 dark:focus:ring-slate-300 dark:data-[state=open]:bg-slate-800 dark:data-[state=open]:text-slate-400">
                       <Cross2Icon className="h-6 w-6" />
                       <span className="sr-only">Close</span>
@@ -84,9 +86,10 @@ getImagePath(anime.mal_image_url, anime.anilist_image_url)
                   <div className="flex flex-col items-center gap-6 pb-16">
                     <div className="relative h-48 w-full">
                       <Image
-                        src={
-getImagePath(anime.mal_image_url, anime.anilist_image_url)
-                        }
+                        src={getImagePath(
+                          anime.mal_image_url,
+                          anime.anilist_image_url
+                        )}
                         alt={anime.dic_title || "انیمه"}
                         fill
                         className="object-contain"
@@ -123,7 +126,10 @@ getImagePath(anime.mal_image_url, anime.anilist_image_url)
           </div>
         </div>
         <div className="flex flex-col gap-4">
-          <div className="text-sm font-medium leading-6" dangerouslySetInnerHTML={{__html:anime.dic_body!}}/>
+          <div
+            className="text-sm font-medium leading-6 line-clamp-4"
+            dangerouslySetInnerHTML={{ __html: anime.dic_body! }}
+          />
           <div className="flex justify-center items-center">
             <Dialog>
               <DialogTrigger className="lg:hidden">
@@ -132,9 +138,9 @@ getImagePath(anime.mal_image_url, anime.anilist_image_url)
                 </p>
               </DialogTrigger>
               <DialogContent className="w-full h-full bg-background">
-                <DialogHeader className="gap-3 min-h-0">
+                <DialogHeader className="gap-3">
                   <DialogTitle className="flex justify-between ">
-                    <h2 className="text-base font-bold">{anime.dic_title}</h2>
+                    <p className="text-base font-bold">جزئیات انیمه</p>
                     <DialogClose className="rounded-sm opacity-70 ring-offset-white transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-slate-100 data-[state=open]:text-slate-500 dark:ring-offset-slate-950 dark:focus:ring-slate-300 dark:data-[state=open]:bg-slate-800 dark:data-[state=open]:text-slate-400">
                       <Cross2Icon className="h-6 w-6" />
                       <span className="sr-only">Close</span>
@@ -142,15 +148,32 @@ getImagePath(anime.mal_image_url, anime.anilist_image_url)
                   </DialogTitle>
                 </DialogHeader>
                 <ScrollArea className="h-full">
-                  <div className="flex flex-col gap-6 pb-16">
-                    <DialogDescription className="text-start leading-[22px] font-medium text-white">
-                      <div dangerouslySetInnerHTML={{
-                        __html:anime.dic_body!
-                      }}></div>
-                      <span className="text-primary-500 ms-1">نمایش بیشتر</span>
-                    </DialogDescription>
-                    {/* 8 divs */}
-                    {/* <Details anime={anime} /> */}
+                  <div className="flex flex-col gap-6">
+                    <div className="relative h-48 w-full">
+                      <Image
+                        src={getImagePath(
+                          anime.mal_image_url,
+                          anime.anilist_image_url
+                        )}
+                        alt={anime.dic_title || "انیمه"}
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
+                    <h2 className="text-base font-bold text-center">
+                      {anime.dic_title}
+                    </h2>
+                    <div className="flex flex-col gap-6 pb-16">
+                      <div className="text-start leading-[22px] font-medium text-white">
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: anime.dic_body!,
+                          }}
+                        ></div>
+                      </div>
+                      {/* 8 divs */}
+                      {/* <Details anime={anime} /> */}
+                    </div>
                   </div>
                 </ScrollArea>
               </DialogContent>

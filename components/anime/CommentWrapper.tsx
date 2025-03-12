@@ -22,8 +22,8 @@ export default function CommentWrapper({ comment }: { comment: CommentsFragmentF
             <div className="flex gap-3 items-center">
               <div className="relative size-10">
                 <Image
-                  // src={comment.user?.avatar ? "https://dev-api.alplayer.ir/"+comment.user?.avatar : "/svg/imageloader.svg"}
-                  src={"/svg/imageloader.svg"}
+                  // src={comment.user?.avatar ? "https://dev-api.alplayer.ir/"+comment.user?.avatar : "/svg/placeholder.svg"}
+                  src={"/svg/placeholder.svg"}
                   alt={comment.user?.name!}
                   fill
                   className="object-cover object-center rounded-full"
@@ -98,7 +98,7 @@ export default function CommentWrapper({ comment }: { comment: CommentsFragmentF
           {comment.replies?.map((reply : RepliesFragmentFragment) => (
             <ReplyWrapper
               comment={reply}
-              repliesTo={{name:comment.user?.name! , avatar: comment.user?.avatar || "/images/frieren/frieren.webp"}}
+              repliesTo={{name:comment.user?.name! , avatar: "/svg/placeholder.svg"}}
               key={reply.id}
             />
           ))}
