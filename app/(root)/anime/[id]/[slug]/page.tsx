@@ -441,7 +441,7 @@ export default async function page({
               </div>
             </TabsContent>
             <TabsContent value="details">
-                        <AdditionalInfo anime={anime}/>
+                <AdditionalInfo anime={anime}/>
             </TabsContent>
             <TabsContent value="similars">
                 <Recommendations anime={anime}/>
