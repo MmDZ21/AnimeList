@@ -24,6 +24,10 @@ const nextConfig: NextConfig = {
       },
       {
         protocol:'https',
+        hostname: 'animup.tv'
+      },
+      {
+        protocol:'https',
         hostname: 'cdn.myanimelist.net'
       },
       {

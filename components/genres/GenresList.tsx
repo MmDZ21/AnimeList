@@ -17,16 +17,6 @@ async function fetchGenres() {
   return data?.genres || [];
 }
 
-const genreTabs = [
-  { label: "انیمه", value: "anime" },
-  { label: "دونگهوا", value: "donghua" },
-  { label: "فیلم", value: "movie" },
-  { label: "سریال", value: "series" },
-  { label: "استودیو", value: "studio" },
-  { label: "عوامل", value: "staff" },
-  { label: "شخصیت", value: "characters" },
-];
-
 export default async function GenresList() {
   const genres = await fetchGenres();
 
@@ -36,21 +26,15 @@ export default async function GenresList() {
 
   return (
     <>
-      {genreTabs.map((tab) => (
-        <TabsContent key={tab.value} value={tab.value}>
-          {tab.value === "anime" && (
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 py-5">
-              {genres.map((genre, i) => (
-                <CategoryCard
-                  key={genre.id}
-                  category={genre}
-                  priority={i === 0 ? true : false}
-                />
-              ))}
-            </div>
-          )}
-        </TabsContent>
-      ))}
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 py-5">
+        {genres.map((genre, i) => (
+          <CategoryCard
+            key={genre.id}
+            category={genre}
+            priority={i === 0 ? true : false}
+          />
+        ))}
+      </div>
     </>
   );
 }

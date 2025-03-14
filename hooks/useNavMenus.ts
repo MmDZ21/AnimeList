@@ -13,7 +13,7 @@ export function useNavMenus(t: (key: string) => string) {
         subMenus: [
           { label: t("softsub"), href: "/anime/softsub" },
           { label: t("animeMovie"), href: "/anime/anime-movie" },
-          { label: t("genre"), href: "/genres" },
+          { label: t("genre"), href: "/anime/genres" },
           { label: t("year"), href: "/anime/year" },
           { label: t("completed"), href: "/anime/completed" },
           { label: t("ongoing"), href: "/anime/ongoing" },
@@ -23,7 +23,7 @@ export function useNavMenus(t: (key: string) => string) {
         label: t("movie"),
         href: "/movies",
         subMenus: [
-          { label: t("genre"), href: "/genres" },
+          { label: t("genre"), href: "/anime/genres" },
           { label: t("year"), href: "/movies/year" },
         ],
       },
@@ -33,7 +33,7 @@ export function useNavMenus(t: (key: string) => string) {
         subMenus: [
           { label: t("ongoing"), href: "/series/ongoing" },
           { label: t("completed"), href: "/series/completed" },
-          { label: t("genre"), href: "/genres" },
+          { label: t("genre"), href: "/anime/genres" },
           { label: t("year"), href: "/series/year" },
         ],
       },

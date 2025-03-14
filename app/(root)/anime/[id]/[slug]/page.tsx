@@ -211,11 +211,7 @@ export default async function page({
                   <div className="bg-[#17212B] p-3">
                     <CommentForm />
                   </div>
-                  <div className="flex flex-col gap-[14px]">
-                    {/* {anime.comments.map((comment) => (
-                          <CommentWrapper key={comment.id} comment={comment} />
-                        ))} */}
-                  </div>
+                      <Comments id={id}/>
                 </div>
               </CustomTabsContent>
             </CustomTabs>

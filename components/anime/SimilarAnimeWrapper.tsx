@@ -192,7 +192,7 @@ export default function SimilarAnimeWrapper({
             <p className="text-[#979CA6] text-xs font-medium">زیرنویس چسبیده</p>
           </div>
           {actions && (
-            <div className="size-5 flex items-center justify-center">
+            <div className="size-5 flex items-center justify-end">
               <svg
                 width="4"
                 height="18"
