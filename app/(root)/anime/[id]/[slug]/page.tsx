@@ -22,6 +22,7 @@ import Comments from "./Comments";
 import { Anime, GetAnimeByIdDocument, GetAnimeByIdQuery, GetAnimeByIdQueryVariables, GetSeasonalAnimesDocument, GetSeasonalAnimesQuery, GetSeasonalAnimesQueryVariables } from "@/generated/graphql";
 import { getClient } from "@/lib/apolloClient";
 import { generateSlug, getImagePath } from "@/lib/utils";
+import AdditionalInfo from "./AdditionalInfo";
 
 // export const revalidate = 86400
 
@@ -439,7 +440,9 @@ export default async function page({
                 </Tabs>
               </div>
             </TabsContent>
-            <TabsContent value="details"></TabsContent>
+            <TabsContent value="details">
+                        <AdditionalInfo anime={anime}/>
+            </TabsContent>
             <TabsContent value="similars">
                 <Recommendations anime={anime}/>
             </TabsContent>
