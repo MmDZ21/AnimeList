@@ -5,4 +5,5 @@ fragment UserInfoFragment on User {
     expire_date
     isVIP
     email
+    balance
 }

@@ -33,7 +33,7 @@ export default async function UserInfo() {
           alt={user.name || "name"}
         />
       </div>
-      <div className="flex flex-col gap-1 items-center lg:items-start">
+      <div className="flex flex-col gap-2 items-center lg:items-start">
         <div className="flex gap-[6px] items-center justify-center lg:flex-row-reverse">
           {user.isVIP && (
             <svg
@@ -65,19 +65,28 @@ export default async function UserInfo() {
           )}
           <h1 className="font-bold text-2xl lg:text-[34px]">{user.name}</h1>
         </div>
-        <p className="text-sm font-normal lg:text-base">
-          <span className="text-xs  lg:text-base text-[#979CA6] font-normal">
-            زمان مانده از اعتبار شما:
-          </span>
-          <span className="text-sm mx-[2px]  lg:text-base">
-            {expiration ? expiration.daysLeft : 0}
-          </span>
-          روز و
-          <span className="text-sm mx-[2px]  lg:text-base">
-            {expiration ? expiration.hoursLeft : 0}
-          </span>
-          ساعت
-        </p>
+        <div className="flex gap-2">
+          <div className="flex flex-col gap-1 px-3 py-2 rounded-lg bg-[#17212B]/40">
+            <p className="text-sm lg:text-base font-normal">
+              زمان مانده از اعتبار شما
+            </p>
+            <div className="text-xs lg:text-sm text-primary-500 flex gap-1">
+              <span> {expiration ? expiration.daysLeft : 0}</span>
+              <span>روز</span>
+              <span>و</span>
+              <span> {expiration ? expiration.hoursLeft : 0}</span>
+              <span>ساعت</span>
+            </div>
+          </div>
+          <div className="flex flex-col gap-1 px-3 py-2 rounded-lg bg-[#17212B]/40">
+            <p className="text-sm lg:text-base font-normal">
+موجودی کیف پول            </p>
+            <div className="text-xs lg:text-sm text-primary-500 flex gap-1">
+              <span> {user.balance}</span>
+              <span>تومان</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -193,6 +193,10 @@ export type BelovedPaginator = {
   paginatorInfo: PaginatorInfo;
 };
 
+export type BuyMembershipRequest = {
+  membership_id: Scalars['ID']['input'];
+};
+
 export type CharacterDetail = {
   __typename?: 'CharacterDetail';
   character?: Maybe<AnimeCharacter>;
@@ -224,8 +228,7 @@ export type CommentPaginator = {
 
 export type CreatePaymentResponse = {
   __typename?: 'CreatePaymentResponse';
-  action?: Maybe<Scalars['String']['output']>;
-  method?: Maybe<Scalars['String']['output']>;
+  redirect_url: Scalars['String']['output'];
 };
 
 export type DbAnimeDirectoryLinks = {
@@ -345,9 +348,12 @@ export type LogoutResponse = {
 export type Membership = {
   __typename?: 'Membership';
   desc: Scalars['String']['output'];
+  desc_en: Scalars['String']['output'];
   id: Scalars['ID']['output'];
   name: Scalars['String']['output'];
+  name_en: Scalars['String']['output'];
   price: Scalars['Int']['output'];
+  price_usd: Scalars['Int']['output'];
   timing: Scalars['Int']['output'];
 };
 
@@ -441,6 +447,7 @@ export type MovieUpsertBelovedInput = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  buyMembership: GenericResponse;
   createPaymentRequest: CreatePaymentResponse;
   deleteBeloved: Beloved;
   deleteMovieBeloved: PhxBloved;
@@ -462,6 +469,11 @@ export type Mutation = {
   verifyDiscountCode: GenericResponse;
   verifyEmail: AuthPayload;
   verifyPaymentRequest: GenericResponse;
+};
+
+
+export type MutationBuyMembershipArgs = {
+  input: BuyMembershipRequest;
 };
 
 
@@ -629,8 +641,8 @@ export type PaginatorInfo = {
 };
 
 export type PaymentRequest = {
-  discound_code?: InputMaybe<Scalars['String']['input']>;
-  membership_id: Scalars['Int']['input'];
+  amount: Scalars['Int']['input'];
+  callback_url: Scalars['String']['input'];
 };
 
 export type PeopleCharacterSelect = {
@@ -1440,6 +1452,7 @@ export type UpsertBelovedInput = {
 export type User = {
   __typename?: 'User';
   avatar?: Maybe<Scalars['String']['output']>;
+  balance?: Maybe<Scalars['Int']['output']>;
   comments: Array<Comment>;
   email?: Maybe<Scalars['String']['output']>;
   expire_date?: Maybe<Scalars['String']['output']>;
@@ -1479,7 +1492,7 @@ export type VerifyEmailInput = {
 };
 
 export type VerifyPaymentRequest = {
-  authority: Scalars['String']['input'];
+  trackId: Scalars['String']['input'];
 };
 
 export type AnimeFragmentFragment = { __typename?: 'Anime', id: string, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, mal_popularity?: number | null, mal_id: string, al_score?: number | null, al_score_count?: number | null, wide_image?: string | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, dic_episodes?: string | null, anime_links: Array<{ __typename?: 'DbAnimeLinks', link?: string | null, quality?: string | null, id: string, size?: string | null, ep?: string | null, subtitle_link?: string | null }>, genres: Array<{ __typename?: 'AnimeGenre', id: string, name_fa?: string | null }>, trailers: Array<{ __typename?: 'AnimeTrailer', title?: string | null, online_play?: string | null }>, recommendations: Array<{ __typename?: 'AnimeRecommendation', recommendation: { __typename?: 'Anime', id: string, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, mal_popularity?: number | null, al_score?: number | null, al_score_count?: number | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, dic_episodes?: string | null, genres: Array<{ __typename?: 'AnimeGenre', id: string, name_fa?: string | null }> } }>, relations: Array<{ __typename?: 'AnimeRelation', type?: string | null, relation?: string | null, relationship: { __typename?: 'Anime', id: string } }>, characters: Array<{ __typename?: 'CharacterDetail', character_role?: string | null, person_role?: string | null, character?: { __typename?: 'AnimeCharacter', id: string, name?: string | null, image_url?: string | null } | null, person?: { __typename?: 'AnimePerson', id: string, name?: string | null, hometown?: string | null, image_url?: string | null } | null }> };
@@ -1498,7 +1511,7 @@ export type RepliesSecondFragmentFragment = { __typename?: 'Comment', id: string
 
 export type SubtitlesFragmentFragment = { __typename?: 'Sub', id: string, user_id: string, title?: string | null, to_episode?: string | null, from_episode?: string | null, body?: string | null, link_file?: string | null };
 
-export type UserInfoFragmentFragment = { __typename?: 'User', id: string, name?: string | null, avatar?: string | null, expire_date?: string | null, isVIP?: boolean | null, email?: string | null };
+export type UserInfoFragmentFragment = { __typename?: 'User', id: string, name?: string | null, avatar?: string | null, expire_date?: string | null, isVIP?: boolean | null, email?: string | null, balance?: number | null };
 
 export type UserStatusFragmentFragment = { __typename?: 'User', id: string, favoriteCount: number, favorites: Array<{ __typename?: 'Beloved', score?: string | null, anime: { __typename?: 'Anime', dic_duration?: string | null, dic_episodes?: string | null, dic_title?: string | null, dic_types?: number | null, anilist_image_url?: string | null, mal_image_url?: string | null } }> };
 
@@ -1507,7 +1520,7 @@ export type LoginMutationVariables = Exact<{
 }>;
 
 
-export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'AuthPayload', access_token?: string | null, expires_in?: number | null, refresh_token?: string | null, token_type?: string | null, user?: { __typename?: 'User', id: string, name?: string | null, avatar?: string | null, expire_date?: string | null, isVIP?: boolean | null, email?: string | null } | null } };
+export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'AuthPayload', access_token?: string | null, expires_in?: number | null, refresh_token?: string | null, token_type?: string | null, user?: { __typename?: 'User', id: string, name?: string | null, avatar?: string | null, expire_date?: string | null, isVIP?: boolean | null, email?: string | null, balance?: number | null } | null } };
 
 export type RefreshTokenMutationVariables = Exact<{
   input?: InputMaybe<RefreshTokenInput>;
@@ -1539,7 +1552,7 @@ export type GetAnimeGenresQuery = { __typename?: 'Query', genres: Array<{ __type
 export type GetUserInfoQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetUserInfoQuery = { __typename?: 'Query', me: { __typename?: 'User', id: string, name?: string | null, avatar?: string | null, expire_date?: string | null, isVIP?: boolean | null, email?: string | null } };
+export type GetUserInfoQuery = { __typename?: 'Query', me: { __typename?: 'User', id: string, name?: string | null, avatar?: string | null, expire_date?: string | null, isVIP?: boolean | null, email?: string | null, balance?: number | null } };
 
 export type GetUserStatusQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -1739,6 +1752,7 @@ export const UserInfoFragmentFragmentDoc = gql`
   expire_date
   isVIP
   email
+  balance
 }
     `;
 export const UserStatusFragmentFragmentDoc = gql`
