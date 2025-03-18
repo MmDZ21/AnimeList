@@ -11,7 +11,7 @@ export default async function payReq(formData: FormData) {
     variables: {
       input: {
         amount: Number(formData.get("amount")),
-        callback_url: process.env.WEBSITE_URL + "dashboard/payment",
+        callback_url: process.env.WEBSITE_URL + "/dashboard/payment",
       },
     },
   });
