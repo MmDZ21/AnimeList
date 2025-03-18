@@ -1,0 +1,5 @@
+mutation PayReq($input: PaymentRequest!){
+  createPaymentRequest(input: $input){
+    redirect_url
+  }
+}

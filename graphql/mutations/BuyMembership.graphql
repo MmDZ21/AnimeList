@@ -1,0 +1,6 @@
+mutation BuyMembership($input: BuyMembershipRequest!){
+  buyMembership(input:$input){
+    status
+    message
+  }
+}

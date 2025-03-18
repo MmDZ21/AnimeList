@@ -1,0 +1,6 @@
+mutation PayVer($input: VerifyPaymentRequest!){
+  verifyPaymentRequest(input:$input){
+    status
+    message
+  }
+}

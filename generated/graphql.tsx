@@ -1515,12 +1515,33 @@ export type UserInfoFragmentFragment = { __typename?: 'User', id: string, name?:
 
 export type UserStatusFragmentFragment = { __typename?: 'User', id: string, favoriteCount: number, favorites: Array<{ __typename?: 'Beloved', score?: string | null, anime: { __typename?: 'Anime', dic_duration?: string | null, dic_episodes?: string | null, dic_title?: string | null, dic_types?: number | null, anilist_image_url?: string | null, mal_image_url?: string | null } }> };
 
+export type BuyMembershipMutationVariables = Exact<{
+  input: BuyMembershipRequest;
+}>;
+
+
+export type BuyMembershipMutation = { __typename?: 'Mutation', buyMembership: { __typename?: 'GenericResponse', status: string, message?: string | null } };
+
 export type LoginMutationVariables = Exact<{
   input: LoginInput;
 }>;
 
 
 export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'AuthPayload', access_token?: string | null, expires_in?: number | null, refresh_token?: string | null, token_type?: string | null, user?: { __typename?: 'User', id: string, name?: string | null, avatar?: string | null, expire_date?: string | null, isVIP?: boolean | null, email?: string | null, balance?: number | null } | null } };
+
+export type PayReqMutationVariables = Exact<{
+  input: PaymentRequest;
+}>;
+
+
+export type PayReqMutation = { __typename?: 'Mutation', createPaymentRequest: { __typename?: 'CreatePaymentResponse', redirect_url: string } };
+
+export type PayVerMutationVariables = Exact<{
+  input: VerifyPaymentRequest;
+}>;
+
+
+export type PayVerMutation = { __typename?: 'Mutation', verifyPaymentRequest: { __typename?: 'GenericResponse', status: string, message?: string | null } };
 
 export type RefreshTokenMutationVariables = Exact<{
   input?: InputMaybe<RefreshTokenInput>;
@@ -1772,6 +1793,40 @@ export const UserStatusFragmentFragmentDoc = gql`
   }
 }
     `;
+export const BuyMembershipDocument = gql`
+    mutation BuyMembership($input: BuyMembershipRequest!) {
+  buyMembership(input: $input) {
+    status
+    message
+  }
+}
+    `;
+export type BuyMembershipMutationFn = Apollo.MutationFunction<BuyMembershipMutation, BuyMembershipMutationVariables>;
+
+/**
+ * __useBuyMembershipMutation__
+ *
+ * To run a mutation, you first call `useBuyMembershipMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useBuyMembershipMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [buyMembershipMutation, { data, loading, error }] = useBuyMembershipMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useBuyMembershipMutation(baseOptions?: Apollo.MutationHookOptions<BuyMembershipMutation, BuyMembershipMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<BuyMembershipMutation, BuyMembershipMutationVariables>(BuyMembershipDocument, options);
+      }
+export type BuyMembershipMutationHookResult = ReturnType<typeof useBuyMembershipMutation>;
+export type BuyMembershipMutationResult = Apollo.MutationResult<BuyMembershipMutation>;
+export type BuyMembershipMutationOptions = Apollo.BaseMutationOptions<BuyMembershipMutation, BuyMembershipMutationVariables>;
 export const LoginDocument = gql`
     mutation Login($input: LoginInput!) {
   login(input: $input) {
@@ -1811,6 +1866,73 @@ export function useLoginMutation(baseOptions?: Apollo.MutationHookOptions<LoginM
 export type LoginMutationHookResult = ReturnType<typeof useLoginMutation>;
 export type LoginMutationResult = Apollo.MutationResult<LoginMutation>;
 export type LoginMutationOptions = Apollo.BaseMutationOptions<LoginMutation, LoginMutationVariables>;
+export const PayReqDocument = gql`
+    mutation PayReq($input: PaymentRequest!) {
+  createPaymentRequest(input: $input) {
+    redirect_url
+  }
+}
+    `;
+export type PayReqMutationFn = Apollo.MutationFunction<PayReqMutation, PayReqMutationVariables>;
+
+/**
+ * __usePayReqMutation__
+ *
+ * To run a mutation, you first call `usePayReqMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `usePayReqMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [payReqMutation, { data, loading, error }] = usePayReqMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function usePayReqMutation(baseOptions?: Apollo.MutationHookOptions<PayReqMutation, PayReqMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<PayReqMutation, PayReqMutationVariables>(PayReqDocument, options);
+      }
+export type PayReqMutationHookResult = ReturnType<typeof usePayReqMutation>;
+export type PayReqMutationResult = Apollo.MutationResult<PayReqMutation>;
+export type PayReqMutationOptions = Apollo.BaseMutationOptions<PayReqMutation, PayReqMutationVariables>;
+export const PayVerDocument = gql`
+    mutation PayVer($input: VerifyPaymentRequest!) {
+  verifyPaymentRequest(input: $input) {
+    status
+    message
+  }
+}
+    `;
+export type PayVerMutationFn = Apollo.MutationFunction<PayVerMutation, PayVerMutationVariables>;
+
+/**
+ * __usePayVerMutation__
+ *
+ * To run a mutation, you first call `usePayVerMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `usePayVerMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [payVerMutation, { data, loading, error }] = usePayVerMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function usePayVerMutation(baseOptions?: Apollo.MutationHookOptions<PayVerMutation, PayVerMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<PayVerMutation, PayVerMutationVariables>(PayVerDocument, options);
+      }
+export type PayVerMutationHookResult = ReturnType<typeof usePayVerMutation>;
+export type PayVerMutationResult = Apollo.MutationResult<PayVerMutation>;
+export type PayVerMutationOptions = Apollo.BaseMutationOptions<PayVerMutation, PayVerMutationVariables>;
 export const RefreshTokenDocument = gql`
     mutation RefreshToken($input: RefreshTokenInput) {
   refreshToken(input: $input) {
