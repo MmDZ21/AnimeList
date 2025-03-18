@@ -1,0 +1,3 @@
+fragment UserBalanceFragment on User {
+  balance
+}

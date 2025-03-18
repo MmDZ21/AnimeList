@@ -1511,6 +1511,8 @@ export type RepliesSecondFragmentFragment = { __typename?: 'Comment', id: string
 
 export type SubtitlesFragmentFragment = { __typename?: 'Sub', id: string, user_id: string, title?: string | null, to_episode?: string | null, from_episode?: string | null, body?: string | null, link_file?: string | null };
 
+export type UserBalanceFragmentFragment = { __typename?: 'User', balance?: number | null };
+
 export type UserInfoFragmentFragment = { __typename?: 'User', id: string, name?: string | null, avatar?: string | null, expire_date?: string | null, isVIP?: boolean | null, email?: string | null, balance?: number | null };
 
 export type UserStatusFragmentFragment = { __typename?: 'User', id: string, favoriteCount: number, favorites: Array<{ __typename?: 'Beloved', score?: string | null, anime: { __typename?: 'Anime', dic_duration?: string | null, dic_episodes?: string | null, dic_title?: string | null, dic_types?: number | null, anilist_image_url?: string | null, mal_image_url?: string | null } }> };
@@ -1579,6 +1581,11 @@ export type GetUserStatusQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetUserStatusQuery = { __typename?: 'Query', me: { __typename?: 'User', id: string, favoriteCount: number, favorites: Array<{ __typename?: 'Beloved', score?: string | null, anime: { __typename?: 'Anime', dic_duration?: string | null, dic_episodes?: string | null, dic_title?: string | null, dic_types?: number | null, anilist_image_url?: string | null, mal_image_url?: string | null } }> } };
+
+export type GetUserBalanceQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetUserBalanceQuery = { __typename?: 'Query', me: { __typename?: 'User', balance?: number | null } };
 
 export type GetSeasonalAnimesQueryVariables = Exact<{
   first: Scalars['Int']['input'];
@@ -1763,6 +1770,11 @@ export const SubtitlesFragmentFragmentDoc = gql`
   from_episode
   body
   link_file
+}
+    `;
+export const UserBalanceFragmentFragmentDoc = gql`
+    fragment UserBalanceFragment on User {
+  balance
 }
     `;
 export const UserInfoFragmentFragmentDoc = gql`
@@ -2168,6 +2180,45 @@ export type GetUserStatusQueryHookResult = ReturnType<typeof useGetUserStatusQue
 export type GetUserStatusLazyQueryHookResult = ReturnType<typeof useGetUserStatusLazyQuery>;
 export type GetUserStatusSuspenseQueryHookResult = ReturnType<typeof useGetUserStatusSuspenseQuery>;
 export type GetUserStatusQueryResult = Apollo.QueryResult<GetUserStatusQuery, GetUserStatusQueryVariables>;
+export const GetUserBalanceDocument = gql`
+    query GetUserBalance {
+  me {
+    ...UserBalanceFragment
+  }
+}
+    ${UserBalanceFragmentFragmentDoc}`;
+
+/**
+ * __useGetUserBalanceQuery__
+ *
+ * To run a query within a React component, call `useGetUserBalanceQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetUserBalanceQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetUserBalanceQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetUserBalanceQuery(baseOptions?: Apollo.QueryHookOptions<GetUserBalanceQuery, GetUserBalanceQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetUserBalanceQuery, GetUserBalanceQueryVariables>(GetUserBalanceDocument, options);
+      }
+export function useGetUserBalanceLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetUserBalanceQuery, GetUserBalanceQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetUserBalanceQuery, GetUserBalanceQueryVariables>(GetUserBalanceDocument, options);
+        }
+export function useGetUserBalanceSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetUserBalanceQuery, GetUserBalanceQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetUserBalanceQuery, GetUserBalanceQueryVariables>(GetUserBalanceDocument, options);
+        }
+export type GetUserBalanceQueryHookResult = ReturnType<typeof useGetUserBalanceQuery>;
+export type GetUserBalanceLazyQueryHookResult = ReturnType<typeof useGetUserBalanceLazyQuery>;
+export type GetUserBalanceSuspenseQueryHookResult = ReturnType<typeof useGetUserBalanceSuspenseQuery>;
+export type GetUserBalanceQueryResult = Apollo.QueryResult<GetUserBalanceQuery, GetUserBalanceQueryVariables>;
 export const GetSeasonalAnimesDocument = gql`
     query GetSeasonalAnimes($first: Int!) {
   animesSeason(first: $first) {

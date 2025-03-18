@@ -9,12 +9,14 @@ import payReq from "@/actions/payReq";
 
 export default function Charge() {
   const [option, setOption] = useState<string>("1");
+
   return (
     <form action={payReq} className="w-full flex flex-col gap-4 px-2 py-3">
       <p className="text-base font-bold">مبلغ شارژ را انتخاب کنید</p>
       <div className="w-full flex py-2 gap-4">
         {walletChargeOptions.map((value) => (
           <Button
+            type="button" // ✅ Prevents form submission
             onClick={() => setOption(value)}
             className={cn(
               "bg-background w-full py-3 text-center cursor-pointer text-sm",

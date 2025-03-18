@@ -8,3 +8,8 @@ query GetUserStatus{
     ...UserStatusFragment
   }
 }
+query GetUserBalance{
+  me{
+    ...UserBalanceFragment
+  }
+}
