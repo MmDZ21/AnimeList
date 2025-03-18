@@ -584,7 +584,7 @@ export default function SubscriptionDesktop() {
               <h4 className="text-[32px] font-black z-50">
                 ۱۸۰،۰۰۰ تومان
               </h4>
-              <input type="hidden" name="membershipId" value={2} />
+              <input type="hidden" name="membershipId" value={3} />
 
               <Button type='submit' className="flex gap-1 h-12 w-full z-50">
                 <svg
