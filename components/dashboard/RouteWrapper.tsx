@@ -41,7 +41,7 @@ export default function RouteWrapper({
               value={route.value}
               className={cn(
                 "px-0 py-3",
-                route.value === "settings" && "hidden"
+                route.value === "membership" && "hidden"
               )}
             >
               {route.label}
@@ -53,7 +53,7 @@ export default function RouteWrapper({
           <CustomTabsContent
             key={route.value}
             value={route.value}
-            className={cn("", route.value === "settings" && "hidden")}
+            className={cn("", route.value === "membership" && "hidden")}
           >
             {activeTab === route.value && (
               <div className="px-4 flex flex-col gap-2">{children}</div>

@@ -1,9 +1,9 @@
 import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import Wallet from "./Wallet/Wallet";
-import Sub from "./Sub";
+import Sub from "./membership/Sub";
 
-export default async function Settings() {
+export default async function Membership() {
   return (
     <div className="w-full">
       <Tabs defaultValue="wallet" className="flex gap-5 w-full">
