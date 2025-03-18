@@ -10,6 +10,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { dashboardRoutes } from "@/constants";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 export const dynamic = "force-dynamic";
 export default async function Page() {
@@ -18,7 +19,13 @@ export default async function Page() {
       {/* Main Dashboard Content */}
       <div className="w-full flex flex-col items-center gap-4 lg:gap-6 max-w-[1280px] pb-4 -mt-12 lg:-mt-44 z-20 lg:px-4">
         {/* User Info */}
+       <Suspense fallback={
+            <div className="flex flex-col gap-4 items-center lg:flex-row lg:gap-6 lg:justify-start lg:w-full lg:items-end">
+              <Image src={"/svg/spinner.svg"} alt="user" width={24} height={24}/>
+              </div>
+       }>
         <UserInfo />
+       </Suspense>
         {/* Mobile Tabs (CustomTabs) */}
         <CustomTabs
           defaultValue={dashboardRoutes[0].value}

@@ -3,18 +3,11 @@ import { GetUserInfoDocument, GetUserInfoQuery } from "@/generated/graphql";
 import { getAuthClient } from "@/lib/apolloClient";
 import { delay, getDaysToExpire, getImagePath } from "@/lib/utils";
 import Image from "next/image";
+import { fetchUser } from "@/actions/fetchUser";
 
 export default async function UserInfo() {
-  const client = getAuthClient();
-  const { data, error } = await client.query<GetUserInfoQuery>({
-    query: GetUserInfoDocument,
-  });
-
-  if (error) {
-    console.error("Error fetching user data:", error);
-    return <p>Error loading user data.</p>;
-  }
-
+  await delay(5000)
+  const data = await fetchUser()
   const user = data.me;
 
   if (!user) {
@@ -27,7 +20,8 @@ export default async function UserInfo() {
     <div className="flex flex-col gap-4 items-center lg:flex-row lg:gap-6 lg:justify-start lg:w-full lg:items-end">
       <div className="relative size-24 lg:size-40">
         <Image
-          src={getImagePath(user.avatar, null)}
+          // src={getImagePath(user.avatar, null)}
+          src={"/svg/placeholder.svg"}
           fill
           className="object-cover rounded-lg object-center"
           alt={user.name || "name"}
