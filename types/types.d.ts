@@ -10,6 +10,7 @@ declare module "next-auth" {
     expiration: number;
     email?: string;
     emailVerified?: Date | null;
+    isVip: boolean | null | undefined;
   }
 
   interface Session {
@@ -28,6 +29,7 @@ declare module "next-auth/jwt" {
     email?: string;
     emailVerified?: Date | null;
     user: User;
+    isVip: boolean | null | undefined;
   }
 }
 
@@ -261,4 +263,13 @@ export interface Genre {
   image: string;
   title: string;
   subtitle: string;
+  href?: string
+}
+export interface Plan {
+  days: number;
+  price: number;
+  bonusDays: number;
+  mostPopular: boolean;
+  value: string;
+  image: string;
 }

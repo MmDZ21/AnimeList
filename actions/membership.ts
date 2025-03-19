@@ -1,6 +1,7 @@
 "use server";
 import { BuyMembershipDocument, BuyMembershipMutation } from "@/generated/graphql";
 import { getAuthClient } from "@/lib/apolloClient";
+import { redirect } from "next/navigation";
 
 export default async function membership(formData: FormData) {
   console.log(JSON.stringify(formData))

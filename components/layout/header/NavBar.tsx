@@ -21,7 +21,7 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/navbar-tabs";
-import { menuItems } from "@/constants";
+import { genres, menuItems, years } from "@/constants";
 
 export default function NavBar() {
   const { t } = useTranslation("navbar");
@@ -34,14 +34,14 @@ export default function NavBar() {
           <NavigationMenuList>
             <NavigationMenuItem>
               <NavigationMenuTrigger className="text-base font-medium p-2 dark:text-white">
-                گشت و گذار
+                انیمه‌ها
               </NavigationMenuTrigger>
               <NavigationMenuContent
-                onMouseLeave={() => setActiveTab("categories")}
+                onMouseLeave={() => setActiveTab("genres")}
               >
                 <div className="w-[800px] px-3 py-4">
                   <Tabs
-                    defaultValue="categories"
+                    defaultValue="genres"
                     orientation="vertical"
                     value={activeTab}
                     onValueChange={setActiveTab}
@@ -49,8 +49,8 @@ export default function NavBar() {
                     <TabsList className="w-[200px] items-start gap-1">
                       <TabsTrigger
                         className="w-full h-12 rounded-lg p-1 flex gap-[10px] dark:data-[state=active]:bg-background"
-                        value="categories"
-                        onMouseEnter={() => setActiveTab("categories")}
+                        value="genres"
+                        onMouseEnter={() => setActiveTab("genres")}
                       >
                         <div className="p-2 flex justify-center items-center rounded-lg bg-[#242F3D]">
                           <svg
@@ -83,12 +83,12 @@ export default function NavBar() {
                             />
                           </svg>
                         </div>
-                        <p className="text-base font-medium">دسته‌بندی‌ها</p>
+                        <p className="text-base font-medium">براساس ژانر</p>
                       </TabsTrigger>
                       <TabsTrigger
                         className="w-full h-12 rounded-lg p-1 flex gap-[10px] dark:data-[state=active]:bg-background"
-                        value="animegenre"
-                        onMouseEnter={() => setActiveTab("animegenre")}
+                        value="years"
+                        onMouseEnter={() => setActiveTab("years")}
                       >
                         <div className="p-2 flex justify-center items-center rounded-lg bg-[#242F3D]">
                           <svg
@@ -111,12 +111,11 @@ export default function NavBar() {
                             />
                           </svg>
                         </div>
-                        <p className="text-base font-medium">ژانر انیمه</p>
+                        <p className="text-base font-medium">براساس سال</p>
                       </TabsTrigger>
-                      <TabsTrigger
-                        className="w-full h-12 rounded-lg p-1 flex gap-[10px] dark:data-[state=active]:bg-background"
-                        value="moviegenre"
-                        onMouseEnter={() => setActiveTab("moviegenre")}
+                      <Link
+                        href="/anime/movie"
+                        className="flex w-full h-12 rounded-lg p-1 gap-[10px] items-center justify-start whitespace-nowrap text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-background hover:text-foreground hover:shadow-sm"
                       >
                         <div className="p-2 flex justify-center items-center rounded-lg bg-[#242F3D]">
                           <svg
@@ -127,38 +126,21 @@ export default function NavBar() {
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <path
-                              d="M12 21.5C7.52166 21.5 5.28249 21.5 3.89124 20.1088C2.5 18.7175 2.5 16.4783 2.5 12C2.5 7.52166 2.5 5.28249 3.89124 3.89124C5.28248 2.5 7.52166 2.5 12 2.5C16.4783 2.5 18.7175 2.5 20.1088 3.89124C21.5 5.28248 21.5 7.52166 21.5 12C21.5 16.4783 21.5 18.7175 20.1088 20.1088C18.7175 21.5 16.4783 21.5 12 21.5Z"
-                              stroke="white"
-                              strokeWidth="1.5"
-                            />
-                            <path
-                              d="M7 21.5V2.5"
-                              stroke="white"
-                              strokeWidth="1.5"
-                              strokeLinejoin="round"
-                            />
-                            <path
-                              d="M17 21.5V2.5"
-                              stroke="white"
-                              strokeWidth="1.5"
-                              strokeLinejoin="round"
-                            />
-                            <path
-                              d="M17 12H7"
+                              d="M4 5H20"
                               stroke="white"
                               strokeWidth="1.5"
                               strokeLinecap="round"
                               strokeLinejoin="round"
                             />
                             <path
-                              d="M7 16H3M7 8H3"
+                              d="M18 12H6"
                               stroke="white"
                               strokeWidth="1.5"
                               strokeLinecap="round"
                               strokeLinejoin="round"
                             />
                             <path
-                              d="M21 16H17M21 8H17"
+                              d="M8 19H16"
                               stroke="white"
                               strokeWidth="1.5"
                               strokeLinecap="round"
@@ -166,12 +148,11 @@ export default function NavBar() {
                             />
                           </svg>
                         </div>
-                        <p className="text-base font-medium">ژانر فیلم</p>
-                      </TabsTrigger>
-                      <TabsTrigger
-                        className="w-full h-12 rounded-lg p-1 flex gap-[10px] dark:data-[state=active]:bg-background"
-                        value="seriesgenre"
-                        onMouseEnter={() => setActiveTab("seriesgenre")}
+                        <p className="text-base font-medium">سینمایی</p>
+                      </Link>
+                      <Link
+                        href="/anime/ongoing"
+                        className="flex w-full h-12 rounded-lg p-1 gap-[10px] items-center justify-start whitespace-nowrap text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-background hover:text-foreground hover:shadow-sm"
                       >
                         <div className="p-2 flex justify-center items-center rounded-lg bg-[#242F3D]">
                           <svg
@@ -182,13 +163,21 @@ export default function NavBar() {
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <path
-                              d="M2 14C2 10.2288 2 8.34315 3.17157 7.17157C4.34315 6 6.22876 6 10 6H14C17.7712 6 19.6569 6 20.8284 7.17157C22 8.34315 22 10.2288 22 14C22 17.7712 22 19.6569 20.8284 20.8284C19.6569 22 17.7712 22 14 22H10C6.22876 22 4.34315 22 3.17157 20.8284C2 19.6569 2 17.7712 2 14Z"
+                              d="M4 5H20"
                               stroke="white"
                               strokeWidth="1.5"
                               strokeLinecap="round"
+                              strokeLinejoin="round"
                             />
                             <path
-                              d="M9 3L12 6L16 2"
+                              d="M18 12H6"
+                              stroke="white"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                            <path
+                              d="M8 19H16"
                               stroke="white"
                               strokeWidth="1.5"
                               strokeLinecap="round"
@@ -196,44 +185,52 @@ export default function NavBar() {
                             />
                           </svg>
                         </div>
-                        <p className="text-base font-medium">ژانر سریال</p>
-                      </TabsTrigger>
+                        <p className="text-base font-medium">در حال پخش</p>
+                      </Link>
                     </TabsList>
                     <Separator
                       className="h-[204px] mt-1"
                       orientation="vertical"
                     />
-                    <TabsContent value="categories">
+                    <TabsContent value="genres">
                       <div className="grid grid-cols-3 gap-4">
-                        {menuItems.map((item) => (
+                        {genres.map((item) => (
                           <Link
-                            href="/anime/genres"
-                            key={item.label}
+                            href={item.href!}
+                            key={item.title}
                             className="w-44 h-10 rounded hover:bg-background flex items-center justify-center text-base font-medium"
                           >
-                            {item.label}
-                            {item.count ? `(${item.count})` : ""}
+                            {item.title}
                           </Link>
                         ))}
+                        <Link
+                          href="/anime/genres"
+                          className="w-44 h-10 rounded hover:bg-background flex items-center justify-center text-base font-medium text-primary-500"
+                        >
+                          مشاهده بیشتر
+                        </Link>
                       </div>
                     </TabsContent>
-                    <TabsContent value="animegenre">
-                      {" "}
+                    <TabsContent value="years">
                       <div className="grid grid-cols-3 gap-4">
-                        {menuItems.map((item) => (
+                        {years.map((item) => (
                           <Link
-                            href="#"
-                            key={item.label}
+                            href={`anime/years/${item}`}
+                            key={item}
                             className="w-44 h-10 rounded hover:bg-background flex items-center justify-center text-base font-medium"
                           >
-                            {item.label}
-                            {item.count ? `(${item.count})` : ""}
+                            {item}
                           </Link>
                         ))}
+                        <Link
+                          href="/anime/years"
+                          className="w-44 h-10 rounded hover:bg-background flex items-center justify-center text-base font-medium text-primary-500"
+                        >
+                          مشاهده بیشتر
+                        </Link>
                       </div>
                     </TabsContent>
                     <TabsContent value="moviegenre">
-                      {" "}
                       <div className="grid grid-cols-3 gap-4">
                         {menuItems.map((item) => (
                           <Link
@@ -248,7 +245,6 @@ export default function NavBar() {
                       </div>
                     </TabsContent>
                     <TabsContent value="seriesgenre">
-                      {" "}
                       <div className="grid grid-cols-3 gap-4">
                         {menuItems.map((item) => (
                           <Link

@@ -68,7 +68,7 @@ export default function ResultCard({
             <p className="text-xs font-medium text-[#979CA6]">زیرنویس چسبیده</p>
           </div>
         </div>
-        <div className="flex justify-end lg:hidden">
+        {/* <div className="flex justify-end lg:hidden">
           <svg
             width="24"
             height="24"
@@ -92,7 +92,7 @@ export default function ResultCard({
               strokeWidth="1.5"
             />
           </svg>
-        </div>
+        </div> */}
       </div>
       <div className="hidden lg:flex justify-start p-1">
         <svg

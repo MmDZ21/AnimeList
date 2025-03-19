@@ -14,7 +14,7 @@ fragment AnimeFragment on Anime {
   dic_score
   anilist_score
     anime_links{
-    link
+    signedLink
     quality
     id
     size

@@ -52,6 +52,7 @@ export const { handlers, auth, signIn,signOut } = NextAuth({
             id: user.id,
             name: user.name,
             email: user.email,
+            isVip: user.isVIP,
             accessToken: access_token!,
             refreshToken: refresh_token!,
             expiration: Math.floor(Date.now() / 1000) + expires_in!,
@@ -69,7 +70,7 @@ export const { handlers, auth, signIn,signOut } = NextAuth({
         token.accessToken = user.accessToken;
         token.refreshToken = user.refreshToken;
         token.expiration = user.expiration;
-      
+        token.isVip = user.isVip
       }
       return token;
     },
@@ -79,7 +80,8 @@ export const { handlers, auth, signIn,signOut } = NextAuth({
           ...session.user,
           accessToken: token.accessToken,
           refreshToken: token.refreshToken,
-          expiration:token.expiration
+          expiration:token.expiration,
+          isVip: token.isVip
         };
       }
       console.log(session.user.expiration - Date.now()/1000)

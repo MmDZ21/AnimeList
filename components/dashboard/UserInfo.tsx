@@ -6,7 +6,6 @@ import Image from "next/image";
 import { fetchUser } from "@/actions/fetchUser";
 
 export default async function UserInfo() {
-  await delay(5000)
   const data = await fetchUser()
   const user = data.me;
 

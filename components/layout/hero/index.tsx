@@ -97,12 +97,12 @@ export default function Hero() {
                     <p className="hidden lg:flex text-base font-medium">
                       {hero.desc}
                     </p>
-                    <div className="hidden lg:flex gap-4">
+                    {/* <div className="hidden lg:flex gap-4">
                       {hero.actions &&
                         hero.actions.map((action) => (
                           <Actions key={action.label} actions={action} />
                         ))}
-                    </div>
+                    </div> */}
                   </div>
                   {/* actions and indicator on lg Screens */}
                   <div className="w-full z-20 hidden lg:flex lg:flex-col gap-32">

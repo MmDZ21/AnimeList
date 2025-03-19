@@ -23,7 +23,7 @@ export default function DownloadWrapper({
         <div className="flex gap-[10px]">
           <p>کیفیت: {links.quality}</p>
           <Separator orientation="vertical" className="h-4" />
-          <p>حجم: {links.size}</p>
+          {links.size !== "DIRECTORY" && <p>حجم: {links.size}</p>}
         </div>
       </div>
       <div className="flex gap-4">

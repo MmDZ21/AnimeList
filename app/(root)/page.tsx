@@ -57,7 +57,7 @@ export default async function HomePage() {
             bgUrl="/images/conan.webp"
             title="Detective Conan Collection"
             description="مجموعهٔ کامل انیمه سریالی و سینمایی‌های کارآگاه کوچک محبوب دل ها رو اینجا با ترجمهٔ اختصاصی و زیرنویس چسبیده ببین"
-            actions={[<WatchOnline key={1} />, <AddToWatchList key={2} />]}
+            // actions={[<WatchOnline key={1} />, <AddToWatchList key={2} />]}
           >
       <Suspense fallback={<MediaCarouselSkeleton length={10}/>}>
           <MediaCarousels
@@ -65,8 +65,8 @@ export default async function HomePage() {
       </Suspense>
           </Parallel>
         </PreloadQuery>
-        <NewEpisodes />
-        <Banners />
+        {/* <NewEpisodes />
+        <Banners /> */}
       </div>
     </div>
   );

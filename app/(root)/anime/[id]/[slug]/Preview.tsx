@@ -62,7 +62,7 @@ export const Preview = async ({ anime }: { anime: Anime }) => {
           ))}
         </div>
         <div className="flex flex-col lg:flex-row lg:items-center gap-2">
-          <div className="flex items-center gap-2">
+          {/* <div className="flex items-center gap-2">
             <Rating rating={4} />
             <p className="text-sm font-medium">
               میانگین: {anime.al_score} / 10
@@ -117,7 +117,7 @@ export const Preview = async ({ anime }: { anime: Anime }) => {
                 </ScrollArea>
               </DialogContent>
             </Dialog>
-          </div>
+          </div> */}
           <Separator orientation="vertical" className="h-4 hidden lg:block" />
           <div className="flex text-sm font-medium gap-[10px]">
             <p>MAL Rating: {anime.dic_score}</p>

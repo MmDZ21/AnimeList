@@ -32,7 +32,7 @@ export default async function Result({ query }: { query: string }) {
     query: SearchAnimeDocument,
     variables: {
       query,
-      first: 4,
+      first: 6,
       orderBy: [
         {
           column: QueryAnimeSearchOrderByColumn.PostHit,
@@ -46,38 +46,54 @@ export default async function Result({ query }: { query: string }) {
     console.error("Error fetching anime data:", error);
     return <p>Error loading anime data.</p>;
   }
-  const animes= data?.animeSearch.data as Anime[]
-  if(animes.length === 0){
-    return <p>نتیجه‌ای یافت نشد</p>
+  const animes = data?.animeSearch.data as Anime[];
+  if (animes.length === 0) {
+    return <p>نتیجه‌ای یافت نشد</p>;
   }
-  const top = animes
-  const dramas = animes
-  const series = animes
-  const movies = animes
-  const characters = animes[0].characters
-  const blogs = [blog1, blog2, blog3]
+  const top = animes;
+  const dramas = animes;
+  const series = animes;
+  const movies = animes;
+  const characters = animes[0].characters;
+  const blogs = [blog1, blog2, blog3];
 
   if (!animes) {
     return <p>Anime not found.</p>;
   }
   return (
     <div className="lg:flex justify-between w-full gap-8">
-      <div className="flex flex-col w-full lg:gap-6 lg:w-4/5">
+      <div className="flex flex-col w-full lg:gap-6">
         <div
           id="top-result"
           className="flex flex-col pt-4 gap-4 w-full lg:gap-6"
         >
-          <h2 className="text-base font-medium lg:text-2xl lg:font-bold">
-            برترین نتایج
-          </h2>
-          <div className="flex flex-col gap-2 w-full lg:hidden">
+          <div className="flex w-full justify-between items-center">
+            <h2 className="text-base font-medium lg:text-2xl lg:font-bold">
+              برترین نتایج
+            </h2>
+            <Link
+              href={"/"}
+              className="text-[#979CA6] text-center hidden lg:flex gap-2 "
+            >
+              مشاهده نتایج بیشتر
+              <ArrowLeftIcon className="size-6 text-[#979CA6]" />
+            </Link>
+          </div>
+          <div className="flex flex-col gap-4 w-full lg:hidden">
             {top.map((show, i) => (
-              <Link href={`/anime/${show.id}/${generateSlug(show.dic_title!)}`} key={i}><ResultCard data={show} index={i} /></Link>
+              <Link
+                href={`/anime/${show.id}/${generateSlug(show.dic_title!)}`}
+                key={i}
+              >
+                <ResultCard data={show} index={i} />
+              </Link>
             ))}
+            <Link href={"/"} className="text-primary-500 text-center">
+              مشاهده نتایج بیشتر
+            </Link>
           </div>
           <div className="hidden lg:flex gap-2 lg:flex-wrap">
             {top.map((show, i) => (
-               <Link href={`/anime/${show.id}/${generateSlug(show.dic_title!)}`} key={i}>
               <SimilarAnimeWrapper
                 anime={show}
                 className="w-[280px] p-2 h-[460px]"
@@ -86,11 +102,10 @@ export default async function Result({ query }: { query: string }) {
                 overlay
                 priority={i === 0 ? true : false}
               />
-              </Link>
             ))}
           </div>
         </div>
-        <div id="anime-shows" className="flex flex-col pt-4  gap-4 w-full">
+        {/* <div id="anime-shows" className="flex flex-col pt-4  gap-4 w-full">
           <div className="flex justify-between w-full items-center">
             <h2 className="text-base font-bold lg:text-2xl lg:font-bold">
               انیمه‌ها
@@ -143,7 +158,7 @@ export default async function Result({ query }: { query: string }) {
               <ResultCard key={i} data={show} />
             ))}
           </div>
-        </div>
+        </div> */}
         <div
           id="characters"
           className="hidden lg:flex flex-col pt-4 gap-4 w-full"
@@ -172,14 +187,6 @@ export default async function Result({ query }: { query: string }) {
             ))}
           </div>
         </div>
-      </div>
-      <div className="w-1/6 min-w-[260px] hidden lg:flex flex-col gap-6">
-        <h2 className="text-base font-medium lg:text-2xl lg:font-bold">
-          اخبار و مقالات مرتبط
-        </h2>
-        {blogs.map((blog, i) => (
-          <BlogCard blog={blog} key={i} />
-        ))}
       </div>
     </div>
   );

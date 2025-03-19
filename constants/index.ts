@@ -4,6 +4,7 @@ import {
   Genre,
   HeroSlide,
   MediaCardType,
+  Plan,
   Subtitle,
   User,
   UserNotification,
@@ -869,11 +870,11 @@ export const eightySixAnime: Anime = {
 };
 
 export const dashboardRoutes = [
-  { value: "dashboard", label: "داشبورد", content: Dashboard },
-  { value: "list", label: "لیست من" , content: List },
-  { value: "subtitles", label: "زیرنویس" , content: Subtitles },
-  { value: "notifications", label: "اطلاعیه‌ها", content: Notifications  },
-  { value: "tickets", label: "تیکت‌ها" , content: Tickets },
+  // { value: "dashboard", label: "داشبورد", content: Dashboard },
+  // { value: "list", label: "لیست من" , content: List },
+  // { value: "subtitles", label: "زیرنویس" , content: Subtitles },
+  // { value: "notifications", label: "اطلاعیه‌ها", content: Notifications  },
+  // { value: "tickets", label: "تیکت‌ها" , content: Tickets },
   { value: "membership", label: "اشتراک من" , content: Membership },
 ];
 export const dawn: User = {
@@ -1140,88 +1141,72 @@ export const genres: Genre[] = [
     image: "/images/genres/cover.webp",
     title: "اکشن",
     subtitle: "Action Anime",
+    href:"/anime/genres/action",
   },
   {
     image: "/images/genres/cover.webp",
     title: "درام",
     subtitle: "Drama Anime",
+    href:"/anime/genres/drama",
   },
   {
     image: "/images/genres/cover.webp",
     title: "کمدی",
     subtitle: "Comedy Anime",
-  },
-  {
-    image: "/images/genres/cover.webp",
-    title: "ماجراجویی",
-    subtitle: "Adventure Anime",
+    href:"/anime/genres/comedy",
   },
   {
     image: "/images/genres/cover.webp",
     title: "موسیقی",
     subtitle: "Music Anime",
-  },
-  {
-    image: "/images/genres/cover.webp",
-    title: "مکا",
-    subtitle: "Mecha Anime",
-  },
-  {
-    image: "/images/genres/cover.webp",
-    title: "دختران جادویی",
-    subtitle: "Mahou Shoujo Anime",
+    href:"/anime/genres/music",
   },
   {
     image: "/images/genres/cover.webp",
     title: "ترسناک",
     subtitle: "Horror Anime",
-  },
-  {
-    image: "/images/genres/cover.webp",
-    title: "فانتزی",
-    subtitle: "Fantasy Anime",
+    href:"/anime/genres/horror",
   },
   {
     image: "/images/genres/cover.webp",
     title: "عاشقانه",
     subtitle: "Romance Anime",
+    href:"/anime/genres/romance",
   },
   {
     image: "/images/genres/cover.webp",
     title: "علمی تخیلی",
     subtitle: "Sci-Fi Anime",
+    href:"/anime/genres/sci-fi",
   },
   {
     image: "/images/genres/cover.webp",
     title: "روان شناختی",
     subtitle: "Psychological Anime",
+    href:"/anime/genres/psychological",
   },
   {
     image: "/images/genres/cover.webp",
     title: "معمایی",
     subtitle: "Mystery Anime",
+    href:"/anime/genres/mystery",
   },
   {
     image: "/images/genres/cover.webp",
     title: "ورزشی",
     subtitle: "Sports Anime",
-  },
-  {
-    image: "/images/genres/cover.webp",
-    title: "هیجان انگیز",
-    subtitle: "Thriller Anime",
+    href:"/anime/genres/sports",
   },
   {
     image: "/images/genres/cover.webp",
     title: "ماوراء طبیعی",
     subtitle: "Supernatural Anime",
-  },
-  {
-    image: "/images/genres/cover.webp",
-    title: "برشی از زندگی",
-    subtitle: "Slice of Life Anime",
+    href:"/anime/genres/supernatural",
   },
 ];
+export const years = [
+  "2025","2024","2023","2022","2021","2020","2019","2018","2017","2016","2015"
+]
 export const menuItems = [
   { label: "انیمه سینمایی", count: 1282 },
   { label: "دونگوها", count: 3456 },
@@ -1243,4 +1228,37 @@ export const walletTips = [
 
 export const walletChargeOptions = [
   "1", "2", "3", "4", "5", "custom"
+]
+
+export const features = [
+  "تماشای آفلاین",
+  "امکان استفاده از پخش آنلاین",
+  "دانلود با ترافیک مصرفی نیم بها",
+  "سرعت بالا و بدون محدودیت در دانلود"
+]
+export const membershipPlans: Plan[] = [
+  {
+    days:30,
+    bonusDays:0,
+    mostPopular:false,
+    price:60000,
+    value:"1",
+    image:"/images/blogs/b2.webp",
+  },
+  {
+    days:60,
+    bonusDays:6,
+    mostPopular:true,
+    price:120000,
+    value:"2",
+    image:"/images/blogs/b1.webp"
+  },
+  {
+    days:90,
+    bonusDays:10,
+    mostPopular:false,
+    price:180000,
+    value:"3",
+    image:"/images/blogs/b3.webp"
+  },
 ]

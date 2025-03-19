@@ -13,7 +13,7 @@ export default function Charge() {
   return (
     <form action={payReq} className="w-full flex flex-col gap-4 px-2 py-3">
       <p className="text-base font-bold">مبلغ شارژ را انتخاب کنید</p>
-      <div className="w-full flex py-2 gap-4">
+      <div className="w-full lg:flex grid grid-cols-2 py-2 gap-4">
         {walletChargeOptions.map((value) => (
           <Button
             type="button" // ✅ Prevents form submission

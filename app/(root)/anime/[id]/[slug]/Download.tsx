@@ -16,7 +16,7 @@ const Download = async ({
             key={link.id}
             links={{
               ep: link.ep || "نامشخص",
-              link: link.link || "#",
+              link: link.signedLink || "#",
               quality: link.quality || "نامشخص",
               size: link.size || "نامشخص",
               subtitle: link.subtitle_link || "#",

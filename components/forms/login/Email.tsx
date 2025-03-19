@@ -181,7 +181,7 @@ const Email = () => {
           </div>
 
           <div className="flex flex-col gap-4 ">
-            <div className="flex items-center gap-3">
+            {/* <div className="flex items-center gap-3">
               <div className="dark:bg-[#94A3B8]/20 h-[1px] w-full"></div>
               <p className="dark:text-[#E0E0E0] text-sm font-normal">یا</p>
               <div className="dark:bg-[#94A3B8]/20 h-[1px] w-full"></div>
@@ -253,13 +253,14 @@ const Email = () => {
                   ورود با کد فعال‌سازی
                 </Link>
               </Button>
-            </div>
+            </div> */}
             <div className="flex justify-center items-center">
               <p className="text-[#979CA6] text-sm font-normal">
                 هنوز حساب کاربری نداری؟
-                <span className="text-primary-500 text-sm font-medium">
+                <Link href="/register" className="text-primary-500 text-sm font-medium">
+                {" "}
                   ثبت‌نام
-                </span>
+                </Link>
               </p>
             </div>
           </div>
