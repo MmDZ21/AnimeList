@@ -101,6 +101,7 @@ export default async function Result({ query }: { query: string }) {
                 actions={false}
                 overlay
                 priority={i === 0 ? true : false}
+                key={show.id}
               />
             ))}
           </div>
