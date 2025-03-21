@@ -9,7 +9,7 @@ const AnimeYearListSkeleton = ({ length }: { length: number }) => {
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 py-5">
       {arr.map((_, i) => (
-        <Skeleton className="w-full py-2" />
+        <Skeleton className="w-full py-2" key={i} />
       ))}
     </div>
   );
