@@ -24,8 +24,6 @@ import { getImagePath } from "@/lib/utils";
 // import Details from "@/components/anime/Details";
 
 export const Preview = async ({ anime }: { anime: Anime }) => {
-  console.log(anime.dic_body);
-  console.log(anime);
   return (
     <div className="flex lg:gap-4">
       <div className="lg:flex flex-col gap-2 hidden">

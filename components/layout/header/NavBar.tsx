@@ -1,7 +1,7 @@
 "use client";
 import { useNavMenus } from "@/hooks/useNavMenus";
 import { useTranslation } from "@/i18n/client";
-import Link from "next/link";
+// import Link from "next/link";
 import React, { useState } from "react";
 import {
   NavigationMenu,
@@ -14,27 +14,22 @@ import {
   navigationMenuTriggerStyle,
   NavigationMenuViewport,
 } from "@/components/ui/navigation-menu";
+
 import { Separator } from "@/components/ui/separator";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/navbar-tabs";
+
 import { genres, menuItems, years } from "@/constants";
+import Link from "next/link";
 
 export default function NavBar() {
-  const { t } = useTranslation("navbar");
-  const navMenus = useNavMenus(t);
-  const [activeTab, setActiveTab] = useState("categories");
   return (
     <nav className="flex items-center gap-6">
-      <div className="flex items-center gap-2">
+      <Separator orientation="vertical" className="h-4" />
+      {/* <div className="flex items-center gap-2">
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
               <NavigationMenuTrigger className="text-base font-medium p-2 dark:text-white">
-                انیمه‌ها
+                گشت و گذار
               </NavigationMenuTrigger>
               <NavigationMenuContent
                 onMouseLeave={() => setActiveTab("genres")}
@@ -264,10 +259,71 @@ export default function NavBar() {
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
-      </div>
-      <Separator orientation="vertical" className="h-4" />
+      </div> */}
+      <NavigationMenu>
+        <NavigationMenuList>
+          <NavigationMenuItem>
+            <NavigationMenuTrigger>انیمه‌ها براساس ژانر</NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <div className="grid grid-cols-3 gap-4 w-[600px] p-4">
+                {genres.map((item) => (
+                  <Link
+                    href={item.href!}
+                    key={item.title}
+                    className="w-44 h-10 rounded hover:bg-background flex items-center justify-center text-base font-medium"
+                  >
+                    {item.title}
+                  </Link>
+                ))}
+                <Link
+                  href="/anime/genres"
+                  className="w-44 h-10 rounded hover:bg-background flex items-center justify-center text-base font-medium text-primary-500"
+                >
+                  مشاهده بیشتر
+                </Link>
+              </div>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <NavigationMenuTrigger>انیمه‌ها براساس سال</NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <div className="grid grid-cols-3 gap-4 w-[600px] p-4">
+                {years.map((item) => (
+                  <Link
+                    href={`anime/years/${item}`}
+                    key={item}
+                    className="w-44 h-10 rounded hover:bg-background flex items-center justify-center text-base font-medium"
+                  >
+                    {item}
+                  </Link>
+                ))}
+                <Link
+                  href="/anime/years"
+                  className="w-44 h-10 rounded hover:bg-background flex items-center justify-center text-base font-medium text-primary-500"
+                >
+                  مشاهده بیشتر
+                </Link>
+              </div>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <Link href="/anime/movies" legacyBehavior passHref>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                انیمه‌های سینمایی
+              </NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <Link href="/anime/ongoing" legacyBehavior passHref>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                انیمه‌های در‌حال پخش
+              </NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
+        </NavigationMenuList>
+      </NavigationMenu>
 
-      <div className="flex items-center gap-2">
+      {/* <div className="flex items-center gap-2">
         {navMenus.addition.map((menu) => (
           <Link
             key={menu.label}
@@ -277,7 +333,7 @@ export default function NavBar() {
             {menu.label}
           </Link>
         ))}
-      </div>
+      </div> */}
     </nav>
   );
 }

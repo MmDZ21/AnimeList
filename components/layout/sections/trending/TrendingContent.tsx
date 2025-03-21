@@ -13,7 +13,6 @@ export default function TrendingContent() {
     },
   });
   const animes = data?.animesSeason.data || []
-  console.log(animes)
   return (
     <div className="flex flex-col gap-6">
       {animes.map((item) => (

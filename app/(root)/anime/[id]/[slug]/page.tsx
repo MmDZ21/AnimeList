@@ -10,23 +10,17 @@ import {
 } from "@/components/ui/custom-tabs";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import CommentForm from "@/components/forms/comment";
-import WatchOnline from "@/components/buttons/WatchOnline";
 import { Button } from "@/components/ui/button";
 import { Preview } from "./Preview";
 import Recommendations from "./Recommendations";
 import Characters from "./Characters";
-import Trailers from "./Trailers";
 import Download from "./Download";
-import Subtitle from "./Subtitle";
 import Comments from "./Comments";
 import {
   Anime,
   GetAnimeByIdDocument,
   GetAnimeByIdQuery,
   GetAnimeByIdQueryVariables,
-  GetSeasonalAnimesDocument,
-  GetSeasonalAnimesQuery,
-  GetSeasonalAnimesQueryVariables,
 } from "@/generated/graphql";
 import { getClient } from "@/lib/apolloClient";
 import { generateSlug, getImagePath } from "@/lib/utils";

@@ -1,3 +1,4 @@
+
 import { Separator } from "@/components/ui/separator";
 import { Anime } from "@/generated/graphql";
 import React from "react";
@@ -13,12 +14,42 @@ export default function AdditionalInfo({ anime }: { anime: Anime }) {
     { label: "فصل پخش", value: anime.season_year },
     { label: "منبع اقتباس", value: anime.__typename },
   ];
+  const seasons: Record<"winter" | "spring" | "summer" | "fall", string> = {
+    winter: "زمستان",
+    spring: "بهار",
+    summer: "تابستان",
+    fall: "پاییز",
+  };
+  
+  const formattedDetails = details.map(({ label, value }) => {
+    if (!value) return { label, value: null };
+  
+    if (typeof value === "string") {
+      // Format date (YYYY-MM-DD HH:mm:ss -> YYYY-MM-DD)
+      if (value.match(/^\d{4}-\d{2}-\d{2}/)) {
+        return { label, value: value.split(" ")[0] };
+      }
+  
+      // Convert season@year format
+      if (value.includes("@")) {
+        const [year, season] = value.split("@");
+        
+        // Type assertion to tell TypeScript that season is a valid key
+        if (season in seasons) {
+          return { label, value: `${seasons[season as keyof typeof seasons]} ${year}` };
+        }
+      }
+    }
+  
+    return { label, value };
+  });
+  console.log("details: ", details)
   return (
     <div className="w-full px-[10px] py-4 bg-[#17212B] flex flex-col gap-8">
       <div className="flex flex-col gap-4">
         <h6 className="text-base font-semibold">اطلاعات انیمه</h6>
         <div className="grid grid-cols-5 gap-4">
-          {details.map((detail) => (
+          {formattedDetails.map((detail) => (
             <div
               key={detail.label}
               className="bg-background rounded-lg flex flex-col justify-center gap-2 p-2"

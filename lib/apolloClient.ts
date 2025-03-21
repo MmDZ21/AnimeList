@@ -35,7 +35,6 @@ export const {
     const session = await auth()
     const accessToken = session? session.user?.accessToken : null
     
-    console.log("access token: " + accessToken)
 
     return {
       headers: {

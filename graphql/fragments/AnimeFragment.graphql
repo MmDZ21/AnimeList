@@ -1,5 +1,11 @@
 fragment AnimeFragment on Anime {
   id
+  dic_aired_from
+  dic_aired_to
+  dic_episodes
+  dic_duration
+  dic_status
+  season_year
   dic_body
   dic_title
   dic_title_en
@@ -13,7 +19,7 @@ fragment AnimeFragment on Anime {
   mal_image_url
   dic_score
   anilist_score
-    anime_links{
+  anime_links {
     signedLink
     quality
     id
@@ -29,10 +35,9 @@ fragment AnimeFragment on Anime {
     title
     online_play
   }
-  dic_episodes
   recommendations {
     recommendation {
-...RecommendationsFragment
+      ...RecommendationsFragment
     }
   }
   relations {
@@ -42,7 +47,7 @@ fragment AnimeFragment on Anime {
       id
     }
   }
-    characters {
-  ...CharactersFragment
+  characters {
+    ...CharactersFragment
   }
 }

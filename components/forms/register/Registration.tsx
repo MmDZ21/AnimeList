@@ -57,7 +57,6 @@ const Registration: React.FC = () => {
   const onSubmit: SubmitHandler<RegistrationSchema> = async (data) => {
     setIsPending(true);
     try {
-      console.log(data);
       // Simulate an async operation
       await new Promise((resolve) => setTimeout(resolve, 2000));
       // Handle registration logic

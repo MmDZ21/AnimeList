@@ -37,7 +37,6 @@ export default function Search({ placeholder }: { placeholder: string }) {
         ...recentSearches.filter((search: string) => search !== term),
       ].slice(0, 8); // Limit to 5
       localStorage.setItem("recentSearches", JSON.stringify(updatedSearches));
-      console.log(`Saving recent search... ${term}`);
     }
   }, 1500);
 

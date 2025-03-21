@@ -40,7 +40,7 @@ export const { handlers, auth, signIn,signOut } = NextAuth({
           });
 
           if (errors || !data?.login) {
-            throw new Error("Invalid credentials");
+            return null
           }
 
           const { user, access_token, refresh_token, expires_in } = data.login;
