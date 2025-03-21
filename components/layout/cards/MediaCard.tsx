@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 
 import { AnimeFragmentFragment } from "@/generated/graphql";
-import { getImagePath } from "@/lib/utils";
+import { cn, getImagePath } from "@/lib/utils";
 
 export default function MediaCard({
   data,
@@ -13,13 +13,11 @@ export default function MediaCard({
   className?: string;
 }) {
   return (
-    <div className="flex flex-col gap-2 w-[157px] h-[282px] md:w-52 md:h-96 lg:h-[512px] lg:w-[281px]">
+    <div className={cn("flex flex-col gap-2 w-[157px] h-[282px] md:w-52 md:h-96 lg:h-[512px] lg:w-[281px]", className)}>
       <div className="flex flex-col gap-2 w-full h-full md:p-2">
         <div className="w-full h-full relative">
           <Image
-            src={
-getImagePath(data.mal_image_url, data.anilist_image_url)
-            }
+            src={getImagePath(data.mal_image_url, data.anilist_image_url)}
             alt={data.dic_title || "انیمه"}
             fill
             className="rounded object-cover"

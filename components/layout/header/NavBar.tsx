@@ -199,7 +199,7 @@ export default function NavBar() {
                           </Link>
                         ))}
                         <Link
-                          href="/anime/genres"
+                          href="/anime/genre"
                           className="w-44 h-10 rounded hover:bg-background flex items-center justify-center text-base font-medium text-primary-500"
                         >
                           مشاهده بیشتر
@@ -210,7 +210,7 @@ export default function NavBar() {
                       <div className="grid grid-cols-3 gap-4">
                         {years.map((item) => (
                           <Link
-                            href={`anime/years/${item}`}
+                            href={`anime/year/${item}`}
                             key={item}
                             className="w-44 h-10 rounded hover:bg-background flex items-center justify-center text-base font-medium"
                           >
@@ -218,7 +218,7 @@ export default function NavBar() {
                           </Link>
                         ))}
                         <Link
-                          href="/anime/years"
+                          href="/anime/year"
                           className="w-44 h-10 rounded hover:bg-background flex items-center justify-center text-base font-medium text-primary-500"
                         >
                           مشاهده بیشتر
@@ -276,7 +276,7 @@ export default function NavBar() {
                   </Link>
                 ))}
                 <Link
-                  href="/anime/genres"
+                  href="/anime/genre"
                   className="w-44 h-10 rounded hover:bg-background flex items-center justify-center text-base font-medium text-primary-500"
                 >
                   مشاهده بیشتر
@@ -290,7 +290,7 @@ export default function NavBar() {
               <div className="grid grid-cols-3 gap-4 w-[600px] p-4">
                 {years.map((item) => (
                   <Link
-                    href={`anime/years/${item}`}
+                    href={`/anime/year/${item}`}
                     key={item}
                     className="w-44 h-10 rounded hover:bg-background flex items-center justify-center text-base font-medium"
                   >
@@ -298,7 +298,7 @@ export default function NavBar() {
                   </Link>
                 ))}
                 <Link
-                  href="/anime/years"
+                  href="/anime/year"
                   className="w-44 h-10 rounded hover:bg-background flex items-center justify-center text-base font-medium text-primary-500"
                 >
                   مشاهده بیشتر

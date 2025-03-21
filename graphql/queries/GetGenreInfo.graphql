@@ -1,0 +1,7 @@
+query GetGenreInfo($id: ID!) {
+  AnimeGenreInfo(id: $id) {
+    id
+    name_fa
+    name_en
+  }
+}

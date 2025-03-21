@@ -25,11 +25,26 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 // import { login } from "@/actions/login";
-import router from "next/router";
 import login from "@/actions/login";
+import { useFormStatus } from "react-dom";
+function Submit() {
+  const status = useFormStatus();
+  return (
+    <Button
+      variant={"default"}
+      type="submit"
+      disabled={status.pending}
+      className="flex items-center justify-center gap-2"
+    >
+      {status.pending && (
+        <Image src="/svg/spinner.svg" width={16} height={16} alt="spinner" />
+      )}
+      ورود
+    </Button>
+  );
+}
 
 const Email = () => {
-  const [isPending, setIsPending] = useState(false);
   const form = useForm<z.infer<typeof emailLoginSchema>>({
     resolver: zodResolver(emailLoginSchema),
     defaultValues: {
@@ -160,23 +175,7 @@ const Email = () => {
                     </FormItem>
                   )}
                 />
-                
-                <Button
-                  variant={"default"}
-                  type="submit"
-                  disabled={isPending}
-                  className="flex items-center justify-center gap-2"
-                >
-                  {isPending && (
-                    <Image
-                      src="/svg/spinner.svg"
-                      width={16}
-                      height={16}
-                      alt="spinner"
-                    />
-                  )}
-                  ورود
-                </Button>
+                <Submit />
               </form>
             </Form>
           </div>
@@ -258,8 +257,11 @@ const Email = () => {
             <div className="flex justify-center items-center">
               <p className="text-[#979CA6] text-sm font-normal">
                 هنوز حساب کاربری نداری؟
-                <Link href="/register" className="text-primary-500 text-sm font-medium">
-                {" "}
+                <Link
+                  href="/register"
+                  className="text-primary-500 text-sm font-medium"
+                >
+                  {" "}
                   ثبت‌نام
                 </Link>
               </p>

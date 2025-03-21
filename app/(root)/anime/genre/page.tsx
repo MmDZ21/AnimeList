@@ -1,10 +1,3 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import CategoryCard from "@/components/layout/cards/CategoryCard";
-import { getClient } from "@/lib/apolloClient";
-import {
-  GetAnimeGenresDocument,
-  GetAnimeGenresQuery,
-} from "@/generated/graphql";
 import { Suspense } from "react";
 import GenresList from "@/components/genres/GenresList";
 import CategoryPageSkeleton from "@/components/layout/Skeletons/CategoryPageSkeleton";

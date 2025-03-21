@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from "react";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
@@ -9,40 +9,48 @@ import { Plan } from "@/types/types";
 import { useFormStatus } from "react-dom";
 
 function Submit() {
-    const status = useFormStatus(); 
-    return             <Button disabled={status.pending} type="submit" className="flex gap-1 h-12 w-full z-50">
-    <svg
-      width="25"
-      height="24"
-      viewBox="0 0 25 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
+  const status = useFormStatus();
+  return (
+    <Button
+      disabled={status.pending}
+      type="submit"
+      className="flex gap-1 h-12 w-full z-50"
     >
-      <path
-        d="M4.01819 10.3058C3.63013 9.23176 3.4361 8.69476 3.51884 8.35065C3.60933 7.97427 3.877 7.68084 4.21913 7.58296C4.53193 7.49346 5.01853 7.70973 5.99173 8.14227C6.85253 8.52486 7.28293 8.71615 7.68732 8.70551C8.13257 8.69379 8.56088 8.51524 8.9016 8.19931C9.21105 7.91237 9.41861 7.45513 9.83373 6.54064L10.7486 4.52525C11.5128 2.84175 11.8949 2 12.5 2C13.1051 2 13.4872 2.84175 14.2514 4.52525L15.1663 6.54064C15.5814 7.45513 15.789 7.91237 16.0984 8.19931C16.4391 8.51524 16.8674 8.69379 17.3127 8.70551C17.7171 8.71615 18.1475 8.52486 19.0083 8.14227C19.9815 7.70973 20.4681 7.49346 20.7809 7.58296C21.123 7.68084 21.3907 7.97427 21.4812 8.35065C21.5639 8.69476 21.3699 9.23176 20.9818 10.3057L19.3138 14.9222C18.6002 16.897 18.2435 17.8844 17.4968 18.4422C16.7502 19 15.7854 19 13.8558 19H11.1442C9.21459 19 8.24977 19 7.50315 18.4422C6.75654 17.8844 6.39977 16.897 5.68622 14.9222L4.01819 10.3058Z"
-        stroke="white"
-        strokeWidth="1.5"
-      />
-      <path
-        d="M12.5 14H12.509"
-        stroke="white"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M7.5 22H17.5"
-        stroke="white"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-    </svg>
-    <p>خرید اشتراک</p>
-    {status.pending && <Image src={"/svg/spinner.svg"} alt="pending" width={24} height={24}/>}
-  </Button>
-  }
+      <svg
+        width="25"
+        height="24"
+        viewBox="0 0 25 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M4.01819 10.3058C3.63013 9.23176 3.4361 8.69476 3.51884 8.35065C3.60933 7.97427 3.877 7.68084 4.21913 7.58296C4.53193 7.49346 5.01853 7.70973 5.99173 8.14227C6.85253 8.52486 7.28293 8.71615 7.68732 8.70551C8.13257 8.69379 8.56088 8.51524 8.9016 8.19931C9.21105 7.91237 9.41861 7.45513 9.83373 6.54064L10.7486 4.52525C11.5128 2.84175 11.8949 2 12.5 2C13.1051 2 13.4872 2.84175 14.2514 4.52525L15.1663 6.54064C15.5814 7.45513 15.789 7.91237 16.0984 8.19931C16.4391 8.51524 16.8674 8.69379 17.3127 8.70551C17.7171 8.71615 18.1475 8.52486 19.0083 8.14227C19.9815 7.70973 20.4681 7.49346 20.7809 7.58296C21.123 7.68084 21.3907 7.97427 21.4812 8.35065C21.5639 8.69476 21.3699 9.23176 20.9818 10.3057L19.3138 14.9222C18.6002 16.897 18.2435 17.8844 17.4968 18.4422C16.7502 19 15.7854 19 13.8558 19H11.1442C9.21459 19 8.24977 19 7.50315 18.4422C6.75654 17.8844 6.39977 16.897 5.68622 14.9222L4.01819 10.3058Z"
+          stroke="white"
+          strokeWidth="1.5"
+        />
+        <path
+          d="M12.5 14H12.509"
+          stroke="white"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M7.5 22H17.5"
+          stroke="white"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
+      </svg>
+      <p>خرید اشتراک</p>
+      {status.pending && (
+        <Image src={"/svg/spinner.svg"} alt="pending" width={24} height={24} />
+      )}
+    </Button>
+  );
+}
 export default function SubscriptionTab({ plan }: { plan: Plan }) {
-    const status = useFormStatus();
+  const status = useFormStatus();
   return (
     <div className="flex justify-between">
       <div className="flex flex-col gap-7">
@@ -174,7 +182,7 @@ export default function SubscriptionTab({ plan }: { plan: Plan }) {
             <h3 className="text-2xl font-bold z-50">{plan.days} روزه</h3>
             <h4 className="text-[32px] font-black z-50">{plan.price} تومان</h4>
             <input type="hidden" name="membershipId" value={plan.value} />
-            <Submit/>
+            <Submit />
           </form>
         </div>
       </div>

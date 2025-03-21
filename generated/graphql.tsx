@@ -684,6 +684,7 @@ export type Phx_Character = {
 
 export type Query = {
   __typename?: 'Query';
+  AnimeGenreInfo?: Maybe<AnimeGenre>;
   anime?: Maybe<Anime>;
   animeAdvancedSearch: AnimePaginator;
   animeBySeasonPage: SeasonAnimePageOutput;
@@ -738,6 +739,11 @@ export type Query = {
   settings_query?: Maybe<SettingsType>;
   subtitleById?: Maybe<Sub>;
   subtitles: SubPaginator;
+};
+
+
+export type QueryAnimeGenreInfoArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>;
 };
 
 
@@ -1495,7 +1501,7 @@ export type VerifyPaymentRequest = {
   trackId: Scalars['String']['input'];
 };
 
-export type AnimeFragmentFragment = { __typename?: 'Anime', id: string, dic_aired_from?: string | null, dic_aired_to?: string | null, dic_episodes?: string | null, dic_duration?: string | null, dic_status?: number | null, season_year?: string | null, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, mal_popularity?: number | null, mal_id: string, al_score?: number | null, al_score_count?: number | null, wide_image?: string | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, anime_links: Array<{ __typename?: 'DbAnimeLinks', signedLink?: string | null, quality?: string | null, id: string, size?: string | null, ep?: string | null, subtitle_link?: string | null }>, genres: Array<{ __typename?: 'AnimeGenre', id: string, name_fa?: string | null }>, trailers: Array<{ __typename?: 'AnimeTrailer', title?: string | null, online_play?: string | null }>, recommendations: Array<{ __typename?: 'AnimeRecommendation', recommendation: { __typename?: 'Anime', id: string, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, mal_popularity?: number | null, al_score?: number | null, al_score_count?: number | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, dic_episodes?: string | null, genres: Array<{ __typename?: 'AnimeGenre', id: string, name_fa?: string | null }> } }>, relations: Array<{ __typename?: 'AnimeRelation', type?: string | null, relation?: string | null, relationship: { __typename?: 'Anime', id: string } }>, characters: Array<{ __typename?: 'CharacterDetail', character_role?: string | null, person_role?: string | null, character?: { __typename?: 'AnimeCharacter', id: string, name?: string | null, image_url?: string | null } | null, person?: { __typename?: 'AnimePerson', id: string, name?: string | null, hometown?: string | null, image_url?: string | null } | null }> };
+export type AnimeFragmentFragment = { __typename?: 'Anime', id: string, dic_aired_from?: string | null, dic_aired_to?: string | null, dic_episodes?: string | null, dic_duration?: string | null, dic_status?: number | null, season_year?: string | null, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, mal_popularity?: number | null, al_score?: number | null, al_score_count?: number | null, wide_image?: string | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, anime_links: Array<{ __typename?: 'DbAnimeLinks', signedLink?: string | null, quality?: string | null, id: string, size?: string | null, ep?: string | null, subtitle_link?: string | null }>, genres: Array<{ __typename?: 'AnimeGenre', id: string, name_fa?: string | null }>, trailers: Array<{ __typename?: 'AnimeTrailer', title?: string | null, online_play?: string | null }>, recommendations: Array<{ __typename?: 'AnimeRecommendation', recommendation: { __typename?: 'Anime', id: string, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, mal_popularity?: number | null, al_score?: number | null, al_score_count?: number | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, dic_episodes?: string | null, genres: Array<{ __typename?: 'AnimeGenre', id: string, name_fa?: string | null }> } }>, relations: Array<{ __typename?: 'AnimeRelation', type?: string | null, relation?: string | null, relationship: { __typename?: 'Anime', id: string } }>, characters: Array<{ __typename?: 'CharacterDetail', character_role?: string | null, person_role?: string | null, character?: { __typename?: 'AnimeCharacter', id: string, name?: string | null, image_url?: string | null } | null, person?: { __typename?: 'AnimePerson', id: string, name?: string | null, hometown?: string | null, image_url?: string | null } | null }> };
 
 export type AnimeGenreFragmentFragment = { __typename?: 'AnimeGenre', id: string, name_fa?: string | null, name_en?: string | null, slug?: string | null, backdrop?: string | null };
 
@@ -1552,12 +1558,32 @@ export type RefreshTokenMutationVariables = Exact<{
 
 export type RefreshTokenMutation = { __typename?: 'Mutation', refreshToken: { __typename?: 'RefreshTokenPayload', access_token: string, refresh_token: string, expires_in: number } };
 
+export type AnimeByGenreQueryVariables = Exact<{
+  id: Scalars['ID']['input'];
+  orderBy?: InputMaybe<Array<QueryAnimeGenreOrderByOrderByClause> | QueryAnimeGenreOrderByOrderByClause>;
+  first: Scalars['Int']['input'];
+  page?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+
+export type AnimeByGenreQuery = { __typename?: 'Query', animeGenre: { __typename?: 'AnimePaginator', data: Array<{ __typename?: 'Anime', id: string, dic_aired_from?: string | null, dic_aired_to?: string | null, dic_episodes?: string | null, dic_duration?: string | null, dic_status?: number | null, season_year?: string | null, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, mal_popularity?: number | null, al_score?: number | null, al_score_count?: number | null, wide_image?: string | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, anime_links: Array<{ __typename?: 'DbAnimeLinks', signedLink?: string | null, quality?: string | null, id: string, size?: string | null, ep?: string | null, subtitle_link?: string | null }>, genres: Array<{ __typename?: 'AnimeGenre', id: string, name_fa?: string | null }>, trailers: Array<{ __typename?: 'AnimeTrailer', title?: string | null, online_play?: string | null }>, recommendations: Array<{ __typename?: 'AnimeRecommendation', recommendation: { __typename?: 'Anime', id: string, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, mal_popularity?: number | null, al_score?: number | null, al_score_count?: number | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, dic_episodes?: string | null, genres: Array<{ __typename?: 'AnimeGenre', id: string, name_fa?: string | null }> } }>, relations: Array<{ __typename?: 'AnimeRelation', type?: string | null, relation?: string | null, relationship: { __typename?: 'Anime', id: string } }>, characters: Array<{ __typename?: 'CharacterDetail', character_role?: string | null, person_role?: string | null, character?: { __typename?: 'AnimeCharacter', id: string, name?: string | null, image_url?: string | null } | null, person?: { __typename?: 'AnimePerson', id: string, name?: string | null, hometown?: string | null, image_url?: string | null } | null }> }> } };
+
 export type GetAnimeByIdQueryVariables = Exact<{
   id: Scalars['ID']['input'];
 }>;
 
 
-export type GetAnimeByIdQuery = { __typename?: 'Query', anime?: { __typename?: 'Anime', id: string, dic_aired_from?: string | null, dic_aired_to?: string | null, dic_episodes?: string | null, dic_duration?: string | null, dic_status?: number | null, season_year?: string | null, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, mal_popularity?: number | null, mal_id: string, al_score?: number | null, al_score_count?: number | null, wide_image?: string | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, anime_links: Array<{ __typename?: 'DbAnimeLinks', signedLink?: string | null, quality?: string | null, id: string, size?: string | null, ep?: string | null, subtitle_link?: string | null }>, genres: Array<{ __typename?: 'AnimeGenre', id: string, name_fa?: string | null }>, trailers: Array<{ __typename?: 'AnimeTrailer', title?: string | null, online_play?: string | null }>, recommendations: Array<{ __typename?: 'AnimeRecommendation', recommendation: { __typename?: 'Anime', id: string, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, mal_popularity?: number | null, al_score?: number | null, al_score_count?: number | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, dic_episodes?: string | null, genres: Array<{ __typename?: 'AnimeGenre', id: string, name_fa?: string | null }> } }>, relations: Array<{ __typename?: 'AnimeRelation', type?: string | null, relation?: string | null, relationship: { __typename?: 'Anime', id: string } }>, characters: Array<{ __typename?: 'CharacterDetail', character_role?: string | null, person_role?: string | null, character?: { __typename?: 'AnimeCharacter', id: string, name?: string | null, image_url?: string | null } | null, person?: { __typename?: 'AnimePerson', id: string, name?: string | null, hometown?: string | null, image_url?: string | null } | null }> } | null };
+export type GetAnimeByIdQuery = { __typename?: 'Query', anime?: { __typename?: 'Anime', id: string, dic_aired_from?: string | null, dic_aired_to?: string | null, dic_episodes?: string | null, dic_duration?: string | null, dic_status?: number | null, season_year?: string | null, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, mal_popularity?: number | null, al_score?: number | null, al_score_count?: number | null, wide_image?: string | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, anime_links: Array<{ __typename?: 'DbAnimeLinks', signedLink?: string | null, quality?: string | null, id: string, size?: string | null, ep?: string | null, subtitle_link?: string | null }>, genres: Array<{ __typename?: 'AnimeGenre', id: string, name_fa?: string | null }>, trailers: Array<{ __typename?: 'AnimeTrailer', title?: string | null, online_play?: string | null }>, recommendations: Array<{ __typename?: 'AnimeRecommendation', recommendation: { __typename?: 'Anime', id: string, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, mal_popularity?: number | null, al_score?: number | null, al_score_count?: number | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, dic_episodes?: string | null, genres: Array<{ __typename?: 'AnimeGenre', id: string, name_fa?: string | null }> } }>, relations: Array<{ __typename?: 'AnimeRelation', type?: string | null, relation?: string | null, relationship: { __typename?: 'Anime', id: string } }>, characters: Array<{ __typename?: 'CharacterDetail', character_role?: string | null, person_role?: string | null, character?: { __typename?: 'AnimeCharacter', id: string, name?: string | null, image_url?: string | null } | null, person?: { __typename?: 'AnimePerson', id: string, name?: string | null, hometown?: string | null, image_url?: string | null } | null }> } | null };
+
+export type GetAnimeByYearQueryVariables = Exact<{
+  year: Scalars['String']['input'];
+  orderBy?: InputMaybe<Array<QueryAnimeYearOrderByOrderByClause> | QueryAnimeYearOrderByOrderByClause>;
+  first: Scalars['Int']['input'];
+  page?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+
+export type GetAnimeByYearQuery = { __typename?: 'Query', animeYear: { __typename?: 'AnimePaginator', data: Array<{ __typename?: 'Anime', id: string, dic_aired_from?: string | null, dic_aired_to?: string | null, dic_episodes?: string | null, dic_duration?: string | null, dic_status?: number | null, season_year?: string | null, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, mal_popularity?: number | null, al_score?: number | null, al_score_count?: number | null, wide_image?: string | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, anime_links: Array<{ __typename?: 'DbAnimeLinks', signedLink?: string | null, quality?: string | null, id: string, size?: string | null, ep?: string | null, subtitle_link?: string | null }>, genres: Array<{ __typename?: 'AnimeGenre', id: string, name_fa?: string | null }>, trailers: Array<{ __typename?: 'AnimeTrailer', title?: string | null, online_play?: string | null }>, recommendations: Array<{ __typename?: 'AnimeRecommendation', recommendation: { __typename?: 'Anime', id: string, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, mal_popularity?: number | null, al_score?: number | null, al_score_count?: number | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, dic_episodes?: string | null, genres: Array<{ __typename?: 'AnimeGenre', id: string, name_fa?: string | null }> } }>, relations: Array<{ __typename?: 'AnimeRelation', type?: string | null, relation?: string | null, relationship: { __typename?: 'Anime', id: string } }>, characters: Array<{ __typename?: 'CharacterDetail', character_role?: string | null, person_role?: string | null, character?: { __typename?: 'AnimeCharacter', id: string, name?: string | null, image_url?: string | null } | null, person?: { __typename?: 'AnimePerson', id: string, name?: string | null, hometown?: string | null, image_url?: string | null } | null }> }> } };
 
 export type GetAnimeCommentsQueryVariables = Exact<{
   first: Scalars['Int']['input'];
@@ -1571,6 +1597,22 @@ export type GetAnimeGenresQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetAnimeGenresQuery = { __typename?: 'Query', genres: Array<{ __typename?: 'AnimeGenre', id: string, name_fa?: string | null, name_en?: string | null, slug?: string | null, backdrop?: string | null }> };
+
+export type GetAnimeMoviesQueryVariables = Exact<{
+  orderBy?: InputMaybe<Array<QueryAnimesMoviePageOrderByOrderByClause> | QueryAnimesMoviePageOrderByOrderByClause>;
+  first: Scalars['Int']['input'];
+  page?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+
+export type GetAnimeMoviesQuery = { __typename?: 'Query', animesMoviePage: { __typename?: 'AnimePaginator', data: Array<{ __typename?: 'Anime', id: string, dic_aired_from?: string | null, dic_aired_to?: string | null, dic_episodes?: string | null, dic_duration?: string | null, dic_status?: number | null, season_year?: string | null, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, mal_popularity?: number | null, al_score?: number | null, al_score_count?: number | null, wide_image?: string | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, anime_links: Array<{ __typename?: 'DbAnimeLinks', signedLink?: string | null, quality?: string | null, id: string, size?: string | null, ep?: string | null, subtitle_link?: string | null }>, genres: Array<{ __typename?: 'AnimeGenre', id: string, name_fa?: string | null }>, trailers: Array<{ __typename?: 'AnimeTrailer', title?: string | null, online_play?: string | null }>, recommendations: Array<{ __typename?: 'AnimeRecommendation', recommendation: { __typename?: 'Anime', id: string, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, mal_popularity?: number | null, al_score?: number | null, al_score_count?: number | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, dic_episodes?: string | null, genres: Array<{ __typename?: 'AnimeGenre', id: string, name_fa?: string | null }> } }>, relations: Array<{ __typename?: 'AnimeRelation', type?: string | null, relation?: string | null, relationship: { __typename?: 'Anime', id: string } }>, characters: Array<{ __typename?: 'CharacterDetail', character_role?: string | null, person_role?: string | null, character?: { __typename?: 'AnimeCharacter', id: string, name?: string | null, image_url?: string | null } | null, person?: { __typename?: 'AnimePerson', id: string, name?: string | null, hometown?: string | null, image_url?: string | null } | null }> }> } };
+
+export type GetGenreInfoQueryVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type GetGenreInfoQuery = { __typename?: 'Query', AnimeGenreInfo?: { __typename?: 'AnimeGenre', id: string, name_fa?: string | null, name_en?: string | null } | null };
 
 export type GetUserInfoQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -1587,12 +1629,21 @@ export type GetUserBalanceQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetUserBalanceQuery = { __typename?: 'Query', me: { __typename?: 'User', balance?: number | null } };
 
+export type GetOngoingAnimeQueryVariables = Exact<{
+  orderBy?: InputMaybe<Array<QueryAnimesOngoingPageOrderByOrderByClause> | QueryAnimesOngoingPageOrderByOrderByClause>;
+  first: Scalars['Int']['input'];
+  page?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+
+export type GetOngoingAnimeQuery = { __typename?: 'Query', animesOngoingPage: { __typename?: 'AnimePaginator', data: Array<{ __typename?: 'Anime', id: string, dic_aired_from?: string | null, dic_aired_to?: string | null, dic_episodes?: string | null, dic_duration?: string | null, dic_status?: number | null, season_year?: string | null, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, mal_popularity?: number | null, al_score?: number | null, al_score_count?: number | null, wide_image?: string | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, anime_links: Array<{ __typename?: 'DbAnimeLinks', signedLink?: string | null, quality?: string | null, id: string, size?: string | null, ep?: string | null, subtitle_link?: string | null }>, genres: Array<{ __typename?: 'AnimeGenre', id: string, name_fa?: string | null }>, trailers: Array<{ __typename?: 'AnimeTrailer', title?: string | null, online_play?: string | null }>, recommendations: Array<{ __typename?: 'AnimeRecommendation', recommendation: { __typename?: 'Anime', id: string, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, mal_popularity?: number | null, al_score?: number | null, al_score_count?: number | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, dic_episodes?: string | null, genres: Array<{ __typename?: 'AnimeGenre', id: string, name_fa?: string | null }> } }>, relations: Array<{ __typename?: 'AnimeRelation', type?: string | null, relation?: string | null, relationship: { __typename?: 'Anime', id: string } }>, characters: Array<{ __typename?: 'CharacterDetail', character_role?: string | null, person_role?: string | null, character?: { __typename?: 'AnimeCharacter', id: string, name?: string | null, image_url?: string | null } | null, person?: { __typename?: 'AnimePerson', id: string, name?: string | null, hometown?: string | null, image_url?: string | null } | null }> }> } };
+
 export type GetSeasonalAnimesQueryVariables = Exact<{
   first: Scalars['Int']['input'];
 }>;
 
 
-export type GetSeasonalAnimesQuery = { __typename?: 'Query', animesSeason: { __typename?: 'AnimePaginator', paginatorInfo: { __typename?: 'PaginatorInfo', count: number }, data: Array<{ __typename?: 'Anime', id: string, dic_aired_from?: string | null, dic_aired_to?: string | null, dic_episodes?: string | null, dic_duration?: string | null, dic_status?: number | null, season_year?: string | null, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, mal_popularity?: number | null, mal_id: string, al_score?: number | null, al_score_count?: number | null, wide_image?: string | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, anime_links: Array<{ __typename?: 'DbAnimeLinks', signedLink?: string | null, quality?: string | null, id: string, size?: string | null, ep?: string | null, subtitle_link?: string | null }>, genres: Array<{ __typename?: 'AnimeGenre', id: string, name_fa?: string | null }>, trailers: Array<{ __typename?: 'AnimeTrailer', title?: string | null, online_play?: string | null }>, recommendations: Array<{ __typename?: 'AnimeRecommendation', recommendation: { __typename?: 'Anime', id: string, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, mal_popularity?: number | null, al_score?: number | null, al_score_count?: number | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, dic_episodes?: string | null, genres: Array<{ __typename?: 'AnimeGenre', id: string, name_fa?: string | null }> } }>, relations: Array<{ __typename?: 'AnimeRelation', type?: string | null, relation?: string | null, relationship: { __typename?: 'Anime', id: string } }>, characters: Array<{ __typename?: 'CharacterDetail', character_role?: string | null, person_role?: string | null, character?: { __typename?: 'AnimeCharacter', id: string, name?: string | null, image_url?: string | null } | null, person?: { __typename?: 'AnimePerson', id: string, name?: string | null, hometown?: string | null, image_url?: string | null } | null }> }> } };
+export type GetSeasonalAnimesQuery = { __typename?: 'Query', animesSeason: { __typename?: 'AnimePaginator', paginatorInfo: { __typename?: 'PaginatorInfo', count: number }, data: Array<{ __typename?: 'Anime', id: string, dic_aired_from?: string | null, dic_aired_to?: string | null, dic_episodes?: string | null, dic_duration?: string | null, dic_status?: number | null, season_year?: string | null, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, mal_popularity?: number | null, al_score?: number | null, al_score_count?: number | null, wide_image?: string | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, anime_links: Array<{ __typename?: 'DbAnimeLinks', signedLink?: string | null, quality?: string | null, id: string, size?: string | null, ep?: string | null, subtitle_link?: string | null }>, genres: Array<{ __typename?: 'AnimeGenre', id: string, name_fa?: string | null }>, trailers: Array<{ __typename?: 'AnimeTrailer', title?: string | null, online_play?: string | null }>, recommendations: Array<{ __typename?: 'AnimeRecommendation', recommendation: { __typename?: 'Anime', id: string, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, mal_popularity?: number | null, al_score?: number | null, al_score_count?: number | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, dic_episodes?: string | null, genres: Array<{ __typename?: 'AnimeGenre', id: string, name_fa?: string | null }> } }>, relations: Array<{ __typename?: 'AnimeRelation', type?: string | null, relation?: string | null, relationship: { __typename?: 'Anime', id: string } }>, characters: Array<{ __typename?: 'CharacterDetail', character_role?: string | null, person_role?: string | null, character?: { __typename?: 'AnimeCharacter', id: string, name?: string | null, image_url?: string | null } | null, person?: { __typename?: 'AnimePerson', id: string, name?: string | null, hometown?: string | null, image_url?: string | null } | null }> }> } };
 
 export type GetSubtitlesQueryVariables = Exact<{
   anime_id: Scalars['ID']['input'];
@@ -1610,7 +1661,7 @@ export type SearchAnimeQueryVariables = Exact<{
 }>;
 
 
-export type SearchAnimeQuery = { __typename?: 'Query', animeSearch: { __typename?: 'AnimePaginator', data: Array<{ __typename?: 'Anime', id: string, dic_aired_from?: string | null, dic_aired_to?: string | null, dic_episodes?: string | null, dic_duration?: string | null, dic_status?: number | null, season_year?: string | null, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, mal_popularity?: number | null, mal_id: string, al_score?: number | null, al_score_count?: number | null, wide_image?: string | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, anime_links: Array<{ __typename?: 'DbAnimeLinks', signedLink?: string | null, quality?: string | null, id: string, size?: string | null, ep?: string | null, subtitle_link?: string | null }>, genres: Array<{ __typename?: 'AnimeGenre', id: string, name_fa?: string | null }>, trailers: Array<{ __typename?: 'AnimeTrailer', title?: string | null, online_play?: string | null }>, recommendations: Array<{ __typename?: 'AnimeRecommendation', recommendation: { __typename?: 'Anime', id: string, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, mal_popularity?: number | null, al_score?: number | null, al_score_count?: number | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, dic_episodes?: string | null, genres: Array<{ __typename?: 'AnimeGenre', id: string, name_fa?: string | null }> } }>, relations: Array<{ __typename?: 'AnimeRelation', type?: string | null, relation?: string | null, relationship: { __typename?: 'Anime', id: string } }>, characters: Array<{ __typename?: 'CharacterDetail', character_role?: string | null, person_role?: string | null, character?: { __typename?: 'AnimeCharacter', id: string, name?: string | null, image_url?: string | null } | null, person?: { __typename?: 'AnimePerson', id: string, name?: string | null, hometown?: string | null, image_url?: string | null } | null }> }> } };
+export type SearchAnimeQuery = { __typename?: 'Query', animeSearch: { __typename?: 'AnimePaginator', data: Array<{ __typename?: 'Anime', id: string, dic_aired_from?: string | null, dic_aired_to?: string | null, dic_episodes?: string | null, dic_duration?: string | null, dic_status?: number | null, season_year?: string | null, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, mal_popularity?: number | null, al_score?: number | null, al_score_count?: number | null, wide_image?: string | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, anime_links: Array<{ __typename?: 'DbAnimeLinks', signedLink?: string | null, quality?: string | null, id: string, size?: string | null, ep?: string | null, subtitle_link?: string | null }>, genres: Array<{ __typename?: 'AnimeGenre', id: string, name_fa?: string | null }>, trailers: Array<{ __typename?: 'AnimeTrailer', title?: string | null, online_play?: string | null }>, recommendations: Array<{ __typename?: 'AnimeRecommendation', recommendation: { __typename?: 'Anime', id: string, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, mal_popularity?: number | null, al_score?: number | null, al_score_count?: number | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, dic_episodes?: string | null, genres: Array<{ __typename?: 'AnimeGenre', id: string, name_fa?: string | null }> } }>, relations: Array<{ __typename?: 'AnimeRelation', type?: string | null, relation?: string | null, relationship: { __typename?: 'Anime', id: string } }>, characters: Array<{ __typename?: 'CharacterDetail', character_role?: string | null, person_role?: string | null, character?: { __typename?: 'AnimeCharacter', id: string, name?: string | null, image_url?: string | null } | null, person?: { __typename?: 'AnimePerson', id: string, name?: string | null, hometown?: string | null, image_url?: string | null } | null }> }> } };
 
 export const RecommendationsFragmentFragmentDoc = gql`
     fragment RecommendationsFragment on Anime {
@@ -1664,7 +1715,6 @@ export const AnimeFragmentFragmentDoc = gql`
   dic_title_en
   title_fa
   mal_popularity
-  mal_id
   al_score
   al_score_count
   wide_image
@@ -1985,6 +2035,51 @@ export function useRefreshTokenMutation(baseOptions?: Apollo.MutationHookOptions
 export type RefreshTokenMutationHookResult = ReturnType<typeof useRefreshTokenMutation>;
 export type RefreshTokenMutationResult = Apollo.MutationResult<RefreshTokenMutation>;
 export type RefreshTokenMutationOptions = Apollo.BaseMutationOptions<RefreshTokenMutation, RefreshTokenMutationVariables>;
+export const AnimeByGenreDocument = gql`
+    query AnimeByGenre($id: ID!, $orderBy: [QueryAnimeGenreOrderByOrderByClause!], $first: Int!, $page: Int) {
+  animeGenre(id: $id, orderBy: $orderBy, first: $first, page: $page) {
+    data {
+      ...AnimeFragment
+    }
+  }
+}
+    ${AnimeFragmentFragmentDoc}`;
+
+/**
+ * __useAnimeByGenreQuery__
+ *
+ * To run a query within a React component, call `useAnimeByGenreQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAnimeByGenreQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useAnimeByGenreQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *      orderBy: // value for 'orderBy'
+ *      first: // value for 'first'
+ *      page: // value for 'page'
+ *   },
+ * });
+ */
+export function useAnimeByGenreQuery(baseOptions: Apollo.QueryHookOptions<AnimeByGenreQuery, AnimeByGenreQueryVariables> & ({ variables: AnimeByGenreQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<AnimeByGenreQuery, AnimeByGenreQueryVariables>(AnimeByGenreDocument, options);
+      }
+export function useAnimeByGenreLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AnimeByGenreQuery, AnimeByGenreQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<AnimeByGenreQuery, AnimeByGenreQueryVariables>(AnimeByGenreDocument, options);
+        }
+export function useAnimeByGenreSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<AnimeByGenreQuery, AnimeByGenreQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<AnimeByGenreQuery, AnimeByGenreQueryVariables>(AnimeByGenreDocument, options);
+        }
+export type AnimeByGenreQueryHookResult = ReturnType<typeof useAnimeByGenreQuery>;
+export type AnimeByGenreLazyQueryHookResult = ReturnType<typeof useAnimeByGenreLazyQuery>;
+export type AnimeByGenreSuspenseQueryHookResult = ReturnType<typeof useAnimeByGenreSuspenseQuery>;
+export type AnimeByGenreQueryResult = Apollo.QueryResult<AnimeByGenreQuery, AnimeByGenreQueryVariables>;
 export const GetAnimeByIdDocument = gql`
     query GetAnimeById($id: ID!) {
   anime: anime(id: $id) {
@@ -2025,6 +2120,51 @@ export type GetAnimeByIdQueryHookResult = ReturnType<typeof useGetAnimeByIdQuery
 export type GetAnimeByIdLazyQueryHookResult = ReturnType<typeof useGetAnimeByIdLazyQuery>;
 export type GetAnimeByIdSuspenseQueryHookResult = ReturnType<typeof useGetAnimeByIdSuspenseQuery>;
 export type GetAnimeByIdQueryResult = Apollo.QueryResult<GetAnimeByIdQuery, GetAnimeByIdQueryVariables>;
+export const GetAnimeByYearDocument = gql`
+    query GetAnimeByYear($year: String!, $orderBy: [QueryAnimeYearOrderByOrderByClause!], $first: Int!, $page: Int) {
+  animeYear(year: $year, orderBy: $orderBy, first: $first, page: $page) {
+    data {
+      ...AnimeFragment
+    }
+  }
+}
+    ${AnimeFragmentFragmentDoc}`;
+
+/**
+ * __useGetAnimeByYearQuery__
+ *
+ * To run a query within a React component, call `useGetAnimeByYearQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAnimeByYearQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAnimeByYearQuery({
+ *   variables: {
+ *      year: // value for 'year'
+ *      orderBy: // value for 'orderBy'
+ *      first: // value for 'first'
+ *      page: // value for 'page'
+ *   },
+ * });
+ */
+export function useGetAnimeByYearQuery(baseOptions: Apollo.QueryHookOptions<GetAnimeByYearQuery, GetAnimeByYearQueryVariables> & ({ variables: GetAnimeByYearQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetAnimeByYearQuery, GetAnimeByYearQueryVariables>(GetAnimeByYearDocument, options);
+      }
+export function useGetAnimeByYearLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAnimeByYearQuery, GetAnimeByYearQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetAnimeByYearQuery, GetAnimeByYearQueryVariables>(GetAnimeByYearDocument, options);
+        }
+export function useGetAnimeByYearSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetAnimeByYearQuery, GetAnimeByYearQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetAnimeByYearQuery, GetAnimeByYearQueryVariables>(GetAnimeByYearDocument, options);
+        }
+export type GetAnimeByYearQueryHookResult = ReturnType<typeof useGetAnimeByYearQuery>;
+export type GetAnimeByYearLazyQueryHookResult = ReturnType<typeof useGetAnimeByYearLazyQuery>;
+export type GetAnimeByYearSuspenseQueryHookResult = ReturnType<typeof useGetAnimeByYearSuspenseQuery>;
+export type GetAnimeByYearQueryResult = Apollo.QueryResult<GetAnimeByYearQuery, GetAnimeByYearQueryVariables>;
 export const GetAnimeCommentsDocument = gql`
     query GetAnimeComments($first: Int!, $id: ID) {
   comments: animeComments(first: $first, parent_id: 0, type: "anime", id: $id) {
@@ -2107,6 +2247,92 @@ export type GetAnimeGenresQueryHookResult = ReturnType<typeof useGetAnimeGenresQ
 export type GetAnimeGenresLazyQueryHookResult = ReturnType<typeof useGetAnimeGenresLazyQuery>;
 export type GetAnimeGenresSuspenseQueryHookResult = ReturnType<typeof useGetAnimeGenresSuspenseQuery>;
 export type GetAnimeGenresQueryResult = Apollo.QueryResult<GetAnimeGenresQuery, GetAnimeGenresQueryVariables>;
+export const GetAnimeMoviesDocument = gql`
+    query GetAnimeMovies($orderBy: [QueryAnimesMoviePageOrderByOrderByClause!], $first: Int!, $page: Int) {
+  animesMoviePage(orderBy: $orderBy, first: $first, page: $page) {
+    data {
+      ...AnimeFragment
+    }
+  }
+}
+    ${AnimeFragmentFragmentDoc}`;
+
+/**
+ * __useGetAnimeMoviesQuery__
+ *
+ * To run a query within a React component, call `useGetAnimeMoviesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAnimeMoviesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAnimeMoviesQuery({
+ *   variables: {
+ *      orderBy: // value for 'orderBy'
+ *      first: // value for 'first'
+ *      page: // value for 'page'
+ *   },
+ * });
+ */
+export function useGetAnimeMoviesQuery(baseOptions: Apollo.QueryHookOptions<GetAnimeMoviesQuery, GetAnimeMoviesQueryVariables> & ({ variables: GetAnimeMoviesQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetAnimeMoviesQuery, GetAnimeMoviesQueryVariables>(GetAnimeMoviesDocument, options);
+      }
+export function useGetAnimeMoviesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAnimeMoviesQuery, GetAnimeMoviesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetAnimeMoviesQuery, GetAnimeMoviesQueryVariables>(GetAnimeMoviesDocument, options);
+        }
+export function useGetAnimeMoviesSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetAnimeMoviesQuery, GetAnimeMoviesQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetAnimeMoviesQuery, GetAnimeMoviesQueryVariables>(GetAnimeMoviesDocument, options);
+        }
+export type GetAnimeMoviesQueryHookResult = ReturnType<typeof useGetAnimeMoviesQuery>;
+export type GetAnimeMoviesLazyQueryHookResult = ReturnType<typeof useGetAnimeMoviesLazyQuery>;
+export type GetAnimeMoviesSuspenseQueryHookResult = ReturnType<typeof useGetAnimeMoviesSuspenseQuery>;
+export type GetAnimeMoviesQueryResult = Apollo.QueryResult<GetAnimeMoviesQuery, GetAnimeMoviesQueryVariables>;
+export const GetGenreInfoDocument = gql`
+    query GetGenreInfo($id: ID!) {
+  AnimeGenreInfo(id: $id) {
+    id
+    name_fa
+    name_en
+  }
+}
+    `;
+
+/**
+ * __useGetGenreInfoQuery__
+ *
+ * To run a query within a React component, call `useGetGenreInfoQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetGenreInfoQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetGenreInfoQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetGenreInfoQuery(baseOptions: Apollo.QueryHookOptions<GetGenreInfoQuery, GetGenreInfoQueryVariables> & ({ variables: GetGenreInfoQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetGenreInfoQuery, GetGenreInfoQueryVariables>(GetGenreInfoDocument, options);
+      }
+export function useGetGenreInfoLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetGenreInfoQuery, GetGenreInfoQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetGenreInfoQuery, GetGenreInfoQueryVariables>(GetGenreInfoDocument, options);
+        }
+export function useGetGenreInfoSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetGenreInfoQuery, GetGenreInfoQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetGenreInfoQuery, GetGenreInfoQueryVariables>(GetGenreInfoDocument, options);
+        }
+export type GetGenreInfoQueryHookResult = ReturnType<typeof useGetGenreInfoQuery>;
+export type GetGenreInfoLazyQueryHookResult = ReturnType<typeof useGetGenreInfoLazyQuery>;
+export type GetGenreInfoSuspenseQueryHookResult = ReturnType<typeof useGetGenreInfoSuspenseQuery>;
+export type GetGenreInfoQueryResult = Apollo.QueryResult<GetGenreInfoQuery, GetGenreInfoQueryVariables>;
 export const GetUserInfoDocument = gql`
     query GetUserInfo {
   me {
@@ -2224,6 +2450,50 @@ export type GetUserBalanceQueryHookResult = ReturnType<typeof useGetUserBalanceQ
 export type GetUserBalanceLazyQueryHookResult = ReturnType<typeof useGetUserBalanceLazyQuery>;
 export type GetUserBalanceSuspenseQueryHookResult = ReturnType<typeof useGetUserBalanceSuspenseQuery>;
 export type GetUserBalanceQueryResult = Apollo.QueryResult<GetUserBalanceQuery, GetUserBalanceQueryVariables>;
+export const GetOngoingAnimeDocument = gql`
+    query GetOngoingAnime($orderBy: [QueryAnimesOngoingPageOrderByOrderByClause!], $first: Int!, $page: Int) {
+  animesOngoingPage(orderBy: $orderBy, first: $first, page: $page) {
+    data {
+      ...AnimeFragment
+    }
+  }
+}
+    ${AnimeFragmentFragmentDoc}`;
+
+/**
+ * __useGetOngoingAnimeQuery__
+ *
+ * To run a query within a React component, call `useGetOngoingAnimeQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetOngoingAnimeQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetOngoingAnimeQuery({
+ *   variables: {
+ *      orderBy: // value for 'orderBy'
+ *      first: // value for 'first'
+ *      page: // value for 'page'
+ *   },
+ * });
+ */
+export function useGetOngoingAnimeQuery(baseOptions: Apollo.QueryHookOptions<GetOngoingAnimeQuery, GetOngoingAnimeQueryVariables> & ({ variables: GetOngoingAnimeQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetOngoingAnimeQuery, GetOngoingAnimeQueryVariables>(GetOngoingAnimeDocument, options);
+      }
+export function useGetOngoingAnimeLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetOngoingAnimeQuery, GetOngoingAnimeQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetOngoingAnimeQuery, GetOngoingAnimeQueryVariables>(GetOngoingAnimeDocument, options);
+        }
+export function useGetOngoingAnimeSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetOngoingAnimeQuery, GetOngoingAnimeQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetOngoingAnimeQuery, GetOngoingAnimeQueryVariables>(GetOngoingAnimeDocument, options);
+        }
+export type GetOngoingAnimeQueryHookResult = ReturnType<typeof useGetOngoingAnimeQuery>;
+export type GetOngoingAnimeLazyQueryHookResult = ReturnType<typeof useGetOngoingAnimeLazyQuery>;
+export type GetOngoingAnimeSuspenseQueryHookResult = ReturnType<typeof useGetOngoingAnimeSuspenseQuery>;
+export type GetOngoingAnimeQueryResult = Apollo.QueryResult<GetOngoingAnimeQuery, GetOngoingAnimeQueryVariables>;
 export const GetSeasonalAnimesDocument = gql`
     query GetSeasonalAnimes($first: Int!) {
   animesSeason(first: $first) {

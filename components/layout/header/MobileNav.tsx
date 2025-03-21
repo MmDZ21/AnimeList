@@ -87,7 +87,7 @@ export default function MobileNav() {
                 </Link>
               ))}
                               <Link
-                  href="/anime/genres"
+                  href="/anime/genre"
                   className="h-10 w-full px-3 text-base font-medium flex items-center text-primary-500"
                 >
                   مشاهده بیشتر
@@ -124,7 +124,7 @@ export default function MobileNav() {
             <AccordionContent className="flex flex-col gap-4 py-4">
               {slicedYears.map((menu) => (
                 <Link
-                href={`anime/years/${menu}`}
+                href={`anime/year/${menu}`}
                   key={menu}
                   className="h-10 w-full px-3 text-base font-medium flex items-center"
                 >
@@ -132,7 +132,7 @@ export default function MobileNav() {
                 </Link>
               ))}
                               <Link
-                  href="/anime/years"
+                  href="/anime/year"
                   className="h-10 w-full px-3 text-base font-medium flex items-center text-primary-500"
                 >
                   مشاهده بیشتر

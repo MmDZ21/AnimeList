@@ -10,7 +10,7 @@ import {
   UserNotification,
 } from "@/types/types";
 
-import Dashboard from "@/components/dashboard/Dashboard"
+import Dashboard from "@/components/dashboard/Dashboard";
 import List from "@/components/dashboard/List";
 import Subtitles from "@/components/dashboard/Subtitles";
 import Notifications from "@/components/dashboard/Notifications";
@@ -875,7 +875,7 @@ export const dashboardRoutes = [
   // { value: "subtitles", label: "زیرنویس" , content: Subtitles },
   // { value: "notifications", label: "اطلاعیه‌ها", content: Notifications  },
   // { value: "tickets", label: "تیکت‌ها" , content: Tickets },
-  { value: "membership", label: "اشتراک من" , content: Membership },
+  { value: "membership", label: "اشتراک من", content: Membership },
 ];
 export const dawn: User = {
   id: "12345",
@@ -1141,72 +1141,82 @@ export const genres: Genre[] = [
     image: "/images/genres/cover.webp",
     title: "اکشن",
     subtitle: "Action Anime",
-    href:"/anime/genres/action",
+    href: "/anime/genre/1/action",
   },
   {
     image: "/images/genres/cover.webp",
     title: "درام",
     subtitle: "Drama Anime",
-    href:"/anime/genres/drama",
+    href: "/anime/genre/8/drama",
   },
   {
     image: "/images/genres/cover.webp",
     title: "کمدی",
     subtitle: "Comedy Anime",
-    href:"/anime/genres/comedy",
+    href: "/anime/genre/4/comedy",
   },
   {
     image: "/images/genres/cover.webp",
     title: "موسیقی",
     subtitle: "Music Anime",
-    href:"/anime/genres/music",
+    href: "/anime/genre/19/music",
   },
   {
     image: "/images/genres/cover.webp",
     title: "ترسناک",
     subtitle: "Horror Anime",
-    href:"/anime/genres/horror",
+    href: "/anime/genre/14/horror",
   },
   {
     image: "/images/genres/cover.webp",
     title: "عاشقانه",
     subtitle: "Romance Anime",
-    href:"/anime/genres/romance",
+    href: "/anime/genre/22/romance",
   },
   {
     image: "/images/genres/cover.webp",
     title: "علمی تخیلی",
     subtitle: "Sci-Fi Anime",
-    href:"/anime/genres/sci-fi",
+    href: "/anime/genre/24/sci-fi",
   },
   {
     image: "/images/genres/cover.webp",
     title: "روان شناختی",
     subtitle: "Psychological Anime",
-    href:"/anime/genres/psychological",
+    href: "/anime/genre/40/psychological",
   },
   {
     image: "/images/genres/cover.webp",
-    title: "معمایی",
+    title: "رازآلود",
     subtitle: "Mystery Anime",
-    href:"/anime/genres/mystery",
+    href: "/anime/genre/7/mystery",
   },
   {
     image: "/images/genres/cover.webp",
     title: "ورزشی",
     subtitle: "Sports Anime",
-    href:"/anime/genres/sports",
+    href: "/anime/genre/30/sports",
   },
   {
     image: "/images/genres/cover.webp",
     title: "ماوراء طبیعی",
     subtitle: "Supernatural Anime",
-    href:"/anime/genres/supernatural",
+    href: "/anime/genre/37/supernatural",
   },
 ];
 export const years = [
-  "2025","2024","2023","2022","2021","2020","2019","2018","2017","2016","2015"
-]
+  "2025",
+  "2024",
+  "2023",
+  "2022",
+  "2021",
+  "2020",
+  "2019",
+  "2018",
+  "2017",
+  "2016",
+  "2015",
+];
 export const menuItems = [
   { label: "انیمه سینمایی", count: 1282 },
   { label: "دونگوها", count: 3456 },
@@ -1223,42 +1233,48 @@ export const walletTips = [
   "پس از انتقال به درگاه باید در عرض 15 دقیقه تراکنش انتقال ارز را انجام دهید؛ در غیر اینصورت فاکتور ایجاد شده منقضی خواهد شد.",
   "مبلغ ارسالی باید دقیقاً برابر با مبلغ نمایش داده شده در صفحه درگاه پرداخت باشد. هزینه یا کارمزد انتقال از کیف پول یا صرافی نباید از مبلغ ارسالی کسر شود.",
   "پرداخت شما پس از دریافت تائیدیه از طرف شبکه، به صورت خودکار تائید خواهد شد و ممکن است 15 دقیقه یا بیشتر طول بکشد. در صورتی که پس از 24 ساعت، پرداخت شما تائید نشد برای ما تیکت ارسال کنید.",
-  "به ازای هر دلار کیف پول شما ۹۱۰۰۰ تومان شارژ خواهد شد."
-]
+  "به ازای هر دلار کیف پول شما ۹۱۰۰۰ تومان شارژ خواهد شد.",
+];
 
-export const walletChargeOptions = [
-  "1", "2", "3", "4", "5", "custom"
-]
+export const walletChargeOptions = ["1", "2", "3", "4", "5", "custom"];
 
 export const features = [
   "تماشای آفلاین",
   "امکان استفاده از پخش آنلاین",
   "دانلود با ترافیک مصرفی نیم بها",
-  "سرعت بالا و بدون محدودیت در دانلود"
-]
+  "سرعت بالا و بدون محدودیت در دانلود",
+];
 export const membershipPlans: Plan[] = [
   {
-    days:30,
-    bonusDays:0,
-    mostPopular:false,
-    price:60000,
-    value:"1",
-    image:"/images/blogs/b2.webp",
+    days: 30,
+    bonusDays: 0,
+    mostPopular: false,
+    price: 60000,
+    value: "1",
+    image: "/images/blogs/b2.webp",
   },
   {
-    days:60,
-    bonusDays:6,
-    mostPopular:true,
-    price:120000,
-    value:"2",
-    image:"/images/blogs/b1.webp"
+    days: 60,
+    bonusDays: 6,
+    mostPopular: true,
+    price: 120000,
+    value: "2",
+    image: "/images/blogs/b1.webp",
   },
   {
-    days:90,
-    bonusDays:10,
-    mostPopular:false,
-    price:180000,
-    value:"3",
-    image:"/images/blogs/b3.webp"
+    days: 90,
+    bonusDays: 10,
+    mostPopular: false,
+    price: 180000,
+    value: "3",
+    image: "/images/blogs/b3.webp",
   },
-]
+];
+
+export const yearsList = [
+  1969, 1970, 1971, 1972, 1973, 1974, 1975, 1976, 1977, 1978, 1979, 1980, 1981,
+  1982, 1983, 1984, 1985, 1986, 1987, 1988, 1989, 1990, 1991, 1992, 1993, 1994,
+  1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007,
+  2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020,
+  2021, 2022, 2023, 2024, 2025,
+];

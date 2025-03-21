@@ -1,0 +1,12 @@
+query AnimeByGenre(
+  $id: ID!
+  $orderBy: [QueryAnimeGenreOrderByOrderByClause!]
+  $first: Int!
+  $page: Int
+) {
+  animeGenre(id: $id, orderBy: $orderBy, first: $first, page: $page) {
+    data {
+      ...AnimeFragment
+    }
+  }
+}
