@@ -82,9 +82,9 @@ const Registration: React.FC = () => {
       ); // Call the server action
       console.log(result)
       if (!result.success) {
-        toast("مشکلی در ثبت نام رخ داد.");
+        toast.error("مشکلی در ثبت نام رخ داد.");
       } else {
-        toast("ثبت نام با موفقیت انجام شد", {
+        toast.success("ثبت نام با موفقیت انجام شد", {
           action: {
             label: "ورود به حساب",
             onClick: () => router.push("/login"),
@@ -92,7 +92,7 @@ const Registration: React.FC = () => {
         });
       }
     } catch (error) {
-      toast("مشکلی در ثبت نام رخ داد.");
+      toast.error("مشکلی در ثبت نام رخ داد.");
     } finally {
       setPassword("");
       setConfirmPassword("");
