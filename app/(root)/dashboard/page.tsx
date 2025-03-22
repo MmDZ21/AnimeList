@@ -31,7 +31,7 @@ export default async function Page() {
           defaultValue={dashboardRoutes[0].value}
           className="w-full lg:hidden"
         >
-          <CustomTabsList className="w-full dark:bg-transparent border-b border-[hsla(215,20%,65%,0.24)] flex justify-between px-4">
+          <CustomTabsList className="w-full dark:bg-transparent border-b border-[hsla(215,20%,65%,0.24)] flex gap-4 px-4">
             {dashboardRoutes.map((route) => (
               <CustomTabsTrigger
                 key={route.value}

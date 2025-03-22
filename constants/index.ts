@@ -16,6 +16,7 @@ import Subtitles from "@/components/dashboard/Subtitles";
 import Notifications from "@/components/dashboard/Notifications";
 import Tickets from "@/components/dashboard/Tickets";
 import Membership from "@/components/dashboard/Membership";
+import Settings from "@/components/dashboard/settings/Settings";
 export const heroSlides: HeroSlide[] = [
   {
     title: "عنوان انیمه",
@@ -874,8 +875,8 @@ export const dashboardRoutes = [
   // { value: "list", label: "لیست من" , content: List },
   // { value: "subtitles", label: "زیرنویس" , content: Subtitles },
   // { value: "notifications", label: "اطلاعیه‌ها", content: Notifications  },
-  // { value: "tickets", label: "تیکت‌ها" , content: Tickets },
   { value: "membership", label: "اشتراک من", content: Membership },
+  { value: "settings", label: "تنظیمات" , content: Settings },
 ];
 export const dawn: User = {
   id: "12345",
