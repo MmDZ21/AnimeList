@@ -8,6 +8,7 @@ import { LocaleProvider } from "../hooks/locale-provider";
 import { Locales } from "@/i18n/settings";
 import DirProvider from "@/components/DirProvider";
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Toaster } from "@/components/ui/sonner";
 // Define the expected type for the parameters
 // interface MetadataParams {
 //   params: {
@@ -176,6 +177,7 @@ export default async function GlobalLayout({
             </ThemeProvider>
           {/* </LocaleProvider> */}
         </ApolloWrapper>
+        <Toaster />
       </body>
     </html>
   );
