@@ -3,7 +3,7 @@ import { Button } from "./ui/button";
 import Link from "next/link";
 
 export default function MembersOnlyError() {
-  return <div className="flex flex-col gap-4 w-1/3 justify-center items-center text-center p-4">
+  return <div className="flex flex-col gap-4 w-full lg:w-1/3 justify-center items-center text-center p-4">
     <p className="text-base lg:text-xl font-bold">
     مثل اینکه یه مشکلی پیش اومده دوست عزیز!
     </p>

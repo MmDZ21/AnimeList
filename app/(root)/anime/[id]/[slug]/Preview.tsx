@@ -49,7 +49,7 @@ export const Preview = async ({ anime }: { anime: Anime }) => {
             {anime.title_fa}
           </h2>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           {anime.genres.map((genre) => (
             <div
               key={genre.id}

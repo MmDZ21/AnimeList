@@ -1,4 +1,3 @@
-
 import { Separator } from "@/components/ui/separator";
 import { Anime } from "@/generated/graphql";
 import React from "react";
@@ -20,30 +19,33 @@ export default function AdditionalInfo({ anime }: { anime: Anime }) {
     summer: "تابستان",
     fall: "پاییز",
   };
-  
+
   const formattedDetails = details.map(({ label, value }) => {
     if (!value) return { label, value: null };
-  
+
     if (typeof value === "string") {
       // Format date (YYYY-MM-DD HH:mm:ss -> YYYY-MM-DD)
       if (value.match(/^\d{4}-\d{2}-\d{2}/)) {
         return { label, value: value.split(" ")[0] };
       }
-  
+
       // Convert season@year format
       if (value.includes("@")) {
         const [year, season] = value.split("@");
-        
+
         // Type assertion to tell TypeScript that season is a valid key
         if (season in seasons) {
-          return { label, value: `${seasons[season as keyof typeof seasons]} ${year}` };
+          return {
+            label,
+            value: `${seasons[season as keyof typeof seasons]} ${year}`,
+          };
         }
       }
     }
-  
+
     return { label, value };
   });
-  console.log("details: ", details)
+  console.log("details: ", details);
   return (
     <div className="w-full px-[10px] py-4 bg-[#17212B] flex flex-col gap-8">
       <div className="flex flex-col gap-4">
@@ -54,10 +56,10 @@ export default function AdditionalInfo({ anime }: { anime: Anime }) {
               key={detail.label}
               className="bg-background rounded-lg flex flex-col justify-center gap-2 p-2"
             >
-              <p className="text-sm font-bold ">
-                {detail.label}
+              <p className="text-sm font-bold ">{detail.label}</p>
+              <p className="text-sm text-primary-500">
+                {detail.value || "نامشخص"}
               </p>
-              <p className="text-sm text-primary-500">{detail.value || "نامشخص"}</p>
             </div>
           ))}
         </div>
@@ -69,16 +71,12 @@ export default function AdditionalInfo({ anime }: { anime: Anime }) {
             <p className="text-sm font-bold">ژانرها</p>
             <div className="flex gap-4">
               {anime.genres.map((genre, i) => (
-                <>
+                <div key={genre.id}>
                   {i !== 0 && (
-                    <Separator
-                      key={genre.id}
-                      orientation="vertical"
-                      className="h-4"
-                    />
+                    <Separator orientation="vertical" className="h-4" />
                   )}
                   <p className="text-sm text-primary-500">{genre.name_fa}</p>
-                </>
+                </div>
               ))}
             </div>
           </div>
