@@ -4,9 +4,9 @@ const nextConfig: NextConfig = {
   // experimental: {
   //   ppr: 'incremental',
   // },
-//   cacheHandler: require.resolve(
-//     'next/dist/server/lib/incremental-cache/file-system-cache.js',
-// ),
+  cacheHandler: require.resolve(
+    'next/dist/server/lib/incremental-cache/file-system-cache.js',
+),
   images: {
     remotePatterns:[
       {
