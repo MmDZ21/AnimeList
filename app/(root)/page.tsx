@@ -1,31 +1,35 @@
 import dynamic from "next/dynamic";
 import Hero from "@/components/layout/hero";
-import SeasonalAnimes from "@/components/layout/sections/SeasonalAnimes";
-const MediaCarousels = dynamic(
-  () => import("@/components/layout/carousels/MediaCarousels")
-);
-const Parallel = dynamic(() => import("@/components/layout/sections/Parallel"));
-import { PreloadQuery } from "@/lib/apolloClient";
+// import SeasonalAnimes from "@/components/layout/sections/SeasonalAnimes";
+// const HomePageContent = dynamic(
+//   () => import("@/components/HomePageContent")
+// );
+// const Parallel = dynamic(() => import("@/components/layout/sections/Parallel"));
+// import { PreloadQuery } from "@/lib/apolloClient";
+// import { Suspense } from "react";
+// import { GetSeasonalAnimesDocument } from "@/generated/graphql";
+// import MediaCarouselSkeleton from "@/components/layout/Skeletons/MediaCarouselSkeleton";
+import HomePageContent from "@/components/HomePageContent";
 import { Suspense } from "react";
-import { GetSeasonalAnimesDocument } from "@/generated/graphql";
 import MediaCarouselSkeleton from "@/components/layout/Skeletons/MediaCarouselSkeleton";
+import Slider from "@/components/layout/Slider/Slider";
 
 export default async function HomePage() {
   return (
     <div className="min-h-screen w-full flex flex-col gap-10">
-      <Hero />
+      <Slider />
       <div className="min-h-screen w-full flex flex-col gap-10 px-4 lg:px-16">
-        <SeasonalAnimes />
-        {/* <UserEpisodes />
-        <Trending />
-        <SummerAnime /> */}
+        {/* <SeasonalAnimes />
         <PreloadQuery
           query={GetSeasonalAnimesDocument}
           variables={{
             first: 10,
           }}
-        >
-          <Parallel
+        > */}
+        <Suspense fallback={<MediaCarouselSkeleton length={8}/>}>
+          <HomePageContent />
+        </Suspense>
+        {/* <Parallel
             bgGradient="to top, hsla(226,90%,11%,0.8), hsla(224,71%,14%,0.48)"
             bgUrl="/images/conan.webp"
             title="Detective Conan Collection"
@@ -35,8 +39,8 @@ export default async function HomePage() {
             <Suspense fallback={<MediaCarouselSkeleton length={10} />}>
               <MediaCarousels />
             </Suspense>
-          </Parallel>
-        </PreloadQuery>
+          </Parallel> */}
+        {/* </PreloadQuery> */}
         {/* <NewEpisodes />
         <Banners /> */}
       </div>

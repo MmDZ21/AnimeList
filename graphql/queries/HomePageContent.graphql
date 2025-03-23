@@ -1,0 +1,13 @@
+query HomePageContent {
+  homePageAnimeContent {
+    headerText
+    parameters
+    hasMore
+    route
+    appBarHeader
+    appBarQuery
+    content {
+      ...AnimeFragment
+    }
+  }
+}

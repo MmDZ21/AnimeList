@@ -163,6 +163,13 @@ export type ApplicationSlider = {
   type_id?: Maybe<Scalars['Int']['output']>;
 };
 
+export type ApplicationSliderRequest = {
+  genre_id?: InputMaybe<Scalars['ID']['input']>;
+  route?: InputMaybe<Scalars['String']['input']>;
+  type: Scalars['String']['input'];
+  year_id?: InputMaybe<Scalars['Int']['input']>;
+};
+
 export type AuthPayload = {
   __typename?: 'AuthPayload';
   access_token?: Maybe<Scalars['String']['output']>;
@@ -873,7 +880,7 @@ export type QueryAnimesUpdatePageArgs = {
 
 
 export type QueryApplicationSliderArgs = {
-  parameters?: InputMaybe<Scalars['String']['input']>;
+  request: ApplicationSliderRequest;
 };
 
 
@@ -1582,6 +1589,11 @@ export type AnimeByGenreQueryVariables = Exact<{
 
 export type AnimeByGenreQuery = { __typename?: 'Query', animeGenre: { __typename?: 'AnimePaginator', data: Array<{ __typename?: 'Anime', id: string, dic_aired_from?: string | null, dic_aired_to?: string | null, dic_episodes?: string | null, dic_duration?: string | null, dic_status?: number | null, season_year?: string | null, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, mal_popularity?: number | null, al_score?: number | null, al_score_count?: number | null, wide_image?: string | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, anime_links: Array<{ __typename?: 'DbAnimeLinks', signedLink?: string | null, quality?: string | null, id: string, size?: string | null, ep?: string | null, subtitle_link?: string | null }>, genres: Array<{ __typename?: 'AnimeGenre', id: string, name_fa?: string | null }>, trailers: Array<{ __typename?: 'AnimeTrailer', title?: string | null, online_play?: string | null }>, recommendations: Array<{ __typename?: 'AnimeRecommendation', recommendation: { __typename?: 'Anime', id: string, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, mal_popularity?: number | null, al_score?: number | null, al_score_count?: number | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, dic_episodes?: string | null, genres: Array<{ __typename?: 'AnimeGenre', id: string, name_fa?: string | null }> } }>, relations: Array<{ __typename?: 'AnimeRelation', type?: string | null, relation?: string | null, relationship: { __typename?: 'Anime', id: string } }>, characters: Array<{ __typename?: 'CharacterDetail', character_role?: string | null, person_role?: string | null, character?: { __typename?: 'AnimeCharacter', id: string, name?: string | null, image_url?: string | null } | null, person?: { __typename?: 'AnimePerson', id: string, name?: string | null, hometown?: string | null, image_url?: string | null } | null }> }> } };
 
+export type ApplicationSliderQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ApplicationSliderQuery = { __typename?: 'Query', applicationSlider: Array<{ __typename?: 'ApplicationSlider', title?: string | null, body?: string | null, score?: string | null, cover_image?: string | null, image?: string | null }> };
+
 export type GetAnimeByIdQueryVariables = Exact<{
   id: Scalars['ID']['input'];
 }>;
@@ -1667,6 +1679,11 @@ export type GetSubtitlesQueryVariables = Exact<{
 
 
 export type GetSubtitlesQuery = { __typename?: 'Query', subtitles: { __typename?: 'SubPaginator', data: Array<{ __typename?: 'Sub', id: string, user_id: string, title?: string | null, to_episode?: string | null, from_episode?: string | null, body?: string | null, link_file?: string | null }> } };
+
+export type HomePageContentQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type HomePageContentQuery = { __typename?: 'Query', homePageAnimeContent: Array<{ __typename?: 'HomePageListItemAnime', headerText: string, parameters?: string | null, hasMore: number, route?: string | null, appBarHeader?: string | null, appBarQuery?: string | null, content: Array<{ __typename?: 'Anime', id: string, dic_aired_from?: string | null, dic_aired_to?: string | null, dic_episodes?: string | null, dic_duration?: string | null, dic_status?: number | null, season_year?: string | null, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, mal_popularity?: number | null, al_score?: number | null, al_score_count?: number | null, wide_image?: string | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, anime_links: Array<{ __typename?: 'DbAnimeLinks', signedLink?: string | null, quality?: string | null, id: string, size?: string | null, ep?: string | null, subtitle_link?: string | null }>, genres: Array<{ __typename?: 'AnimeGenre', id: string, name_fa?: string | null }>, trailers: Array<{ __typename?: 'AnimeTrailer', title?: string | null, online_play?: string | null }>, recommendations: Array<{ __typename?: 'AnimeRecommendation', recommendation: { __typename?: 'Anime', id: string, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, mal_popularity?: number | null, al_score?: number | null, al_score_count?: number | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, dic_episodes?: string | null, genres: Array<{ __typename?: 'AnimeGenre', id: string, name_fa?: string | null }> } }>, relations: Array<{ __typename?: 'AnimeRelation', type?: string | null, relation?: string | null, relationship: { __typename?: 'Anime', id: string } }>, characters: Array<{ __typename?: 'CharacterDetail', character_role?: string | null, person_role?: string | null, character?: { __typename?: 'AnimeCharacter', id: string, name?: string | null, image_url?: string | null } | null, person?: { __typename?: 'AnimePerson', id: string, name?: string | null, hometown?: string | null, image_url?: string | null } | null }> }> }> };
 
 export type SearchAnimeQueryVariables = Exact<{
   query?: InputMaybe<Scalars['String']['input']>;
@@ -2161,6 +2178,49 @@ export type AnimeByGenreQueryHookResult = ReturnType<typeof useAnimeByGenreQuery
 export type AnimeByGenreLazyQueryHookResult = ReturnType<typeof useAnimeByGenreLazyQuery>;
 export type AnimeByGenreSuspenseQueryHookResult = ReturnType<typeof useAnimeByGenreSuspenseQuery>;
 export type AnimeByGenreQueryResult = Apollo.QueryResult<AnimeByGenreQuery, AnimeByGenreQueryVariables>;
+export const ApplicationSliderDocument = gql`
+    query ApplicationSlider {
+  applicationSlider(request: {type: "index"}) {
+    title
+    body
+    score
+    cover_image
+    image
+  }
+}
+    `;
+
+/**
+ * __useApplicationSliderQuery__
+ *
+ * To run a query within a React component, call `useApplicationSliderQuery` and pass it any options that fit your needs.
+ * When your component renders, `useApplicationSliderQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useApplicationSliderQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useApplicationSliderQuery(baseOptions?: Apollo.QueryHookOptions<ApplicationSliderQuery, ApplicationSliderQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ApplicationSliderQuery, ApplicationSliderQueryVariables>(ApplicationSliderDocument, options);
+      }
+export function useApplicationSliderLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ApplicationSliderQuery, ApplicationSliderQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ApplicationSliderQuery, ApplicationSliderQueryVariables>(ApplicationSliderDocument, options);
+        }
+export function useApplicationSliderSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<ApplicationSliderQuery, ApplicationSliderQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<ApplicationSliderQuery, ApplicationSliderQueryVariables>(ApplicationSliderDocument, options);
+        }
+export type ApplicationSliderQueryHookResult = ReturnType<typeof useApplicationSliderQuery>;
+export type ApplicationSliderLazyQueryHookResult = ReturnType<typeof useApplicationSliderLazyQuery>;
+export type ApplicationSliderSuspenseQueryHookResult = ReturnType<typeof useApplicationSliderSuspenseQuery>;
+export type ApplicationSliderQueryResult = Apollo.QueryResult<ApplicationSliderQuery, ApplicationSliderQueryVariables>;
 export const GetAnimeByIdDocument = gql`
     query GetAnimeById($id: ID!) {
   anime: anime(id: $id) {
@@ -2664,6 +2724,53 @@ export type GetSubtitlesQueryHookResult = ReturnType<typeof useGetSubtitlesQuery
 export type GetSubtitlesLazyQueryHookResult = ReturnType<typeof useGetSubtitlesLazyQuery>;
 export type GetSubtitlesSuspenseQueryHookResult = ReturnType<typeof useGetSubtitlesSuspenseQuery>;
 export type GetSubtitlesQueryResult = Apollo.QueryResult<GetSubtitlesQuery, GetSubtitlesQueryVariables>;
+export const HomePageContentDocument = gql`
+    query HomePageContent {
+  homePageAnimeContent {
+    headerText
+    parameters
+    hasMore
+    route
+    appBarHeader
+    appBarQuery
+    content {
+      ...AnimeFragment
+    }
+  }
+}
+    ${AnimeFragmentFragmentDoc}`;
+
+/**
+ * __useHomePageContentQuery__
+ *
+ * To run a query within a React component, call `useHomePageContentQuery` and pass it any options that fit your needs.
+ * When your component renders, `useHomePageContentQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useHomePageContentQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useHomePageContentQuery(baseOptions?: Apollo.QueryHookOptions<HomePageContentQuery, HomePageContentQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<HomePageContentQuery, HomePageContentQueryVariables>(HomePageContentDocument, options);
+      }
+export function useHomePageContentLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<HomePageContentQuery, HomePageContentQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<HomePageContentQuery, HomePageContentQueryVariables>(HomePageContentDocument, options);
+        }
+export function useHomePageContentSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<HomePageContentQuery, HomePageContentQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<HomePageContentQuery, HomePageContentQueryVariables>(HomePageContentDocument, options);
+        }
+export type HomePageContentQueryHookResult = ReturnType<typeof useHomePageContentQuery>;
+export type HomePageContentLazyQueryHookResult = ReturnType<typeof useHomePageContentLazyQuery>;
+export type HomePageContentSuspenseQueryHookResult = ReturnType<typeof useHomePageContentSuspenseQuery>;
+export type HomePageContentQueryResult = Apollo.QueryResult<HomePageContentQuery, HomePageContentQueryVariables>;
 export const SearchAnimeDocument = gql`
     query SearchAnime($query: String, $orderBy: [QueryAnimeSearchOrderByOrderByClause!], $first: Int!) {
   animeSearch(query: $query, orderBy: $orderBy, first: $first) {

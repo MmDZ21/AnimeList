@@ -186,7 +186,7 @@ export default async function page({
               <CustomTabsContent value="staff">
                 <div className="py-2">
                   <Tabs defaultValue="characters" className="w-full">
-                    <TabsList className="dark:bg-[#17212B] dark:text-[#A1A1AA] w-full justify-start gap-[10px] rounded-md h-12">
+                    <TabsList className="dark:bg-[#17212B] dark:A1A1AA] w-full justify-start gap-[10px] rounded-md h-12">
                       <TabsTrigger
                         className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white rounded-lg p-2"
                         value="characters"
@@ -334,7 +334,7 @@ export default async function page({
               <div className="w-full px-[10px] py-4 bg-[#17212B] flex flex-col gap[10px]">
                 {session?.user?.isVip ? (
                   <Tabs defaultValue="480p">
-                    <TabsList className="dark:bg-transparent dark:text-[#A1A1AA] w-full justify-start">
+                    <TabsList className="dark:bg-transparent dark:A1A1AA] w-full justify-start">
                       <h5 className="flex-1 text-white text-base font-semibold">
                         باکس دانلود
                       </h5>

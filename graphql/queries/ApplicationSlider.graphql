@@ -1,0 +1,9 @@
+query ApplicationSlider{
+  applicationSlider(request: {type: "index"}){
+    title
+    body
+    score
+    cover_image
+    image
+  }
+}

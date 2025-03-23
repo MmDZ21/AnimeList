@@ -10,11 +10,6 @@ import {
   UserNotification,
 } from "@/types/types";
 
-import Dashboard from "@/components/dashboard/Dashboard";
-import List from "@/components/dashboard/List";
-import Subtitles from "@/components/dashboard/Subtitles";
-import Notifications from "@/components/dashboard/Notifications";
-import Tickets from "@/components/dashboard/Tickets";
 import Membership from "@/components/dashboard/Membership";
 import Settings from "@/components/dashboard/settings/Settings";
 export const heroSlides: HeroSlide[] = [
@@ -29,7 +24,7 @@ export const heroSlides: HeroSlide[] = [
       {
         type: "button",
         variant: "default",
-        label: "شروع تماشای آنلاین",
+        label: "شروع تماشای",
         icon: "/svg/play.svg",
         href: "/",
       },
