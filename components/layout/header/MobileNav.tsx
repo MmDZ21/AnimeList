@@ -140,7 +140,7 @@ export default function MobileNav() {
             </AccordionContent>
           </AccordionItem>
           <Link
-            href="/anime/movie"
+            href="/anime/movies"
             className="bg-[#182533] flex gap-2 py-2 w-full px-2 text-base font-medium items-center"
           >
             <svg
