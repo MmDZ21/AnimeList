@@ -19,7 +19,19 @@ export default function MediaCarousels({
   items
 }: {
   className?: string;
-  items: AnimeFragmentFragment[]
+  items: {
+    __typename?: "Anime";
+    id: string;
+    dic_body?: string | null;
+    dic_title?: string | null;
+    al_score?: number | null;
+    al_score_count?: number | null;
+    anilist_image_url?: string | null;
+    mal_image_url?: string | null;
+    dic_score?: string | null;
+    anilist_score?: number | null;
+    dic_episodes?: string | null;
+}[]
 }) {
   const dir = useDirection();
 

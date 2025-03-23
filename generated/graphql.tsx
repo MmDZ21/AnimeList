@@ -1683,7 +1683,7 @@ export type GetSubtitlesQuery = { __typename?: 'Query', subtitles: { __typename?
 export type HomePageContentQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type HomePageContentQuery = { __typename?: 'Query', homePageAnimeContent: Array<{ __typename?: 'HomePageListItemAnime', headerText: string, parameters?: string | null, hasMore: number, route?: string | null, appBarHeader?: string | null, appBarQuery?: string | null, content: Array<{ __typename?: 'Anime', id: string, dic_aired_from?: string | null, dic_aired_to?: string | null, dic_episodes?: string | null, dic_duration?: string | null, dic_status?: number | null, season_year?: string | null, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, mal_popularity?: number | null, al_score?: number | null, al_score_count?: number | null, wide_image?: string | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, anime_links: Array<{ __typename?: 'DbAnimeLinks', signedLink?: string | null, quality?: string | null, id: string, size?: string | null, ep?: string | null, subtitle_link?: string | null }>, genres: Array<{ __typename?: 'AnimeGenre', id: string, name_fa?: string | null }>, trailers: Array<{ __typename?: 'AnimeTrailer', title?: string | null, online_play?: string | null }>, recommendations: Array<{ __typename?: 'AnimeRecommendation', recommendation: { __typename?: 'Anime', id: string, dic_body?: string | null, dic_title?: string | null, dic_title_en?: string | null, title_fa?: string | null, mal_popularity?: number | null, al_score?: number | null, al_score_count?: number | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, dic_episodes?: string | null, genres: Array<{ __typename?: 'AnimeGenre', id: string, name_fa?: string | null }> } }>, relations: Array<{ __typename?: 'AnimeRelation', type?: string | null, relation?: string | null, relationship: { __typename?: 'Anime', id: string } }>, characters: Array<{ __typename?: 'CharacterDetail', character_role?: string | null, person_role?: string | null, character?: { __typename?: 'AnimeCharacter', id: string, name?: string | null, image_url?: string | null } | null, person?: { __typename?: 'AnimePerson', id: string, name?: string | null, hometown?: string | null, image_url?: string | null } | null }> }> }> };
+export type HomePageContentQuery = { __typename?: 'Query', homePageAnimeContent: Array<{ __typename?: 'HomePageListItemAnime', headerText: string, parameters?: string | null, hasMore: number, route?: string | null, appBarHeader?: string | null, appBarQuery?: string | null, content: Array<{ __typename?: 'Anime', id: string, dic_body?: string | null, dic_title?: string | null, al_score?: number | null, al_score_count?: number | null, anilist_image_url?: string | null, mal_image_url?: string | null, dic_score?: string | null, anilist_score?: number | null, dic_episodes?: string | null }> }> };
 
 export type SearchAnimeQueryVariables = Exact<{
   query?: InputMaybe<Scalars['String']['input']>;
@@ -2734,11 +2734,20 @@ export const HomePageContentDocument = gql`
     appBarHeader
     appBarQuery
     content {
-      ...AnimeFragment
+      id
+      dic_body
+      dic_title
+      al_score
+      al_score_count
+      anilist_image_url
+      mal_image_url
+      dic_score
+      anilist_score
+      dic_episodes
     }
   }
 }
-    ${AnimeFragmentFragmentDoc}`;
+    `;
 
 /**
  * __useHomePageContentQuery__
