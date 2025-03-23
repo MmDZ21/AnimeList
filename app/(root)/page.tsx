@@ -1,14 +1,3 @@
-import dynamic from "next/dynamic";
-import Hero from "@/components/layout/hero";
-// import SeasonalAnimes from "@/components/layout/sections/SeasonalAnimes";
-// const HomePageContent = dynamic(
-//   () => import("@/components/HomePageContent")
-// );
-// const Parallel = dynamic(() => import("@/components/layout/sections/Parallel"));
-// import { PreloadQuery } from "@/lib/apolloClient";
-// import { Suspense } from "react";
-// import { GetSeasonalAnimesDocument } from "@/generated/graphql";
-// import MediaCarouselSkeleton from "@/components/layout/Skeletons/MediaCarouselSkeleton";
 import HomePageContent from "@/components/HomePageContent";
 import { Suspense } from "react";
 import MediaCarouselSkeleton from "@/components/layout/Skeletons/MediaCarouselSkeleton";
