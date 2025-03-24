@@ -13,9 +13,11 @@ import { type CarouselApi } from "@/components/ui/hero-carousel";
 import Autoplay from "embla-carousel-autoplay";
 import Fade from "embla-carousel-fade";
 import { useDirection } from "@radix-ui/react-direction";
-import { cn, getImagePath } from "@/lib/utils";
+import { cn, generateSlug, getImagePath } from "@/lib/utils";
 import Image from "next/image";
 import { ApplicationSliderQueryResult } from "@/generated/graphql";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function Hero({
   slides,
@@ -27,6 +29,7 @@ export default function Hero({
     score?: string | null;
     cover_image?: string | null;
     image?: string | null;
+    type_id?: number | null;
   }[];
 }) {
   const [api, setApi] = React.useState<CarouselApi>();
@@ -127,7 +130,9 @@ export default function Hero({
                         hero.actions.map((action) => (
                           <Actions key={action.label} actions={action} />
                         ))} */}
-                        
+                        <Button asChild>
+                          <Link href={`/anime/${hero.type_id}/${generateSlug(hero.title!)}`}>رفتن به صفحه انیمه</Link>
+                        </Button>
                     </div>
                   </div>
                   {/* actions and indicator on lg Screens */}

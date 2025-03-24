@@ -33,31 +33,42 @@ import MembersOnlyError from "@/components/MembersOnlyError";
 import Link from "next/link";
 import { Metadata } from "next";
 
-export const revalidate = 86400;
+export const revalidate = 600;
 
 export async function generateStaticParams() {
   const client = getClient();
-  const { data } = await client.query<GetSeasonalAnimesQuery, GetSeasonalAnimesQueryVariables>({
+  
+  // Execute the query and handle errors
+  const { data, error } = await client.query<GetSeasonalAnimesQuery, GetSeasonalAnimesQueryVariables>({
     query: GetSeasonalAnimesDocument,
-  variables:{
-    first:30
-  }
+    variables: {
+      first: 30,
+    },
   });
+
+  // Assuming the result is an array of anime objects:
+  const params = data.animesSeason.data.map((anime) => ({
+    id: anime.id,
+    slug: generateSlug(anime.dic_title!),
+  }));
+
+  return params; // Return the generated params
 }
+
 
 export async function generateMetadata({
   params,
 }: {
-  params: { id: string; slug: string };
+  params: Promise<{ id: string; slug: string }>;
 }): Promise<Metadata> {
   const client = getClient();
-
+  const paramsData = await params
   const { data, error } = await client.query<
     GetAnimeByIdQuery,
     GetAnimeByIdQueryVariables
   >({
     query: GetAnimeByIdDocument,
-    variables: { id: params.id },
+    variables: { id: paramsData.id },
   });
 
   if (error || !data.anime) {
@@ -78,12 +89,12 @@ export async function generateMetadata({
     title,
     description,
     alternates: {
-      canonical: `${process.env.WEBSITE_URL}/anime/${params.id}/${params.slug}`,
+      canonical: `${process.env.WEBSITE_URL}/anime/${paramsData.id}/${paramsData.slug}`,
     },
     openGraph: {
       title,
       description,
-      url: `${process.env.WEBSITE_URL}/anime/${params.slug}`,
+      url: `${process.env.WEBSITE_URL}/anime/${paramsData.slug}`,
       siteName: "انیم آپ",
       locale: "fa_IR",
       type: "website",

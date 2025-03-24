@@ -1592,7 +1592,7 @@ export type AnimeByGenreQuery = { __typename?: 'Query', animeGenre: { __typename
 export type ApplicationSliderQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ApplicationSliderQuery = { __typename?: 'Query', applicationSlider: Array<{ __typename?: 'ApplicationSlider', title?: string | null, body?: string | null, score?: string | null, cover_image?: string | null, image?: string | null }> };
+export type ApplicationSliderQuery = { __typename?: 'Query', applicationSlider: Array<{ __typename?: 'ApplicationSlider', title?: string | null, body?: string | null, score?: string | null, cover_image?: string | null, image?: string | null, type_id?: number | null }> };
 
 export type GetAnimeByIdQueryVariables = Exact<{
   id: Scalars['ID']['input'];
@@ -2188,6 +2188,7 @@ export const ApplicationSliderDocument = gql`
     score
     cover_image
     image
+    type_id
   }
 }
     `;
