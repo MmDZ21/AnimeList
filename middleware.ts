@@ -17,7 +17,7 @@ export function shouldUpdateToken(token: JWT): boolean {
 }
 
 export async function refreshAccessToken(token: JWT): Promise<JWT | null> {
-  console.log("Refreshing token...");
+
   if (isRefreshing) {
     return token;
   }
@@ -112,7 +112,6 @@ export const middleware: NextMiddleware = async (request: NextRequest) => {
 	  salt: SESSION_COOKIE,
 	});
   
-	console.log("Middleware token:", JSON.stringify(token));
   
 	let response = NextResponse.next();
   

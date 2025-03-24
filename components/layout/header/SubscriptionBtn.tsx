@@ -19,8 +19,8 @@ export default function SubscriptionBtn() {
   return (
     // <Dialog>
     //   <DialogTrigger asChild>
-        <Button className="h-10 px-[10px] text-base font-semibold flex gap-2 items-center justify-center">
-          <svg
+        <Button className="h-10 px-[10px] text-base font-semibold flex gap-2 items-center justify-center" asChild>
+<div>          <svg
             width="24"
             height="24"
             viewBox="0 0 24 24"
@@ -46,7 +46,7 @@ export default function SubscriptionBtn() {
             </g>
           </svg>
           <Link href="/dashboard">
-          خرید اشتراک</Link>
+          خرید اشتراک</Link></div>
         </Button>
     //   </DialogTrigger>
     //   <DialogContent className="max-w-[1000px] p-6 bg-[#17212B] border-none sm:rounded-xl">

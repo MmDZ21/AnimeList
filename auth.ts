@@ -84,7 +84,6 @@ export const { handlers, auth, signIn,signOut } = NextAuth({
           isVip: token.isVip
         };
       }
-      console.log(session.user.expiration - Date.now()/1000)
       return session;
     },
   },

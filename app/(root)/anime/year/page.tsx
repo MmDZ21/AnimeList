@@ -2,6 +2,12 @@ import { Suspense } from "react";
 import CategoryPageSkeleton from "@/components/layout/Skeletons/CategoryPageSkeleton";
 import YearList from "@/components/genres/YearList";
 import AnimeYearListSkeleton from "@/components/layout/Skeletons/AnimeYearListSkeleton";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "انیمه براساس سال - انیم آپ",
+  description: "انتخاب سال مورد نظر شما",
+};
 
 export default async function page() {
   return (

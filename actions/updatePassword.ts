@@ -18,7 +18,6 @@ export default async function updatePassword(
         },
       },
     });
-    console.log(data?.updatePassword)
     if (errors || data?.updatePassword.status !== "PASSWORD_UPDATED") {
       return {
         success: false,

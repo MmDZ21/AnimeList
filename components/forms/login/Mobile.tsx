@@ -68,7 +68,6 @@ const Mobile = () => {
   const onSubmitPhone: SubmitHandler<MobileLoginSchema> = async (data) => {
     setIsPending(true);
     try {
-      console.log(data);
       setPhoneNumber(data.phoneNumber);
       // Simulate an async operation to send OTP
       await new Promise((resolve) => setTimeout(resolve, 2000));
@@ -83,11 +82,9 @@ const Mobile = () => {
   const onSubmitOTP: SubmitHandler<OTPSchema> = async (data) => {
     setIsPending(true);
     try {
-      console.log(data);
       // Simulate an async operation to verify OTP
       await new Promise((resolve) => setTimeout(resolve, 2000));
       // Handle successful login
-      console.log("Logged in successfully!");
     } finally {
       setIsPending(false);
     }

@@ -7,8 +7,15 @@ import GenreTitle from "@/components/genres/GenreTitle";
 import AnimeGenreListSkeleton from "@/components/layout/Skeletons/AnimeGenreListSkeleton";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ChevronLeftIcon } from "@radix-ui/react-icons";
+import { Metadata } from "next";
 import Link from "next/link";
 import React, { Suspense } from "react";
+
+export const metadata: Metadata = {
+  title: "دانلود انیمه سینمایی با لینک مستقیم | انیم آپ",
+  description: "دانلود انیمه های سینمایی",
+};
+
 
 export default async function Page({
   searchParams,

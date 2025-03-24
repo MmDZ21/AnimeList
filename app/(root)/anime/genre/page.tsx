@@ -1,6 +1,12 @@
 import { Suspense } from "react";
 import GenresList from "@/components/genres/GenresList";
 import CategoryPageSkeleton from "@/components/layout/Skeletons/CategoryPageSkeleton";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "انیمه براساس ژانر - انیم آپ",
+  description: "انتخاب ژانر مورد نظر شما",
+};
 
 export default async function page() {
   return (

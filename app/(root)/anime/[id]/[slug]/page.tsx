@@ -34,18 +34,22 @@ import { auth } from "@/auth";
 import MembersOnlyError from "@/components/MembersOnlyError";
 import Link from "next/link";
 import { Metadata } from "next";
+import NoUpload from "@/components/NoUpload";
+import SimilarAnimeError from "@/components/SimilarAnimeError";
 
-export const revalidate = 600;
+export const revalidate = 3600;
 
 export async function generateStaticParams() {
   const client = getClient();
-  
+
   // Execute the query and handle errors
   const { data, error } = await client.query<HomePageContentQuery>({
     query: HomePageContentDocument,
   });
 
-  const formattedData = data.homePageAnimeContent.flatMap(item => item.content)
+  const formattedData = data.homePageAnimeContent.flatMap(
+    (item) => item.content
+  );
   // Assuming the result is an array of anime objects:
   const params = formattedData.map((anime) => ({
     id: anime.id,
@@ -55,14 +59,13 @@ export async function generateStaticParams() {
   return params; // Return the generated params
 }
 
-
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ id: string; slug: string }>;
 }): Promise<Metadata> {
   const client = getClient();
-  const paramsData = await params
+  const paramsData = await params;
   const { data, error } = await client.query<
     GetAnimeByIdQuery,
     GetAnimeByIdQueryVariables
@@ -83,7 +86,9 @@ export async function generateMetadata({
   const title = anime.post_title || anime.dic_title || "عنوان انیمه";
   const description =
     anime.seo_desc ||
-    (anime.dic_body ? anime.dic_body.substring(0, 150) + "..." : "توضیحات انیمه");
+    (anime.dic_body
+      ? anime.dic_body.substring(0, 150) + "..."
+      : "توضیحات انیمه");
 
   return {
     title,
@@ -170,78 +175,78 @@ export default async function page({
               </CustomTabsList>
               <CustomTabsContent value="episodes">
                 {session?.user?.isVip ? (
-                  <div className="flex flex-col gap-2">
-                    <div className="w-full px-[10px] py-4 bg-[#17212B] flex flex-col gap[10px]">
-                      <Tabs defaultValue="480p">
-                        <TabsList className="dark:bg-transparent dark:text-[#A1A1AA] w-full justify-start">
-                          <h5 className="flex-1 text-white text-base font-semibold hidden lg:block">
-                            باکس دانلود
-                          </h5>
-                          <TabsTrigger
-                            className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
-                            value="480p"
-                          >
-                            480p
-                          </TabsTrigger>
-                          <TabsTrigger
-                            className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
-                            value="720p"
-                          >
-                            720p
-                          </TabsTrigger>
-                          <TabsTrigger
-                            className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
-                            value="1080p"
-                          >
-                            1080p
-                          </TabsTrigger>
-                          <TabsTrigger
-                            className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
-                            value="720p x265"
-                          >
-                            720p x265
-                          </TabsTrigger>
-                          <TabsTrigger
-                            className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
-                            value="1080p x265"
-                          >
-                            1080p x265
-                          </TabsTrigger>
-                        </TabsList>
-                        <TabsContent value="480p">
-                          <Download anime={anime} quality="480p" />
-                        </TabsContent>
-                        <TabsContent value="720p">
-                          <Download anime={anime} quality="720p" />
-                        </TabsContent>
-                        <TabsContent value="1080p">
-                          <Download anime={anime} quality="1080p" />
-                        </TabsContent>
-                        <TabsContent value="720p x265">
-                          <Download anime={anime} quality="720p x265" />
-                        </TabsContent>
-                        <TabsContent value="1080p x265">
-                          <Download anime={anime} quality="1080p x265" />
-                        </TabsContent>
-                      </Tabs>
-                    </div>
-                    <div
-                      className="fixed px-4 py-6 z-40 bottom-0 end-0"
-                      // style={{
-                      //   background:
-                      //     "linear-gradient(180deg, rgba(14, 22, 33, 0) 0%, #0E1621 23.96%)",
-                      // }}
-                    >
-                      {/* <WatchOnline /> */}
-                      <AddToWatchList iconOnly={true} />
-                    </div>
+                  anime.anime_links.length > 0 ?                   <div className="flex flex-col gap-2">
+                  <div className="w-full px-[10px] py-4 bg-[#17212B] flex flex-col gap[10px]">
+                    <Tabs defaultValue="480p">
+                      <TabsList className="dark:bg-transparent dark:text-[#A1A1AA] w-full justify-start flex-wrap h-fit">
+                        <h5 className="flex-1 text-white text-base font-semibold hidden lg:block">
+                          باکس دانلود
+                        </h5>
+                        <TabsTrigger
+                          className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
+                          value="480p"
+                        >
+                          480p
+                        </TabsTrigger>
+                        <TabsTrigger
+                          className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
+                          value="720p"
+                        >
+                          720p
+                        </TabsTrigger>
+                        <TabsTrigger
+                          className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
+                          value="1080p"
+                        >
+                          1080p
+                        </TabsTrigger>
+                        <TabsTrigger
+                          className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
+                          value="720p x265"
+                        >
+                          720p x265
+                        </TabsTrigger>
+                        <TabsTrigger
+                          className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
+                          value="1080p x265"
+                        >
+                          1080p x265
+                        </TabsTrigger>
+                      </TabsList>
+                      <TabsContent value="480p">
+                        <Download anime={anime} quality="480p" />
+                      </TabsContent>
+                      <TabsContent value="720p">
+                        <Download anime={anime} quality="720p" />
+                      </TabsContent>
+                      <TabsContent value="1080p">
+                        <Download anime={anime} quality="1080p" />
+                      </TabsContent>
+                      <TabsContent value="720p x265">
+                        <Download anime={anime} quality="720p x265" />
+                      </TabsContent>
+                      <TabsContent value="1080p x265">
+                        <Download anime={anime} quality="1080p x265" />
+                      </TabsContent>
+                    </Tabs>
                   </div>
+                  <div
+                    className="fixed px-4 py-6 z-40 bottom-0 end-0"
+                    // style={{
+                    //   background:
+                    //     "linear-gradient(180deg, rgba(14, 22, 33, 0) 0%, #0E1621 23.96%)",
+                    // }}
+                  >
+                    {/* <WatchOnline /> */}
+                    <AddToWatchList iconOnly={true} />
+                  </div>
+                </div> : <NoUpload/>
                 ) : (
                   <MembersOnlyError />
                 )}
               </CustomTabsContent>
               <CustomTabsContent value="similars">
-                <Recommendations anime={anime} />
+              {anime.recommendations.length > 0 ? <Recommendations anime={anime} /> : <SimilarAnimeError/>}
               </CustomTabsContent>
               <CustomTabsContent value="staff">
                 <div className="py-2">
@@ -279,7 +284,11 @@ export default async function page({
               <CustomTabsContent value="comments">
                 <div className="flex flex-col gap-[14px]">
                   <div className="bg-[#17212B] p-3">
-                    <CommentForm />
+                    <CommentForm
+                      animeId={id}
+                      parentId="0"
+                      session={session?.user ? true : false}
+                    />
                   </div>
                   <Comments id={id} />
                 </div>
@@ -393,58 +402,62 @@ export default async function page({
             <TabsContent className="py-4" value="download">
               <div className="w-full px-[10px] py-4 bg-[#17212B] flex flex-col gap[10px]">
                 {session?.user?.isVip ? (
-                  <Tabs defaultValue="480p">
-                    <TabsList className="dark:bg-transparent dark:A1A1AA] w-full justify-start">
-                      <h5 className="flex-1 text-white text-base font-semibold">
-                        باکس دانلود
-                      </h5>
-                      <TabsTrigger
-                        className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
-                        value="480p"
-                      >
-                        480p
-                      </TabsTrigger>
-                      <TabsTrigger
-                        className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
-                        value="720p"
-                      >
-                        720p
-                      </TabsTrigger>
-                      <TabsTrigger
-                        className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
-                        value="1080p"
-                      >
-                        1080p
-                      </TabsTrigger>
-                      <TabsTrigger
-                        className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
-                        value="720p x265"
-                      >
-                        720p x265
-                      </TabsTrigger>
-                      <TabsTrigger
-                        className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
-                        value="1080p x265"
-                      >
-                        1080p x265
-                      </TabsTrigger>
-                    </TabsList>
-                    <TabsContent value="480p">
-                      <Download anime={anime} quality="480p" />
-                    </TabsContent>
-                    <TabsContent value="720p">
-                      <Download anime={anime} quality="720p" />
-                    </TabsContent>
-                    <TabsContent value="1080p">
-                      <Download anime={anime} quality="1080p" />
-                    </TabsContent>
-                    <TabsContent value="720p x265">
-                      <Download anime={anime} quality="720p x265" />
-                    </TabsContent>
-                    <TabsContent value="1080p x265">
-                      <Download anime={anime} quality="1080p x265" />
-                    </TabsContent>
-                  </Tabs>
+                  anime.anime_links.length > 0 ? (
+                    <Tabs defaultValue="480p">
+                      <TabsList className="dark:bg-transparent dark:A1A1AA] w-full justify-start">
+                        <h5 className="flex-1 text-white text-base font-semibold">
+                          باکس دانلود
+                        </h5>
+                        <TabsTrigger
+                          className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
+                          value="480p"
+                        >
+                          480p
+                        </TabsTrigger>
+                        <TabsTrigger
+                          className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
+                          value="720p"
+                        >
+                          720p
+                        </TabsTrigger>
+                        <TabsTrigger
+                          className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
+                          value="1080p"
+                        >
+                          1080p
+                        </TabsTrigger>
+                        <TabsTrigger
+                          className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
+                          value="720p x265"
+                        >
+                          720p x265
+                        </TabsTrigger>
+                        <TabsTrigger
+                          className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
+                          value="1080p x265"
+                        >
+                          1080p x265
+                        </TabsTrigger>
+                      </TabsList>
+                      <TabsContent value="480p">
+                        <Download anime={anime} quality="480p" />
+                      </TabsContent>
+                      <TabsContent value="720p">
+                        <Download anime={anime} quality="720p" />
+                      </TabsContent>
+                      <TabsContent value="1080p">
+                        <Download anime={anime} quality="1080p" />
+                      </TabsContent>
+                      <TabsContent value="720p x265">
+                        <Download anime={anime} quality="720p x265" />
+                      </TabsContent>
+                      <TabsContent value="1080p x265">
+                        <Download anime={anime} quality="1080p x265" />
+                      </TabsContent>
+                    </Tabs>
+                  ) : (
+                    <NoUpload />
+                  )
                 ) : (
                   <div className="w-full flex justify-center">
                     <MembersOnlyError />
@@ -520,13 +533,17 @@ export default async function page({
             <TabsContent value="details">
               <AdditionalInfo anime={anime} />
             </TabsContent>
-            <TabsContent value="similars">
-              <Recommendations anime={anime} />
+            <TabsContent value="similars" className="w-full">
+              {anime.recommendations.length > 0 ? <Recommendations anime={anime} /> : <SimilarAnimeError/>}
             </TabsContent>
             <TabsContent value="comments">
               <div className="flex flex-col gap-[14px]">
                 <div className="bg-[#17212B] p-3">
-                  <CommentForm />
+                  <CommentForm
+                    animeId={id}
+                    parentId="0"
+                    session={session?.user ? true : false}
+                  />
                 </div>
                 <Comments id={id} />
               </div>

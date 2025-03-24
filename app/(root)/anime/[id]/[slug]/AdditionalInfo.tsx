@@ -1,17 +1,19 @@
 import { Separator } from "@/components/ui/separator";
+import { statusMapping, typeMapping } from "@/constants";
 import { Anime } from "@/generated/graphql";
 import React from "react";
 
+
+
 export default function AdditionalInfo({ anime }: { anime: Anime }) {
   const details = [
-    { label: "نوع اثر", value: anime.__typename },
+    { label: "نوع اثر", value: typeMapping[anime.dic_types!] || anime.dic_types },
     { label: "تعداد قسمت‌ها", value: anime.dic_episodes },
     { label: "مدت زمان هر قسمت", value: anime.dic_duration },
-    { label: "وضعیت", value: anime.dic_status },
+    { label: "وضعیت", value: statusMapping[anime.dic_status!] || anime.dic_status },
     { label: "تاریخ شروع", value: anime.dic_aired_from },
     { label: "تاریخ پایان", value: anime.dic_aired_to },
     { label: "فصل پخش", value: anime.season_year },
-    { label: "منبع اقتباس", value: anime.__typename },
   ];
   const seasons: Record<"winter" | "spring" | "summer" | "fall", string> = {
     winter: "زمستان",
@@ -45,7 +47,6 @@ export default function AdditionalInfo({ anime }: { anime: Anime }) {
 
     return { label, value };
   });
-  console.log("details: ", details);
   return (
     <div className="w-full px-[10px] py-4 bg-[#17212B] flex flex-col gap-8">
       <div className="flex flex-col gap-4">
@@ -71,7 +72,7 @@ export default function AdditionalInfo({ anime }: { anime: Anime }) {
             <p className="text-sm font-bold">ژانرها</p>
             <div className="flex gap-4">
               {anime.genres.map((genre, i) => (
-                <div key={genre.id}>
+                <div key={genre.id} className=" flex gap-4">
                   {i !== 0 && (
                     <Separator orientation="vertical" className="h-4" />
                   )}

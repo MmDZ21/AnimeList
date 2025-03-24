@@ -10,21 +10,32 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
-
-import Link from "next/link";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import commentSchema from "@/models/comment";
+import commentSchema, { CommentSchema } from "@/models/comment";
 import { z } from "zod";
 import { Textarea } from "@/components/ui/textarea";
-import emailLoginSchema from "@/models/email-login";
-import router from "next/router";
 import { Input } from "@/components/ui/input";
-import Image from "next/image";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
+import sendComment from "@/actions/sendComment";
+import { toast } from "sonner";
+import Image from "next/image";
 
-export default function CommentForm() {
+import { useRouter } from "next/navigation";
+
+export default function CommentForm({
+  animeId,
+  parentId,
+  session,
+}: {
+  animeId: string;
+  parentId: string;
+  session: boolean;
+}) {
+  const router = useRouter();
+  const [isPending, setIsPending] = useState<boolean>(false);
+
   const form = useForm<z.infer<typeof commentSchema>>({
     resolver: zodResolver(commentSchema),
     defaultValues: {
@@ -34,58 +45,38 @@ export default function CommentForm() {
       emojis: [],
     },
   });
-  async function onSubmit(values: z.infer<typeof commentSchema>) {
-    // setIsPending(true);
-    try {
-      const response = await fetch(process.env.NEXT_PUBLIC_AUTH_URL as string, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+  const onSubmit: SubmitHandler<CommentSchema> = async (data) => {
+    if (!session) {
+      toast.error("برای ثبت نظر ابتدا وارد شوید", {
+        action: {
+          label: "ورود به حساب",
+          onClick: () => router.push("/login"),
         },
-        body: JSON.stringify({
-          text: values.text,
-          attachments: values.attachments,
-          containsSpoiler: values.containsSpoiler,
-          emojis: values.emojis,
-        }),
       });
-
-      if (!response.ok) {
-        const errorData = await response.json(); // Assuming the server returns JSON with error details
-
-        if (errorData.errors) {
-          // Loop over each error and set the corresponding form field error
-          errorData.errors.forEach(
-            (error: { field: string; message: string }) => {
-              form.setError(
-                error.field as keyof z.infer<typeof commentSchema>,
-                {
-                  type: "server",
-                  message: error.message,
-                }
-              );
-            }
-          );
+    } else {
+      setIsPending(true);
+      console.log(data);
+      try {
+        const result = await sendComment(
+          animeId,
+          parentId,
+          data.text,
+          data.containsSpoiler
+        ); // Call the server action
+        if (!result.success) {
+          toast.error("مشکلی در ثبت نظر رخ داد.");
         } else {
-          // Generic error handling if no specific field errors
-          form.setError("root", {
-            type: "server",
-            message: "An unexpected error occurred.",
-          });
+          toast.success(result.message);
         }
-      } else {
-        // If successful, redirect or handle success
-        router.push("/");
+      } catch (error) {
+        toast.error("مشکلی در ثبت نظر رخ داد.");
+      } finally {
+        form.reset();
+        setIsPending(false);
       }
-    } catch (error) {
-      form.setError("root", {
-        type: "server",
-        message: "Network error. Please try again.",
-      });
-    } finally {
-      //   setIsPending(false);
     }
-  }
+  };
+
   return (
     <div className="w-full border border-[hsla(215,20%,65%,0.24)] rounded-md bg-background">
       <Form {...form}>
@@ -214,17 +205,17 @@ export default function CommentForm() {
             </div>
             <Button
               type="submit"
-              //   disabled={isPending}
+              disabled={isPending}
               className="flex items-center rounded-lg text-sm justify-center gap-2 px-3 h-9"
             >
-              {/* {isPending && (
-            <Image
-              src="/svg/spinner.svg"
-              width={16}
-              height={16}
-              alt="spinner"
-            />
-          )} */}
+              {isPending && (
+                <Image
+                  src="/svg/spinner.svg"
+                  width={16}
+                  height={16}
+                  alt="spinner"
+                />
+              )}
               ارسال نظر
             </Button>
           </div>

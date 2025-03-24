@@ -23,7 +23,7 @@ export default function Header() {
           <Logo className="text-primary-500" />
         </div>
         <div className="flex items-center gap-6">
-          <Link href="/subscription">
+          <Link href="/dashboard">
             <svg
               width="24"
               height="24"

@@ -19,7 +19,6 @@ export default async function PaymentCallback({
   if (trackId && success === "1") {
     try {
       const result = await payVer(trackId);
-      console.log(result);
       if (result && result.status === "OK") {
         message = `کیف پول شما با موفقیت شارژ شد`;
         icon = <CheckCircledIcon className="size-12 text-green-500" />;

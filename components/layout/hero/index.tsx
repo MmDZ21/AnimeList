@@ -72,7 +72,7 @@ export default function Hero({
           {slides.map((hero, i) => (
             <CarouselItem key={hero.title}>
               <div className="relative w-full h-[420px] lg:h-[900px]">
-              <Image
+                <Image
                   src={getImagePath(hero.image!, null)}
                   alt={hero.title!}
                   fill
@@ -83,10 +83,10 @@ export default function Hero({
                     //   ? "object-right"
                     //   : hero.imgMobilePosition === "left"
                     //   ? "object-left" :
-                       "object-center"
+                    "object-center"
                   )}
                 />
-                                <Image
+                <Image
                   src={getImagePath(hero.cover_image!, null)}
                   alt={hero.title!}
                   fill
@@ -97,7 +97,7 @@ export default function Hero({
                     //   ? "object-right"
                     //   : hero.imgMobilePosition === "left"
                     //   ? "object-left" :
-                       "object-center"
+                    "object-center"
                   )}
                 />
                 <div
@@ -111,28 +111,37 @@ export default function Hero({
                     // hero.justifyFa === "center"
                     //   ? "lg:rtl:items-center"
                     //   : hero.justifyFa === "end"
-                    //   ? "lg:rtl:items-end": 
-                      "lg:rtl:items-start"
+                    //   ? "lg:rtl:items-end":
+                    "lg:rtl:items-start"
                   )}
                 >
                   <div className="flex flex-col z-20 w-full items-center lg:items-start lg:w-[536px] gap-1 lg:gap-8">
-                    <h2 dir="ltr" className="text-2xl font-bold lg:leading-none lg:text-[64px] lg:font-black truncate max-w-[400px] lg:max-w-screen-4xl">
+                    <h2
+                      dir="ltr"
+                      className="text-2xl font-bold lg:leading-none lg:text-[64px] lg:font-black truncate max-w-[400px] lg:max-w-screen-4xl"
+                    >
                       {hero.title}
                     </h2>
                     <p className="lg:hidden text-sm text-[#979CA6] font-normal">
                       زیرنویس چسبیده | پخش آنلاین
                     </p>
                     <p className="absolute invisible lg:visible lg:static w-full lg:w-auto text-base font-medium line-clamp-5">
-  {hero.body}
-</p>
+                      {hero.body}
+                    </p>
                     <div className="hidden lg:flex gap-4">
                       {/* {hero.actions &&
                         hero.actions.map((action) => (
                           <Actions key={action.label} actions={action} />
                         ))} */}
-                        <Button asChild>
-                          <Link href={`/anime/${hero.type_id}/${generateSlug(hero.title!)}`}>رفتن به صفحه انیمه</Link>
-                        </Button>
+                      <Button asChild>
+                        <Link
+                          href={`/anime/${hero.type_id}/${generateSlug(
+                            hero.title!
+                          )}`}
+                        >
+                          رفتن به صفحه انیمه
+                        </Link>
+                      </Button>
                     </div>
                   </div>
                   {/* actions and indicator on lg Screens */}
@@ -162,12 +171,21 @@ export default function Hero({
               </div>
               {/* actions and indicator on sm Screens */}
               <div className="w-full z-20 flex lg:hidden flex-col justify-center items-center">
-                {/* <div className="flex w-full gap-3 px-4">
-                  {hero.actions &&
+                <div className="flex w-full gap-3 px-4">
+                  {/* {hero.actions &&
                     hero.actions.map((action) => (
                       <Actions key={action.label} actions={action} />
-                    ))}
-                </div> */}
+                    ))} */}
+                  <Button className="w-full" asChild>
+                    <Link
+                      href={`/anime/${hero.type_id}/${generateSlug(
+                        hero.title!
+                      )}`}
+                    >
+                      رفتن به صفحه انیمه
+                    </Link>
+                  </Button>
+                </div>
                 <div className="w-full flex z-20 justify-center items-center">
                   <div className="flex py-8 gap-2 ">
                     {slides.map((hero, i) => (

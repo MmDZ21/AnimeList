@@ -4,6 +4,7 @@ fragment AnimeFragment on Anime {
   dic_aired_to
   dic_episodes
   dic_duration
+  dic_types
   seo_desc
   post_title
   dic_status

@@ -4,7 +4,6 @@ import { getAuthClient } from "@/lib/apolloClient";
 import { redirect } from "next/navigation";
 
 export default async function payReq(formData: FormData) {
-  console.log(JSON.stringify(formData));
   const client = getAuthClient();
   const { data, errors } = await client.mutate<PayReqMutation>({
     mutation: PayReqDocument,

@@ -73,7 +73,6 @@ const UpdatePassword: React.FC = () => {
         data.password,
         data.confirmPassword
       ); // Call the server action
-      console.log(result);
       if (!result.success) {
         toast.error("مشکلی در تغییر کلمه عبور رخ داد.");
       } else {

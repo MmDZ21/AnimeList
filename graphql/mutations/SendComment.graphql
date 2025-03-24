@@ -1,0 +1,6 @@
+mutation SendComment($input : InsertCommentInput!){
+  sendComment(input: $input){
+    status
+    message
+  }
+}

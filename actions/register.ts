@@ -22,7 +22,6 @@ export default async function register(
         },
       },
     });
-    console.log(data?.register.status)
     if (errors || data?.register.status !== "SUCCESS") {
       return {
         success: false,

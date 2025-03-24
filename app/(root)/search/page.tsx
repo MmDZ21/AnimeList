@@ -3,6 +3,12 @@ import Recent from "@/components/search/basic/Recent";
 import Search from "@/components/search/basic/Search";
 import Result from "@/components/search/basic/Result";
 import { ResultsSkeleton } from "@/components/layout/Skeletons/ResultsSkeleton";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "جستجوی انیمه - انیم آپ",
+  description: "جستجو در بین هزاران انیمه",
+};
 
 export default async function page({
   searchParams,

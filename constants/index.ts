@@ -1274,3 +1274,19 @@ export const yearsList = [
   2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020,
   2021, 2022, 2023, 2024, 2025,
 ];
+export const typeMapping: Record<number, string> = {
+  0: "نامشخص",
+  1: "سریالی",
+  2: "OVA",
+  3: "سینمایی",
+  4: "Special",
+  5: "ONA",
+  6: "موسیقی",
+};
+
+export const statusMapping: Record<number, string> = {
+  1: "درحال پخش",
+  2: "پایان یافته",
+  3: "پخش نشده",
+  4: "نامشخص",
+};

@@ -80,7 +80,6 @@ const Registration: React.FC = () => {
         data.password,
         data.confirmPassword
       ); // Call the server action
-      console.log(result)
       if (!result.success) {
         toast.error("مشکلی در ثبت نام رخ داد.");
       } else {
