@@ -93,6 +93,6 @@ export const { handlers, auth, signIn,signOut } = NextAuth({
     signIn: "/login",
   },
 });
-export const config = {
-  matcher: ["/dashboard/:path*"],
-};
+// export const config = {
+//   matcher: ["/dashboard/:path*"],
+// };
