@@ -24,6 +24,8 @@ import {
   GetSeasonalAnimesDocument,
   GetSeasonalAnimesQuery,
   GetSeasonalAnimesQueryVariables,
+  HomePageContentDocument,
+  HomePageContentQuery,
 } from "@/generated/graphql";
 import { getClient } from "@/lib/apolloClient";
 import { generateSlug, getImagePath } from "@/lib/utils";
@@ -39,15 +41,13 @@ export async function generateStaticParams() {
   const client = getClient();
   
   // Execute the query and handle errors
-  const { data, error } = await client.query<GetSeasonalAnimesQuery, GetSeasonalAnimesQueryVariables>({
-    query: GetSeasonalAnimesDocument,
-    variables: {
-      first: 30,
-    },
+  const { data, error } = await client.query<HomePageContentQuery>({
+    query: HomePageContentDocument,
   });
 
+  const formattedData = data.homePageAnimeContent.flatMap(item => item.content)
   // Assuming the result is an array of anime objects:
-  const params = data.animesSeason.data.map((anime) => ({
+  const params = formattedData.map((anime) => ({
     id: anime.id,
     slug: generateSlug(anime.dic_title!),
   }));
