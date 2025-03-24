@@ -11,7 +11,7 @@ import emailLoginSchema from "./models/email-login"; // Zod validation for email
 export const { handlers, auth, signIn,signOut } = NextAuth({
   session: {
     strategy: "jwt",
-    maxAge: 600,
+    maxAge: 259200,
   },
   providers: [
     Credentials({
