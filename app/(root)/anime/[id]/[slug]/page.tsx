@@ -21,6 +21,9 @@ import {
   GetAnimeByIdDocument,
   GetAnimeByIdQuery,
   GetAnimeByIdQueryVariables,
+  GetSeasonalAnimesDocument,
+  GetSeasonalAnimesQuery,
+  GetSeasonalAnimesQueryVariables,
 } from "@/generated/graphql";
 import { getClient } from "@/lib/apolloClient";
 import { generateSlug, getImagePath } from "@/lib/utils";
@@ -28,23 +31,69 @@ import AdditionalInfo from "./AdditionalInfo";
 import { auth } from "@/auth";
 import MembersOnlyError from "@/components/MembersOnlyError";
 import Link from "next/link";
+import { Metadata } from "next";
 
-// export const revalidate = 86400
+export const revalidate = 86400;
 
-// export async function generateStaticParams() {
-//   const client = getClient();
-//   const { data } = await client.query<GetSeasonalAnimesQuery, GetSeasonalAnimesQueryVariables>({
-//     query: GetSeasonalAnimesDocument,
-//   variables:{
-//     first:30
-//   }
-//   });
+export async function generateStaticParams() {
+  const client = getClient();
+  const { data } = await client.query<GetSeasonalAnimesQuery, GetSeasonalAnimesQueryVariables>({
+    query: GetSeasonalAnimesDocument,
+  variables:{
+    first:30
+  }
+  });
+}
 
-//   return data.animesSeason.data.map((anime) => ({
-//     id: anime.id,
-//     slug: generateSlug(anime.dic_title!),
-//   }));
-// }
+export async function generateMetadata({
+  params,
+}: {
+  params: { id: string; slug: string };
+}): Promise<Metadata> {
+  const client = getClient();
+
+  const { data, error } = await client.query<
+    GetAnimeByIdQuery,
+    GetAnimeByIdQueryVariables
+  >({
+    query: GetAnimeByIdDocument,
+    variables: { id: params.id },
+  });
+
+  if (error || !data.anime) {
+    return {
+      title: "انیمه پیدا نشد",
+      description: "انیمه مورد نظر پیدا نشد",
+    };
+  }
+
+  const anime = data.anime;
+  // Use seo_title and seo_desc if available, fallback to dic_title and default description.
+  const title = anime.post_title || anime.dic_title || "عنوان انیمه";
+  const description =
+    anime.seo_desc ||
+    (anime.dic_body ? anime.dic_body.substring(0, 150) + "..." : "توضیحات انیمه");
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `${process.env.WEBSITE_URL}/anime/${params.id}/${params.slug}`,
+    },
+    openGraph: {
+      title,
+      description,
+      url: `${process.env.WEBSITE_URL}/anime/${params.slug}`,
+      siteName: "انیم آپ",
+      locale: "fa_IR",
+      type: "website",
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+  };
+}
 export default async function page({
   params,
 }: {
@@ -238,7 +287,7 @@ export default async function page({
           </div>
           <div className="flex items-center justify-center">
             <p className="text-[22px] font-black">
-              با تهیهٔ اشتراک ویژه به‌راحتی به آرشیو بی‌پایان انیمه‌لیست دسترسی
+              با تهیهٔ اشتراک ویژه به‌راحتی به آرشیو بی‌پایان انیم‌آپ دسترسی
               داشته باشید!
             </p>
           </div>

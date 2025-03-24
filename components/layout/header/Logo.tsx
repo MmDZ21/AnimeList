@@ -8,7 +8,7 @@ export default function Logo({ className }: { className?: string }) {
     <Link href="/" className="flex gap-0 items-center">
       
         <h1 className="text-white font-black text-lg lg:text-xl">
-          انیمه‌<span className={cn("", className)}>لیست</span>
+           انیم<span className={cn("", className)}> آپ</span>
         </h1>
       
     </Link>

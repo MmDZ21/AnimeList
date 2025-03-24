@@ -1,4 +1,4 @@
-// app/genres/[id]/page.tsx
+  // app/genres/[id]/page.tsx
 import AnimeGenreList from "@/components/genres/AnimeGenreList";
 import GenreTitle from "@/components/genres/GenreTitle";
 import AnimeGenreListSkeleton from "@/components/layout/Skeletons/AnimeGenreListSkeleton";

@@ -1,11 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-// import { getLocale } from "../i18n/server";
 import localFont from "next/font/local";
 import { ApolloWrapper } from "@/components/ApolloWrapper";
-import { LocaleProvider } from "../hooks/locale-provider";
-import { Locales } from "@/i18n/settings";
 import DirProvider from "@/components/DirProvider";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Toaster } from "@/components/ui/sonner";
@@ -46,11 +43,11 @@ import { Toaster } from "@/components/ui/sonner";
 //       },
 //     },
 //     fa: {
-//       title: "انیمه لیست | دانلود انیمه، دانلود فیلم، دانلود سریال",
+//       title: "انیم آپ | دانلود انیمه، دانلود فیلم، دانلود سریال",
 //       description:
 //         "جدیدترین قسمت‌های انیمه مورد علاقه‌تان را کشف و دانلود کنید.",
 //       openGraph: {
-//         title: "انیمه لیست - جدیدترین قسمت‌های انیمه",
+//         title: "انیم آپ - جدیدترین قسمت‌های انیمه",
 //         description: "دانلود و پخش جدیدترین قسمت‌های انیمه.",
 //         url: "https://dev.alplayer.ir/",
 //         images: [
@@ -58,13 +55,13 @@ import { Toaster } from "@/components/ui/sonner";
 //             url: "https://dev.alplayer.ir/images/logo.webp",
 //             width: 800,
 //             height: 600,
-//             alt: "انیمه لیست",
+//             alt: "انیم آپ",
 //           },
 //         ],
 //       },
 //       twitter: {
 //         card: "summary_large_image",
-//         title: "انیمه لیست",
+//         title: "انیم آپ",
 //         description: "منبع شما برای جدیدترین انیمه‌ها.",
 //         image: "https://dev.alplayer.ir/twitter-image-fa.jpg",
 //       },
@@ -125,19 +122,23 @@ const modam = localFont({
 
 export const metadata: Metadata = {
 
-      title: "انیمه لیست | دانلود انیمه، دانلود فیلم، دانلود سریال",
+      title: "انیم آپ | دانلود انیمه، دانلود فیلم، دانلود سریال",
       description:
         "جدیدترین قسمت‌های انیمه مورد علاقه‌تان را کشف و دانلود کنید.",
+        keywords:["anime","انیمه","دانلود انیمه"],
+        viewport: "width=device-width, initial-scale=1",
       openGraph: {
-        title: "انیمه لیست - جدیدترین قسمت‌های انیمه",
+        title: "انیم آپ - جدیدترین قسمت‌های انیمه",
         description: "دانلود و پخش جدیدترین قسمت‌های انیمه.",
-        url: "https://dev.alplayer.ir/",
+        url: process.env.WEBSITE_URL,
+        siteName:"انیم آپ",
+        type:"website",
         images: [
           {
-            url: "https://dev.alplayer.ir/images/logo.webp",
+            url: "https://animup.tv/images/logo.webp",
             width: 800,
             height: 600,
-            alt: "انیمه لیست",
+            alt: "انیم آپ",
           },
         ],
       },

@@ -63,7 +63,7 @@ export default function SubscriptionBtn() {
     //               </h2>
     //               <p className="text-sm font-medium">
     //                 دسترسی کامل به آرشیو انیمه‌ها، فیلم‌ها، سریال‌ها و دراماهای
-    //                 سایت انیمه‌لیست
+    //                 سایت انیم‌آپ
     //               </p>
     //             </div>
     //             <div className="flex gap-[10px] items-center">
@@ -235,7 +235,7 @@ export default function SubscriptionBtn() {
     //               </h2>
     //               <p className="text-sm font-medium">
     //                 دسترسی کامل به آرشیو انیمه‌ها، فیلم‌ها، سریال‌ها و دراماهای
-    //                 سایت انیمه‌لیست
+    //                 سایت انیم‌آپ
     //               </p>
     //             </div>
     //             <div className="flex gap-[10px] items-center">
@@ -458,7 +458,7 @@ export default function SubscriptionBtn() {
     //               </h2>
     //               <p className="text-sm font-medium">
     //                 دسترسی کامل به آرشیو انیمه‌ها، فیلم‌ها، سریال‌ها و دراماهای
-    //                 سایت انیمه‌لیست
+    //                 سایت انیم‌آپ
     //               </p>
     //             </div>
     //             <div className="flex gap-[10px] items-center">
