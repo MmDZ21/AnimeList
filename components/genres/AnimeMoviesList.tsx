@@ -51,8 +51,8 @@ export default async function AnimeMoviesList({
       first: pageSize,
       orderBy: [
         {
-          column: QueryAnimesMoviePageOrderByColumn.PostHit,
-          order: SortOrder.Desc,
+          column: QueryAnimesMoviePageOrderByColumn.MalPopularity,
+          order: SortOrder.Asc,
         },
       ],
       page: currentPage,

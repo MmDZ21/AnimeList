@@ -69,13 +69,27 @@ export default function Hero({
           {slides.map((hero, i) => (
             <CarouselItem key={hero.title}>
               <div className="relative w-full h-[420px] lg:h-[900px]">
-                <Image
+              <Image
+                  src={getImagePath(hero.image!, null)}
+                  alt={hero.title!}
+                  fill
+                  priority={i === 0 ? true : false} // Ensures the image loads quickly as it's likely the main visual
+                  className={cn(
+                    "hidden lg:block object-cover",
+                    // hero.imgMobilePosition === "right"
+                    //   ? "object-right"
+                    //   : hero.imgMobilePosition === "left"
+                    //   ? "object-left" :
+                       "object-center"
+                  )}
+                />
+                                <Image
                   src={getImagePath(hero.cover_image!, null)}
                   alt={hero.title!}
                   fill
                   priority={i === 0 ? true : false} // Ensures the image loads quickly as it's likely the main visual
                   className={cn(
-                    "object-cover",
+                    "block lg:hidden object-cover",
                     // hero.imgMobilePosition === "right"
                     //   ? "object-right"
                     //   : hero.imgMobilePosition === "left"
@@ -108,12 +122,13 @@ export default function Hero({
                     <p className="absolute invisible lg:visible lg:static w-full lg:w-auto text-base font-medium line-clamp-5">
   {hero.body}
 </p>
-                    {/* <div className="hidden lg:flex gap-4">
-                      {hero.actions &&
+                    <div className="hidden lg:flex gap-4">
+                      {/* {hero.actions &&
                         hero.actions.map((action) => (
                           <Actions key={action.label} actions={action} />
-                        ))}
-                    </div> */}
+                        ))} */}
+                        
+                    </div>
                   </div>
                   {/* actions and indicator on lg Screens */}
                   <div className="w-full z-20 hidden lg:flex lg:flex-col gap-32">

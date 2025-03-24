@@ -47,8 +47,8 @@ export default async function AnimeOngoingList({
       first: pageSize,
       orderBy: [
         {
-          column: QueryAnimesOngoingPageOrderByColumn.PostHit,
-          order: SortOrder.Desc,
+          column: QueryAnimesOngoingPageOrderByColumn.MalPopularity,
+          order: SortOrder.Asc,
         },
       ],
       page: currentPage,

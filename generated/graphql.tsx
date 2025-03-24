@@ -1068,7 +1068,7 @@ export type QueryAnimeAdvancedSearchOrderByOrderByClause = {
 /** Allowed column names for Query.animeGenre.orderBy. */
 export enum QueryAnimeGenreOrderByColumn {
   DicScore = 'DIC_SCORE',
-  PostHit = 'POST_HIT',
+  MalPopularity = 'MAL_POPULARITY',
   UpdatedAt = 'UPDATED_AT'
 }
 
@@ -1083,7 +1083,7 @@ export type QueryAnimeGenreOrderByOrderByClause = {
 /** Allowed column names for Query.animeSearch.orderBy. */
 export enum QueryAnimeSearchOrderByColumn {
   DicScore = 'DIC_SCORE',
-  PostHit = 'POST_HIT',
+  MalPopularity = 'MAL_POPULARITY',
   UpdatedAt = 'UPDATED_AT'
 }
 
@@ -1098,7 +1098,7 @@ export type QueryAnimeSearchOrderByOrderByClause = {
 /** Allowed column names for Query.animeYear.orderBy. */
 export enum QueryAnimeYearOrderByColumn {
   DicScore = 'DIC_SCORE',
-  PostHit = 'POST_HIT',
+  MalPopularity = 'MAL_POPULARITY',
   UpdatedAt = 'UPDATED_AT'
 }
 
@@ -1113,7 +1113,7 @@ export type QueryAnimeYearOrderByOrderByClause = {
 /** Allowed column names for Query.animesEndedPage.orderBy. */
 export enum QueryAnimesEndedPageOrderByColumn {
   DicScore = 'DIC_SCORE',
-  PostHit = 'POST_HIT',
+  MalPopularity = 'MAL_POPULARITY',
   UpdatedAt = 'UPDATED_AT'
 }
 
@@ -1128,7 +1128,7 @@ export type QueryAnimesEndedPageOrderByOrderByClause = {
 /** Allowed column names for Query.animesMoviePage.orderBy. */
 export enum QueryAnimesMoviePageOrderByColumn {
   DicScore = 'DIC_SCORE',
-  PostHit = 'POST_HIT',
+  MalPopularity = 'MAL_POPULARITY',
   UpdatedAt = 'UPDATED_AT'
 }
 
@@ -1143,7 +1143,7 @@ export type QueryAnimesMoviePageOrderByOrderByClause = {
 /** Allowed column names for Query.animesOngoingPage.orderBy. */
 export enum QueryAnimesOngoingPageOrderByColumn {
   DicScore = 'DIC_SCORE',
-  PostHit = 'POST_HIT',
+  MalPopularity = 'MAL_POPULARITY',
   UpdatedAt = 'UPDATED_AT'
 }
 
@@ -1158,7 +1158,7 @@ export type QueryAnimesOngoingPageOrderByOrderByClause = {
 /** Allowed column names for Query.animesSeasonPage.orderBy. */
 export enum QueryAnimesSeasonPageOrderByColumn {
   DicScore = 'DIC_SCORE',
-  PostHit = 'POST_HIT',
+  MalPopularity = 'MAL_POPULARITY',
   UpdatedAt = 'UPDATED_AT'
 }
 
@@ -1173,7 +1173,7 @@ export type QueryAnimesSeasonPageOrderByOrderByClause = {
 /** Allowed column names for Query.animesSoftSubPage.orderBy. */
 export enum QueryAnimesSoftSubPageOrderByColumn {
   DicScore = 'DIC_SCORE',
-  PostHit = 'POST_HIT',
+  MalPopularity = 'MAL_POPULARITY',
   UpdatedAt = 'UPDATED_AT'
 }
 
@@ -1188,7 +1188,7 @@ export type QueryAnimesSoftSubPageOrderByOrderByClause = {
 /** Allowed column names for Query.animesUpdatePage.orderBy. */
 export enum QueryAnimesUpdatePageOrderByColumn {
   DicScore = 'DIC_SCORE',
-  PostHit = 'POST_HIT',
+  MalPopularity = 'MAL_POPULARITY',
   UpdatedAt = 'UPDATED_AT'
 }
 

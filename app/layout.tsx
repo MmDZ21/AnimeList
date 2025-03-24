@@ -126,7 +126,6 @@ export const metadata: Metadata = {
       description:
         "جدیدترین قسمت‌های انیمه مورد علاقه‌تان را کشف و دانلود کنید.",
         keywords:["anime","انیمه","دانلود انیمه"],
-        viewport: "width=device-width, initial-scale=1",
       openGraph: {
         title: "انیم آپ - جدیدترین قسمت‌های انیمه",
         description: "دانلود و پخش جدیدترین قسمت‌های انیمه.",

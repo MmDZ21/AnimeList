@@ -42,8 +42,8 @@ export default async function AnimeGenreList({
       first: pageSize,
       orderBy: [
         {
-          column: QueryAnimeGenreOrderByColumn.PostHit,
-          order: SortOrder.Desc,
+          column: QueryAnimeGenreOrderByColumn.MalPopularity,
+          order: SortOrder.Asc,
         },
       ],
       page: currentPage,

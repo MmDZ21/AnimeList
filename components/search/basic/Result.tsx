@@ -35,8 +35,8 @@ export default async function Result({ query }: { query: string }) {
       first: 6,
       orderBy: [
         {
-          column: QueryAnimeSearchOrderByColumn.PostHit,
-          order: SortOrder.Desc,
+          column: QueryAnimeSearchOrderByColumn.MalPopularity,
+          order: SortOrder.Asc,
         },
       ],
     },

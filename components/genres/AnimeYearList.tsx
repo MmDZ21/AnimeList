@@ -46,8 +46,8 @@ export default async function AnimeYearList({
       first: pageSize,
       orderBy: [
         {
-          column: QueryAnimeYearOrderByColumn.PostHit,
-          order: SortOrder.Desc,
+          column: QueryAnimeYearOrderByColumn.MalPopularity,
+          order: SortOrder.Asc,
         },
       ],
       page: currentPage,
