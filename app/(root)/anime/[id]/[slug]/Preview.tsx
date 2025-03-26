@@ -20,8 +20,10 @@ import {
   GetAnimeByIdQuery,
   GetAnimeByIdQueryResult,
 } from "@/generated/graphql";
-import { getImagePath } from "@/lib/utils";
-// import Details from "@/components/anime/Details";
+import { generateSlug, getImagePath } from "@/lib/utils";
+import Summary from "./Summary";
+import Details from "@/components/anime/Details";
+import Link from "next/link";
 
 export const Preview = async ({ anime }: { anime: Anime }) => {
   return (
@@ -51,12 +53,13 @@ export const Preview = async ({ anime }: { anime: Anime }) => {
         </div>
         <div className="flex flex-wrap items-center gap-2">
           {anime.genres.map((genre) => (
-            <div
+            <Link
+              href={`/anime/genre/${genre.id}/${generateSlug(genre.name_en!)}`}
               key={genre.id}
               className="text-xs lg:text-sm rounded px-[6px] py-[2px] border border-[hsla(215,20%,65%,0.24)]"
             >
               {genre.name_fa}
-            </div>
+            </Link>
           ))}
         </div>
         <div className="flex flex-col lg:flex-row lg:items-center gap-2">
@@ -124,9 +127,11 @@ export const Preview = async ({ anime }: { anime: Anime }) => {
           </div>
         </div>
         <div className="flex flex-col gap-4">
-          <div
-            className="text-sm font-medium leading-6 line-clamp-4"
-            dangerouslySetInnerHTML={{ __html: anime.dic_body! }}
+          <Summary
+            body={anime.content_body!}
+            bodyNormalized={anime.dic_body_normalized!}
+            title={anime.dic_title!}
+            titleFa={anime.title_fa!}
           />
           <div className="flex justify-center items-center">
             <Dialog>
@@ -162,15 +167,45 @@ export const Preview = async ({ anime }: { anime: Anime }) => {
                       {anime.dic_title}
                     </h2>
                     <div className="flex flex-col gap-6 pb-16">
-                      <div className="text-start leading-[22px] font-medium text-white">
+                      {/* <div className="text-start leading-[22px] font-medium text-white">
                         <div
                           dangerouslySetInnerHTML={{
                             __html: anime.dic_body!,
                           }}
                         ></div>
-                      </div>
+                      </div> */}
                       {/* 8 divs */}
-                      {/* <Details anime={anime} /> */}
+                      <div className="flex flex-col gap-4">
+                        <div className="space-y-2">
+                          <h2 className="font-semibold">
+                            خلاصه داستان {anime.dic_title}
+                          </h2>
+                          {/* The full normalized summary is rendered but controlled by CSS */}
+                          <div
+                            className="text-sm font-medium leading-loose"
+                            dangerouslySetInnerHTML={{
+                              __html: anime.dic_body_normalized!,
+                            }}
+                          />
+                        </div>
+                        {anime.content_body?.length &&
+                        anime.content_body.length > 0 ? (
+                          <div className="space-y-2">
+                            <h2 className="font-semibold">
+                              درباره انیمه {anime.title_fa}
+                            </h2>
+                            <div
+                              className="text-sm font-medium leading-loose"
+                              dangerouslySetInnerHTML={{
+                                __html: anime.content_body!,
+                              }}
+                            />
+                          </div>
+                        ) : (
+                          ""
+                        )}
+                      </div>
+                      <Details anime={anime} />
                     </div>
                   </div>
                 </ScrollArea>

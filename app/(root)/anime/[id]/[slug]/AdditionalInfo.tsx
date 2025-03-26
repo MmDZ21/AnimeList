@@ -3,14 +3,18 @@ import { statusMapping, typeMapping } from "@/constants";
 import { Anime } from "@/generated/graphql";
 import React from "react";
 
-
-
 export default function AdditionalInfo({ anime }: { anime: Anime }) {
   const details = [
-    { label: "نوع اثر", value: typeMapping[anime.dic_types!] || anime.dic_types },
+    {
+      label: "نوع اثر",
+      value: typeMapping[anime.dic_types!] || anime.dic_types,
+    },
     { label: "تعداد قسمت‌ها", value: anime.dic_episodes },
     { label: "مدت زمان هر قسمت", value: anime.dic_duration },
-    { label: "وضعیت", value: statusMapping[anime.dic_status!] || anime.dic_status },
+    {
+      label: "وضعیت",
+      value: statusMapping[anime.dic_status!] || anime.dic_status,
+    },
     { label: "تاریخ شروع", value: anime.dic_aired_from },
     { label: "تاریخ پایان", value: anime.dic_aired_to },
     { label: "فصل پخش", value: anime.season_year },
