@@ -55,7 +55,6 @@ export default function CommentForm({
       });
     } else {
       setIsPending(true);
-      console.log(data);
       try {
         const result = await sendComment(
           animeId,

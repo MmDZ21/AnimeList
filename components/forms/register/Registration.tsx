@@ -108,12 +108,12 @@ const Registration: React.FC = () => {
   };
 
   return (
-    <Card className="z-30 rounded-none max-w-sm border-0 text-slate-950 shadow-none dark:border-0 dark:bg-transparent dark:text-slate-50 w-full">
+    <Card className="z-30 rounded-none max-w-sm border-0 shadow-none bg-transparent  text-slate-50 w-full">
       <CardHeader className="gap-2">
         <CardTitle className="text-2xl lg:text-4xl font-bold">
           خوش اومدی
         </CardTitle>
-        <CardDescription className="text-lg dark:text-white">
+        <CardDescription className="text-lg  text-white">
           در دنیای بی‌پایان انیمه‌ها غرق شو
         </CardDescription>
       </CardHeader>

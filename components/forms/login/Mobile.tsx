@@ -103,12 +103,12 @@ const Mobile = () => {
   return (
     <>
       {step === "phone" && (
-        <Card className="z-30 rounded-none max-w-sm border-0 text-slate-950 shadow-none dark:border-0 dark:bg-transparent dark:text-slate-50 w-full">
+        <Card className="z-30 rounded-none max-w-sm shadow-none  border-0  bg-transparent  text-slate-50 w-full">
           <CardHeader className="gap-2">
             <CardTitle className="text-2xl lg:text-4xl font-bold">
               خوش اومدی
             </CardTitle>
-            <CardDescription className="text-lg dark:text-white">
+            <CardDescription className="text-lg  text-white">
               در دنیای بی‌پایان انیمه‌ها غرق شو
             </CardDescription>
           </CardHeader>
@@ -157,9 +157,9 @@ const Mobile = () => {
                 </form>
               </Form>
               <div className="flex items-center gap-3">
-                <div className="dark:bg-[#94A3B8]/20 h-[1px] w-full"> </div>
-                <p className="dark:text-[#E0E0E0] text-sm font-normal">یا</p>
-                <div className="dark:bg-[#94A3B8]/20 h-[1px] w-full"> </div>
+                <div className=" bg-[#94A3B8]/20 h-[1px] w-full"> </div>
+                <p className=" text-[#E0E0E0] text-sm font-normal">یا</p>
+                <div className=" bg-[#94A3B8]/20 h-[1px] w-full"> </div>
               </div>
               <div className="flex gap-3 justify-between">
                 <Button
@@ -232,12 +232,12 @@ const Mobile = () => {
       )}
 
       {step === "otp" && (
-        <Card className="z-30 rounded-none max-w-sm border-0 text-slate-950 shadow-none dark:border-0 dark:bg-transparent dark:text-slate-50 w-full">
+        <Card className="z-30 rounded-none max-w-sm shadow-none  border-0  bg-transparent  text-slate-50 w-full">
           <CardHeader className="gap-2">
             <CardTitle className="text-2xl lg:text-4xl font-bold">
               کد تأیید را وارد کنید
             </CardTitle>
-            <CardDescription className="text-lg dark:text-white">
+            <CardDescription className="text-lg  text-white">
               کد تأیید برای شماره {phoneNumber} ارسال شد.{" "}
             </CardDescription>
           </CardHeader>

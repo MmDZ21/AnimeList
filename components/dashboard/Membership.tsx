@@ -7,15 +7,15 @@ export default async function Membership() {
   return (
     <div className="w-full">
       <Tabs defaultValue="wallet" className="flex flex-col lg:flex-row gap-5 w-full">
-        <TabsList className="lg:flex lg:flex-col inline-flex lg:h-fit h-12 lg:w-1/4 w-full rounded-lg lg:p-4 p-1 justify-center lg:gap-2 text-white bg-[#17212B] dark:bg-[#17212B] dark:text-white">
+        <TabsList className="lg:flex lg:flex-col inline-flex lg:h-fit h-12 lg:w-1/4 w-full rounded-lg lg:p-4 p-1 justify-center lg:gap-2 text-white  bg-[#17212B]">
           <TabsTrigger
-            className="flex w-full items-center justify-center text-start lg:justify-start whitespace-nowrap rounded-lg px-4 py-2 text-base font-medium ring-offset-0 transition-all focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-white data-[state=active]:shadow-none dark:focus-visible:ring-0 dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
+            className="flex w-full items-center justify-center text-start lg:justify-start whitespace-nowrap rounded-lg px-4 py-2 text-base font-medium ring-offset-0 transition-all focus-visible:outline-none focus-visible:ring-offset-0 disabled:pointer-events-none disabled:opacity-50  data-[state=active]:shadow-none  focus-visible:ring-0  data-[state=active]:bg-background  data-[state=active]:text-white"
             value="wallet"
           >
             کیف پول
           </TabsTrigger>
           <TabsTrigger
-            className="flex w-full items-center justify-center text-start lg:justify-start whitespace-nowrap rounded-lg px-4 py-2 text-base font-medium ring-offset-0 transition-all focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-white data-[state=active]:shadow-none dark:focus-visible:ring-0 dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
+            className="flex w-full items-center justify-center text-start lg:justify-start whitespace-nowrap rounded-lg px-4 py-2 text-base font-medium ring-offset-0 transition-all focus-visible:outline-none focus-visible:ring-offset-0 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:shadow-none  focus-visible:ring-0  data-[state=active]:bg-background  data-[state=active]:text-white"
             value="sub"
           >
             اشتراک

@@ -57,14 +57,14 @@ export function TicketTable<TData, TValue>({
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow
               key={headerGroup.id}
-              className="border-none dark:hover:bg-transparent"
+              className="border-none  hover:bg-transparent"
             >
               {headerGroup.headers.map((header, i) => {
                 return (
                   <TableHead
                     key={header.id}
                     className={cn(
-                      "text-sm font-normal dark:text-[#D3D5D9] text-center"
+                      "text-sm font-normal  text-[#D3D5D9] text-center"
                     )}
                   >
                     {header.isPlaceholder

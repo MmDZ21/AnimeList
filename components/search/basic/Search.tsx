@@ -50,7 +50,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
   return (
     <div className="hidden relative lg:flex lg:flex-col w-full items-center gap-4">
       <Input
-        className="w-full rounded-lg px-4 max-w-[800px] h-16 placeholder:text-lg placeholder:font-medium dark:placeholder:text-[#979CA6]"
+        className="w-full rounded-lg px-4 max-w-[800px] h-16 placeholder:text-lg placeholder:font-medium  placeholder:text-[#979CA6]"
         placeholder={placeholder}
         value={searchTerm}
         onChange={(e) => {

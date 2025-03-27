@@ -107,12 +107,12 @@ const Email = () => {
   // }
 
   return (
-    <Card className="z-30 rounded-none max-w-sm border-0 text-slate-950 shadow-none dark:border-0 dark:bg-transparent dark:text-slate-50 w-full">
+    <Card className="z-30 rounded-none max-w-sm shadow-none  border-0  bg-transparent  text-slate-50 w-full">
       <CardHeader className="gap-2">
         <CardTitle className="text-2xl lg:text-4xl font-bold">
           خوش اومدی
         </CardTitle>
-        <CardDescription className="text-lg dark:text-white">
+        <CardDescription className="text-lg  text-white">
           در دنیای بی‌پایان انیمه‌ها غرق شو
         </CardDescription>
       </CardHeader>
@@ -167,7 +167,7 @@ const Email = () => {
                           منو به‌خاطر بسپار
                         </FormLabel>
                       </div>
-                      <div className="text-sm font-normal dark:text-[#979CA6] dark:hover:text-white flex items-center">
+                      <div className="text-sm font-normal  text-[#979CA6]  hover:text-white flex items-center">
                         <Link href="/forgot-password" className="-mt-2">
                           بازیابی کلمه عبور
                         </Link>
@@ -182,9 +182,9 @@ const Email = () => {
 
           <div className="flex flex-col gap-4 ">
             {/* <div className="flex items-center gap-3">
-              <div className="dark:bg-[#94A3B8]/20 h-[1px] w-full"></div>
-              <p className="dark:text-[#E0E0E0] text-sm font-normal">یا</p>
-              <div className="dark:bg-[#94A3B8]/20 h-[1px] w-full"></div>
+              <div className=" bg-[#94A3B8]/20 h-[1px] w-full"></div>
+              <p className=" text-[#E0E0E0] text-sm font-normal">یا</p>
+              <div className=" bg-[#94A3B8]/20 h-[1px] w-full"></div>
             </div>
             <div className="flex gap-3 justify-between">
               <Button

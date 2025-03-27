@@ -7,45 +7,45 @@ export default function page() {
   return (
     <div className="w-full flex flex-col gap-6 px-4 lg:px-16 py-6">
       <Tabs defaultValue="anime">
-        <TabsList className="dark:bg-[#17212B] flex-wrap rounded-lg justify-start items-center p-1 h-fit gap-2">
+        <TabsList className=" bg-[#17212B] flex-wrap rounded-lg justify-start items-center p-1 h-fit gap-2">
           <TabsTrigger
-            className="py-3 px-2 w-[80px] lg:w-[100px] flex items-center justify-center rounded-lg text-base font-semibold text-white dark:data-[state=active]:bg-[#242F3D]"
+            className="py-3 px-2 w-[80px] lg:w-[100px] flex items-center justify-center rounded-lg text-base font-semibold text-white  data-[state=active]:bg-[#242F3D]"
             value="anime"
           >
             انیمه
           </TabsTrigger>
           <TabsTrigger
-            className="py-3 px-2 w-[80px] lg:w-[100px] flex items-center justify-center rounded-lg text-base font-semibold text-white dark:data-[state=active]:bg-[#242F3D]"
+            className="py-3 px-2 w-[80px] lg:w-[100px] flex items-center justify-center rounded-lg text-base font-semibold text-white  data-[state=active]:bg-[#242F3D]"
             value="donghua"
           >
             دونگهوا
           </TabsTrigger>
           <TabsTrigger
-            className="py-3 px-2 w-[80px] lg:w-[100px] flex items-center justify-center rounded-lg text-base font-semibold text-white dark:data-[state=active]:bg-[#242F3D]"
+            className="py-3 px-2 w-[80px] lg:w-[100px] flex items-center justify-center rounded-lg text-base font-semibold text-white  data-[state=active]:bg-[#242F3D]"
             value="movie"
           >
             فیلم
           </TabsTrigger>
           <TabsTrigger
-            className="py-3 px-2 w-[80px] lg:w-[100px] flex items-center justify-center rounded-lg text-base font-semibold text-white dark:data-[state=active]:bg-[#242F3D]"
+            className="py-3 px-2 w-[80px] lg:w-[100px] flex items-center justify-center rounded-lg text-base font-semibold text-white  data-[state=active]:bg-[#242F3D]"
             value="series"
           >
             سریال
           </TabsTrigger>
           <TabsTrigger
-            className="py-3 px-2 w-[80px] lg:w-[100px] flex items-center justify-center rounded-lg text-base font-semibold text-white dark:data-[state=active]:bg-[#242F3D]"
+            className="py-3 px-2 w-[80px] lg:w-[100px] flex items-center justify-center rounded-lg text-base font-semibold text-white  data-[state=active]:bg-[#242F3D]"
             value="studio"
           >
             استودیو
           </TabsTrigger>
           <TabsTrigger
-            className="py-3 px-2 w-[80px] lg:w-[100px] flex items-center justify-center rounded-lg text-base font-semibold text-white dark:data-[state=active]:bg-[#242F3D]"
+            className="py-3 px-2 w-[80px] lg:w-[100px] flex items-center justify-center rounded-lg text-base font-semibold text-white  data-[state=active]:bg-[#242F3D]"
             value="staff"
           >
             عوامل
           </TabsTrigger>
           <TabsTrigger
-            className="py-3 px-2 w-[80px] lg:w-[100px] flex items-center justify-center rounded-lg text-base font-semibold text-white dark:data-[state=active]:bg-[#242F3D]"
+            className="py-3 px-2 w-[80px] lg:w-[100px] flex items-center justify-center rounded-lg text-base font-semibold text-white  data-[state=active]:bg-[#242F3D]"
             value="characters"
           >
             شخصیت

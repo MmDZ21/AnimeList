@@ -40,7 +40,7 @@ const StarRating: React.FC<StarRatingProps> = ({ rating, maxRating = 5 }) => {
         (_, index) => (
           <svg
             key={index}
-            className="w-4 h-4 text-gray-300 me-1 dark:text-gray-500"
+            className="w-4 h-4 me-1  text-gray-500"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="currentColor"
@@ -50,13 +50,13 @@ const StarRating: React.FC<StarRatingProps> = ({ rating, maxRating = 5 }) => {
           </svg>
         )
       )}
-      <p className="ms-1 text-sm font-medium text-gray-500 dark:text-gray-400">
+      <p className="ms-1 text-sm font-medium text-gray-400">
         {rating.toFixed(2)}
       </p>
-      <p className="ms-1 text-sm font-medium text-gray-500 dark:text-gray-400">
+      <p className="ms-1 text-sm font-medium text-gray-400">
         out of
       </p>
-      <p className="ms-1 text-sm font-medium text-gray-500 dark:text-gray-400">
+      <p className="ms-1 text-sm font-medium text-gray-400">
         {maxRating}
       </p>
     </div>

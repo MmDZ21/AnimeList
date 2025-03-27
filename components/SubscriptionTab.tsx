@@ -147,11 +147,11 @@ export default function SubscriptionTab({ plan }: { plan: Plan }) {
         <div className="relative">
           <Input
             placeholder="کد تخفیف"
-            className="border py-7 dark:placeholder:text-[#979CA6] dark:border-[hsla(215,20%,65%,0.24)] dark:bg-[#242F3D]"
+            className="border py-7  placeholder:text-[#979CA6]  border-[hsla(215,20%,65%,0.24)]  bg-[#242F3D]"
           />
           <Button
             variant="secondary"
-            className="absolute dark:bg-[#17212B] top-1 end-1 px-4 py-[14px] rounded-md"
+            className="absolute  bg-[#17212B] top-1 end-1 px-4 py-[14px] rounded-md"
           >
             اعمال کد تخفیف
           </Button>

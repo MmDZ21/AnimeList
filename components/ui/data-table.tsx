@@ -72,7 +72,7 @@ export function DataTable<TData, TValue>({
             onChange={(event) =>
               table.getColumn("title")?.setFilterValue(event.target.value)
             }
-            className="max-w-sm px-3 py-2 dark:bg-background"
+            className="max-w-sm px-3 py-2 bg-background"
           />
         </div>
         <div className="flex flex-col gap-4">
@@ -113,14 +113,14 @@ export function DataTable<TData, TValue>({
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow
                 key={headerGroup.id}
-                className="border-none dark:hover:bg-transparent"
+                className="border-none"
               >
                 {headerGroup.headers.map((header, i) => {
                   return (
                     <TableHead
                       key={header.id}
                       className={cn(
-                        "text-base font-bold dark:text-white text-center w-1/6",
+                        "text-base font-bold text-white text-center w-1/6",
                         i === 0 && "text-start w-1/2"
                       )}
                     >

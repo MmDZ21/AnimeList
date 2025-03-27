@@ -77,7 +77,7 @@ export const Preview = async ({ anime }: { anime: Anime }) => {
                 <DialogHeader className="gap-3">
                   <DialogTitle className="flex justify-between ">
                     <p className="text-base font-bold">جزئیات نمره</p>
-                    <DialogClose className="rounded-sm opacity-70 ring-offset-white transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-slate-100 data-[state=open]:text-slate-500 dark:ring-offset-slate-950 dark:focus:ring-slate-300 dark:data-[state=open]:bg-slate-800 dark:data-[state=open]:text-slate-400">
+                    <DialogClose className="rounded-sm opacity-70 ring-offset-white transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-slate-100 data-[state=open]:text-slate-500  ring-offset-slate-950  focus:ring-slate-300  data-[state=open]:bg-slate-800  data-[state=open]:text-slate-400">
                       <Cross2Icon className="h-6 w-6" />
                       <span className="sr-only">Close</span>
                     </DialogClose>
@@ -144,7 +144,7 @@ export const Preview = async ({ anime }: { anime: Anime }) => {
                 <DialogHeader className="gap-3">
                   <DialogTitle className="flex justify-between ">
                     <p className="text-base font-bold">جزئیات انیمه</p>
-                    <DialogClose className="rounded-sm opacity-70 ring-offset-white transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-slate-100 data-[state=open]:text-slate-500 dark:ring-offset-slate-950 dark:focus:ring-slate-300 dark:data-[state=open]:bg-slate-800 dark:data-[state=open]:text-slate-400">
+                    <DialogClose className="rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2 disabled:pointer-events-none  ring-offset-slate-950   data-[state=open]:bg-slate-800  data-[state=open]:text-slate-400">
                       <Cross2Icon className="h-6 w-6" />
                       <span className="sr-only">Close</span>
                     </DialogClose>

@@ -13,7 +13,7 @@ export default function AuthLayout({
         {/* <ChangeLocale /> */}
       </div>
       <div className="bg-login bg-cover bg-center lg:hidden absolute inset-0 z-0"></div>
-      <div className="absolute lg:hidden inset-0 z-10 dark:bg-gradient-to-t dark:from-background dark:via-background dark:to-background/0"></div>
+      <div className="absolute lg:hidden inset-0 z-10 bg-gradient-to-t from-background via-background to-background/0"></div>
       <div className="relative z-20 flex justify-center items-center min-h-screen">
         <div className="lg:flex w-full justify-between ltr:lg:flex-row-reverse min-h-screen">
           <div className="flex justify-center items-center lg:w-full lg:max-h-screen">

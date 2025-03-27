@@ -8,15 +8,15 @@ export default async function Subtitles() {
   return (
     <>
       <Tabs className="w-full" defaultValue="exclusive">
-        <TabsList className="w-full h-12 text-[#A1A1AA] justify-center dark:bg-[#17212B] rounded-md p-1">
+        <TabsList className="w-full h-12 text-[#A1A1AA] justify-center  bg-[#17212B] rounded-md p-1">
           <TabsTrigger
-            className="px-4 py-2 justify-center dark:data-[state=active]:text-white data-[state=active]:font-bold dark:data-[state=active]:bg-background rounded-md"
+            className="px-4 py-2 justify-center  data-[state=active]:text-white data-[state=active]:font-bold  data-[state=active]:bg-background rounded-md"
             value="exclusive"
           >
             زیرنویس‌های اختصاصی
           </TabsTrigger>
           <TabsTrigger
-            className="px-4 py-2 justify-center dark:data-[state=active]:bg-background rounded-md data-[state=active]:font-bold"
+            className="px-4 py-2 justify-center  data-[state=active]:bg-background rounded-md data-[state=active]:font-bold"
             value="nonexclusive"
           >
             زیرنویس‌های ارسالی

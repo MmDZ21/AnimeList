@@ -78,7 +78,7 @@ export default function Subscription() {
         </div>
       </div>
       <Tabs className="w-full" defaultValue="2">
-        <TabsList className="w-full dark:bg-transparent border-b border-[hsla(215,20%,65%,0.24)] justify-center">
+        <TabsList className="w-full  bg-transparent border-b border-[hsla(215,20%,65%,0.24)] justify-center">
           <TabsTrigger value="1">یک ماهه</TabsTrigger>
           <TabsTrigger value="2">سه ماهه</TabsTrigger>
           <TabsTrigger value="3">شش ماهه</TabsTrigger>

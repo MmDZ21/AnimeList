@@ -82,7 +82,7 @@ export default function EpisodeWrapper({
               <SheetHeader>
                 <SheetTitle className="flex justify-between">
                   <p>قسمت {i + 1}</p>
-                  <SheetClose className="rounded-sm opacity-70 ring-offset-white transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-slate-100 dark:ring-offset-slate-950 dark:focus:ring-slate-300 dark:data-[state=open]:bg-slate-800">
+                  <SheetClose className="rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:pointer-events-none ring-offset-slate-950  focus:ring-slate-300  data-[state=open]:bg-slate-800">
                     <Cross2Icon className="h-6 w-6" />
                     <span className="sr-only">Close</span>
                   </SheetClose>

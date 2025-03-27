@@ -158,14 +158,14 @@ export default async function page({
           alt={anime.dic_title!}
           className="object-cover hidden lg:block"
         />
-        <div className="absolute h-1/2 bottom-0 left-0 right-0 z-10 dark:bg-gradient-to-t dark:from-background dark:to-background/0"></div>
+        <div className="absolute h-1/2 bottom-0 left-0 right-0 z-10 bg-gradient-to-t from-background to-background/0"></div>
       </div>
       <div className="w-full flex flex-col justify-center max-w-[1280px] mx-auto z-20 gap-6">
         <div className="flex flex-col gap-4 -mt-14">
           <Preview anime={anime} />
           <div className="w-full block lg:hidden px-4">
             <CustomTabs defaultValue="episodes" className="w-full">
-              <CustomTabsList className="w-full dark:bg-transparent border-b border-[hsla(215,20%,65%,0.24)]">
+              <CustomTabsList className="w-full bg-transparent border-b border-[hsla(215,20%,65%,0.24)]">
                 <CustomTabsTrigger value="episodes">دانلود</CustomTabsTrigger>
                 <CustomTabsTrigger value="similars">
                   آثار مشابه
@@ -179,36 +179,36 @@ export default async function page({
                     <div className="flex flex-col gap-2">
                       <div className="w-full px-[10px] py-4 bg-[#17212B] flex flex-col gap[10px]">
                         <Tabs defaultValue="480p">
-                          <TabsList className="dark:bg-transparent dark:text-[#A1A1AA] w-full justify-start flex-wrap h-fit">
+                          <TabsList className="bg-transparent text-[#A1A1AA] w-full justify-start flex-wrap h-fit">
                             <h5 className="flex-1 text-white text-base font-semibold hidden lg:block">
                               باکس دانلود
                             </h5>
                             <TabsTrigger
-                              className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
+                              className="data-[state=active]:bg-background data-[state=active]:text-white"
                               value="480p"
                             >
                               480p
                             </TabsTrigger>
                             <TabsTrigger
-                              className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
+                              className="data-[state=active]:bg-background data-[state=active]:text-white"
                               value="720p"
                             >
                               720p
                             </TabsTrigger>
                             <TabsTrigger
-                              className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
+                              className=" data-[state=active]:bg-background  data-[state=active]:text-white"
                               value="1080p"
                             >
                               1080p
                             </TabsTrigger>
                             <TabsTrigger
-                              className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
+                              className=" data-[state=active]:bg-background  data-[state=active]:text-white"
                               value="720p x265"
                             >
                               720p x265
                             </TabsTrigger>
                             <TabsTrigger
-                              className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
+                              className=" data-[state=active]:bg-background  data-[state=active]:text-white"
                               value="1080p x265"
                             >
                               1080p x265
@@ -259,15 +259,15 @@ export default async function page({
               <CustomTabsContent value="staff">
                 <div className="py-2">
                   <Tabs defaultValue="characters" className="w-full">
-                    <TabsList className="dark:bg-[#17212B] dark:A1A1AA] w-full justify-start gap-[10px] rounded-md h-12">
+                    <TabsList className=" bg-[#17212B]  A1A1AA] w-full justify-start gap-[10px] rounded-md h-12">
                       <TabsTrigger
-                        className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white rounded-lg p-2"
+                        className=" data-[state=active]:bg-background  data-[state=active]:text-white rounded-lg p-2"
                         value="characters"
                       >
                         شخصیت‌ها و صداپیشه‌ها
                       </TabsTrigger>
                       <TabsTrigger
-                        className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
+                        className=" data-[state=active]:bg-background  data-[state=active]:text-white"
                         value="producers"
                       >
                         عوامل تولید
@@ -359,40 +359,40 @@ export default async function page({
         </div>
         <div className="w-full hidden lg:block">
           <Tabs defaultValue="download" className="w-full">
-            <TabsList className="w-full dark:bg-[#17212B] rounded-lg justify-start items-center p-1 h-fit gap-2">
+            <TabsList className="w-full  bg-[#17212B] rounded-lg justify-start items-center p-1 h-fit gap-2">
               <TabsTrigger
-                className="py-3 px-2 w-[160px] flex items-center justify-center rounded-lg text-base font-semibold text-white dark:data-[state=active]:bg-background"
+                className="py-3 px-2 w-[160px] flex items-center justify-center rounded-lg text-base font-semibold text-white  data-[state=active]:bg-background"
                 value="download"
               >
                 دانلود
               </TabsTrigger>
 
               {/* <TabsTrigger
-                className="py-3 px-2 w-[160px] flex items-center justify-center rounded-lg text-base font-semibold text-white dark:data-[state=active]:bg-background"
+                className="py-3 px-2 w-[160px] flex items-center justify-center rounded-lg text-base font-semibold text-white  data-[state=active]:bg-background"
                 value="cc"
               >
                 زیرنویس
               </TabsTrigger> */}
               <TabsTrigger
-                className="py-3 px-2 w-[160px] flex items-center justify-center rounded-lg text-base font-semibold text-white dark:data-[state=active]:bg-background"
+                className="py-3 px-2 w-[160px] flex items-center justify-center rounded-lg text-base font-semibold text-white  data-[state=active]:bg-background"
                 value="staff"
               >
                 شخصیت‌ها و عوامل
               </TabsTrigger>
               <TabsTrigger
-                className="py-3 px-2 w-[160px] flex items-center justify-center rounded-lg text-base font-semibold text-white dark:data-[state=active]:bg-background"
+                className="py-3 px-2 w-[160px] flex items-center justify-center rounded-lg text-base font-semibold text-white  data-[state=active]:bg-background"
                 value="details"
               >
                 اطلاعات تکمیلی
               </TabsTrigger>
               <TabsTrigger
-                className="py-3 px-2 w-[160px] flex items-center justify-center rounded-lg text-base font-semibold text-white dark:data-[state=active]:bg-background"
+                className="py-3 px-2 w-[160px] flex items-center justify-center rounded-lg text-base font-semibold text-white  data-[state=active]:bg-background"
                 value="similars"
               >
                 آثار مشابه
               </TabsTrigger>
               <TabsTrigger
-                className="py-3 px-2 w-[160px] flex items-center justify-center rounded-lg text-base font-semibold text-white dark:data-[state=active]:bg-background gap-2"
+                className="py-3 px-2 w-[160px] flex items-center justify-center rounded-lg text-base font-semibold text-white  data-[state=active]:bg-background gap-2"
                 value="comments"
               >
                 نظرات
@@ -401,7 +401,7 @@ export default async function page({
                   </div> */}
               </TabsTrigger>
               {/* <TabsTrigger
-                className="py-3 px-2 w-[160px] flex items-center justify-center rounded-lg text-base font-semibold text-white dark:data-[state=active]:bg-background"
+                className="py-3 px-2 w-[160px] flex items-center justify-center rounded-lg text-base font-semibold text-white  data-[state=active]:bg-background"
                 value="trailers"
               >
                 تریلر
@@ -412,36 +412,36 @@ export default async function page({
                 {session?.user?.isVip ? (
                   anime.anime_links.length > 0 ? (
                     <Tabs defaultValue="480p">
-                      <TabsList className="dark:bg-transparent dark:A1A1AA] w-full justify-start">
+                      <TabsList className=" bg-transparent  A1A1AA] w-full justify-start">
                         <h5 className="flex-1 text-white text-base font-semibold">
                           باکس دانلود
                         </h5>
                         <TabsTrigger
-                          className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
+                          className=" data-[state=active]:bg-background  data-[state=active]:text-white"
                           value="480p"
                         >
                           480p
                         </TabsTrigger>
                         <TabsTrigger
-                          className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
+                          className=" data-[state=active]:bg-background  data-[state=active]:text-white"
                           value="720p"
                         >
                           720p
                         </TabsTrigger>
                         <TabsTrigger
-                          className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
+                          className=" data-[state=active]:bg-background  data-[state=active]:text-white"
                           value="1080p"
                         >
                           1080p
                         </TabsTrigger>
                         <TabsTrigger
-                          className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
+                          className=" data-[state=active]:bg-background  data-[state=active]:text-white"
                           value="720p x265"
                         >
                           720p x265
                         </TabsTrigger>
                         <TabsTrigger
-                          className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
+                          className=" data-[state=active]:bg-background  data-[state=active]:text-white"
                           value="1080p x265"
                         >
                           1080p x265
@@ -476,18 +476,18 @@ export default async function page({
             {/* <TabsContent className="py-4" value="cc">
               <div className="w-full px-[10px] py-4 bg-[#17212B] flex flex-col gap[10px]">
                 <Tabs defaultValue="exclusive">
-                  <TabsList className="dark:bg-transparent dark:text-[#A1A1AA] w-full justify-start">
+                  <TabsList className=" bg-transparent  text-[#A1A1AA] w-full justify-start">
                     <h5 className="flex-1 text-white text-base font-semibold">
                       باکس دانلود
                     </h5>
                     <TabsTrigger
-                      className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white rounded-lg"
+                      className=" data-[state=active]:bg-background  data-[state=active]:text-white rounded-lg"
                       value="exclusive"
                     >
                       زیرنویس‌های اختصاصی
                     </TabsTrigger>
                     <TabsTrigger
-                      className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white"
+                      className=" data-[state=active]:bg-background  data-[state=active]:text-white"
                       value="sent"
                     >
                       زیرنویس‌های ارسالی
@@ -505,18 +505,18 @@ export default async function page({
             <TabsContent value="staff" className="py-4">
               <div className="w-full px-[10px] py-4 bg-[#17212B] flex flex-col gap[10px]">
                 <Tabs defaultValue="characters" className="w-full">
-                  <TabsList className="dark:bg-transparent dark:text-[#A1A1AA] w-full justify-start">
+                  <TabsList className=" bg-transparent  text-[#A1A1AA] w-full justify-start">
                     <h5 className="flex-1 text-white text-base font-semibold">
                       شخصیت‌ها و عوامل
                     </h5>
                     <TabsTrigger
-                      className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white rounded-lg"
+                      className=" data-[state=active]:bg-background  data-[state=active]:text-white rounded-lg"
                       value="characters"
                     >
                       شخصیت‌ها و صداپیشه‌ها
                     </TabsTrigger>
                     <TabsTrigger
-                      className="dark:data-[state=active]:bg-background dark:data-[state=active]:text-white rounded-lg"
+                      className=" data-[state=active]:bg-background  data-[state=active]:text-white rounded-lg"
                       value="producers"
                     >
                       عوامل تولید

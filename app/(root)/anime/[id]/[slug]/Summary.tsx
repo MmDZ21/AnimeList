@@ -20,7 +20,7 @@ export default function Summary({
   ${bodyNormalized || ""}
   <br/>
     <br/>
-  <h2 class="font-semibold lg:font-bold text-base">درباره انیمه ${titleFa}</h2>
+${body?.length && body.length > 0 ? `<h2 class="font-semibold lg:font-bold text-base">درباره انیمه ${titleFa}</h2>` : ''}
   <br/>
   ${body || ""}
 `;

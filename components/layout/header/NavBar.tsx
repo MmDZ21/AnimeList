@@ -28,7 +28,7 @@ export default function NavBar() {
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
-              <NavigationMenuTrigger className="text-base font-medium p-2 dark:text-white">
+              <NavigationMenuTrigger className="text-base font-medium p-2  text-white">
                 گشت و گذار
               </NavigationMenuTrigger>
               <NavigationMenuContent
@@ -43,7 +43,7 @@ export default function NavBar() {
                   >
                     <TabsList className="w-[200px] items-start gap-1">
                       <TabsTrigger
-                        className="w-full h-12 rounded-lg p-1 flex gap-[10px] dark:data-[state=active]:bg-background"
+                        className="w-full h-12 rounded-lg p-1 flex gap-[10px]  data-[state=active]:bg-background"
                         value="genres"
                         onMouseEnter={() => setActiveTab("genres")}
                       >
@@ -81,7 +81,7 @@ export default function NavBar() {
                         <p className="text-base font-medium">براساس ژانر</p>
                       </TabsTrigger>
                       <TabsTrigger
-                        className="w-full h-12 rounded-lg p-1 flex gap-[10px] dark:data-[state=active]:bg-background"
+                        className="w-full h-12 rounded-lg p-1 flex gap-[10px]  data-[state=active]:bg-background"
                         value="years"
                         onMouseEnter={() => setActiveTab("years")}
                       >
@@ -327,7 +327,7 @@ export default function NavBar() {
         {navMenus.addition.map((menu) => (
           <Link
             key={menu.label}
-            className="text-base font-medium p-2 dark:text-white"
+            className="text-base font-medium p-2  text-white"
             href={menu.href}
           >
             {menu.label}

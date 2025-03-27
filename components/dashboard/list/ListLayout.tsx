@@ -28,17 +28,17 @@ export default function ListLayout({
   return (
     <Table className="border-separate border-spacing-x-0 border-spacing-y-1">
       <TableHeader>
-        <TableRow className="border-none dark:hover:bg-transparent">
-          <TableHead className="text-start text-base font-bold dark:text-white">
+        <TableRow className="border-none  hover:bg-transparent">
+          <TableHead className="text-start text-base font-bold  text-white">
             عنوان
           </TableHead>
-          <TableHead className="text-base font-bold dark:text-white">
+          <TableHead className="text-base font-bold  text-white">
             نمره
           </TableHead>
-          <TableHead className="text-base font-bold dark:text-white">
+          <TableHead className="text-base font-bold  text-white">
             پیشرفت
           </TableHead>
-          <TableHead className="text-base font-bold dark:text-white">
+          <TableHead className="text-base font-bold  text-white">
             نوع
           </TableHead>
         </TableRow>

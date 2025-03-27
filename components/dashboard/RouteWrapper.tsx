@@ -34,7 +34,7 @@ export default function RouteWrapper({
         }
         className="w-full lg:hidden"
       >
-        <CustomTabsList className="w-full dark:bg-transparent border-b border-[hsla(215,20%,65%,0.24)] flex justify-between px-4">
+        <CustomTabsList className="w-full  bg-transparent border-b border-[hsla(215,20%,65%,0.24)] flex justify-between px-4">
           {dashboardRoutes.map((route) => (
             <CustomTabsTrigger
               key={route.value}
@@ -70,12 +70,12 @@ export default function RouteWrapper({
         }
         className="w-full hidden lg:block"
       >
-        <TabsList className="w-full h-fit dark:text-white justify-start dark:bg-[#17212B] rounded-lg p-1 gap-2">
+        <TabsList className="w-full h-fit  text-white justify-start  bg-[#17212B] rounded-lg p-1 gap-2">
           {dashboardRoutes.map((route) => (
             <TabsTrigger
               key={route.value}
               value={route.value}
-              className="text-base font-semibold w-40 py-3 rounded-lg dark:data-[state=active]:bg-background"
+              className="text-base font-semibold w-40 py-3 rounded-lg  data-[state=active]:bg-background"
             >
               {route.label}
             </TabsTrigger>

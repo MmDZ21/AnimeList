@@ -81,7 +81,7 @@ export default function Search() {
           <div className="w-full">
             <Input
               placeholder="انیمه، دراما، سریال، فیلم و..."
-              className="w-full h-16 rounded-none border-none px-16 dark:bg-[#17212B] dark:focus-visible:ring-0 dark:placeholder:text-[#979CA6]"
+              className="w-full h-16 rounded-none border-none px-16  bg-[#17212B]  focus-visible:ring-0  placeholder:text-[#979CA6]"
               value={searchTerm}
               onChange={(e) => onSearch(e.target.value)}
             />

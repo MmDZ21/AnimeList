@@ -19,7 +19,7 @@ export default async function DashboardLayout({
           alt="anime"
           className="object-cover object-top"
         />
-        <div className="absolute h-1/2 lg:h-full bottom-0 left-0 right-0 z-10 dark:bg-gradient-to-t dark:from-background dark:to-background/0"></div>
+        <div className="absolute h-1/2 lg:h-full bottom-0 left-0 right-0 z-10  bg-gradient-to-t  from-background  to-background/0"></div>
       </div>
       {children}
     </div>

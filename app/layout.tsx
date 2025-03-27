@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
 import localFont from "next/font/local";
 import { ApolloWrapper } from "@/components/ApolloWrapper";
 import DirProvider from "@/components/DirProvider";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "@/components/ui/sonner";
 // Define the expected type for the parameters
 // interface MetadataParams {
@@ -121,25 +119,28 @@ const modam = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "انیم آپ | دانلود انیمه، دانلود فیلم، دانلود سریال",
-  description: "جدیدترین قسمت‌های انیمه مورد علاقه‌تان را کشف و دانلود کنید.",
-  keywords: ["anime", "انیمه", "دانلود انیمه"],
-  openGraph: {
-    title: "انیم آپ - جدیدترین قسمت‌های انیمه",
-    description: "دانلود و پخش جدیدترین قسمت‌های انیمه.",
-    url: process.env.WEBSITE_URL,
-    siteName: "انیم آپ",
-    type: "website",
-    images: [
-      {
-        url: "https://animup.tv/images/logo.webp",
-        width: 800,
-        height: 600,
-        alt: "انیم آپ",
+
+      title: "انیم آپ | دانلود انیمه، دانلود فیلم، دانلود سریال",
+      description:
+        "جدیدترین قسمت‌های انیمه مورد علاقه‌تان را کشف و دانلود کنید.",
+        keywords:["anime","انیمه","دانلود انیمه"],
+      openGraph: {
+        title: "انیم آپ - جدیدترین قسمت‌های انیمه",
+        description: "دانلود و پخش جدیدترین قسمت‌های انیمه.",
+        url: process.env.WEBSITE_URL,
+        siteName:"انیم آپ",
+        type:"website",
+        images: [
+          {
+            url: "https://animup.tv/images/logo.webp",
+            width: 800,
+            height: 600,
+            alt: "انیم آپ",
+          },
+        ],
       },
-    ],
-  },
-};
+
+}
 // Global Layout Component
 export default async function GlobalLayout({
   children,
@@ -158,25 +159,16 @@ export default async function GlobalLayout({
       dir="rtl"
       suppressHydrationWarning
     >
-      <ThemeProvider
-        attribute="class"
-        defaultTheme="dark"
-        enableSystem
-        disableTransitionOnChange
-      >
-        <body className={`dark:bg-background ${modam.className} w-full`}>
-          <ApolloWrapper>
-            {/* <LocaleProvider value={locale}> */}
-
-            <DirProvider dir="rtl">
-              {children}
-              <SpeedInsights />
-            </DirProvider>
-            {/* </LocaleProvider> */}
-          </ApolloWrapper>
-          <Toaster />
-        </body>
-      </ThemeProvider>
+      <body className={`bg-background ${modam.className} w-full text-white`}>
+        <ApolloWrapper>
+          {/* <LocaleProvider value={locale}> */}
+              <DirProvider dir="rtl">
+                {children}
+              </DirProvider>
+          {/* </LocaleProvider> */}
+        </ApolloWrapper>
+        <Toaster />
+      </body>
     </html>
   );
 }

@@ -167,7 +167,7 @@ export default function Hero({
                     </div>
                   </div>
                 </div>
-                <div className="absolute h-[420px] lg:h-full inset-0 z-10 dark:bg-gradient-to-t dark:from-background dark:to-background/0"></div>
+                <div className="absolute h-[420px] lg:h-full inset-0 z-10  bg-gradient-to-t  from-background  to-background/0"></div>
               </div>
               {/* actions and indicator on sm Screens */}
               <div className="w-full z-20 flex lg:hidden flex-col justify-center items-center">

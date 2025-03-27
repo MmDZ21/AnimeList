@@ -35,7 +35,7 @@ export default function MobileNav() {
       </SheetTrigger>
       <SheetContent
         side="custom"
-        className="flex flex-col gap-4 dark:bg-background h-full lg:hidden"
+        className="flex flex-col gap-4  bg-background h-full lg:hidden"
       >
         <SheetTitle className="hidden"></SheetTitle>
 

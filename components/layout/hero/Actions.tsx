@@ -13,8 +13,8 @@ export default function Actions({ actions }: { actions: HeroAction }) {
         <Button
           variant={variant}
           className={`h-12 flex w-full lg:w-fit ${
-            mobileIconOnly ? "dark:border-primary-500 w-fit" : ""
-          } lg:dark:border-[#94A3B8]/20`}
+            mobileIconOnly ? " border-primary-500 w-fit" : ""
+          } lg: border-[#94A3B8]/20`}
         >
           {href ? (
             <Link
