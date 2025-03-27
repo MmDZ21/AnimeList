@@ -161,8 +161,8 @@ export default function Hero({
                         ))}
                       </div>
                       <div className="flex gap-2">
-                        <CarouselPrevious />
                         <CarouselNext />
+                        <CarouselPrevious />
                       </div>
                     </div>
                   </div>
