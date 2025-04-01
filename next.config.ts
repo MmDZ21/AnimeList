@@ -40,12 +40,12 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname:  process.env.API_URL || "dev.animelist.pro"
+        hostname:  process.env.WEBSITE_URL || "animelist.pro"
       },
       {
         protocol: 'https',
-        hostname:  process.env.WEBSITE_URL || "animelist.pro"
-      }
+        hostname:  process.env.API_BASE_PATH || "api.animelist.pro"
+      },
     ]
   },
 }
