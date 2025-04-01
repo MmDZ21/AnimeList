@@ -1,5 +1,6 @@
 import type { NextConfig } from 'next'
- 
+
+ process.env.WEBSITE_URL
 const nextConfig: NextConfig = {
   // experimental: {
   //   ppr: 'incremental',
@@ -36,6 +37,14 @@ const nextConfig: NextConfig = {
       {
         protocol:'https',
         hostname: 'myanimelist.cdn-dena.com'
+      },
+      {
+        protocol: 'https',
+        hostname:  process.env.API_URL || "dev.animelist.pro"
+      },
+      {
+        protocol: 'https',
+        hostname:  process.env.WEBSITE_URL || "animelist.pro"
       }
     ]
   },
