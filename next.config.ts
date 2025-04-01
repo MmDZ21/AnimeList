@@ -38,14 +38,14 @@ const nextConfig: NextConfig = {
         protocol:'https',
         hostname: 'myanimelist.cdn-dena.com'
       },
-      {
-        protocol: 'https',
-        hostname:  process.env.WEBSITE_URL!
-      },
-      {
-        protocol: 'https',
-        hostname:  process.env.API_BASE_PATH!
-      },
+      // {
+      //   protocol: 'https',
+      //   hostname:  process.env.WEBSITE_URL!
+      // },
+      // {
+      //   protocol: 'https',
+      //   hostname:  process.env.API_BASE_PATH!
+      // },
       {
         protocol: 'https',
         hostname: "api.animelist.pro"
