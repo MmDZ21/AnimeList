@@ -7,8 +7,8 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import emailLoginSchema from "@/models/email-login";
-import { useForm } from "react-hook-form";
+import emailLoginSchema, { EmailLoginSchema } from "@/models/email-login";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
@@ -27,24 +27,30 @@ import {
 // import { login } from "@/actions/login";
 import login from "@/actions/login";
 import { useFormStatus } from "react-dom";
-function Submit() {
-  const status = useFormStatus();
-  return (
-    <Button
-      variant={"default"}
-      type="submit"
-      disabled={status.pending}
-      className="flex items-center justify-center gap-2"
-    >
-      {status.pending && (
-        <Image src="/svg/spinner.svg" width={16} height={16} alt="spinner" />
-      )}
-      ورود
-    </Button>
-  );
-}
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 const Email = () => {
+  const [isPending, setIsPending] = useState(false);
+  const router = useRouter()
+  const onSubmit: SubmitHandler<EmailLoginSchema> = async (data) => {
+    setIsPending(true);
+
+    try {
+      const result = await login(data.email, data.password); // Call the server action
+      if (!result.success) {
+        toast.error("ایمیل یا رمز عبور اشتباه است.");
+      } else {
+        toast.success("با موفقیت وارد شدید.");
+        router.back()
+      }
+    } catch (error) {
+      toast.error("ایمیل یا رمز عبور اشتباه است.");
+    } finally {
+      form.reset();
+      setIsPending(false);
+    }
+  };
   const form = useForm<z.infer<typeof emailLoginSchema>>({
     resolver: zodResolver(emailLoginSchema),
     defaultValues: {
@@ -122,8 +128,7 @@ const Email = () => {
             <Form {...form}>
               <form
                 className="flex flex-col gap-4 w-full"
-                // onSubmit={form.handleSubmit(onSubmit)}
-                action={login}
+                onSubmit={form.handleSubmit(onSubmit)}
               >
                 <FormField
                   control={form.control}
@@ -175,7 +180,22 @@ const Email = () => {
                     </FormItem>
                   )}
                 />
-                <Submit />
+                <Button
+                  variant="default"
+                  type="submit"
+                  disabled={isPending}
+                  className="flex items-center justify-center gap-2"
+                >
+                  {isPending && (
+                    <Image
+                      src="/svg/spinner.svg"
+                      width={16}
+                      height={16}
+                      alt="spinner"
+                    />
+                  )}
+                  ورود
+                </Button>
               </form>
             </Form>
           </div>

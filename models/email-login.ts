@@ -8,5 +8,6 @@ const emailLoginSchema = z.object({
   password: z.string().min(1, { message: "لطفا رمز عبور خود را وارد کنید" }),
   rememberMe: z.boolean().optional(),
 });
+export type EmailLoginSchema = z.infer<typeof emailLoginSchema>;
 
 export default emailLoginSchema;

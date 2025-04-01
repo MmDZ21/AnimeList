@@ -132,7 +132,7 @@ export const metadata: Metadata = {
         type:"website",
         images: [
           {
-            url: "https://animup.tv/images/logo.webp",
+            url: process.env.WEBSITE_URL + "/images/logo.webp",
             width: 800,
             height: 600,
             alt: "انیمه لیست",

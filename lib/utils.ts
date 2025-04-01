@@ -24,12 +24,12 @@ export function getImagePath(
   const path = path1
     ? path1.startsWith("http")
       ? path1
-      : "https://dev-api.animup.tv" +
+      : "https://" + (process.env.API_BASE_PATH || "api.animelist.pro")  +
         (path1.startsWith("/") ? path1 : "/" + path1)
     : path2
     ? path2.startsWith("http")
       ? path2
-      : "https://dev-api.animup.tv" +
+      :"https://" + (process.env.API_BASE_PATH || "api.animelist.pro")  +
         (path2.startsWith("/") ? path2 : "/" + path2)
     : "/svg/placeholder.svg";
 

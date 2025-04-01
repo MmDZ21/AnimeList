@@ -1,10 +1,27 @@
 "use server";
 
 import { signIn } from "@/auth";
+import { isRedirectError } from "next/dist/client/components/redirect-error";
+import { redirect } from "next/navigation";
 
-export default async function login(formData: FormData) {
-   formData.append('redirectTo', '/dashboard');
-      await signIn("credentials", formData)
+export default async function login(email: string, password: string) {
+   try {
+      // Try signing in using the provided credentials
+      await signIn("credentials", {
+         email,
+         password,
+         redirect: false
+      });
+      return {
+         success: true
+      }
+      // If successful, redirect to the dashboard.
+    } catch (error: any) {
+      if (isRedirectError(error)) {
+         throw error ;
+       }
+      return { success: false};
+    }
   }
 
 // import { LOGIN_MUTATION } from "@/graphql/mutations/login";

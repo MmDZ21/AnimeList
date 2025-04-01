@@ -13,7 +13,7 @@ export default function CategoryCard({
   return (
     <div className="w-full h-[110px] md:h-[160px] lg:h-[200px] relative rounded-lg">
       <Image
-        src={category.backdrop ? "https://animup.tv/storage/"+category.backdrop : "/svg/placeholder.svg"}
+        src={category.backdrop ? + (process.env.WEBSITE_URL || "https://animup.tv") +"/storage/"+category.backdrop : "/svg/placeholder.svg"}
         alt={category.name_fa!}
         fill
         priority={priority}
