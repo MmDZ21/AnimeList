@@ -42,7 +42,7 @@ export async function generateMetadata({
       title: genre.name_fa || "ژانر انیمه",
       description: `مشاهده انیمه‌های ژانر ${genre.name_fa}`,
       url: `${process.env.WEBSITE_URL}/anime/genre/${newParams.id}/${newParams.genre}`,
-      siteName: "انیم آپ",
+      siteName: "انیمه لیست",
       locale: "fa_IR",
       type: "website",
     },

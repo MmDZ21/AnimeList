@@ -4,7 +4,7 @@ import CategoryPageSkeleton from "@/components/layout/Skeletons/CategoryPageSkel
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "انیمه براساس ژانر - انیم آپ",
+  title: "انیمه براساس ژانر - انیمه لیست",
   description: "انتخاب ژانر مورد نظر شما",
 };
 

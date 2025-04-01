@@ -51,7 +51,7 @@ export default function Footer() {
 
       </div>
       <div className="text-center text-xs text-[#979CA6]">
-        &#169; تمامی حقوق این سایت متعلق به انیم‌آپ می باشد.
+        &#169; تمامی حقوق این سایت متعلق به انیمه‌لیست می باشد.
       </div>
     </footer>
   );

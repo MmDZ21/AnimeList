@@ -11,7 +11,7 @@ import Link from "next/link";
 import React, { Suspense } from "react";
 
 export const metadata: Metadata = {
-  title: "دانلود انیمه های درحال پخش با لینک مستقیم | انیم آپ",
+  title: "دانلود انیمه های درحال پخش با لینک مستقیم | انیمه لیست",
   description: "دانلود انیمه های درحال پخش",
 };
 

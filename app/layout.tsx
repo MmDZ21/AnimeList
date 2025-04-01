@@ -41,11 +41,11 @@ import { Toaster } from "@/components/ui/sonner";
 //       },
 //     },
 //     fa: {
-//       title: "انیم آپ | دانلود انیمه، دانلود فیلم، دانلود سریال",
+//       title: "انیمه لیست | دانلود انیمه، دانلود فیلم، دانلود سریال",
 //       description:
 //         "جدیدترین قسمت‌های انیمه مورد علاقه‌تان را کشف و دانلود کنید.",
 //       openGraph: {
-//         title: "انیم آپ - جدیدترین قسمت‌های انیمه",
+//         title: "انیمه لیست - جدیدترین قسمت‌های انیمه",
 //         description: "دانلود و پخش جدیدترین قسمت‌های انیمه.",
 //         url: "https://dev.alplayer.ir/",
 //         images: [
@@ -53,13 +53,13 @@ import { Toaster } from "@/components/ui/sonner";
 //             url: "https://dev.alplayer.ir/images/logo.webp",
 //             width: 800,
 //             height: 600,
-//             alt: "انیم آپ",
+//             alt: "انیمه لیست",
 //           },
 //         ],
 //       },
 //       twitter: {
 //         card: "summary_large_image",
-//         title: "انیم آپ",
+//         title: "انیمه لیست",
 //         description: "منبع شما برای جدیدترین انیمه‌ها.",
 //         image: "https://dev.alplayer.ir/twitter-image-fa.jpg",
 //       },
@@ -120,22 +120,22 @@ const modam = localFont({
 
 export const metadata: Metadata = {
 
-      title: "انیم آپ | دانلود انیمه، دانلود فیلم، دانلود سریال",
+      title: "انیمه لیست | دانلود انیمه، دانلود فیلم، دانلود سریال",
       description:
         "جدیدترین قسمت‌های انیمه مورد علاقه‌تان را کشف و دانلود کنید.",
         keywords:["anime","انیمه","دانلود انیمه"],
       openGraph: {
-        title: "انیم آپ - جدیدترین قسمت‌های انیمه",
+        title: "انیمه لیست - جدیدترین قسمت‌های انیمه",
         description: "دانلود و پخش جدیدترین قسمت‌های انیمه.",
         url: process.env.WEBSITE_URL,
-        siteName:"انیم آپ",
+        siteName:"انیمه لیست",
         type:"website",
         images: [
           {
             url: "https://animup.tv/images/logo.webp",
             width: 800,
             height: 600,
-            alt: "انیم آپ",
+            alt: "انیمه لیست",
           },
         ],
       },

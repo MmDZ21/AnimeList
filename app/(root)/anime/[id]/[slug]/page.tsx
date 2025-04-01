@@ -100,7 +100,7 @@ export async function generateMetadata({
       title,
       description,
       url: `${process.env.WEBSITE_URL}/anime/${paramsData.slug}`,
-      siteName: "انیم آپ",
+      siteName: "انیمه لیست",
       locale: "fa_IR",
       type: "website",
     },
@@ -315,7 +315,7 @@ export default async function page({
           </div>
           <div className="flex items-center justify-center">
             <p className="text-[22px] font-black">
-              با تهیهٔ اشتراک ویژه به‌راحتی به آرشیو بی‌پایان انیم‌آپ دسترسی
+              با تهیهٔ اشتراک ویژه به‌راحتی به آرشیو بی‌پایان انیمه‌لیست دسترسی
               داشته باشید!
             </p>
           </div>

@@ -5,7 +5,7 @@ import AnimeYearListSkeleton from "@/components/layout/Skeletons/AnimeYearListSk
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "انیمه براساس سال - انیم آپ",
+  title: "انیمه براساس سال - انیمه لیست",
   description: "انتخاب سال مورد نظر شما",
 };
 

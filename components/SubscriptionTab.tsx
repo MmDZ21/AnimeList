@@ -58,7 +58,7 @@ export default function SubscriptionTab({ plan }: { plan: Plan }) {
           <h2 className="text-2xl font-bold">اشتراک ویژه‌ خودت رو انتخاب کن</h2>
           <p className="text-sm font-medium">
             دسترسی کامل به آرشیو انیمه‌ها، فیلم‌ها، سریال‌ها و دراماهای سایت
-            انیم‌آپ
+            انیمه‌لیست
           </p>
         </div>
         <div className="flex gap-[10px] items-center">

@@ -6,7 +6,7 @@ import { ResultsSkeleton } from "@/components/layout/Skeletons/ResultsSkeleton";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "جستجوی انیمه - انیم آپ",
+  title: "جستجوی انیمه - انیمه لیست",
   description: "جستجو در بین هزاران انیمه",
 };
 
