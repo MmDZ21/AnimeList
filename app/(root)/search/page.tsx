@@ -23,7 +23,7 @@ export default async function page({
 
   return (
     <div className="min-h-screen w-full flex flex-col gap-6 px-4 lg:px-16 py-6">
-      <Search placeholder="دنبال چی می‌گردی؟ انیمه، دراما، سریال، فیلم و ..." />
+      <Search placeholder="دنبال چی می‌گردی؟..." />
       <Recent />
       <Suspense key={query} fallback={<ResultsSkeleton/>}>
         <Result query={query} />
