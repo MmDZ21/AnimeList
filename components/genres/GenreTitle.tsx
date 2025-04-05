@@ -29,7 +29,7 @@ export default async function GenreTitle({id}: {id: string}) {
   return (
       <div className='w-full flex justify-between items-center'>
         <h1 className="font-bold text-2xl">انیمه‌های ژانر {genre.name_fa}</h1>
-        <Link href="/anime/genre" className='text-primary-500 flex  items-center'>
+        <Link href="/anime/genre" className='text-primary-500 flex  items-center text-sm'>
    مشاهده سایر ژانرها
         <ChevronLeftIcon className=''/>
         </Link>

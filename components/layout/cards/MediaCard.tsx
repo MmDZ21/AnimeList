@@ -34,9 +34,9 @@ export default function MediaCard({
             fill
             className="rounded object-cover"
           />
-          <div className="absolute bg-[#182533]/95 inset-0 rounded p-3 flex flex-col gap-2 opacity-0 hover:opacity-100 transition-opacity duration-300">
+          <div className="hidden absolute bg-[#182533]/95 inset-0 rounded p-3 lg:flex flex-col gap-4 opacity-0 hover:opacity-100 transition-opacity duration-300">
             <h2 className="font-bold text-lg text-white">{data.dic_title}</h2>
-            <div className="flex gap-1 items-center">
+            {/* <div className="flex gap-1 items-center">
               <svg
                 width="18"
                 height="19"
@@ -56,7 +56,7 @@ export default function MediaCard({
                 />
               </svg>
               <p className="text-sm font-normal">164500</p>
-            </div>
+            </div> */}
             <div className="flex gap-4 items-center">
               <div className="flex gap-1">
                 <svg
@@ -81,12 +81,12 @@ export default function MediaCard({
                     </clipPath>
                   </defs>
                 </svg>
-                <div className="flex gap-1 items-center">
+                {/* <div className="flex gap-1 items-center">
                   <p className="text-sm font-normal">{data.al_score || 0}</p>
                   <p className="text-xs font-normal opacity-65">
                     {data.al_score_count ? `(${data.al_score_count})` : `(0)`}
                   </p>
-                </div>
+                </div> */}
               </div>
               <div className="flex gap-1 items-center">
                 <svg

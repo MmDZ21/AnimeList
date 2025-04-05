@@ -11,22 +11,21 @@ export default function CategoryCard({
   priority?: boolean;
 }) {
   return (
-    <div className="w-full h-[110px] md:h-[160px] lg:h-[200px] relative rounded-lg">
+    <div className="w-full h-[110px] md:h-[160px] lg:h-[200px] relative rounded-lg truncate">
       <Image
-        src={category.backdrop ? + (process.env.WEBSITE_URL || "https://animup.tv") +"/storage/"+category.backdrop : "/svg/placeholder.svg"}
+        src={category.backdrop ? (process.env.WEBSITE_URL ? process.env.WEBSITE_URL : "https://animelist.pro") +"/storage/"+category.backdrop : "/svg/placeholder.svg"}
         alt={category.name_fa!}
         fill
         priority={priority}
         className="object-cover object-center rounded-lg"
       />
       <div className="absolute inset-0 z-10 flex items-end p-4 bg-gradient-to-t from-[#17212B] to-transparent">
-        <div className="flex flex-col gap-1">
-          <h3 className="text-white font-black text-2xl lg:text-[32px]">
+        <div className="flex flex-col gap-1 w-full truncate">
+          <h3 className="text-white font-black text-md md:text-lg lg:text-[32px]">
             {category.name_fa}
           </h3>
           <h4
-            dir="ltr"
-            className="font-light text-white text-[10px] lg:text-xs"
+            className="font-light text-white text-[10px] lg:text-sm text-end"
           >
             {category.name_en}
           </h4>

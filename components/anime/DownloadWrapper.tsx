@@ -26,8 +26,8 @@ export default function DownloadWrapper({
           {links.size !== "DIRECTORY" && <p>حجم: {links.size}</p>}
         </div>
       </div>
-      <div className="flex gap-4">
-        <Button className="bg-[#17212B] px-6 py-1 rounded gap-2" asChild>
+      <div className="flex gap-4 w-full lg:w-fit">
+        <Button className="bg-[#17212B] px-6 py-1 rounded gap-2 w-full lg:w-fit" asChild>
           <Link href={links.link}>
             <div className="flex justify-center items-center size-8">
               <svg
@@ -46,7 +46,7 @@ export default function DownloadWrapper({
             <p>دانلود</p>
           </Link>
         </Button>
-        <Button className="bg-[#17212B] px-6 py-1 rounded gap-2" asChild>
+        {/* <Button className="bg-[#17212B] px-6 py-1 rounded gap-2" asChild>
           <Link href={links.subtitle}>
             <div className="flex justify-center items-center size-8">
               <svg
@@ -64,7 +64,7 @@ export default function DownloadWrapper({
             </div>
             <p>زیرنویس</p>
           </Link>
-        </Button>
+        </Button> */}
         {/* <Button className="bg-[#17212B] px-6 py-1 rounded gap-2" asChild>
           <Link href="#">
             <div className="flex justify-center items-center size-8">
