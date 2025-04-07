@@ -36,6 +36,7 @@ import Link from "next/link";
 import { Metadata } from "next";
 import NoUpload from "@/components/NoUpload";
 import SimilarAnimeError from "@/components/SimilarAnimeError";
+import Subtitle from "./Subtitle";
 
 export const revalidate = 3600;
 
@@ -367,12 +368,12 @@ export default async function page({
                 دانلود
               </TabsTrigger>
 
-              {/* <TabsTrigger
+              <TabsTrigger
                 className="py-3 px-2 w-[160px] flex items-center justify-center rounded-lg text-base font-semibold text-white  data-[state=active]:bg-background"
                 value="cc"
               >
                 زیرنویس
-              </TabsTrigger> */}
+              </TabsTrigger>
               <TabsTrigger
                 className="py-3 px-2 w-[160px] flex items-center justify-center rounded-lg text-base font-semibold text-white  data-[state=active]:bg-background"
                 value="staff"
@@ -473,7 +474,7 @@ export default async function page({
                 )}
               </div>
             </TabsContent>
-            {/* <TabsContent className="py-4" value="cc">
+            <TabsContent className="py-4" value="cc">
               <div className="w-full px-[10px] py-4 bg-[#17212B] flex flex-col gap[10px]">
                 <Tabs defaultValue="exclusive">
                   <TabsList className=" bg-transparent  text-[#A1A1AA] w-full justify-start">
@@ -501,7 +502,7 @@ export default async function page({
                   </TabsContent>
                 </Tabs>
               </div>
-            </TabsContent> */}
+            </TabsContent>
             <TabsContent value="staff" className="py-4">
               <div className="w-full px-[10px] py-4 bg-[#17212B] flex flex-col gap[10px]">
                 <Tabs defaultValue="characters" className="w-full">
