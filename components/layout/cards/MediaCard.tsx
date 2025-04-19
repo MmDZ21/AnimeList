@@ -179,7 +179,7 @@ export default function MediaCard({
             </h6>
           </div>
           <p className="text-xs font-normal text-[#979CA6] lg:text-sm lg:text-white">
-            زیرنویس چسبیده | پخش آنلاین
+          به همراه زیرنویس فارسی
           </p>
         </div>
       </div>

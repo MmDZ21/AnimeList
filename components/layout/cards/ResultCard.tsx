@@ -63,9 +63,9 @@ export default function ResultCard({
               {data.__typename === "Anime" ? "سریالی" : "سینمایی"}
             </p>
             <Separator orientation="vertical" className="h-3" />
-            <p className="text-xs font-medium text-[#979CA6]">پخش آنلاین</p>
-            <Separator orientation="vertical" className="h-3" />
-            <p className="text-xs font-medium text-[#979CA6]">زیرنویس چسبیده</p>
+            {/* <p className="text-xs font-medium text-[#979CA6]">پخش آنلاین</p>
+            <Separator orientation="vertical" className="h-3" /> */}
+            <p className="text-xs font-medium text-[#979CA6]">به همراه زیرنویس فارسی</p>
           </div>
         </div>
         {/* <div className="flex justify-end lg:hidden">

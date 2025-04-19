@@ -123,7 +123,7 @@ export default function Hero({
                       {hero.title}
                     </h2>
                     <p className="lg:hidden text-sm text-[#979CA6] font-normal">
-                      زیرنویس چسبیده | پخش آنلاین
+                      به همراه زیرنویس فارسی
                     </p>
                     <p className="absolute invisible lg:visible lg:static w-full lg:w-auto text-base font-medium line-clamp-5">
                       {hero.body}

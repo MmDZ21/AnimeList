@@ -34,9 +34,9 @@ export default function RecentCard({
               {data.type === "series" ? "سریالی" : "سینمایی"}
             </p>
             <Separator className="h-4" orientation="vertical" />
-            <p className="text-xs font-medium text-[#979CA6]">پخش آنلاین</p>
-            <Separator className="h-4" orientation="vertical" />
-            <p className="text-xs font-medium text-[#979CA6]">زیرنویس چسبیده</p>
+            {/* <p className="text-xs font-medium text-[#979CA6]">پخش آنلاین</p>
+            <Separator className="h-4" orientation="vertical" /> */}
+            <p className="text-xs font-medium text-[#979CA6]">به همراه زیرنویس فارسی</p>
           </div>
         </div>
         <div className="flex justify-end gap-4">

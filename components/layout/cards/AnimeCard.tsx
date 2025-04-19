@@ -18,7 +18,7 @@ export default function AnimeCard({ data }: { data: AnimeFragmentFragment }) {
       <div className="flex flex-col gap-2">
         <div className="flex flex-col gap-1">
           <h6 className="text-xl font-medium">{data.dic_title}</h6>
-          <p className="text-[#979CA6] text-sm font-normal">زیرنویس چسبیده | پخش آنلاین</p>
+          <p className="text-[#979CA6] text-sm font-normal">به همراه زیرنویس فارسی</p>
         </div>
         <div className="text-sm font-medium text-white line-clamp-4"  dangerouslySetInnerHTML={{__html:data.dic_body!}}/>
       </div>

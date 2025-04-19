@@ -184,12 +184,12 @@ export default function SimilarAnimeWrapper({
         </div>
         <div className="flex justify-between">
           <div className="flex gap-2 items-center">
-            <p className="text-[#979CA6] text-xs font-medium">پخش آنلاین</p>
+            {/* <p className="text-[#979CA6] text-xs font-medium">پخش آنلاین</p>
             <Separator
               orientation="vertical"
               className="h-4 bg-[hsla(215,20%,65%,0.24)] opacity-85"
-            />
-            <p className="text-[#979CA6] text-xs font-medium">زیرنویس چسبیده</p>
+            /> */}
+            <p className="text-[#979CA6] text-xs font-medium">به همراه زیرنویس فارسی</p>
           </div>
           {actions && (
             <div className="size-5 flex items-center justify-end">
