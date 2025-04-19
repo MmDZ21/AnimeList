@@ -46,10 +46,25 @@ export const {
 
   const httpLink = new HttpLink({
     uri: process.env.API_URL,
+    fetchOptions:{
+      next: {
+        revalidate: 0
+      }
+    }
   });
 
   return new ApolloClient({
     cache: new InMemoryCache(),
     link: authLink.concat(httpLink),
+    defaultOptions: {
+      query: {
+        fetchPolicy: 'no-cache',
+        errorPolicy: 'all'
+      },
+      watchQuery: {
+        fetchPolicy: 'no-cache',
+        errorPolicy: 'all'
+      }
+    }
   });
 });

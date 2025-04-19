@@ -6,7 +6,7 @@ import Image from "next/image";
 import { fetchUser } from "@/actions/fetchUser";
 
 export default async function UserInfo() {
-  const data = await fetchUser()
+  const data = await fetchUser();
   const user = data.me;
 
   if (!user) {
@@ -72,8 +72,7 @@ export default async function UserInfo() {
             </div>
           </div>
           <div className="flex flex-col gap-1 px-3 py-2 rounded-lg bg-[#17212B]/40">
-            <p className="text-sm lg:text-base font-normal">
-موجودی کیف پول            </p>
+            <p className="text-sm lg:text-base font-normal">موجودی کیف پول </p>
             <div className="text-xs lg:text-sm text-primary-500 flex gap-1">
               <span> {user.balance}</span>
               <span>تومان</span>
