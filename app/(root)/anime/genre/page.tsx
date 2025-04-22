@@ -6,6 +6,9 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "انیمه براساس ژانر - انیمه لیست",
   description: "انتخاب ژانر مورد نظر شما",
+  alternates: {
+    canonical: process.env.WEBSITE_URL + "/anime/genre"
+  }
 };
 
 export default async function page() {

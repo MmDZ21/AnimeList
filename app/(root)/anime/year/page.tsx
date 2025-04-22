@@ -7,6 +7,9 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "انیمه براساس سال - انیمه لیست",
   description: "انتخاب سال مورد نظر شما",
+  alternates : {
+    canonical: process.env.WEBSITE_URL + "/anime/year"
+  }
 };
 
 export default async function page() {

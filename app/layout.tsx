@@ -139,6 +139,9 @@ export const metadata: Metadata = {
           },
         ],
       },
+      alternates: {
+        canonical: process.env.WEBSITE_URL
+      }
 
 }
 // Global Layout Component
