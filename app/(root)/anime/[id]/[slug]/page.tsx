@@ -172,7 +172,7 @@ export default async function page({
                   آثار مشابه
                 </CustomTabsTrigger>
                 <CustomTabsTrigger value="staff">عوامل</CustomTabsTrigger>
-                <CustomTabsTrigger value="comments">نظرات</CustomTabsTrigger>
+                {/* <CustomTabsTrigger value="comments">نظرات</CustomTabsTrigger> */}
               </CustomTabsList>
               <CustomTabsContent value="episodes">
                 {session?.user?.isVip ? (
@@ -290,7 +290,7 @@ export default async function page({
                   </Tabs>
                 </div>
               </CustomTabsContent>
-              <CustomTabsContent value="comments">
+              {/* <CustomTabsContent value="comments">
                 <div className="flex flex-col gap-[14px]">
                   <div className="bg-[#17212B] p-3">
                     <CommentForm
@@ -301,7 +301,7 @@ export default async function page({
                   </div>
                   <Comments id={id} />
                 </div>
-              </CustomTabsContent>
+              </CustomTabsContent> */}
             </CustomTabs>
           </div>
         </div>
@@ -392,15 +392,12 @@ export default async function page({
               >
                 آثار مشابه
               </TabsTrigger>
-              <TabsTrigger
+              {/* <TabsTrigger
                 className="py-3 px-2 w-[160px] flex items-center justify-center rounded-lg text-base font-semibold text-white  data-[state=active]:bg-background gap-2"
                 value="comments"
               >
                 نظرات
-                {/* <div className="size-6 rounded bg-[#A1A1AA] text-white text-sm font-semibold flex justify-center items-center">
-                    {comments.length}
-                  </div> */}
-              </TabsTrigger>
+              </TabsTrigger> */}
               {/* <TabsTrigger
                 className="py-3 px-2 w-[160px] flex items-center justify-center rounded-lg text-base font-semibold text-white  data-[state=active]:bg-background"
                 value="trailers"
@@ -549,7 +546,7 @@ export default async function page({
                 <SimilarAnimeError />
               )}
             </TabsContent>
-            <TabsContent value="comments">
+            {/* <TabsContent value="comments">
               <div className="flex flex-col gap-[14px]">
                 <div className="bg-[#17212B] p-3">
                   <CommentForm
@@ -560,11 +557,23 @@ export default async function page({
                 </div>
                 <Comments id={id} />
               </div>
-            </TabsContent>
+            </TabsContent> */}
             {/* <TabsContent className="py-4" value="trailers">
                 <Trailers anime={anime} />
             </TabsContent> */}
           </Tabs>
+        </div>
+        <div>
+        <div className="flex flex-col gap-[14px]">
+                <div className="bg-[#17212B] p-3">
+                  <CommentForm
+                    animeId={id}
+                    parentId="0"
+                    session={session?.user ? true : false}
+                  />
+                </div>
+                <Comments id={id} />
+              </div>
         </div>
       </div>
     </div>

@@ -30,9 +30,9 @@ const Comments = async ({ id }: { id: string }) => {
   }
   return (
     <div className="flex flex-col gap-[14px]">
-      {comments.map((comment) => (
+      {comments.length > 0 ? comments.map((comment) => (
         <CommentWrapper key={comment.id} comment={comment} />
-      ))}
+      )) : <div className="flex w-full justify-center text-sm lg:text-lg font-normal text-[#979CA6]">هنوز نظری برای این انیمه ثبت نشده!</div>}
     </div>
   );
 };

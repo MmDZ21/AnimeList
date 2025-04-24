@@ -15,7 +15,7 @@ export default function SubtitleWrapper({
         asChild
         className="rounded py-1 px-4 gap-1 flex bg-[#17212B] items-center justify-center"
       >
-        <Link href={subtitle.link_file || "#"}>
+        <Link href={subtitle.temporary_url || "#"}>
           <div className="size-8 flex justify-center items-center">
             <svg
               width="18"

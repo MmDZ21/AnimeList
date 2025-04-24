@@ -283,6 +283,15 @@ export type DownloadLink = {
   size?: Maybe<Scalars['String']['output']>;
 };
 
+export type DownloadLinkInput = {
+  anime_id: Scalars['ID']['input'];
+  download_link: Scalars['String']['input'];
+  episode: Scalars['String']['input'];
+  isSoftSub?: InputMaybe<Scalars['Boolean']['input']>;
+  quality: Scalars['String']['input'];
+  size?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type ForgotPasswordInput = {
   email: Scalars['String']['input'];
 };
@@ -455,6 +464,7 @@ export type MovieUpsertBelovedInput = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  addDownloadLink: GenericResponse;
   buyMembership: GenericResponse;
   createPaymentRequest: CreatePaymentResponse;
   deleteBeloved: Beloved;
@@ -477,6 +487,11 @@ export type Mutation = {
   verifyDiscountCode: GenericResponse;
   verifyEmail: AuthPayload;
   verifyPaymentRequest: GenericResponse;
+};
+
+
+export type MutationAddDownloadLinkArgs = {
+  input: DownloadLinkInput;
 };
 
 
@@ -717,6 +732,7 @@ export type Query = {
   comments: CommentPaginator;
   commentsOfUser: CommentPaginator;
   directory_links: Array<DbAnimeDirectoryLinks>;
+  downloadLinkById?: Maybe<DbAnimeLinks>;
   getAvailableMemberships: Array<Membership>;
   getBelovedData?: Maybe<Beloved>;
   getBelovedMovieData?: Maybe<PhxBloved>;
@@ -903,6 +919,11 @@ export type QueryDirectory_LinksArgs = {
 };
 
 
+export type QueryDownloadLinkByIdArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
 export type QueryGetBelovedDataArgs = {
   anime_id: Scalars['ID']['input'];
 };
@@ -1048,7 +1069,6 @@ export type QuerySubtitlesArgs = {
   anime_id: Scalars['ID']['input'];
   first: Scalars['Int']['input'];
   page?: InputMaybe<Scalars['Int']['input']>;
-  type: Scalars['Int']['input'];
 };
 
 /** Allowed column names for Query.animeAdvancedSearch.orderBy. */
@@ -1406,10 +1426,9 @@ export type Sub = {
   body?: Maybe<Scalars['String']['output']>;
   from_episode?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
-  link_file?: Maybe<Scalars['String']['output']>;
+  temporary_url?: Maybe<Scalars['String']['output']>;
   title?: Maybe<Scalars['String']['output']>;
   to_episode?: Maybe<Scalars['String']['output']>;
-  user_group_buytable: Array<UserGroupBuyTable>;
   user_id: Scalars['ID']['output'];
 };
 
@@ -1523,7 +1542,7 @@ export type RepliesFragmentFragment = { __typename?: 'Comment', id: string, body
 
 export type RepliesSecondFragmentFragment = { __typename?: 'Comment', id: string, body?: string | null, user_id?: string | null, created_at?: string | null, spoil?: number | null, replies_count: number, user?: { __typename?: 'User', id: string, name?: string | null, avatar?: string | null } | null };
 
-export type SubtitlesFragmentFragment = { __typename?: 'Sub', id: string, user_id: string, title?: string | null, to_episode?: string | null, from_episode?: string | null, body?: string | null, link_file?: string | null };
+export type SubtitlesFragmentFragment = { __typename?: 'Sub', id: string, user_id: string, title?: string | null, to_episode?: string | null, from_episode?: string | null, body?: string | null, temporary_url?: string | null };
 
 export type UserBalanceFragmentFragment = { __typename?: 'User', balance?: number | null };
 
@@ -1681,12 +1700,11 @@ export type GetSeasonalAnimesQuery = { __typename?: 'Query', animesSeason: { __t
 
 export type GetSubtitlesQueryVariables = Exact<{
   anime_id: Scalars['ID']['input'];
-  type: Scalars['Int']['input'];
   first: Scalars['Int']['input'];
 }>;
 
 
-export type GetSubtitlesQuery = { __typename?: 'Query', subtitles: { __typename?: 'SubPaginator', data: Array<{ __typename?: 'Sub', id: string, user_id: string, title?: string | null, to_episode?: string | null, from_episode?: string | null, body?: string | null, link_file?: string | null }> } };
+export type GetSubtitlesQuery = { __typename?: 'Query', subtitles: { __typename?: 'SubPaginator', data: Array<{ __typename?: 'Sub', id: string, user_id: string, title?: string | null, to_episode?: string | null, from_episode?: string | null, body?: string | null, temporary_url?: string | null }> } };
 
 export type HomePageContentQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -1869,7 +1887,7 @@ export const SubtitlesFragmentFragmentDoc = gql`
   to_episode
   from_episode
   body
-  link_file
+  temporary_url
 }
     `;
 export const UserBalanceFragmentFragmentDoc = gql`
@@ -2730,8 +2748,8 @@ export type GetSeasonalAnimesLazyQueryHookResult = ReturnType<typeof useGetSeaso
 export type GetSeasonalAnimesSuspenseQueryHookResult = ReturnType<typeof useGetSeasonalAnimesSuspenseQuery>;
 export type GetSeasonalAnimesQueryResult = Apollo.QueryResult<GetSeasonalAnimesQuery, GetSeasonalAnimesQueryVariables>;
 export const GetSubtitlesDocument = gql`
-    query GetSubtitles($anime_id: ID!, $type: Int!, $first: Int!) {
-  subtitles: subtitles(anime_id: $anime_id, type: $type, first: $first) {
+    query GetSubtitles($anime_id: ID!, $first: Int!) {
+  subtitles: subtitles(anime_id: $anime_id, first: $first) {
     data {
       ...SubtitlesFragment
     }
@@ -2752,7 +2770,6 @@ export const GetSubtitlesDocument = gql`
  * const { data, loading, error } = useGetSubtitlesQuery({
  *   variables: {
  *      anime_id: // value for 'anime_id'
- *      type: // value for 'type'
  *      first: // value for 'first'
  *   },
  * });

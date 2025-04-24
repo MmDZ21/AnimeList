@@ -6,10 +6,12 @@ import { getClient } from "@/lib/apolloClient";
 import React from "react";
 import SectionContainer from "./layout/sections/SectionContainer";
 import MediaCarousels from "./layout/carousels/MediaCarousels";
+import { delay } from "@/lib/utils";
 
 export default async function HomePageContent() {
+  await delay(5000)
   const client = getClient();
-
+  
   const { data, error } = await client.query<HomePageContentQuery>({
     query: HomePageContentDocument,
   });

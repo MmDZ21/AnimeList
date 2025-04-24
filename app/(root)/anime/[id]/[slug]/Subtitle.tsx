@@ -21,7 +21,7 @@ const Subtitle = async ({
     GetSubtitlesQueryVariables
   >({
     query: GetSubtitlesDocument,
-    variables: { anime_id, type, first: 30 },
+    variables: { anime_id, first: 30 },
   });
 
   if (error) {

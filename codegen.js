@@ -3,12 +3,12 @@ const customFetch = require('./lib/customFetch').default;
 
 module.exports = {
   schema: {
-    'https://dev-api.animup.tv/graphql': {
+    'https://api.animelist.pro/graphql': {
       headers: {
         // Optionally add headers, e.g. Authorization
       },
       // Use our custom fetch function so requests go through V2Ray
-      customFetch,
+      // customFetch,
     },
   },
   documents: '**/*.graphql',

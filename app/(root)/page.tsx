@@ -2,6 +2,7 @@ import HomePageContent from "@/components/HomePageContent";
 import { Suspense } from "react";
 import MediaCarouselSkeleton from "@/components/layout/Skeletons/MediaCarouselSkeleton";
 import Slider from "@/components/layout/Slider/Slider";
+import MediaCarouselSkeletonArray from "@/components/layout/Skeletons/MediaCarouselSkeletonArray";
 
 export default async function HomePage() {
   return (
@@ -15,7 +16,7 @@ export default async function HomePage() {
             first: 10,
           }}
         > */}
-        <Suspense fallback={<MediaCarouselSkeleton length={8}/>}>
+        <Suspense fallback={<MediaCarouselSkeletonArray length={6}/>}>
           <HomePageContent />
         </Suspense>
         {/* <Parallel
