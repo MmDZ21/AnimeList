@@ -9,6 +9,7 @@ fragment AnimeFragment on Anime {
   dic_types
   seo_desc
   post_title
+  dic_last_update
   dic_status
   season_year
   dic_body

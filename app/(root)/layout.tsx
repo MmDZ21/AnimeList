@@ -1,8 +1,5 @@
 import Footer from "@/components/layout/footer";
-import dynamic from "next/dynamic";
-const Header = dynamic(() => import('@/components/layout/header'), {
-  loading: () => <p>Loading...</p>,
-})
+import Header from "@/components/layout/header";
 import React from "react";
 
 export default async function RootLayout({

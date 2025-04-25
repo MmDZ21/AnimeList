@@ -26,7 +26,9 @@ export default function LoginBtn() {
   useEffect(() => {
     async function loadSession() {
       try {
-        const res = await fetch("/api/auth/session");
+        const res = await fetch("/api/auth/session",{
+          cache:"no-cache"
+        });
         if (res.ok) {
           const data: Session = await res.json();
           setSession(data);

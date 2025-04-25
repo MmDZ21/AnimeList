@@ -52,10 +52,10 @@ export default function page() {
           </TabsTrigger>
         </TabsList>
         <TabsContent value="anime">
-<Suspense>
-<Filters />
-<Result />
-</Suspense>
+        <Suspense fallback={<div>Loading...</div>}>
+        <Filters />
+          </Suspense>
+            <Result />
         </TabsContent>
         <TabsContent value="donghua"></TabsContent>
         <TabsContent value="movie"></TabsContent>

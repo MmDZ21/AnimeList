@@ -126,6 +126,9 @@ export const Preview = async ({ anime }: { anime: Anime }) => {
             <p>AniList Rating: {anime.anilist_score}%</p>
           </div>
         </div>
+        <p className="flex text-sm font-medium text-[#979CA6] ">
+           آخرین بروزرسانی: {anime.dic_last_update}
+          </p>
         <div className="flex flex-col gap-4">
           <Summary
             body={anime.content_body!}

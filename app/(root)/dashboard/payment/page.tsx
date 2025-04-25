@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import payVer from "@/actions/payVer";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";

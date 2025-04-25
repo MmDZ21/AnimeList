@@ -21,6 +21,7 @@ export default function MediaCard({
     dic_score?: string | null;
     anilist_score?: number | null;
     dic_episodes?: string | null;
+    dic_last_update?: string | null;
 };
   className?: string;
 }) {
@@ -165,7 +166,8 @@ export default function MediaCard({
                 </p>
               </div>
             </div>
-            <p className="font-normal text-sm">{data.dic_episodes} قسمت</p>
+            <p className="font-normal text-sm">تعداد قسمت‌ها: {data.dic_episodes || "نامشخص"}</p>
+            <p className="font-normal text-sm">آخرین بروزرسانی: {data.dic_last_update || "نامشخص"}</p>
             <div
               className="text-sm font-medium line-clamp-[8]"
               dangerouslySetInnerHTML={{ __html: data.dic_body! }}

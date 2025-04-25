@@ -4,7 +4,7 @@ import Logo from "./Logo";
 import NavBar from "./NavBar";
 
 import Search from "./Search";
-import dynamic from "next/dynamic";
+
 
 
 import SubscriptionBtn from "./SubscriptionBtn";
@@ -13,7 +13,6 @@ import MobileNav from "./MobileNav";
 import Profile from "./Profile";
 import Link from "next/link";
 import LoginBtn from "./LoginBtn";
-import { delay } from "@/lib/utils";
 
 export default async function Header() {
   return (
@@ -54,7 +53,8 @@ export default async function Header() {
               />
             </svg>
           </Link>
-          <Suspense>
+          <Suspense fallback={<div>Loading...</div>}>
+
           <Search />
           </Suspense>
           <Profile />
@@ -69,13 +69,13 @@ export default async function Header() {
       {/* subscription */}
       <div className="hidden lg:flex items-center gap-6">
         {/* <ChangeLocale /> */}
-        <Suspense>
+        <Suspense fallback={<div>Loading...</div>}>
         <Search />
         </Suspense>
         <Separator orientation="vertical" className="h-4" />
         <div className="flex items-center gap-3">
-          <LoginBtn />
-          <SubscriptionBtn />
+        <LoginBtn />
+        <SubscriptionBtn />
           {/* <Button className="size-10 rounded-md" variant="secondary">
             <div>
               {" "}

@@ -57,7 +57,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
           onSearch(e.target.value);
         }}
       />
-      <Link href="/search/advanced" className="text-primary-500 text-sm">
+      <Link href="#" className="text-primary-500 text-sm">
         جستجوی پیشرفته
       </Link>
     </div>

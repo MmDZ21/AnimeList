@@ -4,6 +4,7 @@ import { membershipPlans } from "@/constants";
 import SubscriptionTab from "./SubscriptionTab";
 
 export default function SubscriptionDesktop() {
+
   return (
     <Tabs defaultValue="2">
       {membershipPlans.map((plan) => (

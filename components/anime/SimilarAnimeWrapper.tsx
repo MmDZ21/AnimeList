@@ -79,12 +79,6 @@ export default function SimilarAnimeWrapper({
                     </clipPath>
                   </defs>
                 </svg>
-                <div className="flex gap-1 items-center">
-                  <p className="text-sm font-normal">{anime.al_score || 0}</p>
-                  <p className="text-xs font-normal opacity-65">
-                    {anime.al_score_count ? `(${anime.al_score_count})` : `(0)`}
-                  </p>
-                </div>
               </div>
               <div className="flex gap-1 items-center">
                 <svg
@@ -163,9 +157,8 @@ export default function SimilarAnimeWrapper({
                 </p>
               </div>
             </div>
-            <p className="font-normal text-sm">
-              {anime.dic_episodes || 0} قسمت
-            </p>
+            <p className="font-normal text-sm">تعداد قسمت‌ها: {anime.dic_episodes || "نامشخص"}</p>
+            <p className="font-normal text-sm">آخرین بروزرسانی: {anime.dic_last_update || "نامشخص"}</p>
             <div
               className="text-sm font-medium line-clamp-[8]"
               dangerouslySetInnerHTML={{ __html: anime.dic_body! }}

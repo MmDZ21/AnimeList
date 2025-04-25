@@ -13,7 +13,7 @@ export default function CategoryCard({
   return (
     <div className="w-full h-[110px] md:h-[160px] lg:h-[200px] relative rounded-lg truncate">
       <Image
-        src={category.backdrop ? (process.env.WEBSITE_URL ? process.env.WEBSITE_URL : "https://animelist.pro") +"/storage/"+category.backdrop : "/svg/placeholder.svg"}
+        src={category.backdrop ? (process.env.API_BASE_PATH ? "https://" +  process.env.API_BASE_PATH : "https://api.animelist.pro") +"/storage/"+category.backdrop : "/svg/placeholder.svg"}
         alt={category.name_fa!}
         fill
         priority={priority}
