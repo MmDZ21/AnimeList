@@ -17,6 +17,8 @@ query HomePageContent {
       dic_score
       anilist_score
       dic_episodes
+      dic_last_update
+      dic_status
     }
   }
 }

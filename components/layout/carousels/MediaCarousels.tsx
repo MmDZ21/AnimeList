@@ -31,6 +31,8 @@ export default function MediaCarousels({
     dic_score?: string | null;
     anilist_score?: number | null;
     dic_episodes?: string | null;
+    dic_last_update?: string | null;
+    dic_status?: number | null;
 }[]
 }) {
   const dir = useDirection();

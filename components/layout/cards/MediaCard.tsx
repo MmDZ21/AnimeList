@@ -2,8 +2,9 @@ import React from "react";
 
 import Image from "next/image";
 
-import { AnimeFragmentFragment } from "@/generated/graphql";
 import { cn, getImagePath } from "@/lib/utils";
+import { statusMapping } from "@/constants";
+import { Separator } from "@/components/ui/separator";
 
 export default function MediaCard({
   data,
@@ -22,11 +23,17 @@ export default function MediaCard({
     anilist_score?: number | null;
     dic_episodes?: string | null;
     dic_last_update?: string | null;
-};
+    dic_status?: number | null;
+  };
   className?: string;
 }) {
   return (
-    <div className={cn("flex flex-col gap-2 w-[157px] h-[282px] md:w-52 md:h-96 lg:h-[512px] lg:w-[281px]", className)}>
+    <div
+      className={cn(
+        "flex flex-col gap-2 w-[157px] h-[282px] md:w-52 md:h-96 lg:h-[512px] lg:w-[281px]",
+        className
+      )}
+    >
       <div className="flex flex-col gap-2 w-full h-full md:p-2">
         <div className="w-full h-full relative">
           <Image
@@ -35,6 +42,17 @@ export default function MediaCard({
             fill
             className="rounded object-cover"
           />
+          <div className="absolute inset-0 flex flex-col justify-end items-start p-2">
+            <div className="bg-background/70 p-2 rounded-lg flex gap-2 items-center text-sm">
+              <p>{statusMapping[data.dic_status!] || data.dic_status}</p>
+              {data.dic_last_update &&(
+                <div className="flex gap-2 items-center">
+                  <Separator orientation="vertical" className="h-4 bg-white" />
+                  <p>{data.dic_last_update}</p>
+                </div>
+              )}
+            </div>
+          </div>
           <div className="hidden absolute bg-[#182533]/95 inset-0 rounded p-3 lg:flex flex-col gap-4 opacity-0 hover:opacity-100 transition-opacity duration-300">
             <h2 className="font-bold text-lg text-white">{data.dic_title}</h2>
             {/* <div className="flex gap-1 items-center">
@@ -166,8 +184,12 @@ export default function MediaCard({
                 </p>
               </div>
             </div>
-            <p className="font-normal text-sm">تعداد قسمت‌ها: {data.dic_episodes || "نامشخص"}</p>
-            <p className="font-normal text-sm">آخرین بروزرسانی: {data.dic_last_update || "نامشخص"}</p>
+            <p className="font-normal text-sm">
+              تعداد قسمت‌ها: {data.dic_episodes || "نامشخص"}
+            </p>
+            <p className="font-normal text-sm">
+              آخرین بروزرسانی: {data.dic_last_update || "نامشخص"}
+            </p>
             <div
               className="text-sm font-medium line-clamp-[8]"
               dangerouslySetInnerHTML={{ __html: data.dic_body! }}
@@ -181,7 +203,7 @@ export default function MediaCard({
             </h6>
           </div>
           <p className="text-xs font-normal text-[#979CA6] lg:text-sm lg:text-white">
-          به همراه زیرنویس فارسی
+            به همراه زیرنویس فارسی
           </p>
         </div>
       </div>
