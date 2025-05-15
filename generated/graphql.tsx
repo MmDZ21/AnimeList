@@ -1621,6 +1621,14 @@ export type ApplicationSliderQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type ApplicationSliderQuery = { __typename?: 'Query', applicationSlider: Array<{ __typename?: 'ApplicationSlider', title?: string | null, body?: string | null, score?: string | null, cover_image?: string | null, image?: string | null, type_id?: number | null }> };
 
+export type GetAllAnimeQueryVariables = Exact<{
+  first: Scalars['Int']['input'];
+  page?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+
+export type GetAllAnimeQuery = { __typename?: 'Query', animes: { __typename?: 'AnimePaginator', paginatorInfo: { __typename?: 'PaginatorInfo', total: number, hasMorePages: boolean }, data: Array<{ __typename?: 'Anime', id: string, dic_title?: string | null }> } };
+
 export type GetAnimeByIdQueryVariables = Exact<{
   id: Scalars['ID']['input'];
 }>;
@@ -2292,6 +2300,54 @@ export type ApplicationSliderQueryHookResult = ReturnType<typeof useApplicationS
 export type ApplicationSliderLazyQueryHookResult = ReturnType<typeof useApplicationSliderLazyQuery>;
 export type ApplicationSliderSuspenseQueryHookResult = ReturnType<typeof useApplicationSliderSuspenseQuery>;
 export type ApplicationSliderQueryResult = Apollo.QueryResult<ApplicationSliderQuery, ApplicationSliderQueryVariables>;
+export const GetAllAnimeDocument = gql`
+    query GetAllAnime($first: Int!, $page: Int) {
+  animes(first: $first, page: $page) {
+    paginatorInfo {
+      total
+      hasMorePages
+    }
+    data {
+      id
+      dic_title
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetAllAnimeQuery__
+ *
+ * To run a query within a React component, call `useGetAllAnimeQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllAnimeQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllAnimeQuery({
+ *   variables: {
+ *      first: // value for 'first'
+ *      page: // value for 'page'
+ *   },
+ * });
+ */
+export function useGetAllAnimeQuery(baseOptions: Apollo.QueryHookOptions<GetAllAnimeQuery, GetAllAnimeQueryVariables> & ({ variables: GetAllAnimeQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetAllAnimeQuery, GetAllAnimeQueryVariables>(GetAllAnimeDocument, options);
+      }
+export function useGetAllAnimeLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAllAnimeQuery, GetAllAnimeQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetAllAnimeQuery, GetAllAnimeQueryVariables>(GetAllAnimeDocument, options);
+        }
+export function useGetAllAnimeSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetAllAnimeQuery, GetAllAnimeQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetAllAnimeQuery, GetAllAnimeQueryVariables>(GetAllAnimeDocument, options);
+        }
+export type GetAllAnimeQueryHookResult = ReturnType<typeof useGetAllAnimeQuery>;
+export type GetAllAnimeLazyQueryHookResult = ReturnType<typeof useGetAllAnimeLazyQuery>;
+export type GetAllAnimeSuspenseQueryHookResult = ReturnType<typeof useGetAllAnimeSuspenseQuery>;
+export type GetAllAnimeQueryResult = Apollo.QueryResult<GetAllAnimeQuery, GetAllAnimeQueryVariables>;
 export const GetAnimeByIdDocument = gql`
     query GetAnimeById($id: ID!) {
   anime: anime(id: $id) {

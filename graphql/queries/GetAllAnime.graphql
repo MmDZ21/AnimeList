@@ -1,0 +1,12 @@
+query GetAllAnime($first: Int!, $page: Int) {
+  animes(first: $first, page: $page) {
+    paginatorInfo {
+      total
+      hasMorePages
+    }
+    data {
+        id
+        dic_title
+    }
+  }
+}

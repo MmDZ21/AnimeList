@@ -1,0 +1,102 @@
+Folder PATH listing for volume SSD Win
+Volume serial number is 60FD-E985
+C:\USERS\TOOSARAX\DESKTOP\PORTFOLIO\ANIMELIST\APP
+¦   globals.css
+¦   icon.ico
+¦   layout.tsx
+¦   robots.ts
+¦   sitemap.ts
+¦   tree.txt
+¦   
++---(auth)
+¦   ¦   layout.tsx
+¦   ¦   
+¦   +---login
+¦   ¦   +---(email)
+¦   ¦   ¦       page.tsx
+¦   ¦   ¦       
+¦   ¦   +---mobile
+¦   ¦           page.tsx
+¦   ¦           
+¦   +---register
+¦           page.tsx
+¦           
++---(root)
+¦   ¦   layout.tsx
+¦   ¦   page.tsx
+¦   ¦   template.tsx
+¦   ¦   
+¦   +---anime
+¦   ¦   +---genre
+¦   ¦   ¦   ¦   page.tsx
+¦   ¦   ¦   ¦   
+¦   ¦   ¦   +---[id]
+¦   ¦   ¦       +---[genre]
+¦   ¦   ¦               page.tsx
+¦   ¦   ¦               
+¦   ¦   +---movies
+¦   ¦   ¦       page.tsx
+¦   ¦   ¦       
+¦   ¦   +---ongoing
+¦   ¦   ¦       page.tsx
+¦   ¦   ¦       
+¦   ¦   +---year
+¦   ¦   ¦   ¦   page.tsx
+¦   ¦   ¦   ¦   
+¦   ¦   ¦   +---[year]
+¦   ¦   ¦           page.tsx
+¦   ¦   ¦           
+¦   ¦   +---[id]
+¦   ¦       +---[slug]
+¦   ¦           ¦   AdditionalInfo.tsx
+¦   ¦           ¦   Characters.tsx
+¦   ¦           ¦   Comments.tsx
+¦   ¦           ¦   Download.tsx
+¦   ¦           ¦   loading.tsx
+¦   ¦           ¦   page.tsx
+¦   ¦           ¦   Preview.tsx
+¦   ¦           ¦   Recommendations.tsx
+¦   ¦           ¦   Subtitle.tsx
+¦   ¦           ¦   Summary.tsx
+¦   ¦           ¦   Trailers.tsx
+¦   ¦           ¦   
+¦   ¦           +---watch
+¦   ¦                   page.tsx
+¦   ¦                   
+¦   +---dashboard
+¦   ¦   ¦   layout.tsx
+¦   ¦   ¦   loading.tsx
+¦   ¦   ¦   page.tsx
+¦   ¦   ¦   
+¦   ¦   +---payment
+¦   ¦           page.tsx
+¦   ¦           
+¦   +---search
+¦       ¦   page.tsx
+¦       ¦   
+¦       +---advanced
+¦               page.tsx
+¦               
++---api
+¦   +---auth
+¦       +---[...nextauth]
+¦               route.ts
+¦               
++---fonts
+        modamweb-black.woff2
+        ModamWeb-BlackCondensed.woff2
+        modamweb-bold.woff2
+        ModamWeb-BoldCondensed.woff2
+        modamweb-extrabold.woff2
+        ModamWeb-ExtraBoldCondensed.woff2
+        modamweb-extralight.woff2
+        ModamWeb-ExtraLightCondensed.woff2
+        modamweb-light.woff2
+        ModamWeb-LightCondensed.woff2
+        modamweb-medium.woff2
+        ModamWeb-MediumCondensed.woff2
+        modamweb-regular.woff2
+        ModamWeb-RegularCondensed.woff2
+        modamweb-semibold.woff2
+        ModamWeb-SemiBoldCondensed.woff2
+        

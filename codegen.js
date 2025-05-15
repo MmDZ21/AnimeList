@@ -8,7 +8,7 @@ module.exports = {
         // Optionally add headers, e.g. Authorization
       },
       // Use our custom fetch function so requests go through V2Ray
-      // customFetch,
+      customFetch,
     },
   },
   documents: '**/*.graphql',
