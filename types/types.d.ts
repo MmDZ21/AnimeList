@@ -8,7 +8,7 @@ declare module "next-auth" {
     accessToken: string;
     refreshToken: string;
     expiration: number;
-    email?: string;
+    email: string | undefined;
     emailVerified?: Date | null;
     isVip: boolean | null | undefined;
   }
