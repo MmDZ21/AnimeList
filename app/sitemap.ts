@@ -1,18 +1,27 @@
-import { yearsList } from '@/constants';
-import { GetAllAnimeDocument, GetAllAnimeQuery, GetAllAnimeQueryVariables, GetAnimeGenresDocument, GetAnimeGenresQuery } from '@/generated/graphql';
-import { getClient } from '@/lib/apolloClient';
-import { generateSlug } from '@/lib/utils';
-import { MetadataRoute } from 'next'
+import { yearsList } from "@/constants";
+import {
+  GetAllAnimeDocument,
+  GetAllAnimeQuery,
+  GetAllAnimeQueryVariables,
+  GetAnimeGenresDocument,
+  GetAnimeGenresQuery,
+} from "@/generated/graphql";
+import { getClient } from "@/lib/apolloClient";
+import { generateSlug } from "@/lib/utils";
+import { MetadataRoute } from "next";
 
 const CHUNK_SIZE = 3000; // URLs per sitemap
-const PAGE_SIZE = 30;    // Items per API call
-const WEBSITE_URL = process.env.WEBSITE_URL || 'https://animelist.pro';
+const PAGE_SIZE = 30; // Items per API call
+const WEBSITE_URL = process.env.WEBSITE_URL || "https://animelist.pro";
 
 export async function generateSitemaps() {
   const client = getClient();
 
   // Only one item is enough to get the total count
-  const { data } = await client.query<GetAllAnimeQuery, GetAllAnimeQueryVariables>({
+  const { data } = await client.query<
+    GetAllAnimeQuery,
+    GetAllAnimeQueryVariables
+  >({
     query: GetAllAnimeDocument,
     variables: { first: 1 },
   });
@@ -32,11 +41,14 @@ export default async function sitemap({
 
   let currentPage = 1;
   let fetchedCount = 0;
-  const animeItems: GetAllAnimeQuery['animes']['data'] = [];
+  const animeItems: GetAllAnimeQuery["animes"]["data"] = [];
 
   // Step 1: Fetch anime data for this sitemap chunk
   while (fetchedCount < endIndex) {
-    const { data } = await client.query<GetAllAnimeQuery, GetAllAnimeQueryVariables>({
+    const { data } = await client.query<
+      GetAllAnimeQuery,
+      GetAllAnimeQueryVariables
+    >({
       query: GetAllAnimeDocument,
       variables: { first: PAGE_SIZE, page: currentPage },
     });
@@ -61,37 +73,40 @@ export default async function sitemap({
   }));
 
   // Step 2: Static pages only for the first sitemap chunk (id === 0)
-  const staticPages =
-    id === 0
-      ? [
-          '',
-          '/search',
-          '/anime',
-          '/anime/ongoing',
-          '/anime/movies',
-        ].map((path) => ({
-          url: `${WEBSITE_URL}${path}`,
-          lastModified: new Date().toISOString(),
-        }))
-      : [];
+const staticPages =
+  id === 0
+    ? [
+        '/',
+        '/search',
+        '/anime/ongoing',
+        '/anime/movies',
+      ].map((path) => ({
+        url: `${WEBSITE_URL}${path}`,
+        lastModified: new Date().toISOString(),
+      }))
+    : [];
 
   // Step 3: Genre and Year pages (only in id === 0)
   let genrePages: MetadataRoute.Sitemap = [];
   let yearPages: MetadataRoute.Sitemap = [];
 
-  if (id === 0) {
-    const [{ data: genresData }] = await Promise.all([
-      client.query<GetAnimeGenresQuery>({ query: GetAnimeGenresDocument }),
-    ]);
+if (id === 0) {
+  console.log('Generating static routes and genres for sitemap 0');
 
-    genrePages = genresData.genres.map((genre) => ({
-      url: `${WEBSITE_URL}/anime/genre/${genre.id}/${encodeURIComponent(genre.name_en!)}`,
-    }));
+  const [{ data: genresData }] = await Promise.all([
+    client.query<GetAnimeGenresQuery>({ query: GetAnimeGenresDocument }),
+  ]);
 
-    yearPages = yearsList.map((year) => ({
-      url: `${WEBSITE_URL}/anime/year/${year}`,
-    }));
-  }
+  console.log('Genres fetched:', genresData.genres.length);
+
+  genrePages = genresData.genres.map((genre) => ({
+    url: `${WEBSITE_URL}/anime/genre/${genre.id}/${encodeURIComponent(genre.name_en!)}`,
+  }));
+
+  yearPages = yearsList.map((year) => ({
+    url: `${WEBSITE_URL}/anime/year/${year}`,
+  }));
+}
 
   return [...staticPages, ...genrePages, ...yearPages, ...animePages];
 }

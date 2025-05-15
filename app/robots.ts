@@ -1,12 +1,17 @@
-import type { MetadataRoute } from 'next'
- 
+import { MetadataRoute } from 'next'
+
 export default function robots(): MetadataRoute.Robots {
+  const baseUrl = process.env.WEBSITE_URL || 'https://animelist.pro'
+
+  const sitemapCount = 10 // Adjust this if your sitemap count increases dynamically
+
   return {
-    rules: {
-      userAgent: '*',
-      allow: '/',
-      disallow: ['/dashboard/',"/api/","/_next/"]
-    },
-    sitemap: process.env.WEBSITE_URL + '/sitemap.xml',
+    rules: [
+      {
+        userAgent: '*',
+        allow: '/',
+      },
+    ],
+    sitemap: Array.from({ length: sitemapCount }, (_, i) => `${baseUrl}/sitemap/${i}.xml`),
   }
 }
