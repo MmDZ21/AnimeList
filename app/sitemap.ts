@@ -1,4 +1,5 @@
-import { GetAllAnimeDocument, GetAllAnimeQuery, GetAllAnimeQueryVariables } from '@/generated/graphql';
+import { yearsList } from '@/constants';
+import { GetAllAnimeDocument, GetAllAnimeQuery, GetAllAnimeQueryVariables, GetAnimeGenresDocument, GetAnimeGenresQuery } from '@/generated/graphql';
 import { getClient } from '@/lib/apolloClient';
 import { generateSlug } from '@/lib/utils';
 import { MetadataRoute } from 'next'
@@ -18,11 +19,8 @@ export async function generateSitemaps() {
 
   const total = data.animes.paginatorInfo.total;
   const totalSitemaps = Math.ceil(total / CHUNK_SIZE);
-
   return Array.from({ length: totalSitemaps }, (_, i) => ({ id: i }));
 }
-
- 
 export default async function sitemap({
   id,
 }: {
@@ -34,8 +32,9 @@ export default async function sitemap({
 
   let currentPage = 1;
   let fetchedCount = 0;
-  const allAnime: GetAllAnimeQuery['animes']['data'] = [];
+  const animeItems: GetAllAnimeQuery['animes']['data'] = [];
 
+  // Step 1: Fetch anime data for this sitemap chunk
   while (fetchedCount < endIndex) {
     const { data } = await client.query<GetAllAnimeQuery, GetAllAnimeQueryVariables>({
       query: GetAllAnimeDocument,
@@ -46,20 +45,53 @@ export default async function sitemap({
     const pageStartIndex = fetchedCount;
     const pageEndIndex = fetchedCount + pageData.length;
 
-    // Only take relevant items within this chunk
     if (pageEndIndex > startIndex && pageStartIndex < endIndex) {
       const sliceStart = Math.max(0, startIndex - pageStartIndex);
       const sliceEnd = Math.min(pageData.length, endIndex - pageStartIndex);
-      allAnime.push(...pageData.slice(sliceStart, sliceEnd));
+      animeItems.push(...pageData.slice(sliceStart, sliceEnd));
     }
 
     fetchedCount += pageData.length;
     if (!data.animes.paginatorInfo.hasMorePages) break;
-
     currentPage++;
   }
 
-  return allAnime.map((anime) => ({
+  const animePages = animeItems.map((anime) => ({
     url: `${WEBSITE_URL}/anime/${anime.id}/${generateSlug(anime.dic_title!)}`,
   }));
+
+  // Step 2: Static pages only for the first sitemap chunk (id === 0)
+  const staticPages =
+    id === 0
+      ? [
+          '',
+          '/search',
+          '/anime',
+          '/anime/ongoing',
+          '/anime/movies',
+        ].map((path) => ({
+          url: `${WEBSITE_URL}${path}`,
+          lastModified: new Date().toISOString(),
+        }))
+      : [];
+
+  // Step 3: Genre and Year pages (only in id === 0)
+  let genrePages: MetadataRoute.Sitemap = [];
+  let yearPages: MetadataRoute.Sitemap = [];
+
+  if (id === 0) {
+    const [{ data: genresData }] = await Promise.all([
+      client.query<GetAnimeGenresQuery>({ query: GetAnimeGenresDocument }),
+    ]);
+
+    genrePages = genresData.genres.map((genre) => ({
+      url: `${WEBSITE_URL}/anime/genre/${genre.id}/${encodeURIComponent(genre.name_en!)}`,
+    }));
+
+    yearPages = yearsList.map((year) => ({
+      url: `${WEBSITE_URL}/anime/year/${year}`,
+    }));
+  }
+
+  return [...staticPages, ...genrePages, ...yearPages, ...animePages];
 }
