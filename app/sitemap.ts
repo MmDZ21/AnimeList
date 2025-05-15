@@ -120,6 +120,8 @@ export default async function sitemap({ id }: { id: number }): Promise<MetadataR
   let yearPages: MetadataRoute.Sitemap = [];
 
   if (id === 0) {
+  console.log("Inside id === 0 block");
+
     staticPages = [
       '',
       '/search',
