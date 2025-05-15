@@ -2,21 +2,22 @@ import { GetAllAnimeDocument, GetAllAnimeQuery, GetAllAnimeQueryVariables } from
 import { getClient } from '@/lib/apolloClient';
 import { generateSlug } from '@/lib/utils';
 import { MetadataRoute } from 'next'
- const PER_PAGE = 30;
+
+const CHUNK_SIZE = 3000; // URLs per sitemap
+const PAGE_SIZE = 30;    // Items per API call
+const WEBSITE_URL = process.env.WEBSITE_URL || 'https://animelist.pro';
 
 export async function generateSitemaps() {
   const client = getClient();
 
-  const { data } = await client.query<
-    GetAllAnimeQuery,
-    GetAllAnimeQueryVariables
-  >({
+  // Only one item is enough to get the total count
+  const { data } = await client.query<GetAllAnimeQuery, GetAllAnimeQueryVariables>({
     query: GetAllAnimeDocument,
-    variables: { first: 1 }, // Only need 1 item to get total count
+    variables: { first: 1 },
   });
 
   const total = data.animes.paginatorInfo.total;
-  const totalSitemaps = Math.ceil(total / 3000);
+  const totalSitemaps = Math.ceil(total / CHUNK_SIZE);
 
   return Array.from({ length: totalSitemaps }, (_, i) => ({ id: i }));
 }
@@ -25,24 +26,40 @@ export async function generateSitemaps() {
 export default async function sitemap({
   id,
 }: {
-  id: number
+  id: number;
 }): Promise<MetadataRoute.Sitemap> {
   const client = getClient();
-  let allAnime: GetAllAnimeQuery['animes']['data'] = [];
-  let page = 1;
-  let hasMore = true;
+  const startIndex = id * CHUNK_SIZE;
+  const endIndex = startIndex + CHUNK_SIZE;
 
-  while (hasMore) {
+  let currentPage = 1;
+  let fetchedCount = 0;
+  const allAnime: GetAllAnimeQuery['animes']['data'] = [];
+
+  while (fetchedCount < endIndex) {
     const { data } = await client.query<GetAllAnimeQuery, GetAllAnimeQueryVariables>({
       query: GetAllAnimeDocument,
-      variables: { first: PER_PAGE, page },
+      variables: { first: PAGE_SIZE, page: currentPage },
     });
 
-    allAnime.push(...data.animes.data);
-    hasMore = data.animes.paginatorInfo.hasMorePages;
-    page++;
+    const pageData = data.animes.data;
+    const pageStartIndex = fetchedCount;
+    const pageEndIndex = fetchedCount + pageData.length;
+
+    // Only take relevant items within this chunk
+    if (pageEndIndex > startIndex && pageStartIndex < endIndex) {
+      const sliceStart = Math.max(0, startIndex - pageStartIndex);
+      const sliceEnd = Math.min(pageData.length, endIndex - pageStartIndex);
+      allAnime.push(...pageData.slice(sliceStart, sliceEnd));
+    }
+
+    fetchedCount += pageData.length;
+    if (!data.animes.paginatorInfo.hasMorePages) break;
+
+    currentPage++;
   }
 
   return allAnime.map((anime) => ({
-    url: `${process.env.WEBSITE_URL}/anime/${anime.id}/${generateSlug(anime.dic_title!)}`}));
+    url: `${WEBSITE_URL}/anime/${anime.id}/${generateSlug(anime.dic_title!)}`,
+  }));
 }
