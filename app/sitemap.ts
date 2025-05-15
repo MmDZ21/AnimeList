@@ -112,7 +112,7 @@ export async function generateSitemaps() {
 // }
 
 export default async function sitemap({ id }: { id: number }): Promise<MetadataRoute.Sitemap> {
-  console.log("Sitemap generation for id:", id);
+  console.log("Sitemap function called with id:", id, "type:", typeof id);
   const client = getClient();
 
   let staticPages: MetadataRoute.Sitemap = [];
