@@ -10,6 +10,12 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
+                disallow: [
+          '/dashboard',
+          '/dashboard/*',
+          '/search',
+          '/search/*',
+        ],
       },
     ],
     sitemap: Array.from({ length: sitemapCount }, (_, i) => `${baseUrl}/sitemap/${i}.xml`),

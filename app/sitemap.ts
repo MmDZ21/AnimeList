@@ -77,7 +77,6 @@ const staticPages =
   id === "0"
     ? [
         '/',
-        '/search',
         '/anime/ongoing',
         '/anime/movies',
       ].map((path) => ({
