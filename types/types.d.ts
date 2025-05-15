@@ -8,7 +8,7 @@ declare module "next-auth" {
     accessToken: string;
     refreshToken: string;
     expiration: number;
-    email: string | undefined;
+    email: string | undefined | null;
     emailVerified?: Date | null;
     isVip: boolean | null | undefined;
   }
@@ -26,8 +26,7 @@ declare module "next-auth/jwt" {
     accessToken: string;
     refreshToken: string;
     expiration: number;
-    email?: string;
-    emailVerified?: Date | null;
+    email: string | undefined | null;    emailVerified?: Date | null;
     user: User;
     isVip: boolean | null | undefined;
   }
