@@ -6,6 +6,7 @@ import {
 } from "@/generated/graphql";
 import { getClient } from "@/lib/apolloClient";
 import React from "react";
+export const revalidate = 0;
 
 const Subtitle = async ({
   anime_id,
@@ -22,6 +23,7 @@ const Subtitle = async ({
   >({
     query: GetSubtitlesDocument,
     variables: { anime_id, first: 30 },
+    fetchPolicy: "no-cache",
   });
 
   if (error) {
@@ -35,7 +37,7 @@ const Subtitle = async ({
     return <p>subtitles not found.</p>;
   }
   return (
-    <div className="grid grid-cols-4 gap-x-[10px] gap-y-4">
+    <div className="flex flex-col gap-4 lg:grid lg:grid-cols-4 lg:gap-x-[10px] lg:gap-y-4">
       {subtitles.map((sub) => (
         <SubtitleWrapper key={sub.id} subtitle={sub} />
       ))}

@@ -168,6 +168,7 @@ export default async function page({
             <CustomTabs defaultValue="episodes" className="w-full">
               <CustomTabsList className="w-full bg-transparent border-b border-[hsla(215,20%,65%,0.24)]">
                 <CustomTabsTrigger value="episodes">دانلود</CustomTabsTrigger>
+                <CustomTabsTrigger value="subtitle">زیرنویس</CustomTabsTrigger>
                 <CustomTabsTrigger value="similars">
                   آثار مشابه
                 </CustomTabsTrigger>
@@ -249,6 +250,37 @@ export default async function page({
                 ) : (
                   <MembersOnlyError />
                 )}
+              </CustomTabsContent>
+              <CustomTabsContent value="subtitle">
+                <div className="flex flex-col gap-2">
+                  <div className="w-full px-[10px] py-4 bg-[#17212B] flex flex-col gap[10px]">
+                    <Tabs defaultValue="exclusive">
+                      <TabsList className="bg-transparent text-[#A1A1AA] w-full justify-center flex-wrap h-fit">
+                        <h5 className="flex-1 text-white text-base font-semibold hidden lg:block">
+                          باکس دانلود
+                        </h5>
+                        <TabsTrigger
+                          className="data-[state=active]:bg-background data-[state=active]:text-white"
+                          value="exclusive"
+                        >
+                          زیرنویس‌های اختصاصی
+                        </TabsTrigger>
+                        <TabsTrigger
+                          className="data-[state=active]:bg-background data-[state=active]:text-white"
+                          value="sent"
+                        >
+                          زیرنویس‌های ارسالی
+                        </TabsTrigger>
+                      </TabsList>
+                      <TabsContent value="exclusive">
+                        <Subtitle anime_id={id} type={2} />
+                      </TabsContent>
+                      <TabsContent value="sent">
+                        <Subtitle anime_id={id} type={1} />
+                      </TabsContent>
+                    </Tabs>
+                  </div>
+                </div>
               </CustomTabsContent>
               <CustomTabsContent value="similars">
                 {anime.recommendations.length > 0 ? (
@@ -492,10 +524,10 @@ export default async function page({
                     </TabsTrigger>
                   </TabsList>
                   <TabsContent value="exclusive">
-                      <Subtitle anime_id={id} type={2} />
+                    <Subtitle anime_id={id} type={2} />
                   </TabsContent>
                   <TabsContent value="sent">
-                      <Subtitle anime_id={id} type={1} />
+                    <Subtitle anime_id={id} type={1} />
                   </TabsContent>
                 </Tabs>
               </div>
@@ -564,16 +596,16 @@ export default async function page({
           </Tabs>
         </div>
         <div>
-        <div className="flex flex-col gap-[14px]">
-                <div className="bg-[#17212B] p-3">
-                  <CommentForm
-                    animeId={id}
-                    parentId="0"
-                    session={session?.user ? true : false}
-                  />
-                </div>
-                <Comments id={id} />
-              </div>
+          <div className="flex flex-col gap-[14px]">
+            <div className="bg-[#17212B] p-3">
+              <CommentForm
+                animeId={id}
+                parentId="0"
+                session={session?.user ? true : false}
+              />
+            </div>
+            <Comments id={id} />
+          </div>
         </div>
       </div>
     </div>
