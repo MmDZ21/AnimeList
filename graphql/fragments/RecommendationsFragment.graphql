@@ -1,6 +1,7 @@
 fragment RecommendationsFragment on Anime {
   id
   dic_body
+  dic_body_normalized
   dic_title
   dic_title_en
   title_fa

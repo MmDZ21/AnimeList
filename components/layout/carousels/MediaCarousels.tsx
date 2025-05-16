@@ -22,7 +22,7 @@ export default function MediaCarousels({
   items: {
     __typename?: "Anime";
     id: string;
-    dic_body?: string | null;
+    dic_body_normalized?: string | null;
     dic_title?: string | null;
     al_score?: number | null;
     al_score_count?: number | null;

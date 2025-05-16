@@ -161,7 +161,7 @@ export default function SimilarAnimeWrapper({
             <p className="font-normal text-sm">آخرین بروزرسانی: {anime.dic_last_update || "نامشخص"}</p>
             <div
               className="text-sm font-medium line-clamp-[8]"
-              dangerouslySetInnerHTML={{ __html: anime.dic_body! }}
+              dangerouslySetInnerHTML={{ __html: anime.dic_body_normalized! }}
             ></div>
           </div>
         )}

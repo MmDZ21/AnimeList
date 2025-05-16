@@ -9,6 +9,7 @@ query HomePageContent {
     content {
       id
       dic_body
+      dic_body_normalized
       dic_title
       al_score
       al_score_count

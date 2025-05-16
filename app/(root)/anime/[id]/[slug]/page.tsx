@@ -87,8 +87,8 @@ export async function generateMetadata({
   const title = anime.post_title || anime.dic_title || "عنوان انیمه";
   const description =
     anime.seo_desc ||
-    (anime.dic_body
-      ? anime.dic_body.substring(0, 150) + "..."
+    (anime.dic_body_normalized
+      ? anime.dic_body_normalized.substring(0, 150) + "..."
       : "توضیحات انیمه");
 
   return {

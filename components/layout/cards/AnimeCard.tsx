@@ -20,7 +20,7 @@ export default function AnimeCard({ data }: { data: AnimeFragmentFragment }) {
           <h6 className="text-xl font-medium">{data.dic_title}</h6>
           <p className="text-[#979CA6] text-sm font-normal">به همراه زیرنویس فارسی</p>
         </div>
-        <div className="text-sm font-medium text-white line-clamp-4"  dangerouslySetInnerHTML={{__html:data.dic_body!}}/>
+        <div className="text-sm font-medium text-white line-clamp-4"  dangerouslySetInnerHTML={{__html:data.dic_body_normalized!}}/>
       </div>
       <WatchOnline />
     </div>

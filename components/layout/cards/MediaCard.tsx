@@ -13,7 +13,7 @@ export default function MediaCard({
   data: {
     __typename?: "Anime";
     id: string;
-    dic_body?: string | null;
+    dic_body_normalized?: string | null;
     dic_title?: string | null;
     al_score?: number | null;
     al_score_count?: number | null;
@@ -192,7 +192,7 @@ export default function MediaCard({
             </p>
             <div
               className="text-sm font-medium line-clamp-[8]"
-              dangerouslySetInnerHTML={{ __html: data.dic_body! }}
+              dangerouslySetInnerHTML={{ __html: data.dic_body_normalized! }}
             />
           </div>
         </div>
