@@ -4,9 +4,10 @@ import {
   GetSubtitlesQuery,
   GetSubtitlesQueryVariables,
 } from "@/generated/graphql";
-import { getClient } from "@/lib/apolloClient";
+import { getNoCacheClient } from "@/lib/apolloClient";
 import React from "react";
-export const revalidate = 0;
+
+export const revalidate = 0; // Disable ISR for this page
 
 const Subtitle = async ({
   anime_id,
@@ -15,7 +16,7 @@ const Subtitle = async ({
   anime_id: string;
   type: number;
 }) => {
-  const client = getClient();
+  const client = getNoCacheClient();
 
   const { data, error } = await client.query<
     GetSubtitlesQuery,
@@ -23,7 +24,6 @@ const Subtitle = async ({
   >({
     query: GetSubtitlesDocument,
     variables: { anime_id, first: 30 },
-    fetchPolicy: "no-cache",
   });
 
   if (error) {

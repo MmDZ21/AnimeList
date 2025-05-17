@@ -38,7 +38,7 @@ import NoUpload from "@/components/NoUpload";
 import SimilarAnimeError from "@/components/SimilarAnimeError";
 import Subtitle from "./Subtitle";
 
-export const revalidate = 3600;
+export const revalidate = 600;
 
 export async function generateStaticParams() {
   const client = getClient();
