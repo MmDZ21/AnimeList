@@ -20,6 +20,7 @@ const Download = async ({
               quality: link.quality || "نامشخص",
               size: link.size || "نامشخص",
               subtitle: link.subtitle_link || "#",
+              isSoftSub: link.is_softsub || false,
             }}
           />
         ) : null

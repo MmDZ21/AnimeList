@@ -13,6 +13,7 @@ export default function DownloadWrapper({
     size: string;
     ep: string;
     subtitle: string;
+    isSoftSub: boolean;
   };
 }) {
   return (
@@ -24,6 +25,8 @@ export default function DownloadWrapper({
           <p>کیفیت: {links.quality}</p>
           <Separator orientation="vertical" className="h-4" />
           {links.size !== "DIRECTORY" && <p>حجم: {links.size}</p>}
+                    <Separator orientation="vertical" className="h-4" />
+                    {links.isSoftSub && <p className="text-sm text-[#979CA6]">سافت ساب</p>}
         </div>
       </div>
       <div className="flex gap-4 w-full lg:w-fit">
