@@ -8,11 +8,8 @@ import {
 import React from "react";
 import MediaCard from "../cards/MediaCard";
 import { cn, generateSlug } from "@/lib/utils";
-import { MediaCardType } from "@/types/types";
 import Link from "next/link";
 import { useDirection } from "@radix-ui/react-direction";
-import { Anime, AnimeFragmentFragment, GetSeasonalAnimesDocument, GetSeasonalAnimesQuery } from "@/generated/graphql";
-import { useSuspenseQuery } from "@apollo/client";
 
 export default function MediaCarousels({
   className,

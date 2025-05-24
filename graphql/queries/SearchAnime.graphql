@@ -5,7 +5,7 @@ query SearchAnime(
 ) {
   animeSearch(query: $query, orderBy: $orderBy, first: $first) {
     data {
-      ...AnimeFragment
+      ...AnimeCardFragment
     }
   }
 }

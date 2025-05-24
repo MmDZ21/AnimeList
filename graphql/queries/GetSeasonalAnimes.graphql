@@ -4,7 +4,7 @@ query GetSeasonalAnimes($first: Int!) {
       count
     }
     data {
-        ...AnimeFragment
+        ...AnimeCardFragment
     }
   }
 }

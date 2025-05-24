@@ -6,7 +6,7 @@ query AnimeByGenre(
 ) {
   animeGenre(id: $id, orderBy: $orderBy, first: $first, page: $page) {
     data {
-      ...AnimeFragment
+      ...AnimeCardFragment
     }
   }
 }

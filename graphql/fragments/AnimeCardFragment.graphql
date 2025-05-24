@@ -1,0 +1,14 @@
+fragment AnimeCardFragment on Anime {
+  id
+  dic_body_normalized
+  dic_title
+  al_score
+  al_score_count
+  anilist_image_url
+  mal_image_url
+  dic_score
+  anilist_score
+  dic_episodes
+  dic_last_update
+  dic_status
+}
