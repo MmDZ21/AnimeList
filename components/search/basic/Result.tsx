@@ -179,13 +179,13 @@ export default async function Result({ query }: { query: string }) {
             </div>
           </div>
           <div className="flex flex-col gap-2 w-full lg:grid lg:grid-cols-3 lg:grid-rows-2 lg:gap-y-2 lg:gap-x-2">
-            {characters.map((character, i) => (
+            {characters? characters.map((character, i) => (
               <CharacterWrapper
                 characterWithVoice={character}
                 key={i}
                 className="lg:bg-[#17212B]"
               />
-            ))}
+            )): <p>نتیجه‌ای یافت نشد</p>}
           </div>
         </div>
       </div>
