@@ -100,7 +100,7 @@ export async function generateMetadata({
     openGraph: {
       title,
       description,
-      url: `${process.env.WEBSITE_URL}/anime/${paramsData.slug}`,
+      url: `${process.env.WEBSITE_URL}/anime/${paramsData.id}/${paramsData.slug}`,
       siteName: "انیمه لیست",
       locale: "fa_IR",
       type: "website",
