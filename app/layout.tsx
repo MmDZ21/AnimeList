@@ -119,30 +119,29 @@ const modam = localFont({
 });
 
 export const metadata: Metadata = {
-
-      title: "انیمه لیست | دانلود انیمه بدون سانسور با زیرنویس فارسی چسبیده",
-      description:
-        "جدیدترین قسمت‌های انیمه مورد علاقه‌تان را کشف و دانلود کنید.",
-      openGraph: {
-        title: "انیمه لیست | دانلود انیمه بدون سانسور با زیرنویس فارسی چسبیده",
-        description: "دانلود انیمه با زیرنویس فارسی چسبیده بدون سانسور با لینک مستقیم به همراه اپلیکیشن اندروید و ویندوز, دانلود انیمه ایسکای و فانتزی, ایچی, یوری, یائویی",
-        url: process.env.WEBSITE_URL,
-        siteName:"انیمه لیست",
-        type:"website",
-        images: [
-          {
-            url: process.env.WEBSITE_URL + "/images/logo.webp",
-            width: 800,
-            height: 600,
-            alt: "انیمه لیست",
-          },
-        ],
+  title: "انیمه لیست | دانلود انیمه بدون سانسور با زیرنویس فارسی چسبیده",
+  description:
+    "دانلود انیمه با زیرنویس فارسی چسبیده بدون سانسور با لینک مستقیم به همراه اپلیکیشن اندروید و ویندوز, دانلود انیمه ایسکای و فانتزی, ایچی, یوری, یائویی",
+  openGraph: {
+    title: "انیمه لیست | دانلود انیمه بدون سانسور با زیرنویس فارسی چسبیده",
+    description:
+      "دانلود انیمه با زیرنویس فارسی چسبیده بدون سانسور با لینک مستقیم به همراه اپلیکیشن اندروید و ویندوز, دانلود انیمه ایسکای و فانتزی, ایچی, یوری, یائویی",
+    url: process.env.WEBSITE_URL,
+    siteName: "انیمه لیست",
+    type: "website",
+    images: [
+      {
+        url: process.env.WEBSITE_URL + "/images/logo.webp",
+        width: 800,
+        height: 600,
+        alt: "انیمه لیست",
       },
-      alternates: {
-        canonical: process.env.WEBSITE_URL
-      }
-
-}
+    ],
+  },
+  alternates: {
+    canonical: process.env.WEBSITE_URL,
+  },
+};
 // Global Layout Component
 export default async function GlobalLayout({
   children,
@@ -164,9 +163,7 @@ export default async function GlobalLayout({
       <body className={`bg-background ${modam.className} w-full text-white`}>
         <ApolloWrapper>
           {/* <LocaleProvider value={locale}> */}
-              <DirProvider dir="rtl">
-                {children}
-              </DirProvider>
+          <DirProvider dir="rtl">{children}</DirProvider>
           {/* </LocaleProvider> */}
         </ApolloWrapper>
         <Toaster />
