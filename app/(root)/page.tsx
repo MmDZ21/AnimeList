@@ -7,6 +7,7 @@ import MediaCarouselSkeletonArray from "@/components/layout/Skeletons/MediaCarou
 export default async function HomePage() {
   return (
     <div className="min-h-screen w-full flex flex-col gap-10">
+            <h1 className="sr-only">دانلود انیمه با زیرنویس فارسی چسبیده</h1>
       <Slider />
       <div className="min-h-screen w-full flex flex-col gap-10 px-4 lg:px-16">
         {/* <SeasonalAnimes />
